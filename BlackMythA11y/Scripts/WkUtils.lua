@@ -17,4 +17,14 @@ function WkUtils.DumpAllLevels()
     end
 end
 
+-- 打印游戏版本号
+function WkUtils.PrintGameVersion()
+    local GSVersionSettings = StaticFindObject("/Script/b1.Default__GSVersionSettings")
+    if not GSVersionSettings then return end
+
+    local AppVersion = GSVersionSettings.AppVersion  -- :FString
+    print(string.format("[WkUtils] Game Version: %s.%s\n",
+        AppVersion:ToString(), GSVersionSettings.Revision))
+end
+
 return WkUtils
