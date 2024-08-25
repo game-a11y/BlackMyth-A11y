@@ -1,4 +1,6 @@
+-- SPDX-License-Identifier: MIT
 -- BlackMythA11y Mod
+-- Author: inkydragon
 local UEHelpers = require("UEHelpers")
 
 -- Importing functions to the global namespace of this mod just so that we don't have to retype 'UEHelpers.' over and over again.
