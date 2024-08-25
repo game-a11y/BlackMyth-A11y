@@ -2,6 +2,7 @@
 -- BlackMythA11y Mod
 -- Author: inkydragon
 local UEHelpers = require("UEHelpers")
+local WkUtils = require("WkUtils")
 
 -- Importing functions to the global namespace of this mod just so that we don't have to retype 'UEHelpers.' over and over again.
 local GetGameplayStatics = UEHelpers.GetGameplayStatics
@@ -11,19 +12,8 @@ local GetPlayerController = UEHelpers.GetPlayerController
 RegisterHook("/Script/Engine.PlayerController:ClientRestart", function (self, NewPawn) 
     local PlayerController = self:get()
 
-    print("[BlackMythA11y] Mod Start...")
+    print("[BlackMythA11y] Mod Start...\n")
 end)
-
-local function DumpAllLevels()
-    local ActorInstances = FindAllOf("Level")
-    if not ActorInstances then
-        print("No instances of 'Level' were found\n")
-    else
-        for Index, ActorInstance in pairs(ActorInstances) do
-            print(string.format("[%d] %s\n", Index, ActorInstance:GetFullName()))
-        end
-    end
-end
 
 
 local function DumpAllWidgets()
@@ -53,9 +43,10 @@ end
 
 
 local function DumpInfo()
-    print("[BlackMythA11y] DumpInfo...")
+    print("[BlackMythA11y] DumpInfo...\n")
     local UWorld = UEHelpers.GetWorld()
-    DumpAllWidgets()
+    -- DumpAllWidgets()
+    WkUtils.DumpAllLevels()
 
     -- 1. 检查当前关卡的名称
     -- if UWorld then
