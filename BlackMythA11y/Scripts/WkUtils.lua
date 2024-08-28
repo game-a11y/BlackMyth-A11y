@@ -28,4 +28,37 @@ function WkUtils.PrintGameVersion()
         AppVersion:ToString(), GSVersionSettings.Revision))
 end
 
+function PrintUObject(uobj)
+    if not uobj then return end
+    print(string.format(SubModeName.."raw:  UObject=%s; FullName=%s\n", uobj, uobj:GetFullName()))
+    --- UIPageList TArray<EUIPageID>
+end
+
+-- 打印当前 UI 页面名称
+function WkUtils.PrintUIPage()
+    --- UIPageID EUIPageID
+    --- DialogueID int32
+    --- NameID int32
+    --- ChapterID int32
+    --- MediaId int32
+    --- BSNS_ShowSpecialUI /Script/b1-Managed.Default__BSNS_ShowSpecialUI
+    local ShowSpecialUI = StaticFindObject("/Script/b1-Managed.Default__BSNS_ShowSpecialUI")
+    if not ShowSpecialUI then return end
+    -- print(string.format(SubModeName.."%s: %s\n", ShowSpecialUI, ShowSpecialUI:GetFullName()))
+    PrintUObject(ShowSpecialUI)
+    --- UIPageList TArray<EUIPageID>
+    -- local ShowUIArray = StaticFindObject("/Script/b1-Managed.UBSN_ShowUI")
+    -- if not ShowUIArray then return end
+
+    print(string.format(SubModeName.."Print:  raw=%s\n", ShowSpecialUI:GetDisplayName()))
+    print(string.format(SubModeName.."Print:  raw=%s\n", ShowSpecialUI:GetDisplayName():ToString()))
+    print(string.format(
+        SubModeName.."[DisplayName=%s]"..
+        " UIPageID=%d; DialogueID=%d; NameID=%d; ChapterID=%d; MediaId=%d"..
+        "\n",
+        ShowSpecialUI:GetDisplayName():ToString(),
+        ShowSpecialUI:UIPageID, ShowSpecialUI.DialogueID, ShowSpecialUI.NameID,
+        ShowSpecialUI.ChapterID, ShowSpecialUI.MediaId))
+end
+
 return WkUtils

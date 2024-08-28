@@ -28,6 +28,8 @@ local function DumpInfo()
     print(string.format(ModName.."GetPlatformName: %s\n", GetGameplayStatics():GetPlatformName():ToString()))
     local GameMode = GetGameplayStatics():GetGameMode(UWorld)
     print(string.format(ModName.."GetLevel: %s\n", GameMode:GetLevel():GetFullName()))
+
+    WkUtils.PrintUIPage()
 end
 
 RegisterKeyBind(Key.F11, DumpInfo)
