@@ -1,5 +1,6 @@
 Config/HoloLens/
-Content/Mods/
+# ignore *.uasset
+Content/
 
 # Visual Studio 2015 user specific files
 .vs/
