@@ -1,3 +1,7 @@
+Startup:
+Level /Game/00Main/Maps/Startup/Startup_V2_P.Startup_V2_P:PersistentLevel
+
+HFS:
 [1] Level /Game/00Main/Maps/CharacterView/CharacterViewInstance_08.CharacterViewInstance_08:PersistentLevel
 [2] Level /Game/00Main/Maps/HFS01/HFS01_Swamp.HFS01_Swamp:PersistentLevel
 [3] Level /Game/00Main/Maps/HFS01/HFS01_Swamp_WCTile_Far_0_0_0_512m.HFS01_Swamp_WCTile_Far_0_0_0_512m:PersistentLevel
