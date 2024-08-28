@@ -1,6 +1,6 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "5.0",
+	"EngineAssociation": "{F58F84D4-4251-91A3-CCF8-918576B089A3}",
 	"Category": "",
 	"Description": "",
 	"Plugins": [
@@ -11,5 +11,8 @@
 				"Editor"
 			]
 		}
+	],
+	"TargetPlatforms": [
+		"Windows"
 	]
 }
