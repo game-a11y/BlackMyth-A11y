@@ -1,5 +1,6 @@
 -- SPDX-License-Identifier: MIT
 -- WuKong Utils
+local SubModeName = "[BlackMythA11y.WkUtils] "
 -- Author: inkydragon
 local WkUtils = {}
 
@@ -7,13 +8,13 @@ local WkUtils = {}
 function WkUtils.DumpAllLevels()
     local LevelInstances = FindAllOf("Level")
     if not LevelInstances then
-        print("[WkUtils] No instances of 'Level' were found\n")
+        print(SubModeName.."No instances of 'Level' were found\n")
         return
     end
 
-    print("[WkUtils] Begin to dump all Levels:\n")
+    print(SubModeName.."Begin to dump all Levels:\n")
     for Index, Level in pairs(LevelInstances) do
-        print(string.format("[%d] %s\n", Index, Level:GetFullName()))
+        print(string.format(SubModeName.."[%d] %s\n", Index, Level:GetFullName()))
     end
 end
 
@@ -23,7 +24,7 @@ function WkUtils.PrintGameVersion()
     if not GSVersionSettings then return end
 
     local AppVersion = GSVersionSettings.AppVersion  -- :FString
-    print(string.format("[WkUtils] Game Version: %s.%s\n",
+    print(string.format(SubModeName.."Game Version: %s.%s\n",
         AppVersion:ToString(), GSVersionSettings.Revision))
 end
 
