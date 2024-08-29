@@ -57,7 +57,7 @@ function WkUtils.PrintUIPage()
         " UIPageID=%d; DialogueID=%d; NameID=%d; ChapterID=%d; MediaId=%d"..
         "\n",
         ShowSpecialUI:GetDisplayName():ToString(),
-        ShowSpecialUI:UIPageID, ShowSpecialUI.DialogueID, ShowSpecialUI.NameID,
+        ShowSpecialUI.UIPageID, ShowSpecialUI.DialogueID, ShowSpecialUI.NameID,
         ShowSpecialUI.ChapterID, ShowSpecialUI.MediaId))
 end
 
