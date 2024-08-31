@@ -105,9 +105,11 @@ local function InitManagedHook()
         print(string.format("OnAddedToFocusPath(%s): %s\n", tostring(InFocusEvent:GetFullName()), tostring(Button:GetFullName())))
     end
     RegisterHook("/Script/b1-Managed.BUI_Button:OnAddedToFocusPath", OnAddedToFocusPath_Hook)
-    -- RegisterHook("/Script/b1-Managed.BUI_Button:OnClicked", function(Context)
+    -- RegisterHook("/Script/b1-Managed.BUI_Widget:OnAddedToFocusPath", OnAddedToFocusPath_Hook)
+    -- 返回的是上一步的对象
+    -- RegisterHook("/Script/b1-Managed.BUI_Button:OnCustomWidgetNavigation", function(Context, Navigation)
     --     Button = Context:get()
-    --     print(string.format("OnClicked: %s\n", tostring(Button:GetFullName())))
+    --     print(string.format("OnCustomWidgetNavigation: %s\n", tostring(Button:GetFullName())))
     -- end)
 end
 
