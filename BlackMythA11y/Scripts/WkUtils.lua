@@ -28,7 +28,7 @@ function WkUtils.PrintGameVersion()
         AppVersion:ToString(), GSVersionSettings.Revision))
 end
 
-function PrintUObject(uobj)
+function WkUtils.PrintUObject(uobj)
     if not uobj then return end
     print(string.format(SubModeName.."raw:  UObject=%s; FullName=%s\n", uobj, uobj:GetFullName()))
     --- UIPageList TArray<EUIPageID>
@@ -45,7 +45,7 @@ function WkUtils.PrintUIPage()
     local ShowSpecialUI = StaticFindObject("/Script/b1-Managed.Default__BSNS_ShowSpecialUI")
     if not ShowSpecialUI then return end
     -- print(string.format(SubModeName.."%s: %s\n", ShowSpecialUI, ShowSpecialUI:GetFullName()))
-    PrintUObject(ShowSpecialUI)
+    WkUtils.PrintUObject(ShowSpecialUI)
     --- UIPageList TArray<EUIPageID>
     -- local ShowUIArray = StaticFindObject("/Script/b1-Managed.UBSN_ShowUI")
     -- if not ShowUIArray then return end
