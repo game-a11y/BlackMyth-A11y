@@ -94,11 +94,17 @@ local function InitManagedHook()
         -- end
     end)
     
-    RegisterHook("/Script/b1-Managed.BUI_Button:OnAddedToFocusPath", function(pContext, pInFocusEvent)
+    local OnAddedToFocusPath_Hook = function(pContext, pInFocusEvent)
         Button = pContext:get()
+        -- TODO: 根据原因筛选相应，消除重复的事件
         InFocusEvent = pInFocusEvent:get()
-        print(string.format("OnAddedToFocusPath(%s): %s\n", tostring(InFocusEvent), tostring(Button:GetFullName())))
-    end)
+        -- WkUtils.PrintUObject(UGSE_UMGFuncLib)
+        -- https://github.com/UE4SS-RE/RE-UE4SS/issues/378
+        -- local UGSE_UMGFuncLib = StaticFindObject("/Script/UnrealExtent.Default__GSE_UMGFuncLib")
+        -- Cause = UGSE_UMGFuncLib:GetFocusEventCause(InFocusEvent)
+        print(string.format("OnAddedToFocusPath(%s): %s\n", tostring(InFocusEvent:GetFullName()), tostring(Button:GetFullName())))
+    end
+    RegisterHook("/Script/b1-Managed.BUI_Button:OnAddedToFocusPath", OnAddedToFocusPath_Hook)
     -- RegisterHook("/Script/b1-Managed.BUI_Button:OnClicked", function(Context)
     --     Button = Context:get()
     --     print(string.format("OnClicked: %s\n", tostring(Button:GetFullName())))
