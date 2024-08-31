@@ -8,6 +8,7 @@ local WkUtils = require("WkUtils")
 local GetGameplayStatics = UEHelpers.GetGameplayStatics
 -- Global Var
 local WidgetLib = nil
+local bModInit = false
 
 
 local function PrintCanvas(widget)
@@ -70,3 +71,65 @@ local function DumpInfo()
 end
 
 RegisterKeyBind(Key.F11, DumpInfo)
+
+
+local function InitManagedHook()
+    RegisterHook("/Script/b1-Managed.BUI_Button:OnMouseButtonDown", function(Context, MyGeometry, MouseEvent)
+        Button = Context:get()
+        print(string.format("OnMouseButtonDown: %s\n", tostring(Button:GetFullName())))
+        WidgetTree = Button.WidgetTree
+        -- WkUtils.PrintUObject(WidgetTree)
+        -- WkUtils.PrintUObject(WidgetTree.TxtName)
+    
+        -- -- TxtName_name = tostring(Button:GetFullName()) .. ".WidgetTree.TxtName"
+        -- WkUtils.PrintUObject(Button)
+        -- -- TxtName = FindFirstOf("GSTextBlock /Engine/Transient.GameEngine_2147482611:BGW_GameInstance_B1_2147482576.BUI_B1_Root_V2_C_2147480953.WidgetTree.BUI_StartGame_C_2147477556.WidgetTree.BI_StartGameBtn_0")
+        -- -- WkUtils.PrintUObject(TxtName)
+    
+        -- TxtName = WidgetTree.TxtName:get()
+        -- WkUtils.PrintUObject(WidgetTree)
+        -- if TxtName ~= nil then
+        --     BtnText = TxtName
+        --     print(string.format("\t%s\n", tostring(TxtName:GetFullName())))
+        -- end
+    end)
+    
+    RegisterHook("/Script/b1-Managed.BUI_Button:OnAddedToFocusPath", function(pContext, pInFocusEvent)
+        Button = pContext:get()
+        InFocusEvent = pInFocusEvent:get()
+        print(string.format("OnAddedToFocusPath(%s): %s\n", tostring(InFocusEvent), tostring(Button:GetFullName())))
+    end)
+    -- RegisterHook("/Script/b1-Managed.BUI_Button:OnClicked", function(Context)
+    --     Button = Context:get()
+    --     print(string.format("OnClicked: %s\n", tostring(Button:GetFullName())))
+    -- end)
+end
+
+-- Called after AGameModeBase::InitGameState
+-- 第一次启动时，为延迟构造的函数挂钩
+RegisterInitGameStatePostHook(function(GameState)
+    if bModInit then
+        return
+    end
+
+    bModInit = true
+    -- These variables do not get reset when hot-reloading.
+    ModRef:SetSharedVariable("WkGameStart", true)
+    print(ModName.."InitGameStatePostHook\n")
+    InitManagedHook()
+end)
+
+local WkGameStart = ModRef:GetSharedVariable("WkGameStart")
+if WkGameStart and type(WkGameStart) == "boolean" then
+    print("Mod hot-reloading.\n")
+    InitManagedHook()
+else
+    print("First Start Game.\n")
+end
+
+
+-- RegisterHook("/Script/UMG.TextBlock:SetText", function(Context, InText)
+--     Button = Context:get()
+--     print(string.format("SetText: %s\n", tostring(Button:GetFullName())))
+--     print(string.format("\t%s\n", tostring(InText:get():ToString())))
+-- end)
