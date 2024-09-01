@@ -104,13 +104,20 @@ local function InitManagedHook()
         -- Cause = UGSE_UMGFuncLib:GetFocusEventCause(InFocusEvent)
         print(string.format("OnAddedToFocusPath(%s): %s\n", tostring(InFocusEvent:GetFullName()), tostring(Button:GetFullName())))
     end
-    RegisterHook("/Script/b1-Managed.BUI_Button:OnAddedToFocusPath", OnAddedToFocusPath_Hook)
+    -- RegisterHook("/Script/b1-Managed.BUI_Button:OnAddedToFocusPath", OnAddedToFocusPath_Hook)
     -- RegisterHook("/Script/b1-Managed.BUI_Widget:OnAddedToFocusPath", OnAddedToFocusPath_Hook)
     -- 返回的是上一步的对象
     -- RegisterHook("/Script/b1-Managed.BUI_Button:OnCustomWidgetNavigation", function(Context, Navigation)
     --     Button = Context:get()
     --     print(string.format("OnCustomWidgetNavigation: %s\n", tostring(Button:GetFullName())))
     -- end)
+    
+    -- NOTE: 会显示父级的聚焦事件
+    -- RegisterHook("/Script/b1-Managed.BUI_Widget:OnFocusChanging", function(self, InFocusEvent)
+    --     print(string.format("OnFocusChanging: %s\n", tostring(self:get():GetFullName())))
+    -- end)
+
+    -- NOTE: hook "/Script/b1-Managed.BUI_Widget:OnAnimationSequenceEvent" 闪退
 end
 
 -- Called after AGameModeBase::InitGameState
