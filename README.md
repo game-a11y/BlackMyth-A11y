@@ -2,6 +2,14 @@
 
 > An accessibility mod for "Black Myth: Wukong"
 
+## Mod 安装
+
+> MOD 开发中
+
+TODO
+- 依赖: UE4SS https://www.nexusmods.com/blackmythwukong/mods/19 (注意需要是nexusmods的专用版本)
+
+
 ## 参考链接
 
 ### Mod 成品
@@ -13,3 +21,5 @@
 
 - [Home - UE4SS Documentation](https://docs.ue4ss.com/index.html)
 - [Lua Modding > Introduction | Palworld Modding Docs](https://pwmodding.wiki/docs/lua-modding/lua-intro)
+- [kboykboy2/UnrealEngine: Unreal Engine source code](https://github.com/kboykboy2/UnrealEngine)
+    这是黑神话使用的修改版本
