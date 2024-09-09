@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <String/StringType.hpp>
 #include <Mod/CppUserModBase.hpp>
 

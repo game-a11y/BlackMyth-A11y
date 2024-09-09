@@ -70,7 +70,19 @@ local function DumpInfo()
     PrintCanvas(fpbar)
 end
 
-RegisterKeyBind(Key.F11, DumpInfo)
+-- RegisterKeyBind(Key.F11, DumpInfo)
+
+-- 测试调用 Cpp 注入的模块
+local function CallCppModTest()
+    print(ModName.."CallCppModTest...\n")
+
+    print(string.format(ModName.."A11yTolk: %s\n", A11yTolk))
+    local Major, Minor, Hotfix = A11yTolk:GetVersion()
+    print(string.format(ModName.."A11yTolk v%d.%d.%d\n", Major, Minor, Hotfix))
+    print(string.format(ModName.."A11yTolk:Speak(string)\n"))
+    A11yTolk:Speak("aaaaa")
+end
+RegisterKeyBind(Key.F11, CallCppModTest)
 
 
 local function InitManagedHook()

@@ -1,6 +1,7 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 #include <Unreal/UObjectGlobals.hpp>
 #include <Unreal/UObject.hpp>
+#include <Mod/LuaMod.hpp>
 #include <a11y.hpp>
 
 
@@ -58,5 +59,41 @@ namespace A11yMod
         }
         Output::send<LogLevel::Verbose>(MODSTR("Run mod({}) lua script.\n"), mod_name);
 
+        /* A11yTolk Class Begin */
+        {
+            auto tolk_class = lua.prepare_new_table();
+            tolk_class.set_has_userdata(false);
+
+            // tolk.version()
+            tolk_class.add_pair("GetVersion", [](const LuaMadeSimple::Lua& lua) -> int {
+                lua.set_integer(1);
+                lua.set_integer(0);
+                lua.set_integer(0);
+                return 3;
+            });
+
+            // Tolk_Speak
+            tolk_class.add_pair("Speak", [](const LuaMadeSimple::Lua& lua) -> int {
+                            std::string error_overload_not_found{R"(
+No overload found for function 'Speak'.
+Overloads:
+#1: Speak(string OutputText))"};
+                lua.discard_value(); // Discard the 'this' param.
+
+                if (!lua.is_string())
+                {
+                    lua.throw_error(error_overload_not_found);
+                }
+                auto output_text = std::string{lua.get_string()};
+
+                Output::send<LogLevel::Normal>(
+                    MODSTR("From Lua:  Speak(\"{}\")\n"),
+                    FromCharTypePtr<TCHAR>(ensure_str(output_text).c_str()));
+                return 1;
+            });
+            
+            tolk_class.make_global("A11yTolk");
+            Output::send<LogLevel::Normal>(MODSTR("Set Lua A11yTolk Class.\n"));
+        } /* A11yTolk Class END */
     }
 };
