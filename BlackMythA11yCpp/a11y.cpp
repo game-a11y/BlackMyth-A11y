@@ -92,6 +92,12 @@ Overloads:
                 return 1;
             });
             
+            // TODO:
+            //  Tolk_IsLoaded();
+            //  Tolk_HasSpeech();
+            //  Tolk_DetectScreenReader();
+            //  Tolk_Silence();
+
             tolk_class.make_global("A11yTolk");
             Output::send<LogLevel::Normal>(MODSTR("Set Lua A11yTolk Class.\n"));
         } /* A11yTolk Class END */
