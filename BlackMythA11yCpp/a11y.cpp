@@ -43,4 +43,20 @@ namespace A11yMod
         Output::send<LogLevel::Verbose>(MODSTR("Object Name: {}\n"), Object->GetFullName());
     }
 
+
+    auto BlackMythA11yCpp::on_lua_start(
+        StringViewType mod_name,
+        LuaMadeSimple::Lua& lua,
+        LuaMadeSimple::Lua& main_lua,
+        LuaMadeSimple::Lua& async_lua,
+        std::vector<LuaMadeSimple::Lua*>& hook_luas
+    ) -> void
+    {
+        if (!(A11yLuaModName == mod_name)) {
+            Output::send<LogLevel::Normal>(MODSTR("Run mod({}) lua script.\n"), mod_name);
+            return;
+        }
+        Output::send<LogLevel::Verbose>(MODSTR("Run mod({}) lua script.\n"), mod_name);
+
+    }
 };
