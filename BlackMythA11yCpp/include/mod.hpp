@@ -2,6 +2,9 @@
 #include <String/StringType.hpp>
 #include <Mod/CppUserModBase.hpp>
 
+#define NOMINMAX
+#include <Windows.h>
+
 #define MODSTR(_in_mod_str) STR("[BlackMythA11yCpp] " _in_mod_str)
 
 
@@ -36,7 +39,9 @@ namespace A11yMod
         auto on_dll_load(StringViewType dll_name) -> void override;
 
     private:
-        void *tolk_lib;
+        HMODULE tolk_lib;
+        auto load_sr_lib() -> void;
+        auto unload_sr_lib() -> void;
         auto load_and_init_tolk() -> void;
     };
 

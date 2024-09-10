@@ -1,8 +1,6 @@
-#include <mod.hpp>
+﻿#include <mod.hpp>
 #include <tolk.h>
 
-#define NOMINMAX
-#include <Windows.h>
 
 // tolk func types
 
@@ -15,14 +13,9 @@ typedef decltype(&Tolk_Silence)     TolkSilencePtr;
 
 namespace A11yMod
 {
-    // 加载并初始化 DLL
-    auto BlackMythA11yCpp::load_and_init_tolk() -> void
+    // 加载屏幕阅读器库
+    auto BlackMythA11yCpp::load_sr_lib() -> void 
     {
-        if (tolk_lib) {
-            return;
-        }
-
-        /* --- 加载 DLL --- */
         auto dll_path = STR("Tolk.dll");
 
         // https://learn.microsoft.com/zh-cn/windows/win32/debug/calling-the-dbghelp-library
@@ -33,7 +26,29 @@ namespace A11yMod
         }
 
         Output::send<LogLevel::Verbose>(MODSTR("Loaded tolk.dll.\n"));
-        
+    }
+
+    // 卸载 SR 库
+    auto BlackMythA11yCpp::unload_sr_lib() -> void
+    {
+        if (!tolk_lib) {
+            return;
+        }
+
+        // TODO: Tolk_Unload
+        FreeLibrary(tolk_lib);
+        Output::send<LogLevel::Normal>(MODSTR("Free tolk.dll.\n"));
+    }
+
+    // 加载并初始化 DLL
+    auto BlackMythA11yCpp::load_and_init_tolk() -> void
+    {
+        if (!tolk_lib) {
+            Output::send<LogLevel::Warning>(MODSTR("tolk.dll not load, skip init tolk.\n"));
+            return;
+        }
+        Output::send<LogLevel::Verbose>(MODSTR("load_and_init_tolk.\n"));
+
         /* --- 导出 Tolk 函数 --- */
         // https://blog.benoitblanchon.fr/getprocaddress-like-a-boss/
         auto tolk_init = reinterpret_cast<TolkLoadPtr>(GetProcAddress((HMODULE)tolk_lib, "Tolk_Load"));
@@ -48,7 +63,13 @@ namespace A11yMod
         }
         tolk_init();
 
-        Output::send<LogLevel::Verbose>(MODSTR("tolk_has_speech: {}\n"), tolk_has_speech());
+        bool tolk_has_init = tolk_has_speech();
+        Output::send<LogLevel::Verbose>(MODSTR("tolk_has_speech: {}\n"), tolk_has_init);
+        if (!tolk_has_init) {
+            Output::send<LogLevel::Warning>(MODSTR("Tolk has no backend!\n"));
+            return;
+        }
+
         std::wstring sr_name{tolk_DetectScreenReader()};
         Output::send<LogLevel::Verbose>(MODSTR("tolk_DetectScreenReader: {}\n"), sr_name);
         
