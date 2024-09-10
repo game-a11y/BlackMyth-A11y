@@ -27,7 +27,7 @@ namespace A11yMod
 
     BlackMythA11yCpp::~BlackMythA11yCpp()
     {
-        unload_sr_lib();
+        sr_unload_lib();
     }
 
     auto BlackMythA11yCpp::on_update() -> void

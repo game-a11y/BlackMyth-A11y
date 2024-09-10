@@ -29,7 +29,7 @@ namespace A11yMod
     }
 
     // 卸载 SR 库
-    auto BlackMythA11yCpp::unload_sr_lib() -> void
+    auto BlackMythA11yCpp::sr_unload_lib() -> void
     {
         if (!tolk_lib) {
             return;
