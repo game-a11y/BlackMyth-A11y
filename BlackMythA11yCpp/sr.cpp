@@ -7,7 +7,8 @@
 
 namespace A11yMod
 {
-    auto BlackMythA11yCpp::load_tolk_lib() -> void
+    // 加载并初始化 DLL
+    auto BlackMythA11yCpp::load_and_init_tolk() -> void
     {
         auto dll_path = STR("Tolk.dll");
 
@@ -18,7 +19,6 @@ namespace A11yMod
         }
 
         Output::send<LogLevel::Verbose>(MODSTR("Loaded tolk.dll.\n"));
-        
-        
     }
+
 };

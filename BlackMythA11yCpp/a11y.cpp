@@ -21,7 +21,7 @@ namespace A11yMod
         // other than the one you're currently building with somehow.
         //ModIntendedSDKVersion = STR("2.6");
         
-        load_tolk_lib();
+        load_and_init_tolk();
         Output::send<LogLevel::Verbose>(MODSTR("BlackMythA11yCpp Mod init.\n"));
     }
 

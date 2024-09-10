@@ -37,7 +37,7 @@ namespace A11yMod
 
     private:
         void *tolk_lib;
-        auto load_tolk_lib() -> void;
+        auto load_and_init_tolk() -> void;
     };
 
 };
