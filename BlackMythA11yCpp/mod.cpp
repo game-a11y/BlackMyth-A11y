@@ -46,14 +46,16 @@ namespace A11yMod
     
     auto OnAddedToFocusPath_Hook(UnrealScriptFunctionCallableContext& Context, void* CustomData) -> void
     {
-        // auto button = Context.Context;
-        // auto focus_event = CustomData;
-
-        // Output::send<LogLevel::Verbose>(
-        //     MODSTR("OnAddedToFocusPath(): {}\n"),
-        //     button->GetFullName()
-        // );
-        Output::send<LogLevel::Verbose>(MODSTR("OnAddedToFocusPath_Hook\n"));
+        auto button = Context.Context;
+        auto focus_event = (UObject*)CustomData;
+        
+        auto full_name = button->GetFullName();
+        Output::send<LogLevel::Verbose>(
+            MODSTR("OnAddedToFocusPath({}): {}\n"),
+            focus_event->GetFullName(),  // TODO: None
+            button->GetFullName()
+        );
+        // Output::send<LogLevel::Verbose>(MODSTR("\tText={}\n"), );
     }
     auto Empty_UnrealScriptFunction(UnrealScriptFunctionCallableContext& Context, void* CustomData) -> void {}
 
