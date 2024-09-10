@@ -1,116 +1,116 @@
-[BlackMythA11yCpp] on_dll_load: W:\inky\games\Steam\steamapps\common\BlackMythWukong\b1\Binaries\Win64\..\..\..\Engine\Binaries\ThirdParty\Steamworks\Steamv151\Win64\steam_api64.dll.
-[BlackMythA11yCpp] on_dll_load: steamclient64.dll.
-[BlackMythA11yCpp] on_dll_load: kernelbase.dll.
-[BlackMythA11yCpp] on_dll_load: ntdll.dll.
-[BlackMythA11yCpp] on_dll_load: kernel32.dll.
-[BlackMythA11yCpp] on_dll_load: W:/inky/games/Steam/steamapps/common/BlackMythWukong/Engine/Binaries/ThirdParty/DbgHelp/dbghelp.dll.
-[BlackMythA11yCpp] on_dll_load: shcore.dll.
-[BlackMythA11yCpp] on_dll_load: shlwapi.dll.
-[BlackMythA11yCpp] on_dll_load: mf.dll.
-[BlackMythA11yCpp] on_dll_load: mfplat.dll.
-[BlackMythA11yCpp] on_dll_load: mfplay.dll.
-[BlackMythA11yCpp] on_dll_load: MFPlat.DLL.
-[BlackMythA11yCpp] on_dll_load: ../../../b1/Binaries/Win64/EOSSDK-Win64-Shipping.dll.
-[BlackMythA11yCpp] on_dll_load: ../../../Engine/Binaries/Win64/EOSSDK-Win64-Shipping.dll.
-[BlackMythA11yCpp] on_dll_load: EOSSDK-Win64-Shipping.dll.
-[BlackMythA11yCpp] on_dll_load: W:/inky/games/Steam/steamapps/common/BlackMythWukong/Engine/Binaries/ThirdParty/Steamworks/Steamv151/Win64/steam_api64.dll.
-[BlackMythA11yCpp] on_dll_load: steam_api64.dll.
-[BlackMythA11yCpp] on_dll_load: GFSDK_Aftermath_Lib.x64.dll.
-[BlackMythA11yCpp] on_dll_load: d3d12.dll.
-[BlackMythA11yCpp] on_dll_load: SHLWAPI.dll.
-[BlackMythA11yCpp] on_dll_load: C:\WINDOWS\System32\DriverStore\FileRepository\nvlt.inf_amd64_b151a4201f322ac7\igdext64.dll.
-[BlackMythA11yCpp] on_dll_load: C:\WINDOWS\System32\DriverStore\FileRepository\nvlt.inf_amd64_b151a4201f322ac7\igdext64.dll.
-[BlackMythA11yCpp] on_dll_load: C:\WINDOWS\System32\DriverStore\FileRepository\nvlt.inf_amd64_b151a4201f322ac7\igdext64.dll.
-[BlackMythA11yCpp] on_dll_load: C:\WINDOWS\System32\DriverStore\FileRepository\nvlt.inf_amd64_b151a4201f322ac7\Display.NvContainer\igdext64.dll.
-[BlackMythA11yCpp] on_dll_load: C:\WINDOWS\System32\DriverStore\FileRepository\iigd_dch.inf_amd64_e8d77b0dd4bff2b1\igdext64.dll.
-[BlackMythA11yCpp] on_dll_load: W:/inky/games/Steam/steamapps/common/BlackMythWukong/Engine/Binaries/ThirdParty/PhysX3/Win64/VS2015/PxFoundation_x64.dll.
-[BlackMythA11yCpp] on_dll_load: W:/inky/games/Steam/steamapps/common/BlackMythWukong/Engine/Binaries/ThirdParty/PhysX3/Win64/VS2015/PhysX3Common_x64.dll.
-[BlackMythA11yCpp] on_dll_load: W:/inky/games/Steam/steamapps/common/BlackMythWukong/Engine/Binaries/ThirdParty/PhysX3/Win64/VS2015/PxPvdSDK_x64.dll.
-[BlackMythA11yCpp] on_dll_load: W:/inky/games/Steam/steamapps/common/BlackMythWukong/Engine/Binaries/ThirdParty/PhysX3/Win64/VS2015/PhysX3_x64.dll.
-[BlackMythA11yCpp] on_dll_load: W:/inky/games/Steam/steamapps/common/BlackMythWukong/Engine/Binaries/ThirdParty/PhysX3/Win64/VS2015/APEXFramework_x64.dll.
-[BlackMythA11yCpp] on_dll_load: W:/inky/games/Steam/steamapps/common/BlackMythWukong/Engine/Binaries/ThirdParty/PhysX3/Win64/VS2015/APEX_Legacy_x64.dll.
-[BlackMythA11yCpp] on_dll_load: W:/inky/games/Steam/steamapps/common/BlackMythWukong/Engine/Binaries/ThirdParty/PhysX3/Win64/VS2015/APEX_Clothing_x64.dll.
-[BlackMythA11yCpp] on_dll_load: PxFoundation_x64.dll.
-[BlackMythA11yCpp] on_dll_load: PxPvdSDK_x64.dll.
-[BlackMythA11yCpp] on_dll_load: PhysX3_x64.dll.
-[BlackMythA11yCpp] on_dll_load: PhysX3Common_x64.dll.
-[BlackMythA11yCpp] on_dll_load: W:/inky/games/Steam/steamapps/common/BlackMythWukong/Engine/Binaries/ThirdParty/PhysX3/Win64/VS2015/PxFoundation_x64.dll.
-[BlackMythA11yCpp] on_dll_load: W:/inky/games/Steam/steamapps/common/BlackMythWukong/Engine/Binaries/ThirdParty/PhysX3/Win64/VS2015/PhysX3Common_x64.dll.
-[BlackMythA11yCpp] on_dll_load: W:/inky/games/Steam/steamapps/common/BlackMythWukong/Engine/Binaries/ThirdParty/PhysX3/Win64/VS2015/PxPvdSDK_x64.dll.
-[BlackMythA11yCpp] on_dll_load: W:/inky/games/Steam/steamapps/common/BlackMythWukong/Engine/Binaries/ThirdParty/PhysX3/Win64/VS2015/PhysX3_x64.dll.
-[BlackMythA11yCpp] on_dll_load: W:/inky/games/Steam/steamapps/common/BlackMythWukong/Engine/Binaries/ThirdParty/PhysX3/Win64/VS2015/PhysX3Cooking_x64.dll.
-[BlackMythA11yCpp] on_dll_load: W:/inky/games/Steam/steamapps/common/BlackMythWukong/Engine/Binaries/ThirdParty/PhysX3/Win64/VS2015/APEXFramework_x64.dll.
-[BlackMythA11yCpp] on_dll_load: W:/inky/games/Steam/steamapps/common/BlackMythWukong/Engine/Binaries/ThirdParty/PhysX3/Win64/VS2015/APEX_Legacy_x64.dll.
-[BlackMythA11yCpp] on_dll_load: W:/inky/games/Steam/steamapps/common/BlackMythWukong/Engine/Binaries/ThirdParty/PhysX3/Win64/VS2015/APEX_Clothing_x64.dll.
-[BlackMythA11yCpp] on_dll_load: PhysX3Cooking_x64.dll.
-[BlackMythA11yCpp] on_dll_load: ApexFramework_x64.dll.
-[BlackMythA11yCpp] on_dll_load: shcore.dll.
-[BlackMythA11yCpp] on_dll_load: d3d12.dll.
-[BlackMythA11yCpp] on_dll_load: dxgi.dll.
-[BlackMythA11yCpp] on_dll_load: msasn1.dll.
-[BlackMythA11yCpp] on_dll_load: cryptnet.dll.
-[BlackMythA11yCpp] on_dll_load: drvstore.dll.
-[BlackMythA11yCpp] on_dll_load: devobj.dll.
-[BlackMythA11yCpp] on_dll_load: wldp.dll.
-[BlackMythA11yCpp] on_dll_load: cryptbase.dll.
-[BlackMythA11yCpp] on_dll_load: nvapi64.dll.
-[BlackMythA11yCpp] on_dll_load: wintrust.dll.
-[BlackMythA11yCpp] on_dll_load: crypt32.dll.
-[BlackMythA11yCpp] on_dll_load: W:/inky/games/Steam/steamapps/common/BlackMythWukong/Engine/Plugins/Runtime/Nvidia/Streamline/Binaries/ThirdParty/Win64/sl.interposer.dll.
-[BlackMythA11yCpp] on_dll_load: User32.dll.
-[BlackMythA11yCpp] on_dll_load: W:/inky/games/Steam/steamapps/common/BlackMythWukong/Engine/Binaries/ThirdParty/PhysX3/Win64/VS2015/NvCloth_x64.dll.
-[BlackMythA11yCpp] on_dll_load: NvCloth_x64.dll.
-[BlackMythA11yCpp] on_dll_load: mf.dll.
-[BlackMythA11yCpp] on_dll_load: mfplat.dll.
-[BlackMythA11yCpp] on_dll_load: msmpeg2vdec.dll.
-[BlackMythA11yCpp] on_dll_load: MSAudDecMFT.dll.
-[BlackMythA11yCpp] on_dll_load: shlwapi.dll.
-[BlackMythA11yCpp] on_dll_load: mf.dll.
-[BlackMythA11yCpp] on_dll_load: mfplat.dll.
-[BlackMythA11yCpp] on_dll_load: mfplay.dll.
-[BlackMythA11yCpp] on_dll_load: winmm.dll.
-[BlackMythA11yCpp] on_dll_load: xaudio2_9redist.dll.
-[BlackMythA11yCpp] on_dll_load: xaudio2_9.dll.
-[BlackMythA11yCpp] on_dll_load: W:/inky/games/Steam/steamapps/common/BlackMythWukong/Engine/Binaries/ThirdParty/PhysX3/Win64/VS2015/Apex_Destructible_x64.dll.
-[BlackMythA11yCpp] on_dll_load: W:/inky/games/Steam/steamapps/common/BlackMythWukong/Engine/Binaries/ThirdParty/CEF3/Win64/chrome_elf.dll.
-[BlackMythA11yCpp] on_dll_load: W:/inky/games/Steam/steamapps/common/BlackMythWukong/Engine/Binaries/ThirdParty/CEF3/Win64/libcef.dll.
-[BlackMythA11yCpp] on_dll_load: W:/inky/games/Steam/steamapps/common/BlackMythWukong/Engine/Binaries/ThirdParty/CEF3/Win64/chrome_elf.dll.
-[BlackMythA11yCpp] on_dll_load: W:/inky/games/Steam/steamapps/common/BlackMythWukong/Engine/Binaries/ThirdParty/CEF3/Win64/d3dcompiler_47.dll.
-[BlackMythA11yCpp] on_dll_load: W:/inky/games/Steam/steamapps/common/BlackMythWukong/Engine/Binaries/ThirdParty/CEF3/Win64/libGLESv2.dll.
-[BlackMythA11yCpp] on_dll_load: W:/inky/games/Steam/steamapps/common/BlackMythWukong/Engine/Binaries/ThirdParty/CEF3/Win64/libEGL.dll.
-[BlackMythA11yCpp] on_dll_load: libcef.dll.
-[BlackMythA11yCpp] on_dll_load: HID.dll.
-[BlackMythA11yCpp] on_dll_load: kernel32.dll.
-[BlackMythA11yCpp] on_dll_load: kernel32.dll.
-[BlackMythA11yCpp] on_dll_load: kernel32.dll.
-[BlackMythA11yCpp] on_dll_load: kernel32.dll.
-[BlackMythA11yCpp] on_dll_load: kernel32.dll.
-[BlackMythA11yCpp] on_dll_load: kernel32.dll.
-[BlackMythA11yCpp] on_dll_load: kernel32.dll.
-[BlackMythA11yCpp] on_dll_load: .\BCrypt.dll.
-[BlackMythA11yCpp] on_dll_load: .\kernel32.dll.
-[BlackMythA11yCpp] on_dll_load: .\advapi32.dll.
-[BlackMythA11yCpp] on_dll_load: .\iphlpapi.dll.
-[BlackMythA11yCpp] on_dll_load: gdi32.dll.
-[BlackMythA11yCpp] on_dll_load: msasn1.dll.
-[BlackMythA11yCpp] on_dll_load: cryptnet.dll.
-[BlackMythA11yCpp] on_dll_load: drvstore.dll.
-[BlackMythA11yCpp] on_dll_load: devobj.dll.
-[BlackMythA11yCpp] on_dll_load: wldp.dll.
-[BlackMythA11yCpp] on_dll_load: cryptbase.dll.
-[BlackMythA11yCpp] on_dll_load: crypt32.dll.
-[BlackMythA11yCpp] on_dll_load: wintrust.dll.
-[BlackMythA11yCpp] on_dll_load: C:\WINDOWS\System32\DriverStore\FileRepository\nvlt.inf_amd64_b151a4201f322ac7\_nvngx.dll.
-[BlackMythA11yCpp] on_dll_load: libxess.dll.
-[BlackMythA11yCpp] on_dll_load: W:/inky/games/Steam/steamapps/common/BlackMythWukong/b1/Plugins/Wwise/ThirdParty/x64_vc170/Release/bin/\AkSineTone.dll.
-[BlackMythA11yCpp] on_dll_load: W:/inky/games/Steam/steamapps/common/BlackMythWukong/b1/Plugins/Wwise/ThirdParty/x64_vc170/Release/bin/\AkSilenceGenerator.dll.
-[BlackMythA11yCpp] on_dll_load: W:/inky/games/Steam/steamapps/common/BlackMythWukong/b1/Plugins/Wwise/ThirdParty/x64_vc170/Release/bin/\AkParametricEQ.dll.
-[BlackMythA11yCpp] on_dll_load: W:/inky/games/Steam/steamapps/common/BlackMythWukong/b1/Plugins/Wwise/ThirdParty/x64_vc170/Release/bin/\AkDelay.dll.
-[BlackMythA11yCpp] on_dll_load: W:/inky/games/Steam/steamapps/common/BlackMythWukong/b1/Plugins/Wwise/ThirdParty/x64_vc170/Release/bin/\AkCompressor.dll.
-[BlackMythA11yCpp] on_dll_load: W:/inky/games/Steam/steamapps/common/BlackMythWukong/b1/Plugins/Wwise/ThirdParty/x64_vc170/Release/bin/\AkRoomVerb.dll.
-[BlackMythA11yCpp] on_dll_load: W:/inky/games/Steam/steamapps/common/BlackMythWukong/b1/Plugins/Wwise/ThirdParty/x64_vc170/Release/bin/\AkConvolutionReverb.dll.
-[BlackMythA11yCpp] on_dll_load: W:/inky/games/Steam/steamapps/common/BlackMythWukong/b1/Plugins/Wwise/ThirdParty/x64_vc170/Release/bin/\AkStereoDelay.dll.
-[BlackMythA11yCpp] on_dll_load: W:/inky/games/Steam/steamapps/common/BlackMythWukong/b1/Plugins/Wwise/ThirdParty/x64_vc170/Release/bin/\MasteringSuite.dll.
-[BlackMythA11yCpp] on_dll_load: W:/inky/games/Steam/steamapps/common/BlackMythWukong/b1/Plugins/Wwise/ThirdParty/x64_vc170/Release/bin/\AkMotion.dll.
-[BlackMythA11yCpp] on_dll_load: .\user32.
-[BlackMythA11yCpp] on_dll_load: .\MonoPosixHelper.
+~/BlackMythWukong\Engine\Binaries\ThirdParty\Steamworks\Steamv151\Win64\steam_api64.dll
+steamclient64.dll
+kernelbase.dll
+ntdll.dll
+kernel32.dll
+~/BlackMythWukong/Engine/Binaries/ThirdParty/DbgHelp/dbghelp.dll
+shcore.dll
+shlwapi.dll
+mf.dll
+mfplat.dll
+mfplay.dll
+MFPlat.DLL
+../../../b1/Binaries/Win64/EOSSDK-Win64-Shipping.dll
+../../../Engine/Binaries/Win64/EOSSDK-Win64-Shipping.dll
+EOSSDK-Win64-Shipping.dll
+~/BlackMythWukong/Engine/Binaries/ThirdParty/Steamworks/Steamv151/Win64/steam_api64.dll
+steam_api64.dll
+GFSDK_Aftermath_Lib.x64.dll
+d3d12.dll
+SHLWAPI.dll
+C:\WINDOWS\System32\DriverStore\FileRepository\nvlt.inf_amd64_b151a4201f322ac7\igdext64.dll
+C:\WINDOWS\System32\DriverStore\FileRepository\nvlt.inf_amd64_b151a4201f322ac7\igdext64.dll
+C:\WINDOWS\System32\DriverStore\FileRepository\nvlt.inf_amd64_b151a4201f322ac7\igdext64.dll
+C:\WINDOWS\System32\DriverStore\FileRepository\nvlt.inf_amd64_b151a4201f322ac7\Display.NvContainer\igdext64.dll
+C:\WINDOWS\System32\DriverStore\FileRepository\iigd_dch.inf_amd64_e8d77b0dd4bff2b1\igdext64.dll
+~/BlackMythWukong/Engine/Binaries/ThirdParty/PhysX3/Win64/VS2015/PxFoundation_x64.dll
+~/BlackMythWukong/Engine/Binaries/ThirdParty/PhysX3/Win64/VS2015/PhysX3Common_x64.dll
+~/BlackMythWukong/Engine/Binaries/ThirdParty/PhysX3/Win64/VS2015/PxPvdSDK_x64.dll
+~/BlackMythWukong/Engine/Binaries/ThirdParty/PhysX3/Win64/VS2015/PhysX3_x64.dll
+~/BlackMythWukong/Engine/Binaries/ThirdParty/PhysX3/Win64/VS2015/APEXFramework_x64.dll
+~/BlackMythWukong/Engine/Binaries/ThirdParty/PhysX3/Win64/VS2015/APEX_Legacy_x64.dll
+~/BlackMythWukong/Engine/Binaries/ThirdParty/PhysX3/Win64/VS2015/APEX_Clothing_x64.dll
+PxFoundation_x64.dll
+PxPvdSDK_x64.dll
+PhysX3_x64.dll
+PhysX3Common_x64.dll
+~/BlackMythWukong/Engine/Binaries/ThirdParty/PhysX3/Win64/VS2015/PxFoundation_x64.dll
+~/BlackMythWukong/Engine/Binaries/ThirdParty/PhysX3/Win64/VS2015/PhysX3Common_x64.dll
+~/BlackMythWukong/Engine/Binaries/ThirdParty/PhysX3/Win64/VS2015/PxPvdSDK_x64.dll
+~/BlackMythWukong/Engine/Binaries/ThirdParty/PhysX3/Win64/VS2015/PhysX3_x64.dll
+~/BlackMythWukong/Engine/Binaries/ThirdParty/PhysX3/Win64/VS2015/PhysX3Cooking_x64.dll
+~/BlackMythWukong/Engine/Binaries/ThirdParty/PhysX3/Win64/VS2015/APEXFramework_x64.dll
+~/BlackMythWukong/Engine/Binaries/ThirdParty/PhysX3/Win64/VS2015/APEX_Legacy_x64.dll
+~/BlackMythWukong/Engine/Binaries/ThirdParty/PhysX3/Win64/VS2015/APEX_Clothing_x64.dll
+PhysX3Cooking_x64.dll
+ApexFramework_x64.dll
+shcore.dll
+d3d12.dll
+dxgi.dll
+msasn1.dll
+cryptnet.dll
+drvstore.dll
+devobj.dll
+wldp.dll
+cryptbase.dll
+nvapi64.dll
+wintrust.dll
+crypt32.dll
+~/BlackMythWukong/Engine/Plugins/Runtime/Nvidia/Streamline/Binaries/ThirdParty/Win64/sl.interposer.dll
+User32.dll
+~/BlackMythWukong/Engine/Binaries/ThirdParty/PhysX3/Win64/VS2015/NvCloth_x64.dll
+NvCloth_x64.dll
+mf.dll
+mfplat.dll
+msmpeg2vdec.dll
+MSAudDecMFT.dll
+shlwapi.dll
+mf.dll
+mfplat.dll
+mfplay.dll
+winmm.dll
+xaudio2_9redist.dll
+xaudio2_9.dll
+~/BlackMythWukong/Engine/Binaries/ThirdParty/PhysX3/Win64/VS2015/Apex_Destructible_x64.dll
+~/BlackMythWukong/Engine/Binaries/ThirdParty/CEF3/Win64/chrome_elf.dll
+~/BlackMythWukong/Engine/Binaries/ThirdParty/CEF3/Win64/libcef.dll
+~/BlackMythWukong/Engine/Binaries/ThirdParty/CEF3/Win64/chrome_elf.dll
+~/BlackMythWukong/Engine/Binaries/ThirdParty/CEF3/Win64/d3dcompiler_47.dll
+~/BlackMythWukong/Engine/Binaries/ThirdParty/CEF3/Win64/libGLESv2.dll
+~/BlackMythWukong/Engine/Binaries/ThirdParty/CEF3/Win64/libEGL.dll
+libcef.dll
+HID.dll
+kernel32.dll
+kernel32.dll
+kernel32.dll
+kernel32.dll
+kernel32.dll
+kernel32.dll
+kernel32.dll
+BCrypt.dll
+kernel32.dll
+advapi32.dll
+iphlpapi.dll
+gdi32.dll
+msasn1.dll
+cryptnet.dll
+drvstore.dll
+devobj.dll
+wldp.dll
+cryptbase.dll
+crypt32.dll
+wintrust.dll
+C:\WINDOWS\System32\DriverStore\FileRepository\nvlt.inf_amd64_b151a4201f322ac7\_nvngx.dll
+libxess.dll
+~/BlackMythWukong/b1/Plugins/Wwise/ThirdParty/x64_vc170/Release/bin/AkSineTone.dll
+~/BlackMythWukong/b1/Plugins/Wwise/ThirdParty/x64_vc170/Release/bin/AkSilenceGenerator.dll
+~/BlackMythWukong/b1/Plugins/Wwise/ThirdParty/x64_vc170/Release/bin/AkParametricEQ.dll
+~/BlackMythWukong/b1/Plugins/Wwise/ThirdParty/x64_vc170/Release/bin/AkDelay.dll
+~/BlackMythWukong/b1/Plugins/Wwise/ThirdParty/x64_vc170/Release/bin/AkCompressor.dll
+~/BlackMythWukong/b1/Plugins/Wwise/ThirdParty/x64_vc170/Release/bin/AkRoomVerb.dll
+~/BlackMythWukong/b1/Plugins/Wwise/ThirdParty/x64_vc170/Release/bin/AkConvolutionReverb.dll
+~/BlackMythWukong/b1/Plugins/Wwise/ThirdParty/x64_vc170/Release/bin/AkStereoDelay.dll
+~/BlackMythWukong/b1/Plugins/Wwise/ThirdParty/x64_vc170/Release/bin/MasteringSuite.dll
+~/BlackMythWukong/b1/Plugins/Wwise/ThirdParty/x64_vc170/Release/bin/AkMotion.dll
+user32
+MonoPosixHelper
