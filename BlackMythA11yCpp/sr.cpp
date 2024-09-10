@@ -25,6 +25,7 @@ namespace A11yMod
         /* --- 加载 DLL --- */
         auto dll_path = STR("Tolk.dll");
 
+        // https://learn.microsoft.com/zh-cn/windows/win32/debug/calling-the-dbghelp-library
         tolk_lib = LoadLibraryW(dll_path);
         if (!tolk_lib) {
             Output::send<LogLevel::Error>(MODSTR("Failed to load dll <{}>, error code: 0x{:x}\n"), dll_path, GetLastError());
@@ -34,6 +35,7 @@ namespace A11yMod
         Output::send<LogLevel::Verbose>(MODSTR("Loaded tolk.dll.\n"));
         
         /* --- 导出 Tolk 函数 --- */
+        // https://blog.benoitblanchon.fr/getprocaddress-like-a-boss/
         auto tolk_init = reinterpret_cast<TolkLoadPtr>(GetProcAddress((HMODULE)tolk_lib, "Tolk_Load"));
         auto tolk_has_speech = reinterpret_cast<TolkHasSpeechPtr>(GetProcAddress((HMODULE)tolk_lib, "Tolk_HasSpeech"));
         auto tolk_DetectScreenReader = reinterpret_cast<TolkDetectScreenReaderPtr>(GetProcAddress((HMODULE)tolk_lib, "Tolk_DetectScreenReader"));
