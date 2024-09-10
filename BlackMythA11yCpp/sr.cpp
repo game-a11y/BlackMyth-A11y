@@ -41,13 +41,13 @@ namespace A11yMod
     }
 
     // 加载并初始化 DLL
-    auto BlackMythA11yCpp::load_and_init_tolk() -> void
+    auto BlackMythA11yCpp::sr_init_and_check() -> void
     {
         if (!tolk_lib) {
             Output::send<LogLevel::Warning>(MODSTR("tolk.dll not load, skip init tolk.\n"));
             return;
         }
-        Output::send<LogLevel::Verbose>(MODSTR("load_and_init_tolk.\n"));
+        Output::send<LogLevel::Verbose>(MODSTR("sr_init_and_check.\n"));
 
         /* --- 导出 Tolk 函数 --- */
         // https://blog.benoitblanchon.fr/getprocaddress-like-a-boss/

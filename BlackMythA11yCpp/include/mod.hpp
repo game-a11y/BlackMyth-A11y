@@ -42,7 +42,7 @@ namespace A11yMod
         HMODULE tolk_lib;
         auto load_sr_lib() -> void;
         auto unload_sr_lib() -> void;
-        auto load_and_init_tolk() -> void;
+        auto sr_init_and_check() -> void;
     };
 
 };
