@@ -19,8 +19,8 @@ namespace A11yMod
         auto dll_path = STR("Tolk.dll");
 
         // https://learn.microsoft.com/zh-cn/windows/win32/debug/calling-the-dbghelp-library
-        tolk_lib = LoadLibraryW(dll_path);
-        if (!tolk_lib) {
+        SrLib = LoadLibraryW(dll_path);
+        if (!SrLib) {
             Output::send<LogLevel::Error>(MODSTR("Failed to load dll <{}>, error code: 0x{:x}\n"), dll_path, GetLastError());
             return;
         }
@@ -31,19 +31,19 @@ namespace A11yMod
     // 卸载 SR 库
     auto BlackMythA11yCpp::sr_unload_lib() -> void
     {
-        if (!tolk_lib) {
+        if (!SrLib) {
             return;
         }
 
         // TODO: Tolk_Unload
-        FreeLibrary(tolk_lib);
+        FreeLibrary(SrLib);
         Output::send<LogLevel::Normal>(MODSTR("Free tolk.dll.\n"));
     }
 
     // 加载并初始化 DLL
     auto BlackMythA11yCpp::sr_init_and_check() -> void
     {
-        if (!tolk_lib) {
+        if (!SrLib) {
             Output::send<LogLevel::Warning>(MODSTR("tolk.dll not load, skip init tolk.\n"));
             return;
         }
@@ -51,11 +51,11 @@ namespace A11yMod
 
         /* --- 导出 Tolk 函数 --- */
         // https://blog.benoitblanchon.fr/getprocaddress-like-a-boss/
-        auto tolk_init = reinterpret_cast<TolkLoadPtr>(GetProcAddress((HMODULE)tolk_lib, "Tolk_Load"));
-        auto tolk_has_speech = reinterpret_cast<TolkHasSpeechPtr>(GetProcAddress((HMODULE)tolk_lib, "Tolk_HasSpeech"));
-        auto tolk_DetectScreenReader = reinterpret_cast<TolkDetectScreenReaderPtr>(GetProcAddress((HMODULE)tolk_lib, "Tolk_DetectScreenReader"));
-        auto tolk_speak = reinterpret_cast<TolkSpeakPtr>(GetProcAddress((HMODULE)tolk_lib, "Tolk_Speak"));
-        auto tolk_silence = reinterpret_cast<TolkSilencePtr>(GetProcAddress((HMODULE)tolk_lib, "Tolk_Silence"));
+        auto tolk_init = reinterpret_cast<TolkLoadPtr>(GetProcAddress((HMODULE)SrLib, "Tolk_Load"));
+        auto tolk_has_speech = reinterpret_cast<TolkHasSpeechPtr>(GetProcAddress((HMODULE)SrLib, "Tolk_HasSpeech"));
+        auto tolk_DetectScreenReader = reinterpret_cast<TolkDetectScreenReaderPtr>(GetProcAddress((HMODULE)SrLib, "Tolk_DetectScreenReader"));
+        auto tolk_speak = reinterpret_cast<TolkSpeakPtr>(GetProcAddress((HMODULE)SrLib, "Tolk_Speak"));
+        auto tolk_silence = reinterpret_cast<TolkSilencePtr>(GetProcAddress((HMODULE)SrLib, "Tolk_Silence"));
 
         if (!tolk_init) {
             Output::send<LogLevel::Error>(MODSTR("null function Ptr; error code: 0x{:x}\n"), GetLastError());

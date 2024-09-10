@@ -39,7 +39,7 @@ namespace A11yMod
         auto on_dll_load(StringViewType dll_name) -> void override;
 
     private:
-        HMODULE tolk_lib;
+        HMODULE SrLib;
         auto sr_load_lib() -> void;
         auto sr_unload_lib() -> void;
         auto sr_init_and_check() -> void;
