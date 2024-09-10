@@ -3,7 +3,7 @@
 #include <Unreal/UObject.hpp>
 #include <Mod/LuaMod.hpp>
 #include <mod.hpp>
-
+#include "Hooks.hpp"
 
 namespace A11yMod
 {
@@ -41,6 +41,15 @@ namespace A11yMod
      */
     auto BlackMythA11yCpp::on_unreal_init() -> void
     {
+        Unreal::Hook::RegisterInitGameStatePostCallback(&init_game_state_post_hook);
+    }
+
+    auto BlackMythA11yCpp::init_game_state_post_hook([[maybe_unused]] Unreal::AGameModeBase* Context) -> void
+    {
+        if (bModuleLoaded) return;
+        bModuleLoaded = true;
+        Output::send<LogLevel::Verbose>(MODSTR("[init_game_state_post_hook]\n"));
+
         // You are allowed to use the 'Unreal' namespace in this function and anywhere else after this function has fired.
         auto Object = UObjectGlobals::StaticFindObject<UObject*>(nullptr, nullptr, STR("/Script/CoreUObject.Object"));
         Output::send<LogLevel::Verbose>(MODSTR("Object Name: {}\n"), Object->GetFullName());

@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include <String/StringType.hpp>
 #include <Mod/CppUserModBase.hpp>
+#include <Unreal/AGameModeBase.hpp>
+
 
 #define NOMINMAX
 #include <Windows.h>
@@ -39,10 +41,14 @@ namespace A11yMod
         auto on_dll_load(StringViewType dll_name) -> void override;
 
     private:
+        // --- SR
         HMODULE SrLib;
         auto sr_load_lib() -> void;
         auto sr_unload_lib() -> void;
         auto sr_init_and_check() -> void;
+
+        static inline bool bModuleLoaded = false;
+        static auto init_game_state_post_hook(RC::Unreal::AGameModeBase* Context) -> void;
     };
 
 };
