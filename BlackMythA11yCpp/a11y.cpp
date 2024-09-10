@@ -20,7 +20,8 @@ namespace A11yMod
         // Do not change this unless you want to target a UE4SS version
         // other than the one you're currently building with somehow.
         //ModIntendedSDKVersion = STR("2.6");
-
+        
+        load_tolk_lib();
         Output::send<LogLevel::Verbose>(MODSTR("BlackMythA11yCpp Mod init.\n"));
     }
 
@@ -101,5 +102,15 @@ Overloads:
             tolk_class.make_global("A11yTolk");
             Output::send<LogLevel::Normal>(MODSTR("Set Lua A11yTolk Class.\n"));
         } /* A11yTolk Class END */
+    }
+    
+    /**
+     * @brief 此函数会 hook [所有] DLL 加载
+     * 
+     * @param dll_name 
+     */
+    auto BlackMythA11yCpp::on_dll_load(StringViewType dll_name) -> void
+    {
+        // Output::send<LogLevel::Verbose>(MODSTR("on_dll_load: {}.\n"), dll_name);
     }
 };
