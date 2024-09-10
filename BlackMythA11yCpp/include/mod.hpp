@@ -40,7 +40,7 @@ namespace A11yMod
 
     private:
         HMODULE tolk_lib;
-        auto load_sr_lib() -> void;
+        auto sr_load_lib() -> void;
         auto unload_sr_lib() -> void;
         auto sr_init_and_check() -> void;
     };

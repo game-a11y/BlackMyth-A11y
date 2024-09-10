@@ -14,7 +14,7 @@ typedef decltype(&Tolk_Silence)     TolkSilencePtr;
 namespace A11yMod
 {
     // 加载屏幕阅读器库
-    auto BlackMythA11yCpp::load_sr_lib() -> void 
+    auto BlackMythA11yCpp::sr_load_lib() -> void 
     {
         auto dll_path = STR("Tolk.dll");
 
