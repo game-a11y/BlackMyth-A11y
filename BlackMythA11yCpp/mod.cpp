@@ -2,7 +2,7 @@
 #include <Unreal/UObjectGlobals.hpp>
 #include <Unreal/UObject.hpp>
 #include <Mod/LuaMod.hpp>
-#include <a11y.hpp>
+#include <mod.hpp>
 
 
 namespace A11yMod
