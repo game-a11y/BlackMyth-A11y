@@ -20,8 +20,7 @@ namespace A11yMod
         // Do not change this unless you want to target a UE4SS version
         // other than the one you're currently building with somehow.
         //ModIntendedSDKVersion = STR("2.6");
-        
-        load_and_init_tolk();
+
         Output::send<LogLevel::Verbose>(MODSTR("BlackMythA11yCpp Mod init.\n"));
     }
 
@@ -59,6 +58,8 @@ namespace A11yMod
             return;
         }
         Output::send<LogLevel::Verbose>(MODSTR("Run mod({}) lua script.\n"), mod_name);
+        // TODO: move to on_unreal_init()
+        load_and_init_tolk();
 
         /* A11yTolk Class Begin */
         {
