@@ -12,6 +12,17 @@ local WkUIHook = {}
 local GetTextFuncMap = {}
 
 
+-- 首次加载主界面 BI_FirstStartBtn_C
+GetTextFuncMap["BI_FirstStartBtn_C"] = function(uObject, InFocusEvent)
+    -- CanvasPanel
+    WidgetTree_Root = Button.WidgetTree.RootWidget
+    -- CanvasPanel
+    BtnCon = WidgetTree_Root:GetChildAt(0)
+    -- GSScaleText
+    TxtName = BtnCon:GetChildAt(3)  -- .BtnCon.CanvasPanelSlot_5
+    return TxtName:GetContent():ToString()
+end
+
 -- 主界面
 -- BI_StartGame_C /Game/00Main/UI/BluePrintsV3/Btn/BI_StartGame.Default__BI_StartGame_C
 -- WidgetBlueprintGeneratedClass /Game/00Main/UI/BluePrintsV3/Btn/BI_StartGame.BI_StartGame_C
@@ -83,10 +94,13 @@ local function OnAddedToFocusPath_Hook(pContext, pInFocusEvent)
         -- CanvasPanel
         -- WidgetTree_Root = Button.WidgetTree.RootWidget
         -- WkUtils.PrintUObject(WidgetTree_Root)
-        -- CanvasPanel
+        -- -- CanvasPanel
         -- BtnCon = WidgetTree_Root:GetChildAt(0)
-        -- WkUtils.PrintUObject(BtnCon)/
-
+        -- WkUtils.PrintUObject(BtnCon)
+        -- -- GSScaleText
+        -- TxtName = BtnCon:GetChildAt(3)  -- .CanvasPanelSlot_5
+        -- WkUtils.PrintUObject(TxtName)
+        -- -- TxtName:GetContent():ToString()
     end
 end
 
