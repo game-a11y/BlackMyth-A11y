@@ -87,39 +87,6 @@ RegisterKeyBind(Key.F11, CallCppModTest)
 
 
 local function InitManagedHook()
-    RegisterHook("/Script/b1-Managed.BUI_Button:OnMouseButtonDown", function(Context, MyGeometry, MouseEvent)
-        Button = Context:get()
-        print(string.format("OnMouseButtonDown: %s\n", tostring(Button:GetFullName())))
-        WidgetTree = Button.WidgetTree
-        -- WkUtils.PrintUObject(WidgetTree)
-        -- WkUtils.PrintUObject(WidgetTree.TxtName)
-    
-        -- -- TxtName_name = tostring(Button:GetFullName()) .. ".WidgetTree.TxtName"
-        -- WkUtils.PrintUObject(Button)
-        -- -- TxtName = FindFirstOf("GSTextBlock /Engine/Transient.GameEngine_2147482611:BGW_GameInstance_B1_2147482576.BUI_B1_Root_V2_C_2147480953.WidgetTree.BUI_StartGame_C_2147477556.WidgetTree.BI_StartGameBtn_0")
-        -- -- WkUtils.PrintUObject(TxtName)
-    
-        -- TxtName = WidgetTree.TxtName:get()
-        -- WkUtils.PrintUObject(WidgetTree)
-        -- if TxtName ~= nil then
-        --     BtnText = TxtName
-        --     print(string.format("\t%s\n", tostring(TxtName:GetFullName())))
-        -- end
-    end)
-
-    -- 返回的是上一步的对象
-    -- RegisterHook("/Script/b1-Managed.BUI_Button:OnCustomWidgetNavigation", function(Context, Navigation)
-    --     Button = Context:get()
-    --     print(string.format("OnCustomWidgetNavigation: %s\n", tostring(Button:GetFullName())))
-    -- end)
-    
-    -- NOTE: 会显示父级的聚焦事件
-    -- RegisterHook("/Script/b1-Managed.BUI_Widget:OnFocusChanging", function(self, InFocusEvent)
-    --     print(string.format("OnFocusChanging: %s\n", tostring(self:get():GetFullName())))
-    -- end)
-
-    -- NOTE: hook "/Script/b1-Managed.BUI_Widget:OnAnimationSequenceEvent" 闪退
-
     WkUIHook.InitUiHooks()
 end
 
