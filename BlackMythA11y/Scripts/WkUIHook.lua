@@ -86,6 +86,13 @@ end
 
 -- 游戏中:土地庙:菜单 BI_ShrineMenuParent_C
 -- BUI_Tudi_Enter_C.WidgetTree.BI_ShrineFirMenu.WidgetTree.BI_Item.WidgetTree.BI_Item_10
+--[[
+    主地图  TextBlock   /BUI_Tudi_Enter_C.WidgetTree.TxtMainName
+    地点    GSScaleText /BUI_Tudi_Enter_C.WidgetTree.TxtSubName
+
+    [Reset]     BI_ShrineMenuParent_C   /BUI_Tudi_Enter_C.WidgetTree.BI_ShrineFirMenu.WidgetTree.BI_Item.WidgetTree.BI_Item_9
+    文字描述    TextBlock   /BUI_Tudi_Enter_C.WidgetTree.TxtTips
+]]
 GetTextFuncMap["BI_ShrineMenuParent_C"] = GetTextFuncMap["BI_StartGame_C"]
 
 -- TODO: 游戏中:背包
