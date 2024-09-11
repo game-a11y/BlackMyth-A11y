@@ -1,13 +1,31 @@
 -- SPDX-License-Identifier: MIT
+-- Author: inkydragon
 -- BlackMythA11y Mod
 local ModName = "[BlackMythA11y] "
--- Author: inkydragon
+-- [[require Global]]
+
+-- [[require Local]]
 local WkUtils = require("WkUtils")
 local WkUIHook = require("WkUIHook")
 local WkKeyBind = require("WkKeyBind")
--- Global Var
+-- [[Global Var]]
 local bModInit = false
 
+
+-- [[ 初始化按键绑定 ]] ---------------------------------------------------------
+WkKeyBind.init()
+
+
+-- [[ 初始化 /Script 挂钩 ]] --------------------------------------------------
+-- RegisterHook("/Script/UMG.TextBlock:SetText", function(Context, InText)
+--     Button = Context:get()
+--     print(string.format("SetText: %s\n", tostring(Button:GetFullName())))
+--     print(string.format("\t%s\n", tostring(InText:get():ToString())))
+-- end)
+
+
+-- [[ 初始化 Managed 挂钩 ]] --------------------------------------------------
+-- NOTE: 需要等 UE 加载完后才能挂钩
 
 local function InitManagedHook()
     WkUIHook.InitUiHooks()
@@ -34,12 +52,3 @@ if WkGameStart and type(WkGameStart) == "boolean" then
 else
     print("First Start Game.\n")
 end
-
-
--- RegisterHook("/Script/UMG.TextBlock:SetText", function(Context, InText)
---     Button = Context:get()
---     print(string.format("SetText: %s\n", tostring(Button:GetFullName())))
---     print(string.format("\t%s\n", tostring(InText:get():ToString())))
--- end)
-
-WkKeyBind.init()
