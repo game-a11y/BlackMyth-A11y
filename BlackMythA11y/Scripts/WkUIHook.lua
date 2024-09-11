@@ -31,6 +31,9 @@ GetTextFuncMap["BI_SettingTab_C"] = function(uObject, InFocusEvent)
     return TxtName:GetContent():ToString()
 end
 
+-- 主界面/音乐
+-- BI_AccordionChildBtn_Echo_C /Engine/Transient.GameEngine_2147482611:BGW_GameInstance_B1_2147482576.BUI_B1_Root_V2_C_2147462481.WidgetTree.BUI_SoundtrackV2_C_2147455841.WidgetTree.BI_ContentBtn.WidgetTree.BI_AccordionChildBtn_Echo_C_2147455810
+GetTextFuncMap["BI_AccordionChildBtn_Echo_C"] = GetTextFuncMap["BI_StartGame_C"]
 
 local function OnAddedToFocusPath_Hook(pContext, pInFocusEvent)
     Button = pContext:get()
