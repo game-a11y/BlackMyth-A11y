@@ -31,6 +31,15 @@ local function InitManagedHook()
     WkUIHook.InitUiHooks()
 end
 
+-- InitGameState 游戏已经初始化了
+local WkGameStart = ModRef:GetSharedVariable("WkGameStart")
+if WkGameStart and type(WkGameStart) == "boolean" then
+    print(ModName.."Mod hot-reloading.\n")
+    InitManagedHook()
+else
+    print(ModName.."First Start Game.\n")
+end
+
 -- Called after AGameModeBase::InitGameState
 -- 第一次启动时，为延迟构造的函数挂钩
 RegisterInitGameStatePostHook(function(GameState)
@@ -44,11 +53,3 @@ RegisterInitGameStatePostHook(function(GameState)
     print(ModName.."InitGameStatePostHook\n")
     InitManagedHook()
 end)
-
-local WkGameStart = ModRef:GetSharedVariable("WkGameStart")
-if WkGameStart and type(WkGameStart) == "boolean" then
-    print("Mod hot-reloading.\n")
-    InitManagedHook()
-else
-    print("First Start Game.\n")
-end
