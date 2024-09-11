@@ -13,32 +13,32 @@ local GetTextFuncMap = {}
 
 
 -- 首次加载主界面 BI_FirstStartBtn_C
-GetTextFuncMap["BI_FirstStartBtn_C"] = function(uObject, InFocusEvent)
+GetTextFuncMap["BI_FirstStartBtn_C"] = function(Button, InFocusEvent)
     -- CanvasPanel
-    WidgetTree_Root = Button.WidgetTree.RootWidget
+    local WidgetTree_Root = Button.WidgetTree.RootWidget
     -- CanvasPanel
-    BtnCon = WidgetTree_Root:GetChildAt(0)
+    local BtnCon = WidgetTree_Root:GetChildAt(0)
     -- GSScaleText
-    TxtName = BtnCon:GetChildAt(3)  -- .BtnCon.CanvasPanelSlot_5
+    local TxtName = BtnCon:GetChildAt(3)  -- .BtnCon.CanvasPanelSlot_5
     return TxtName:GetContent():ToString()
 end
 
 -- 主界面
 -- BI_StartGame_C /Game/00Main/UI/BluePrintsV3/Btn/BI_StartGame.Default__BI_StartGame_C
 -- WidgetBlueprintGeneratedClass /Game/00Main/UI/BluePrintsV3/Btn/BI_StartGame.BI_StartGame_C
-GetTextFuncMap["BI_StartGame_C"] = function(uObject, InFocusEvent)
+GetTextFuncMap["BI_StartGame_C"] = function(Button, InFocusEvent)
     return Button.BI_TextLoop.Content:GetContent():ToString()
 end
 
 -- 主界面/设置: 一级菜单
 -- BI_SettingTab_C /Game/00Main/UI/BluePrintsV3/Setting/BUI_Setting.BUI_Setting_C:WidgetTree.BI_SettingTab_9
-GetTextFuncMap["BI_SettingTab_C"] = function(uObject, InFocusEvent)
+GetTextFuncMap["BI_SettingTab_C"] = function(Button, InFocusEvent)
     -- CanvasPanel
-    WidgetTree_Root = Button.WidgetTree.RootWidget
+    local WidgetTree_Root = Button.WidgetTree.RootWidget
     -- CanvasPanel
-    BtnCon = WidgetTree_Root:GetChildAt(0)
+    local BtnCon = WidgetTree_Root:GetChildAt(0)
     -- GSScaleText
-    TxtName = BtnCon:GetChildAt(2)
+    local TxtName = BtnCon:GetChildAt(2)
     return TxtName:GetContent():ToString()
 end
 
@@ -53,13 +53,13 @@ end
         .TxtTime:   时间
         .TxtPlayTime: 游玩时间
 ]]
-GetTextFuncMap["BI_ArchivesBtnV2_C---"] = function(uObject, InFocusEvent)
+GetTextFuncMap["BI_ArchivesBtnV2_C---"] = function(Button, InFocusEvent)
     -- CanvasPanel
-    WidgetTree_Root = Button.WidgetTree.RootWidget
+    local WidgetTree_Root = Button.WidgetTree.RootWidget
     -- CanvasPanel
-    BtnCon = WidgetTree_Root:GetChildAt(0)
+    local BtnCon = WidgetTree_Root:GetChildAt(0)
     -- GSScaleText
-    TxtName = BtnCon:GetChildAt(2)
+    local TxtName = BtnCon:GetChildAt(2)
     return ""
 end
 
@@ -70,8 +70,7 @@ GetTextFuncMap["BI_AccordionChildBtn_Echo_C"] = GetTextFuncMap["BI_StartGame_C"]
 -- 二次确定对话框
 -- TODO: 构造时 BI_ReconfirmBtn_C 读出 .txt
 -- /BUI_Reconfirm_C.WidgetTree.Btn_Cancel
-GetTextFuncMap["BI_ReconfirmBtn_C"] = function(uObject, InFocusEvent)
-    -- local Button = uObject:get()
+GetTextFuncMap["BI_ReconfirmBtn_C"] = function(Button, InFocusEvent)
     -- CanvasPanel
     local RootCon = Button.WidgetTree.RootWidget
     -- CanvasPanel
@@ -85,12 +84,12 @@ end
 
 
 local function OnAddedToFocusPath_Hook(pContext, pInFocusEvent)
-    Button = pContext:get()
-    SuperClassName = Button:GetClass():GetFName():ToString()
-    ClassName = Button:GetFName():ToString()
+    local Button = pContext:get()
+    local SuperClassName = Button:GetClass():GetFName():ToString()
+    local ClassName = Button:GetFName():ToString()
 
     -- TODO: 根据原因筛选相应，消除重复的事件
-    InFocusEvent = pInFocusEvent:get()
+    local InFocusEvent = pInFocusEvent:get()
     -- WkUtils.PrintUObject(TxtName_name)
     -- https://github.com/UE4SS-RE/RE-UE4SS/issues/378
     -- local UGSE_UMGFuncLib = StaticFindObject("/Script/UnrealExtent.Default__GSE_UMGFuncLib")
@@ -135,9 +134,9 @@ function WkUIHook.InitUiHooks()
 
     -- 开发中...
     RegisterHook("/Script/b1-Managed.BUI_Button:OnMouseButtonDown", function(Context, MyGeometry, MouseEvent)
-        Button = Context:get()
+        local Button = Context:get()
         print(string.format("OnMouseButtonDown: %s\n", tostring(Button:GetFullName())))
-        WidgetTree = Button.WidgetTree
+        -- WidgetTree = Button.WidgetTree
         -- WkUtils.PrintUObject(WidgetTree)
         -- WkUtils.PrintUObject(WidgetTree.TxtName)
     
