@@ -24,6 +24,12 @@ GetTextFuncMap["BI_FirstStartBtn_C"] = function(Button, InFocusEvent)
 end
 
 -- 主界面
+-- TODO
+--[[
+    主地图  TextBlock   /BUI_StartGame_C_2147456059.WidgetTree.TxtMainName
+    地点    TextBlock   /BUI_StartGame_C_2147456059.WidgetTree.TxtSubName
+    版本号  TextBlock   /BUI_StartGame_C_2147456059.WidgetTree.TxtVersion
+]]
 -- BI_StartGame_C /Game/00Main/UI/BluePrintsV3/Btn/BI_StartGame.Default__BI_StartGame_C
 -- WidgetBlueprintGeneratedClass /Game/00Main/UI/BluePrintsV3/Btn/BI_StartGame.BI_StartGame_C
 GetTextFuncMap["BI_StartGame_C"] = function(Button, InFocusEvent)
