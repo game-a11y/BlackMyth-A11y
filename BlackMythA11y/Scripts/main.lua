@@ -9,7 +9,6 @@ local WkUtils = require("WkUtils")
 local WkUIHook = require("WkUIHook")
 local WkKeyBind = require("WkKeyBind")
 -- [[Global Var]]
-local bModInit = false
 
 
 -- [[ 初始化按键绑定 ]] ---------------------------------------------------------
@@ -27,7 +26,8 @@ WkKeyBind.init()
 -- [[ 初始化 Managed 挂钩 ]] --------------------------------------------------
 -- NOTE: 需要等 UE 加载完后才能挂钩
 
-local function InitManagedHook()
+-- 仅在游戏初始化后执行挂钩
+local function AfterInitGameStateHook()
     WkUIHook.InitUiHooks()
 end
 
@@ -35,21 +35,19 @@ end
 local WkGameStart = ModRef:GetSharedVariable("WkGameStart")
 if WkGameStart and type(WkGameStart) == "boolean" then
     print(ModName.."Mod hot-reloading.\n")
-    InitManagedHook()
+    AfterInitGameStateHook()
 else
     print(ModName.."First Start Game.\n")
+    -- Called after AGameModeBase::InitGameState
+    -- 第一次启动时，为延迟构造的函数挂钩
+    RegisterInitGameStatePostHook(function(GameState)
+        if ModRef:GetSharedVariable("WkGameStart") then
+            return -- 避免多次重复挂钩
+        end
+
+        -- 持久标记游戏初始化状态
+        ModRef:SetSharedVariable("WkGameStart", true)
+        print(ModName.."AfterInitGameStateHook\n")
+        AfterInitGameStateHook()
+    end)
 end
-
--- Called after AGameModeBase::InitGameState
--- 第一次启动时，为延迟构造的函数挂钩
-RegisterInitGameStatePostHook(function(GameState)
-    if bModInit then
-        return
-    end
-
-    bModInit = true
-    -- These variables do not get reset when hot-reloading.
-    ModRef:SetSharedVariable("WkGameStart", true)
-    print(ModName.."InitGameStatePostHook\n")
-    InitManagedHook()
-end)
