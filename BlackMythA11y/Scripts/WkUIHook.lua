@@ -31,6 +31,27 @@ GetTextFuncMap["BI_SettingTab_C"] = function(uObject, InFocusEvent)
     return TxtName:GetContent():ToString()
 end
 
+-- 主界面.加载存档
+-- TextBlock /BI_ArchivesBtnV2_C_2147480738.WidgetTree.TxtDate
+--[[
+    InfoCon
+    .TimeCon
+        .TxtName:   游戏存档点名
+        .TxtLv:     等级
+        .TxtDate:   日期
+        .TxtTime:   时间
+        .TxtPlayTime: 游玩时间
+]]
+GetTextFuncMap["BI_ArchivesBtnV2_C---"] = function(uObject, InFocusEvent)
+    -- CanvasPanel
+    WidgetTree_Root = Button.WidgetTree.RootWidget
+    -- CanvasPanel
+    BtnCon = WidgetTree_Root:GetChildAt(0)
+    -- GSScaleText
+    TxtName = BtnCon:GetChildAt(2)
+    return ""
+end
+
 -- 主界面/音乐
 -- BI_AccordionChildBtn_Echo_C /Engine/Transient.GameEngine_2147482611:BGW_GameInstance_B1_2147482576.BUI_B1_Root_V2_C_2147462481.WidgetTree.BUI_SoundtrackV2_C_2147455841.WidgetTree.BI_ContentBtn.WidgetTree.BI_AccordionChildBtn_Echo_C_2147455810
 GetTextFuncMap["BI_AccordionChildBtn_Echo_C"] = GetTextFuncMap["BI_StartGame_C"]
@@ -58,6 +79,14 @@ local function OnAddedToFocusPath_Hook(pContext, pInFocusEvent)
         print(string.format("\t%s\n", curText))
     else
         print(string.format("Cannot gettext for:  %s <: %s\n", ClassName, SuperClassName))
+        
+        -- CanvasPanel
+        -- WidgetTree_Root = Button.WidgetTree.RootWidget
+        -- WkUtils.PrintUObject(WidgetTree_Root)
+        -- CanvasPanel
+        -- BtnCon = WidgetTree_Root:GetChildAt(0)
+        -- WkUtils.PrintUObject(BtnCon)/
+
     end
 end
 
