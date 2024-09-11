@@ -1,11 +1,13 @@
 -- SPDX-License-Identifier: MIT
+-- Author: inkydragon
 -- WuKong KeyBind Hook
 local SubModeName = "[BlackMythA11y.WkKeyBind] "
--- Author: inkydragon
+-- [[require Global]]
 local UEHelpers = require("UEHelpers")
+-- [[require Local]]
 local WkUtils = require("WkUtils")
+-- [[Global Var]]
 local WkKeyBind = {}
--- Global Var
 local GetGameplayStatics = UEHelpers.GetGameplayStatics
 local KeyBindArgMap = {}
 

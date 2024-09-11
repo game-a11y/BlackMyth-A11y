@@ -1,8 +1,14 @@
 -- SPDX-License-Identifier: MIT
 -- WuKong Utils
-local SubModeName = "[BlackMythA11y.WkUtils] "
 -- Author: inkydragon
+local SubModeName = "[BlackMythA11y.WkUtils] "
+-- [[require Global]]
+
+-- [[require Local]]
+
+-- [[Global Var]]
 local WkUtils = {}
+
 
 -- 打印当前已加载的所有关卡(Level)
 function WkUtils.DumpAllLevels()
@@ -60,5 +66,6 @@ function WkUtils.PrintUIPage()
         ShowSpecialUI.UIPageID, ShowSpecialUI.DialogueID, ShowSpecialUI.NameID,
         ShowSpecialUI.ChapterID, ShowSpecialUI.MediaId))
 end
+
 
 return WkUtils

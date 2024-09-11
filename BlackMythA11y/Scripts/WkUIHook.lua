@@ -1,13 +1,16 @@
 -- SPDX-License-Identifier: MIT
 -- WuKong UI Hooks
-local SubModeName = "[BlackMythA11y.WkUIHook] "
 -- Author: inkydragon
+local SubModeName = "[BlackMythA11y.WkUIHook] "
+-- [[require Global]]
+
+-- [[require Local]]
 local WkUtils = require("WkUtils")
+-- [[Global Var]]
 local WkUIHook = {}
-
-
 -- 父类名 => GetText 函数
 local GetTextFuncMap = {}
+
 
 -- 主界面
 -- BI_StartGame_C /Game/00Main/UI/BluePrintsV3/Btn/BI_StartGame.Default__BI_StartGame_C
