@@ -67,6 +67,23 @@ end
 -- BI_AccordionChildBtn_Echo_C /Engine/Transient.GameEngine_2147482611:BGW_GameInstance_B1_2147482576.BUI_B1_Root_V2_C_2147462481.WidgetTree.BUI_SoundtrackV2_C_2147455841.WidgetTree.BI_ContentBtn.WidgetTree.BI_AccordionChildBtn_Echo_C_2147455810
 GetTextFuncMap["BI_AccordionChildBtn_Echo_C"] = GetTextFuncMap["BI_StartGame_C"]
 
+-- 二次确定对话框
+-- TODO: 构造时 BI_ReconfirmBtn_C 读出 .txt
+-- /BUI_Reconfirm_C.WidgetTree.Btn_Cancel
+GetTextFuncMap["BI_ReconfirmBtn_C"] = function(uObject, InFocusEvent)
+    -- local Button = uObject:get()
+    -- CanvasPanel
+    local RootCon = Button.WidgetTree.RootWidget
+    -- CanvasPanel
+    local HoverRoot = RootCon:GetChildAt(0)
+    -- CanvasPanel
+    local BtnCon = HoverRoot:GetChildAt(0)
+    -- TextBlock
+    local TxtName = BtnCon:GetChildAt(1)  -- .PSSlot2
+    return TxtName:GetText():ToString()
+end
+
+
 local function OnAddedToFocusPath_Hook(pContext, pInFocusEvent)
     Button = pContext:get()
     SuperClassName = Button:GetClass():GetFName():ToString()
@@ -90,17 +107,24 @@ local function OnAddedToFocusPath_Hook(pContext, pInFocusEvent)
         print(string.format("\t%s\n", curText))
     else
         print(string.format("Cannot gettext for:  %s <: %s\n", ClassName, SuperClassName))
-        
-        -- CanvasPanel
-        -- WidgetTree_Root = Button.WidgetTree.RootWidget
-        -- WkUtils.PrintUObject(WidgetTree_Root)
+    
         -- -- CanvasPanel
-        -- BtnCon = WidgetTree_Root:GetChildAt(0)
+        -- RootCon = Button.WidgetTree.RootWidget
+        -- WkUtils.PrintUObject(RootCon)
+        -- -- CanvasPanel
+        -- HoverRoot = RootCon:GetChildAt(0)
+        -- WkUtils.PrintUObject(HoverRoot)
+        -- -- CanvasPanel
+        -- BtnCon = HoverRoot:GetChildAt(0)
         -- WkUtils.PrintUObject(BtnCon)
-        -- -- GSScaleText
-        -- TxtName = BtnCon:GetChildAt(3)  -- .CanvasPanelSlot_5
+        -- -- TextBlock
+        -- TxtName = BtnCon:GetChildAt(1)  -- .PSSlot2
         -- WkUtils.PrintUObject(TxtName)
-        -- -- TxtName:GetContent():ToString()
+        -- print(string.format("\t%s\n", TxtName:GetText():ToString()))
+        
+        -- TxtName = ps:GetContent()
+        -- WkUtils.PrintUObject(TxtName)
+        -- TxtName:GetContent():ToString()
     end
 end
 
