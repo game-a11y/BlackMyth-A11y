@@ -70,8 +70,8 @@ namespace A11yMod
         auto Object = UObjectGlobals::StaticFindObject<UObject*>(nullptr, nullptr, STR("/Script/CoreUObject.Object"));
         Output::send<LogLevel::Verbose>(MODSTR("Object Name: {}\n"), Object->GetFullName());
 
-        auto hook_id = UObjectGlobals::RegisterHook(STR("/Script/b1-Managed.BUI_Button:OnAddedToFocusPath"),
-            OnAddedToFocusPath_Hook, Empty_UnrealScriptFunction, nullptr);
+        // auto hook_id = UObjectGlobals::RegisterHook(STR("/Script/b1-Managed.BUI_Button:OnAddedToFocusPath"),
+        //     OnAddedToFocusPath_Hook, Empty_UnrealScriptFunction, nullptr);
     }
 
 
