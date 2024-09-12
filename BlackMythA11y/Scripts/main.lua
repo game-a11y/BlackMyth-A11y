@@ -60,7 +60,14 @@ RegisterHook("/Script/UMG.EditableTextBox:SetText", function(Context, InText)
     print(string.format("[EditableTextBox] \"%s\"\n", Text))
     print(string.format("\t%s\n", ClassFullName))
 end)
--- UGSBitmapFontBox
+-- Function /Script/UnrealExtent.GSBitmapFontBox:SetText
+RegisterHook("/Script/UnrealExtent.GSBitmapFontBox:SetText", function(Context, InText)
+    local Button = Context:get()
+    local ClassFullName = Button:GetFullName()
+    local Text = InText:get():ToString()
+    print(string.format("[GSBitmapFontBox] \"%s\"\n", Text))
+    print(string.format("\t%s\n", ClassFullName))
+end)
 
 
 -- [[ 初始化 Managed 挂钩 ]] --------------------------------------------------
