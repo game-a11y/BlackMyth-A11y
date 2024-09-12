@@ -152,7 +152,7 @@ local function OnAddedToFocusPath_Hook(pContext, pInFocusEvent)
     -- Print text
     if GetTextFuncMap[SuperClassName] then
         local curText = GetTextFuncMap[SuperClassName](Button, InFocusEvent)
-        print(string.format("\t%s\n", curText))
+        print(string.format("\t\"%s\"\n", curText))
     else
         print(string.format("Cannot gettext for:  %s <: %s\n", ClassName, SuperClassName))
     
