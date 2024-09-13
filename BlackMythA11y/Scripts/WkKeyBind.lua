@@ -81,6 +81,7 @@ local function CallCppModTest()
     print(string.format(SubModeName.."A11yTolk v%d.%d.%d\n", Major, Minor, Hotfix))
     print(string.format(SubModeName.."A11yTolk:Speak(string)\n"))
     A11yTolk:Speak("aaaaa")
+    A11yTolk:Speak("你好")
 end
 KeyBindArgMap[Key.F11] = CallCppModTest
 
