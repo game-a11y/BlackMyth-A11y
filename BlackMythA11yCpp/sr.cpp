@@ -27,7 +27,7 @@ namespace A11yMod::SR
             return;
         }
 
-        // TODO: Tolk_Unload
+        unload();
         FreeLibrary(SrLib);
         Output::send<LogLevel::Normal>(MODSTR("Free tolk.dll.\n"));
     }
