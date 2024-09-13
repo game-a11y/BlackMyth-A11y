@@ -32,7 +32,7 @@ namespace A11yMod::SR
         Output::send<LogLevel::Normal>(MODSTR("Free tolk.dll.\n"));
     }
 
-    auto SrApi::sr_func_init() -> void
+    auto SrApi::func_init() -> void
     {
         if (!SrLib) {
             Output::send<LogLevel::Warning>(MODSTR("tolk.dll not load, skip init tolk.\n"));
@@ -86,7 +86,7 @@ namespace A11yMod::SR
 
     auto SrApi::init_and_check() -> void
     {
-        sr_func_init();
+        func_init();
         sr_func_check();
     }
 

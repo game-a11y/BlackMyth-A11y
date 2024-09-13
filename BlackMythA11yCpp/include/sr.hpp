@@ -59,7 +59,7 @@ public:
     auto init_and_check() -> void;
 
 private:
-    auto sr_func_init() -> void;
+    auto func_init() -> void;
     auto sr_func_check() -> void;
 };
 
