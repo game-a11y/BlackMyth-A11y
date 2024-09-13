@@ -36,7 +36,7 @@ namespace A11yMod
         auto on_dll_load(StringViewType dll_name) -> void override;
 
     private:
-        SR::SrApi srApi;
+        static inline SR::SrApi srApi{};
 
         static inline bool bModuleLoaded = false;
         static auto init_game_state_post_hook(RC::Unreal::AGameModeBase* Context) -> void;

@@ -72,7 +72,6 @@ namespace A11yMod
         //     OnAddedToFocusPath_Hook, Empty_UnrealScriptFunction, nullptr);
     }
 
-
     auto BlackMythA11yCpp::on_lua_start(
         StringViewType mod_name,
         LuaMadeSimple::Lua& lua,
@@ -104,7 +103,7 @@ namespace A11yMod
 
             // Tolk_Speak
             tolk_class.add_pair("Speak", [](const LuaMadeSimple::Lua& lua) -> int {
-                            std::string error_overload_not_found{R"(
+                std::string error_overload_not_found{R"(
 No overload found for function 'Speak'.
 Overloads:
 #1: Speak(string OutputText))"};
@@ -115,24 +114,20 @@ Overloads:
                     lua.throw_error(error_overload_not_found);
                 }
                 auto output_text = std::string{lua.get_string()};
+                auto wtext = FromCharTypePtr<TCHAR>(ensure_str(output_text).c_str());
 
-                Output::send<LogLevel::Normal>(
-                    MODSTR("From Lua:  Speak(\"{}\")\n"),
-                    FromCharTypePtr<TCHAR>(ensure_str(output_text).c_str()));
+                Output::send<LogLevel::Verbose>(
+                    MODSTR("Lua.Speak: \"{}\"\n"),
+                    wtext);
+                srApi.speak(wtext, false);
                 return 1;
             });
-            
-            // TODO:
-            //  Tolk_IsLoaded();
-            //  Tolk_HasSpeech();
-            //  Tolk_DetectScreenReader();
-            //  Tolk_Silence();
 
             tolk_class.make_global("A11yTolk");
             Output::send<LogLevel::Normal>(MODSTR("Set Lua A11yTolk Class.\n"));
         } /* A11yTolk Class END */
     }
-    
+
     /**
      * @brief 此函数会 hook [所有] DLL 加载
      * 
