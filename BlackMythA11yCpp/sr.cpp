@@ -38,7 +38,7 @@ namespace A11yMod::SR
             Output::send<LogLevel::Warning>(MODSTR("tolk.dll not load, skip init tolk.\n"));
             return;
         }
-        Output::send<LogLevel::Verbose>(MODSTR("sr_init_and_check.\n"));
+        Output::send<LogLevel::Verbose>(MODSTR("init_and_check.\n"));
 
         /* --- 导出 Tolk 函数 --- */
         // https://blog.benoitblanchon.fr/getprocaddress-like-a-boss/
@@ -84,7 +84,7 @@ namespace A11yMod::SR
         ret = speak(STR("中文输出测试成功！"), false);
     }
 
-    auto SrApi::sr_init_and_check() -> void
+    auto SrApi::init_and_check() -> void
     {
         sr_func_init();
         sr_func_check();

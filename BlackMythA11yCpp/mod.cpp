@@ -87,7 +87,7 @@ namespace A11yMod
         }
         Output::send<LogLevel::Verbose>(MODSTR("Run mod({}) lua script.\n"), mod_name);
         // TODO: move to on_unreal_init()
-        srApi.sr_init_and_check();
+        srApi.init_and_check();
 
         /* A11yTolk Class Begin */
         {

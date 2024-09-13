@@ -56,7 +56,7 @@ private:
     HMODULE SrLib;
 
 public:
-    auto sr_init_and_check() -> void;
+    auto init_and_check() -> void;
 
 private:
     auto sr_func_init() -> void;
