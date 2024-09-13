@@ -1,14 +1,5 @@
 ﻿#include <mod.hpp>
-#include <tolk.h>
-
-
-// tolk func types
-
-typedef decltype(&Tolk_Load)        TolkLoadPtr;
-typedef decltype(&Tolk_HasSpeech)   TolkHasSpeechPtr;
-typedef decltype(&Tolk_DetectScreenReader)  TolkDetectScreenReaderPtr;
-typedef decltype(&Tolk_Speak)       TolkSpeakPtr;
-typedef decltype(&Tolk_Silence)     TolkSilencePtr;
+#include <sr.hpp>
 
 
 namespace A11yMod
@@ -52,9 +43,17 @@ namespace A11yMod
         /* --- 导出 Tolk 函数 --- */
         // https://blog.benoitblanchon.fr/getprocaddress-like-a-boss/
         auto tolk_init = reinterpret_cast<TolkLoadPtr>(GetProcAddress((HMODULE)SrLib, "Tolk_Load"));
-        auto tolk_has_speech = reinterpret_cast<TolkHasSpeechPtr>(GetProcAddress((HMODULE)SrLib, "Tolk_HasSpeech"));
+        auto tolk_IsLoaded = reinterpret_cast<TolkIsLoadedPtr>(GetProcAddress((HMODULE)SrLib, "Tolk_IsLoaded"));
+        auto tolk_Unload = reinterpret_cast<TolkUnloadPtr>(GetProcAddress((HMODULE)SrLib, "Tolk_Unload"));
+        // Tolk_TrySAPI
+        // Tolk_PreferSAPI
         auto tolk_DetectScreenReader = reinterpret_cast<TolkDetectScreenReaderPtr>(GetProcAddress((HMODULE)SrLib, "Tolk_DetectScreenReader"));
+        auto tolk_has_speech = reinterpret_cast<TolkHasSpeechPtr>(GetProcAddress((HMODULE)SrLib, "Tolk_HasSpeech"));
+        // Tolk_HasBraille
+        // Tolk_Output
         auto tolk_speak = reinterpret_cast<TolkSpeakPtr>(GetProcAddress((HMODULE)SrLib, "Tolk_Speak"));
+        // Tolk_Braille
+        auto tolk_IsSpeaking = reinterpret_cast<TolkIsSpeakingPtr>(GetProcAddress((HMODULE)SrLib, "Tolk_IsSpeaking"));
         auto tolk_silence = reinterpret_cast<TolkSilencePtr>(GetProcAddress((HMODULE)SrLib, "Tolk_Silence"));
 
         if (!tolk_init) {
