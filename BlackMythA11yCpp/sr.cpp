@@ -72,10 +72,13 @@ namespace A11yMod
         std::wstring sr_name{tolk_DetectScreenReader()};
         Output::send<LogLevel::Verbose>(MODSTR("tolk_DetectScreenReader: {}\n"), sr_name);
         
-        auto ret = tolk_speak(STR("test test test 11111"), true);
+        auto ret = tolk_speak(STR("Tolk.dll is loaded"), false);
         if (!ret) {
             Output::send<LogLevel::Error>(MODSTR("tolk_speak failed\n"));
+            return;
         }
+        ret = tolk_speak(STR("English output test successful."), false);
+        ret = tolk_speak(STR("中文输出测试成功！"), false);
     }
 
 };
