@@ -1,4 +1,5 @@
-﻿#include <Unreal/UObjectGlobals.hpp>
+﻿#include <iostream>
+#include <Unreal/UObjectGlobals.hpp>
 #include <Unreal/UObject.hpp>
 #include <Mod/LuaMod.hpp>
 #include <Hooks.hpp>
@@ -113,13 +114,14 @@ Overloads:
                 {
                     lua.throw_error(error_overload_not_found);
                 }
-                auto output_text = std::string{lua.get_string()};
-                auto wtext = FromCharTypePtr<TCHAR>(ensure_str(output_text).c_str());
+                auto output_text = ensure_str(lua.get_string());
+                // std::wcerr << "wtext=" << output_text << std::endl;
+                // Output::send<LogLevel::Verbose>(
+                //     MODSTR("Lua.Speak: \"{}\"\n"),
+                //     output_text);
 
-                Output::send<LogLevel::Verbose>(
-                    MODSTR("Lua.Speak: \"{}\"\n"),
-                    wtext);
-                srApi.speak(wtext, false);
+                auto pWtext = FromCharTypePtr<TCHAR>(output_text.c_str());
+                srApi.speak(pWtext, false);
                 return 1;
             });
 
