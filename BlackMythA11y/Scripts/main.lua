@@ -69,6 +69,9 @@ RegisterHook("/Script/UnrealExtent.GSBitmapFontBox:SetText", function(Context, I
     print(string.format("\t%s\n", ClassFullName))
 end)
 
+-- UMG  UUserWidget:OnFocusReceived(MyGeometry, InFocusEvent)
+--      UUserWidget:OnAddedToFocusPath(InFocusEvent)
+
 
 -- [[ 初始化 Managed 挂钩 ]] --------------------------------------------------
 -- NOTE: 需要等 UE 加载完后才能挂钩
