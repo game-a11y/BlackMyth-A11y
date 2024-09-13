@@ -57,7 +57,7 @@ namespace A11yMod::SR
         silence = reinterpret_cast<TolkSilencePtr>(GetProcAddress((HMODULE)SrLib, "Tolk_Silence"));
     }
 
-    auto SrApi::sr_func_check() -> void
+    auto SrApi::func_check() -> void
     {
         if (!load) {
             Output::send<LogLevel::Error>(MODSTR("null function Ptr; error code: 0x{:x}\n"), GetLastError());
@@ -87,7 +87,7 @@ namespace A11yMod::SR
     auto SrApi::init_and_check() -> void
     {
         func_init();
-        sr_func_check();
+        func_check();
     }
 
 };

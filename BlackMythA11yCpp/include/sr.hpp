@@ -60,7 +60,7 @@ public:
 
 private:
     auto func_init() -> void;
-    auto sr_func_check() -> void;
+    auto func_check() -> void;
 };
 
 }
