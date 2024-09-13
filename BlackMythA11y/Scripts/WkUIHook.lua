@@ -153,7 +153,7 @@ local function OnAddedToFocusPath_Hook(pContext, pInFocusEvent)
     if GetTextFuncMap[SuperClassName] then
         local curText = GetTextFuncMap[SuperClassName](Button, InFocusEvent)
         print(string.format("\t\"%s\"\n", curText))
-        A11yTolk:Speak(curText)
+        A11yTolk:Speak(curText, true)
     else
         print(string.format("Cannot gettext for:  %s <: %s\n", ClassName, SuperClassName))
     
