@@ -1,4 +1,4 @@
-#include <mod.hpp>
+#include "mod.hpp"
 
 #define MOD_API_EXPORT  __declspec(dllexport)
 

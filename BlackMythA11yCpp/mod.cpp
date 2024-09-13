@@ -1,9 +1,9 @@
-﻿#include <stdio.h>
-#include <Unreal/UObjectGlobals.hpp>
+﻿#include <Unreal/UObjectGlobals.hpp>
 #include <Unreal/UObject.hpp>
 #include <Mod/LuaMod.hpp>
-#include <mod.hpp>
-#include "Hooks.hpp"
+#include <Hooks.hpp>
+#include "mod.hpp"
+
 
 namespace A11yMod
 {
@@ -21,13 +21,11 @@ namespace A11yMod
         // other than the one you're currently building with somehow.
         //ModIntendedSDKVersion = STR("2.6");
 
-        sr_load_lib();
         Output::send<LogLevel::Verbose>(MODSTR("BlackMythA11yCpp Mod init.\n"));
     }
 
     BlackMythA11yCpp::~BlackMythA11yCpp()
     {
-        sr_unload_lib();
     }
 
     auto BlackMythA11yCpp::on_update() -> void
@@ -89,7 +87,7 @@ namespace A11yMod
         }
         Output::send<LogLevel::Verbose>(MODSTR("Run mod({}) lua script.\n"), mod_name);
         // TODO: move to on_unreal_init()
-        sr_init_and_check();
+        srApi.sr_init_and_check();
 
         /* A11yTolk Class Begin */
         {

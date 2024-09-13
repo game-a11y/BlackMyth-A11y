@@ -1,11 +1,13 @@
-﻿#include <mod.hpp>
-#include <sr.hpp>
+﻿#include <DynamicOutput/DynamicOutput.hpp>
+#include "WkCommon.hpp"
+#include "sr.hpp"
 
 
-namespace A11yMod
+namespace A11yMod::SR
 {
-    // 加载屏幕阅读器库
-    auto BlackMythA11yCpp::sr_load_lib() -> void 
+    using namespace RC;
+
+    SrApi::SrApi()
     {
         auto dll_path = STR("Tolk.dll");
 
@@ -19,8 +21,7 @@ namespace A11yMod
         Output::send<LogLevel::Verbose>(MODSTR("Loaded tolk.dll.\n"));
     }
 
-    // 卸载 SR 库
-    auto BlackMythA11yCpp::sr_unload_lib() -> void
+    SrApi::~SrApi()
     {
         if (!SrLib) {
             return;
@@ -31,8 +32,7 @@ namespace A11yMod
         Output::send<LogLevel::Normal>(MODSTR("Free tolk.dll.\n"));
     }
 
-    // 加载并初始化 DLL
-    auto BlackMythA11yCpp::sr_init_and_check() -> void
+    auto SrApi::sr_func_init() -> void
     {
         if (!SrLib) {
             Output::send<LogLevel::Warning>(MODSTR("tolk.dll not load, skip init tolk.\n"));
@@ -42,43 +42,52 @@ namespace A11yMod
 
         /* --- 导出 Tolk 函数 --- */
         // https://blog.benoitblanchon.fr/getprocaddress-like-a-boss/
-        auto tolk_init = reinterpret_cast<TolkLoadPtr>(GetProcAddress((HMODULE)SrLib, "Tolk_Load"));
-        auto tolk_IsLoaded = reinterpret_cast<TolkIsLoadedPtr>(GetProcAddress((HMODULE)SrLib, "Tolk_IsLoaded"));
-        auto tolk_Unload = reinterpret_cast<TolkUnloadPtr>(GetProcAddress((HMODULE)SrLib, "Tolk_Unload"));
+        load = reinterpret_cast<TolkLoadPtr>(GetProcAddress((HMODULE)SrLib, "Tolk_Load"));
+        is_loaded = reinterpret_cast<TolkIsLoadedPtr>(GetProcAddress((HMODULE)SrLib, "Tolk_IsLoaded"));
+        unload = reinterpret_cast<TolkUnloadPtr>(GetProcAddress((HMODULE)SrLib, "Tolk_Unload"));
         // Tolk_TrySAPI
         // Tolk_PreferSAPI
-        auto tolk_DetectScreenReader = reinterpret_cast<TolkDetectScreenReaderPtr>(GetProcAddress((HMODULE)SrLib, "Tolk_DetectScreenReader"));
-        auto tolk_has_speech = reinterpret_cast<TolkHasSpeechPtr>(GetProcAddress((HMODULE)SrLib, "Tolk_HasSpeech"));
+        detect_screenreader = reinterpret_cast<TolkDetectScreenReaderPtr>(GetProcAddress((HMODULE)SrLib, "Tolk_DetectScreenReader"));
+        has_speech = reinterpret_cast<TolkHasSpeechPtr>(GetProcAddress((HMODULE)SrLib, "Tolk_HasSpeech"));
         // Tolk_HasBraille
         // Tolk_Output
-        auto tolk_speak = reinterpret_cast<TolkSpeakPtr>(GetProcAddress((HMODULE)SrLib, "Tolk_Speak"));
+        speak = reinterpret_cast<TolkSpeakPtr>(GetProcAddress((HMODULE)SrLib, "Tolk_Speak"));
         // Tolk_Braille
-        auto tolk_IsSpeaking = reinterpret_cast<TolkIsSpeakingPtr>(GetProcAddress((HMODULE)SrLib, "Tolk_IsSpeaking"));
-        auto tolk_silence = reinterpret_cast<TolkSilencePtr>(GetProcAddress((HMODULE)SrLib, "Tolk_Silence"));
+        is_speaking = reinterpret_cast<TolkIsSpeakingPtr>(GetProcAddress((HMODULE)SrLib, "Tolk_IsSpeaking"));
+        silence = reinterpret_cast<TolkSilencePtr>(GetProcAddress((HMODULE)SrLib, "Tolk_Silence"));
+    }
 
-        if (!tolk_init) {
+    auto SrApi::sr_func_check() -> void
+    {
+        if (!load) {
             Output::send<LogLevel::Error>(MODSTR("null function Ptr; error code: 0x{:x}\n"), GetLastError());
             return;
         }
-        tolk_init();
+        load();
 
-        bool tolk_has_init = tolk_has_speech();
+        bool tolk_has_init = has_speech();
         Output::send<LogLevel::Verbose>(MODSTR("tolk_has_speech: {}\n"), tolk_has_init);
         if (!tolk_has_init) {
             Output::send<LogLevel::Warning>(MODSTR("Tolk has no backend!\n"));
             return;
         }
 
-        std::wstring sr_name{tolk_DetectScreenReader()};
+        std::wstring sr_name{detect_screenreader()};
         Output::send<LogLevel::Verbose>(MODSTR("tolk_DetectScreenReader: {}\n"), sr_name);
         
-        auto ret = tolk_speak(STR("Tolk.dll is loaded"), false);
+        auto ret = speak(STR("Tolk.dll is loaded"), false);
         if (!ret) {
             Output::send<LogLevel::Error>(MODSTR("tolk_speak failed\n"));
             return;
         }
-        ret = tolk_speak(STR("English output test successful."), false);
-        ret = tolk_speak(STR("中文输出测试成功！"), false);
+        ret = speak(STR("English output test successful."), false);
+        ret = speak(STR("中文输出测试成功！"), false);
+    }
+
+    auto SrApi::sr_init_and_check() -> void
+    {
+        sr_func_init();
+        sr_func_check();
     }
 
 };
