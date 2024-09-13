@@ -107,7 +107,7 @@ namespace A11yMod
                 std::string error_overload_not_found{R"(
 No overload found for function 'Speak'.
 Overloads:
-#1: Speak(string OutputText))"};
+#1: Speak(string OutputText, bool interrupt=false))"};
                 lua.discard_value(); // Discard the 'this' param.
 
                 if (!lua.is_string())
@@ -120,8 +120,22 @@ Overloads:
                 //     MODSTR("Lua.Speak: \"{}\"\n"),
                 //     output_text);
 
+                auto interrupt = false;
+                if (lua.get_stack_size() > 1)
+                {
+                    lua.throw_error(error_overload_not_found);
+                }
+                else if (lua.get_stack_size() == 1)
+                {
+                    if (!lua.is_bool())
+                    {
+                        lua.throw_error(error_overload_not_found);
+                    }
+                    interrupt = lua.get_bool();
+                }
+
                 auto pWtext = FromCharTypePtr<TCHAR>(output_text.c_str());
-                srApi.speak(pWtext, false);
+                srApi.speak(pWtext, interrupt);
                 return 1;
             });
 
