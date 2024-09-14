@@ -33,8 +33,7 @@ end
 GetTextFuncMap["BI_StartGame_C"] = function(Button, InFocusEvent)
     local ClassName = Button:GetFName():ToString()
     -- 当前关卡
-    local TxtMainName_txt = ""
-    local TxtSubName_txt = ""
+    local CurLevelName_txt = ""
     if "BI_StartGameBtn_0" == ClassName then
         local VerticalBoxSlot_0 = Button.Slot
         local MainListCon = VerticalBoxSlot_0.Parent
@@ -47,16 +46,17 @@ GetTextFuncMap["BI_StartGame_C"] = function(Button, InFocusEvent)
         -- 
         local RegionName = MainCon:GetChildAt(0)
         local TxtMainName = RegionName:GetChildAt(3)
-        TxtMainName_txt = TxtMainName.Text:ToString()
+        local TxtMainName_txt = TxtMainName.Text:ToString()
         -- print(string.format("MainNameText: %s\n", TxtMainName_txt))
         local HorizontalBox_1 = RegionName:GetChildAt(1)
         local TxtSubName = HorizontalBox_1:GetChildAt(1)
-        TxtSubName_txt = TxtSubName.Text:ToString()
+        local TxtSubName_txt = TxtSubName.Text:ToString()
         -- print(string.format("TxtSubName_txt: %s\n", TxtSubName_txt))
+        CurLevelName_txt = string.format(" %s: %s", TxtMainName_txt, TxtSubName_txt)
     end
 
     local ContinueBtnTxt = Button.BI_TextLoop.Content:GetContent():ToString()
-    return string.format("%s %s: %s", ContinueBtnTxt, TxtMainName_txt, TxtSubName_txt)
+    return ContinueBtnTxt .. CurLevelName_txt
 end
 
 -- 主界面/设置: 一级菜单
