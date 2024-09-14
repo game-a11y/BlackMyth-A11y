@@ -164,6 +164,11 @@ end
 -- BI_SettingIconItem_C /.BUI_Setting_C_2147476617.WidgetTree.BI_SettingInput.WidgetTree.BI_Keyboard.WidgetTree.BI_KeyboradEnter
 -- BI_SettingIconItem_C /.BUI_Setting_C_2147476617.WidgetTree.BI_SettingIconItem_0
 
+-- 主界面/设置/退出: 文本按钮
+--[[
+BI_SettingMainBtn_C /Engine/Transient.GameEngine_2147482611:BGW_GameInstance_B1_2147482576.BUI_B1_Root_V2_C_2147464610.WidgetTree.BUI_Setting_C_2147457486.WidgetTree.BI_SettingBtnItem_1
+TextBlock /Engine/Transient.GameEngine_2147482611:BGW_GameInstance_B1_2147482576.BUI_B1_Root_V2_C_2147464610.WidgetTree.BUI_Setting_C_2147457486.WidgetTree.TxtSettingInfo
+]]
 
 -- 主界面.加载存档
 -- TextBlock /BI_ArchivesBtnV2_C_2147480738.WidgetTree.TxtDate
