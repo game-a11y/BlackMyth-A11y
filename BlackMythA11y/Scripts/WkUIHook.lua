@@ -161,11 +161,26 @@ GetTextFuncMap["BI_SettingSliderItem_C"] = function(Button, InFocusEvent)
 end
 
 -- 主界面/设置: 图标按钮
--- BI_SettingIconItem_C /.BUI_Setting_C_2147476617.WidgetTree.BI_SettingInput.WidgetTree.BI_Keyboard.WidgetTree.BI_KeyboradEnter
--- BI_SettingIconItem_C /.BUI_Setting_C_2147476617.WidgetTree.BI_SettingIconItem_0
+--[[
+BI_SettingIconItem_C /.BUI_Setting_C_2147457164.WidgetTree.BI_SettingIconItem_0
+GSScaleText          /   .BI_SettingIconItem_0.WidgetTree.BI_Btn.WidgetTree.TxtName
 
+校准滑块
+BI_SettingSliderL_C /.BUI_BrightnessSetting_C_2147454165.WidgetTree.BI_Slider
+]]
+GetTextFuncMap["BI_SettingIconItem_C"] = function(Button, InFocusEvent)
+    local BI_Btn = Button.BI_Btn
+    local RootCon = BI_Btn.WidgetTree.RootWidget
+    local BtnCon = RootCon:GetChildAt(0)
+    local HorizontalBox_1 = BtnCon:GetChildAt(2)
+    local TxtName = HorizontalBox_1:GetChildAt(0)
+    local TxtName_txt = TxtName.Text:ToString()  -- TextBlock
+    local desc_txt = "用于调整画面亮度"
+    local hint_txt = "单击以打开图像校准面板"
+    return string.format("%s %s %s", TxtName_txt, desc_txt, hint_txt)
+end
 
--- 主界面/设置/退出: 文本按钮
+-- 主界面/设置: 文本按钮
 --[[
 BI_SettingMainBtn_C /.BUI_Setting_C_2147457164.WidgetTree.BI_SettingBtnItem_0
 GSScaleText         /.BUI_Setting_C_2147457164.WidgetTree.BI_SettingBtnItem_0.WidgetTree.TxtName
