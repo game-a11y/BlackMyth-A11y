@@ -160,15 +160,24 @@ GetTextFuncMap["BI_SettingSliderItem_C"] = function(Button, InFocusEvent)
     return string.format("%s %s %s/%s", TxtName_txt, "水平滑块", Volume, TxtMaxNum_txt)
 end
 
--- 主界面/设置: 占位按钮
+-- 主界面/设置: 图标按钮
 -- BI_SettingIconItem_C /.BUI_Setting_C_2147476617.WidgetTree.BI_SettingInput.WidgetTree.BI_Keyboard.WidgetTree.BI_KeyboradEnter
 -- BI_SettingIconItem_C /.BUI_Setting_C_2147476617.WidgetTree.BI_SettingIconItem_0
 
+
 -- 主界面/设置/退出: 文本按钮
 --[[
-BI_SettingMainBtn_C /Engine/Transient.GameEngine_2147482611:BGW_GameInstance_B1_2147482576.BUI_B1_Root_V2_C_2147464610.WidgetTree.BUI_Setting_C_2147457486.WidgetTree.BI_SettingBtnItem_1
-TextBlock /Engine/Transient.GameEngine_2147482611:BGW_GameInstance_B1_2147482576.BUI_B1_Root_V2_C_2147464610.WidgetTree.BUI_Setting_C_2147457486.WidgetTree.TxtSettingInfo
+BI_SettingMainBtn_C /.BUI_Setting_C_2147457164.WidgetTree.BI_SettingBtnItem_0
+GSScaleText         /.BUI_Setting_C_2147457164.WidgetTree.BI_SettingBtnItem_0.WidgetTree.TxtName
 ]]
+GetTextFuncMap["BI_SettingMainBtn_C"] = function(Button, InFocusEvent)
+    local BtnCon = Button.WidgetTree.RootWidget:GetChildAt(0)
+    local HBox0 = BtnCon:GetChildAt(2)
+    local TxtName = HBox0:GetChildAt(0)
+    local TxtName_txt = TxtName:GetText():ToString()
+    return TxtName_txt
+end
+
 
 -- 主界面.加载存档
 -- TextBlock /BI_ArchivesBtnV2_C_2147480738.WidgetTree.TxtDate
