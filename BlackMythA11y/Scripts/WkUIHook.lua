@@ -30,10 +30,33 @@ end
     地点    TextBlock   /BUI_StartGame_C_2147456059.WidgetTree.TxtSubName
     版本号  TextBlock   /BUI_StartGame_C_2147456059.WidgetTree.TxtVersion
 ]]
--- BI_StartGame_C /Game/00Main/UI/BluePrintsV3/Btn/BI_StartGame.Default__BI_StartGame_C
--- WidgetBlueprintGeneratedClass /Game/00Main/UI/BluePrintsV3/Btn/BI_StartGame.BI_StartGame_C
 GetTextFuncMap["BI_StartGame_C"] = function(Button, InFocusEvent)
-    return Button.BI_TextLoop.Content:GetContent():ToString()
+    local ClassName = Button:GetFName():ToString()
+    -- 当前关卡
+    local TxtMainName_txt = ""
+    local TxtSubName_txt = ""
+    if "BI_StartGameBtn_0" == ClassName then
+        local VerticalBoxSlot_0 = Button.Slot
+        local MainListCon = VerticalBoxSlot_0.Parent
+        local VerticalBoxSlot_2 = MainListCon.Slot
+        local StartBtnCon = VerticalBoxSlot_2.Parent
+        local OverlaySlot_0 = StartBtnCon.Slot
+        local Overlay_0 = OverlaySlot_0.Parent
+        local CanvasPanelSlot_3 = Overlay_0.Slot
+        local MainCon = CanvasPanelSlot_3.Parent
+        -- 
+        local RegionName = MainCon:GetChildAt(0)
+        local TxtMainName = RegionName:GetChildAt(3)
+        TxtMainName_txt = TxtMainName.Text:ToString()
+        -- print(string.format("MainNameText: %s\n", TxtMainName_txt))
+        local HorizontalBox_1 = RegionName:GetChildAt(1)
+        local TxtSubName = HorizontalBox_1:GetChildAt(1)
+        TxtSubName_txt = TxtSubName.Text:ToString()
+        -- print(string.format("TxtSubName_txt: %s\n", TxtSubName_txt))
+    end
+
+    local ContinueBtnTxt = Button.BI_TextLoop.Content:GetContent():ToString()
+    return string.format("%s %s: %s", ContinueBtnTxt, TxtMainName_txt, TxtSubName_txt)
 end
 
 -- 主界面/设置: 一级菜单
