@@ -191,9 +191,17 @@ end
 GetTextFuncMap["BI_AccordionChildBtn_Echo_C"] = GetTextFuncMap["BI_StartGame_C"]
 
 -- 二次确定对话框
+--[[
+BUI_Reconfirm_C_2147454606.WidgetTree.txt
+BUI_Reconfirm_C_2147454606.WidgetTree.Btn_Confirm
+BUI_Reconfirm_C_2147454606.WidgetTree.Btn_Cancel
+]]
 -- TODO: 构造时 BI_ReconfirmBtn_C 读出 .txt
+-- GSRichScaleText /.BUI_Reconfirm_C_2147454627.WidgetTree.txt
 -- /BUI_Reconfirm_C.WidgetTree.Btn_Cancel
 GetTextFuncMap["BI_ReconfirmBtn_C"] = function(Button, InFocusEvent)
+    local ClassName = Button:GetFName():ToString()
+
     -- CanvasPanel
     local RootCon = Button.WidgetTree.RootWidget
     -- CanvasPanel
@@ -202,7 +210,21 @@ GetTextFuncMap["BI_ReconfirmBtn_C"] = function(Button, InFocusEvent)
     local BtnCon = HoverRoot:GetChildAt(0)
     -- TextBlock
     local TxtName = BtnCon:GetChildAt(1)  -- .PSSlot2
-    return TxtName:GetText():ToString()
+    local TxtName_txt = TxtName:GetText():ToString()
+
+    if "Btn_Confirm" == ClassName then
+        local HBoxBtn = Button:GetParent()
+        local BtnCon = HBoxBtn:GetParent()
+        local BoxCon = BtnCon:GetParent()
+        local ContentCon = BoxCon:GetChildAt(1)
+        local txt = ContentCon:GetChildAt(0)
+        local ContentCon_txt = txt:GetContent():ToString()
+        -- print(string.format("txt=%s:  %s\n", txt:GetFullName(), ContentCon_txt))
+
+        return string.format("%s %s", TxtName_txt, ContentCon_txt)
+    end
+
+    return TxtName_txt
 end
 
 -- TODO: 加载界面
