@@ -65,6 +65,21 @@ GetTextFuncMap["BI_SettingTab_C"] = function(Button, InFocusEvent)
     return TxtName:GetContent():ToString()
 end
 
+
+-- 打印出所有父级组件
+local function PrintAllParents(CurWidget)
+    if CurWidget == nil or (not CurWidget:IsValid()) then
+        return
+    end
+
+    local FullName = CurWidget:GetFullName()
+    -- local SuperClassName = CurWidget:GetClass():GetFName():ToString()
+    -- local ClassName = CurWidget:GetFName():ToString()
+    print(string.format("\t%s\n", FullName))
+
+    PrintAllParents(CurWidget:GetParent())
+end
+
 -- 主界面/设置/声音
 GetTextFuncMap["BI_SettingSliderItem_C"] = function(Button, InFocusEvent)
     local ClassName = Button:GetFName():ToString()
