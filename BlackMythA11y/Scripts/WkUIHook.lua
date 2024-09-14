@@ -152,9 +152,8 @@ GetTextFuncMap["BI_SettingSliderItem_C"] = function(Button, InFocusEvent)
     local TxtMaxNum = SizeBox_1:GetChildAt(0)
     local TxtMaxNum_txt = TxtMaxNum:GetText():ToString()  -- TextBlock
 
-    local WidgetType = "滚动条"
     -- BI_Slider.WidgetTree.TxtMinNum = 0
-    return string.format("%s %s %s/%s", TxtName_txt, WidgetType, Volume, TxtMaxNum_txt)
+    return string.format("%s %s %s/%s", TxtName_txt, "水平滑块", Volume, TxtMaxNum_txt)
 end
 
 
