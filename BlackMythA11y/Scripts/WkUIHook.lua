@@ -35,23 +35,17 @@ GetTextFuncMap["BI_StartGame_C"] = function(Button, InFocusEvent)
     -- 当前关卡
     local CurLevelName_txt = ""
     if "BI_StartGameBtn_0" == ClassName then
-        local VerticalBoxSlot_0 = Button.Slot
-        local MainListCon = VerticalBoxSlot_0.Parent
-        local VerticalBoxSlot_2 = MainListCon.Slot
-        local StartBtnCon = VerticalBoxSlot_2.Parent
-        local OverlaySlot_0 = StartBtnCon.Slot
-        local Overlay_0 = OverlaySlot_0.Parent
-        local CanvasPanelSlot_3 = Overlay_0.Slot
-        local MainCon = CanvasPanelSlot_3.Parent
+        local MainListCon = Button:GetParent()
+        local StartBtnCon = MainListCon:GetParent()
+        local Overlay_0 = StartBtnCon:GetParent()
+        local MainCon = Overlay_0:GetParent()  -- .WidgetTree.MainCon
         -- 
         local RegionName = MainCon:GetChildAt(0)
         local TxtMainName = RegionName:GetChildAt(3)
         local TxtMainName_txt = TxtMainName.Text:ToString()
-        -- print(string.format("MainNameText: %s\n", TxtMainName_txt))
         local HorizontalBox_1 = RegionName:GetChildAt(1)
         local TxtSubName = HorizontalBox_1:GetChildAt(1)
         local TxtSubName_txt = TxtSubName.Text:ToString()
-        -- print(string.format("TxtSubName_txt: %s\n", TxtSubName_txt))
         CurLevelName_txt = string.format(" %s: %s", TxtMainName_txt, TxtSubName_txt)
     end
 
