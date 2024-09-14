@@ -102,6 +102,30 @@ GetTextFuncMap["BI_SettingFixedItem_C"] = function(Button, InFocusEvent)
     return string.format("%s %s %s", TxtName_txt, "左右单项选择", TxtDesc_txt)
 end
 
+-- 主界面/设置: 下拉单项选择
+--[[
+    GSScaleText /.BI_SettingMenuItem_0.WidgetTree.BI_Btn.WidgetTree.BI_Btn.WidgetTree.TxtName
+    TextBlock   /.BI_SettingMenuItem_0.WidgetTree.BI_Btn.WidgetTree.TxtDesc
+]]
+GetTextFuncMap["BI_SettingMenuItem_C"] = function(Button, InFocusEvent)
+    -- print(string.format("Button=%s\n", Button:GetFullName()))
+    -- PrintAllParents(Button)
+
+    -- NOTE: 这里基于 Button.BI_Btn.BI_Btn
+    local BtnCon = Button.BI_Btn.BI_Btn.WidgetTree.RootWidget:GetChildAt(0)
+    local HBox0 = BtnCon:GetChildAt(2)
+    local TxtSettingInfo = HBox0:GetChildAt(0)
+    local TxtSettingInfo_txt = TxtSettingInfo:GetContent():ToString()  -- GSScaleText
+
+    BtnCon = Button.BI_Btn.WidgetTree.RootWidget:GetChildAt(0)
+    local MenuCon = BtnCon:GetChildAt(2)
+    local SBox0 = MenuCon:GetChildAt(0)
+    local TxtDesc = SBox0:GetChildAt(0)
+    local TxtDesc_txt = TxtDesc:GetText():ToString()  -- TextBlock
+
+    return string.format("%s %s %s", TxtSettingInfo_txt, "下拉单项选择", TxtDesc_txt)
+end
+
 -- 主界面/设置/声音
 GetTextFuncMap["BI_SettingSliderItem_C"] = function(Button, InFocusEvent)
     local ClassName = Button:GetFName():ToString()
