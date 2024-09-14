@@ -197,7 +197,8 @@ GetTextFuncMap["BI_SettingMainBtn_C"] = function(Button, InFocusEvent)
     local HBox0 = BtnCon:GetChildAt(2)
     local TxtName = HBox0:GetChildAt(0)
     local TxtName_txt = TxtName:GetText():ToString()
-    return TxtName_txt
+    local desc_txt = ""
+    return string.format("%s %s %s", TxtName_txt, "文本按钮", desc_txt)
 end
 
 
