@@ -299,7 +299,7 @@ local function OnAddedToFocusPath_Hook(pContext, pInFocusEvent)
         InterruptSpeak = true
         local curText = GetTextFuncMap[SuperClassName](Button, InFocusEvent)
         print(string.format("\t\"%s\"\n", curText))
-        -- A11yTolk:Speak(curText, InterruptSpeak)
+        A11yTolk:Speak(curText, InterruptSpeak)
     else
         print(string.format("Cannot gettext for:  %s <: %s\n", ClassName, SuperClassName))
     
