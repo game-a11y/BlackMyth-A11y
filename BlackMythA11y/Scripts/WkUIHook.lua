@@ -169,15 +169,22 @@ GSScaleText          /   .BI_SettingIconItem_0.WidgetTree.BI_Btn.WidgetTree.TxtN
 BI_SettingSliderL_C /.BUI_BrightnessSetting_C_2147454165.WidgetTree.BI_Slider
 ]]
 GetTextFuncMap["BI_SettingIconItem_C"] = function(Button, InFocusEvent)
+    local ClassName = Button:GetFName():ToString()
+
     local BI_Btn = Button.BI_Btn
     local RootCon = BI_Btn.WidgetTree.RootWidget
     local BtnCon = RootCon:GetChildAt(0)
     local HorizontalBox_1 = BtnCon:GetChildAt(2)
     local TxtName = HorizontalBox_1:GetChildAt(0)
     local TxtName_txt = TxtName.Text:ToString()  -- TextBlock
-    local desc_txt = "用于调整画面亮度"
-    local hint_txt = "单击以打开图像校准面板"
-    return string.format("%s %s %s", TxtName_txt, desc_txt, hint_txt)
+
+    local desc_txt = ""
+    if "BI_KeyboradEnter" == ClassName then
+        desc_txt = "调整键盘按键映射"
+    elseif "BI_SettingIconItem_0" == ClassName then
+        desc_txt = "调整画面亮度"
+    end
+    return string.format("%s %s %s", TxtName_txt, "图标按钮", desc_txt)
 end
 
 -- 主界面/设置: 文本按钮
