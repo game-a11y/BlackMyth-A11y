@@ -84,33 +84,30 @@ end
 GetTextFuncMap["BI_SettingSliderItem_C"] = function(Button, InFocusEvent)
     local ClassName = Button:GetFName():ToString()
 
-    -- BI_Btn.TxtName
+    -- BI_Btn.WidgetTree.TxtName
     local BI_Btn = Button.BI_Btn
     local RootCon = BI_Btn.WidgetTree.RootWidget
     local BtnCon = RootCon:GetChildAt(0)
     local HorizontalBox_1 = BtnCon:GetChildAt(2)
     local TxtName = HorizontalBox_1:GetChildAt(0)
-    local TxtName_txt = TxtName.Text:ToString()
+    local TxtName_txt = TxtName.Text:ToString()  -- TextBlock
 
-    -- BI_Slider.TxtNum
+    -- BI_Slider.WidgetTree.TxtNum
     local BI_Slider = Button.BI_Slider
+    local SliderBtn = BI_Slider.SliderBtn
+    local TxtNum = SliderBtn:GetChildAt(3)
+    local Volume = TxtNum:GetContent():ToString()  -- GSScaleText
+
+    -- BI_Slider.WidgetTree.TxtMaxNum
     local RootCon2 = BI_Slider.WidgetTree.RootWidget
     local BtnCon2 = RootCon2:GetChildAt(0)
     local HorizontalBox_0 = BtnCon2:GetChildAt(0)
-    local SliderBar = HorizontalBox_0:GetChildAt(1)
-    local SliderBtn = SliderBar:GetChildAt(3)
-    local TxtNum = SliderBtn:GetChildAt(3)
-    local Volume = TxtNum:GetContent():ToString()  -- GSScaleText
-    
-    -- BI_Slider.WidgetTree.TxtMaxNum
-    local HBox_0 = BtnCon2:GetChildAt(0)
-    local SizeBox_1 = HBox_0:GetChildAt(2)
+    local SizeBox_1 = HorizontalBox_0:GetChildAt(2)
     local TxtMaxNum = SizeBox_1:GetChildAt(0)
-    local TxtMaxNum_txt = TxtMaxNum:GetText():ToString()
+    local TxtMaxNum_txt = TxtMaxNum:GetText():ToString()  -- TextBlock
 
     local WidgetType = "滚动条"
-    -- BI_Slider.WidgetTree.TxtMinNum
-    -- BI_Slider.WidgetTree.TxtMaxNum
+    -- BI_Slider.WidgetTree.TxtMinNum = 0
     return string.format("%s %s %s/%s", TxtName_txt, WidgetType, Volume, TxtMaxNum_txt)
 end
 
