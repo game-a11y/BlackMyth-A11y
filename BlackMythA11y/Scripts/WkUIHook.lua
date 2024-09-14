@@ -106,6 +106,10 @@ end
 --[[
     GSScaleText /.BI_SettingMenuItem_0.WidgetTree.BI_Btn.WidgetTree.BI_Btn.WidgetTree.TxtName
     TextBlock   /.BI_SettingMenuItem_0.WidgetTree.BI_Btn.WidgetTree.TxtDesc
+
+TODO:   下拉项读取
+BI_ModeBtnItem_C /.BUI_Setting_C_2147476617.WidgetTree.BI_SettingMenuPage.WidgetTree.BI_Item.WidgetTree.BI_ModeBtnItem_C_2147475188
+TextBlock        /..BUI_Setting_C_2147476617.WidgetTree.BI_SettingMenuPage.WidgetTree.BI_Item.WidgetTree.BI_ModeBtnItem_C_2147475188.WidgetTree.TxtName
 ]]
 GetTextFuncMap["BI_SettingMenuItem_C"] = function(Button, InFocusEvent)
     -- print(string.format("Button=%s\n", Button:GetFullName()))
@@ -126,7 +130,7 @@ GetTextFuncMap["BI_SettingMenuItem_C"] = function(Button, InFocusEvent)
     return string.format("%s %s %s", TxtSettingInfo_txt, "下拉单项选择", TxtDesc_txt)
 end
 
--- 主界面/设置/声音
+-- 主界面/设置: 水平滑块
 GetTextFuncMap["BI_SettingSliderItem_C"] = function(Button, InFocusEvent)
     local ClassName = Button:GetFName():ToString()
 
@@ -155,6 +159,10 @@ GetTextFuncMap["BI_SettingSliderItem_C"] = function(Button, InFocusEvent)
     -- BI_Slider.WidgetTree.TxtMinNum = 0
     return string.format("%s %s %s/%s", TxtName_txt, "水平滑块", Volume, TxtMaxNum_txt)
 end
+
+-- 主界面/设置: 占位按钮
+-- BI_SettingIconItem_C /.BUI_Setting_C_2147476617.WidgetTree.BI_SettingInput.WidgetTree.BI_Keyboard.WidgetTree.BI_KeyboradEnter
+-- BI_SettingIconItem_C /.BUI_Setting_C_2147476617.WidgetTree.BI_SettingIconItem_0
 
 
 -- 主界面.加载存档
