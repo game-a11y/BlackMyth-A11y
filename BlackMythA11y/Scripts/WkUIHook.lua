@@ -101,11 +101,17 @@ GetTextFuncMap["BI_SettingSliderItem_C"] = function(Button, InFocusEvent)
     local SliderBtn = SliderBar:GetChildAt(3)
     local TxtNum = SliderBtn:GetChildAt(3)
     local Volume = TxtNum:GetContent():ToString()  -- GSScaleText
+    
+    -- BI_Slider.WidgetTree.TxtMaxNum
+    local HBox_0 = BtnCon2:GetChildAt(0)
+    local SizeBox_1 = HBox_0:GetChildAt(2)
+    local TxtMaxNum = SizeBox_1:GetChildAt(0)
+    local TxtMaxNum_txt = TxtMaxNum:GetText():ToString()
 
     local WidgetType = "滚动条"
     -- BI_Slider.WidgetTree.TxtMinNum
     -- BI_Slider.WidgetTree.TxtMaxNum
-    return string.format("%s %s %s/100", TxtName_txt, WidgetType, Volume)
+    return string.format("%s %s %s/%s", TxtName_txt, WidgetType, Volume, TxtMaxNum_txt)
 end
 
 
