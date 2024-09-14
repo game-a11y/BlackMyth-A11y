@@ -80,6 +80,28 @@ local function PrintAllParents(CurWidget)
     PrintAllParents(CurWidget:GetParent())
 end
 
+-- 主界面/设置: 左右单项选择
+--[[
+GSScaleText /.BI_SettingFixedItem_0.WidgetTree.BI_Btn.WidgetTree.TxtName
+TextBlock   /.BI_SettingFixedItem_0.WidgetTree.TxtDesc
+]]
+GetTextFuncMap["BI_SettingFixedItem_C"] = function(Button, InFocusEvent)
+    -- NOTE: 这里基于 Button.BI_Btn
+    local BtnCon = Button.BI_Btn.WidgetTree.RootWidget:GetChildAt(0)
+    local HBox0 = BtnCon:GetChildAt(2)
+    local TxtName = HBox0:GetChildAt(0)
+    local TxtName_txt = TxtName:GetContent():ToString()  -- GSScaleText
+
+    BtnCon = Button.WidgetTree.RootWidget:GetChildAt(0)
+    local DescCon = BtnCon:GetChildAt(2)
+    local CPanel165 = DescCon:GetChildAt(1)
+    local SBox58 = CPanel165:GetChildAt(0)
+    local TxtDesc = SBox58:GetChildAt(0)
+    local TxtDesc_txt = TxtDesc:GetText():ToString()  -- TextBlock
+
+    return string.format("%s %s %s", TxtName_txt, "左右单项选择", TxtDesc_txt)
+end
+
 -- 主界面/设置/声音
 GetTextFuncMap["BI_SettingSliderItem_C"] = function(Button, InFocusEvent)
     local ClassName = Button:GetFName():ToString()
@@ -258,7 +280,7 @@ function WkUIHook.InitUiHooks()
     
         -- -- TxtName_name = tostring(Button:GetFullName()) .. ".WidgetTree.TxtName"
         -- WkUtils.PrintUObject(Button)
-        -- -- TxtName = FindFirstOf("GSTextBlock /Engine/Transient.GameEngine_2147482611:BGW_GameInstance_B1_2147482576.BUI_B1_Root_V2_C_2147480953.WidgetTree.BUI_StartGame_C_2147477556.WidgetTree.BI_StartGameBtn_0")
+        -- -- TxtName = FindFirstOf("GSTextBlock /.BUI_StartGame_C_2147477556.WidgetTree.BI_StartGameBtn_0")
         -- -- WkUtils.PrintUObject(TxtName)
     
         -- TxtName = WidgetTree.TxtName:get()
