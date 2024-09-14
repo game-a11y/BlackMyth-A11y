@@ -6,9 +6,10 @@
 
 > MOD 开发中
 
-TODO
-- 依赖: UE4SS https://www.nexusmods.com/blackmythwukong/mods/19 (注意需要是nexusmods的专用版本)
-
+依赖: 
+- UE4SS https://www.nexusmods.com/blackmythwukong/mods/19
+    - 可以用 nexusmods 的专用版本；或者按照子模块 commit 自行编译
+- https://github.com/sig-a11y/tolk
 
 ## 参考链接
 
@@ -23,3 +24,4 @@ TODO
 - [Lua Modding > Introduction | Palworld Modding Docs](https://pwmodding.wiki/docs/lua-modding/lua-intro)
 - [kboykboy2/UnrealEngine: Unreal Engine source code](https://github.com/kboykboy2/UnrealEngine)
     这是黑神话使用的修改版本
+- 蓝图MOd框架: https://github.com/narknon/WukongB1
