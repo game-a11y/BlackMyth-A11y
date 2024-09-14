@@ -65,6 +65,35 @@ GetTextFuncMap["BI_SettingTab_C"] = function(Button, InFocusEvent)
     return TxtName:GetContent():ToString()
 end
 
+-- 主界面/设置/声音
+GetTextFuncMap["BI_SettingSliderItem_C"] = function(Button, InFocusEvent)
+    local ClassName = Button:GetFName():ToString()
+
+    -- BI_Btn.TxtName
+    local BI_Btn = Button.BI_Btn
+    local RootCon = BI_Btn.WidgetTree.RootWidget
+    local BtnCon = RootCon:GetChildAt(0)
+    local HorizontalBox_1 = BtnCon:GetChildAt(2)
+    local TxtName = HorizontalBox_1:GetChildAt(0)
+    local TxtName_txt = TxtName.Text:ToString()
+
+    -- BI_Slider.TxtNum
+    local BI_Slider = Button.BI_Slider
+    local RootCon2 = BI_Slider.WidgetTree.RootWidget
+    local BtnCon2 = RootCon2:GetChildAt(0)
+    local HorizontalBox_0 = BtnCon2:GetChildAt(0)
+    local SliderBar = HorizontalBox_0:GetChildAt(1)
+    local SliderBtn = SliderBar:GetChildAt(3)
+    local TxtNum = SliderBtn:GetChildAt(3)
+    local Volume = TxtNum:GetContent():ToString()  -- GSScaleText
+
+    local WidgetType = "滚动条"
+    -- BI_Slider.WidgetTree.TxtMinNum
+    -- BI_Slider.WidgetTree.TxtMaxNum
+    return string.format("%s %s %s/100", TxtName_txt, WidgetType, Volume)
+end
+
+
 -- 主界面.加载存档
 -- TextBlock /BI_ArchivesBtnV2_C_2147480738.WidgetTree.TxtDate
 --[[
@@ -172,7 +201,7 @@ local function OnAddedToFocusPath_Hook(pContext, pInFocusEvent)
         InterruptSpeak = true
         local curText = GetTextFuncMap[SuperClassName](Button, InFocusEvent)
         print(string.format("\t\"%s\"\n", curText))
-        A11yTolk:Speak(curText, InterruptSpeak)
+        -- A11yTolk:Speak(curText, InterruptSpeak)
     else
         print(string.format("Cannot gettext for:  %s <: %s\n", ClassName, SuperClassName))
     
