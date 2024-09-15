@@ -10,6 +10,8 @@ local WkUtils = require("WkUtils")
 local WkUIHook = {}
 -- 父类名 => GetText 函数
 local GetTextFuncMap = {}
+-- 开发中标记
+local DevNote = "开发中! "
 
 
 -- [[ 辅助函数 ]] -----------------------------------------------------------------
@@ -439,7 +441,7 @@ end
 --
 GetTextFuncMap["BI_EquipItem_Slot_C"] = function(Button, InFocusEvent)
     local TxtName_txt = "背包物品"
-    return TxtName_txt
+    return DevNote ..TxtName_txt
 end
 --[[
 BI_GearItem_Slot_C
@@ -458,12 +460,12 @@ GetTextFuncMap["BI_GearItem_Slot_C"] = function(Button, InFocusEvent)
         TxtName_txt = "老葫芦"
     end
 
-    return TxtName_txt
+    return DevNote..TxtName_txt
 end
 -- GSRichScaleText /.BUI_EquipMain_C_2147461353.WidgetTree.TxtQuickItemTitleRuby
 GetTextFuncMap["BI_QuickItem_C"] = function(Button, InFocusEvent)
     local TxtName_txt = "随身之物"
-    return TxtName_txt
+    return DevNote..TxtName_txt
 end
 
 -- 游戏中:背包:游记
@@ -486,7 +488,7 @@ GetTextFuncMap["BI_TravelNotesMain_Tab_C"] = function(Button, InFocusEvent)
 end
 GetTextFuncMap["BI_TravelNotesMain_ListBar_C"] = function(Button, InFocusEvent)
     local TxtName_txt = "游记 二级选项"
-    return TxtName_txt
+    return DevNote..TxtName_txt
 end
 
 
