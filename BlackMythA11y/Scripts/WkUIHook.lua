@@ -169,13 +169,18 @@ GetTextFuncMap["BI_SettingTab_C"] = function(Button, InFocusEvent)
     return TxtName_txt
 end -- BI_SettingTab_C
 
-
 -- 主界面/设置: 左右单项选择
 --[[
 GSScaleText /.BI_SettingFixedItem_0.WidgetTree.BI_Btn.WidgetTree.TxtName
 TextBlock   /.BI_SettingFixedItem_0.WidgetTree.TxtDesc
+
+TODO:
+- 补充选项的详细说明
 ]]
 GetTextFuncMap["BI_SettingFixedItem_C"] = function(Button, InFocusEvent)
+    local FullName = Button:GetFullName()
+    local ClassName = Button:GetFName():ToString()
+
     -- NOTE: 这里基于 Button.BI_Btn
     local BtnCon = Button.BI_Btn.WidgetTree.RootWidget:GetChildAt(0)
     local HBox0 = BtnCon:GetChildAt(2)
@@ -189,8 +194,16 @@ GetTextFuncMap["BI_SettingFixedItem_C"] = function(Button, InFocusEvent)
     local TxtDesc = SBox58:GetChildAt(0)
     local TxtDesc_txt = TxtDesc:GetText():ToString()  -- TextBlock
 
-    return string.format("%s %s %s", TxtName_txt, "左右单项选择", TxtDesc_txt)
-end
+    local BtnType = "左右单项选择"
+    local A11yNote = ""
+    if "控制器类型" == TxtName_txt then
+        A11yNote = "无障碍提示：类型一是 XBox 手柄；类型二是 PS 手柄"
+    elseif "输入类型" == TxtName_txt then
+        A11yNote = "无障碍提示：输入类型用于切换键位布局，目前不支持自定义手柄键位，建议使用 Steam 自定义映射"
+    end
+
+    return string.format("%s %s %s %s", TxtName_txt, BtnType, TxtDesc_txt, A11yNote)
+end -- BI_SettingFixedItem_C
 
 -- 主界面/设置: 下拉单项选择
 --[[
@@ -218,7 +231,7 @@ GetTextFuncMap["BI_SettingMenuItem_C"] = function(Button, InFocusEvent)
     local TxtDesc_txt = TxtDesc:GetText():ToString()  -- TextBlock
 
     return string.format("%s %s %s", TxtSettingInfo_txt, "下拉单项选择", TxtDesc_txt)
-end
+end -- BI_SettingMenuItem_C
 
 -- 主界面/设置: 水平滑块
 GetTextFuncMap["BI_SettingSliderItem_C"] = function(Button, InFocusEvent)
@@ -248,7 +261,7 @@ GetTextFuncMap["BI_SettingSliderItem_C"] = function(Button, InFocusEvent)
 
     -- BI_Slider.WidgetTree.TxtMinNum = 0
     return string.format("%s %s %s/%s", TxtName_txt, "水平滑块", Volume, TxtMaxNum_txt)
-end
+end -- BI_SettingSliderItem_C
 
 -- 主界面/设置: 图标按钮
 --[[
@@ -275,7 +288,7 @@ GetTextFuncMap["BI_SettingIconItem_C"] = function(Button, InFocusEvent)
         desc_txt = "调整画面亮度"
     end
     return string.format("%s %s %s", TxtName_txt, "图标按钮", desc_txt)
-end
+end -- BI_SettingIconItem_C
 
 -- 主界面/设置: 文本按钮
 --[[
@@ -289,7 +302,7 @@ GetTextFuncMap["BI_SettingMainBtn_C"] = function(Button, InFocusEvent)
     local TxtName_txt = TxtName:GetText():ToString()
     local desc_txt = ""
     return string.format("%s %s %s", TxtName_txt, "文本按钮", desc_txt)
-end
+end -- BI_SettingMainBtn_C
 
 
 -- 二次确定对话框
