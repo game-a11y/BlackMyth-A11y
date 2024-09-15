@@ -85,39 +85,48 @@ end -- BI_StartGame_C
 
 -- 主界面/主菜单/载入游戏
 --[[
-
 InfoCon
-.TimeCon
     .TxtName:   游戏存档点名
-    .TxtLv:     等级
+    .TimeCon
+        .TxtPlayTimeTitle: 游玩时间标题
+        .TxtPlayTime: 游玩时间
+        .TxtDate:   日期
+        .TxtTime:   时间
     .TxtLvTitle: 等级标题
-    .TxtDate:   日期
-    .TxtTime:   时间
-    .TxtPlayTime: 游玩时间
-    .TxtPlayTimeTitle: 游玩时间标题
+    .TxtLv:     等级
 
 TODO:
-- 读出存档焦点存档信息
 - 读出当前存档数："当前存档 2/10"
 ]]
 GetTextFuncMap["BI_ArchivesBtnV2_C"] = function(Button, InFocusEvent)
-    -- local WidgetTree_Root = Button.WidgetTree.RootWidget
-    -- local BtnCon = WidgetTree_Root:GetChildAt(0)
-    -- local TxtName = BtnCon:GetChildAt(2)
-    -- local TxtName_txt = TxtName:GetContent():ToString()
+    local CanvasPanel_0 = Button.WidgetTree.RootWidget
+    local CP28 = CanvasPanel_0:GetChildAt(0)  -- CPS0
+    local InfoCon = CP28:GetChildAt(4)  -- CPS1
+    -- InfoCon[1]
+    local HBox0 = InfoCon:GetChildAt(1) -- SPS3
+    local TxtName = HBox0:GetChildAt(0) -- HBS0
+    -- InfoCon[2]: TimeCon[0-3]
+    local TimeCon = InfoCon:GetChildAt(2)
+    local TxtPlayTimeTitle = TimeCon:GetChildAt(0)
+    local TxtPlayTime = TimeCon:GetChildAt(1)
+    local TxtDate = TimeCon:GetChildAt(2)
+    local TxtTime = TimeCon:GetChildAt(3)
+    -- InfoCon[3]
+    local LevelCon = InfoCon:GetChildAt(3)
+    local TxtLvTitle = LevelCon:GetChildAt(0)
+    local TxtLv = LevelCon:GetChildAt(1)
 
     -- TODO: 加上存档编号
     local SaveDescId_txt = "存档"
-    local TxtName_txt = "前山"
-    local TxtLvTitle_txt = "等级"
-    local TxtLv_txt = "2"
-    local TxtDate_txt = "2024年9月15日"
-    local TxtTime_txt = "下午 3:07:23"
-    local TxtPlayTimeTitle_txt = "游戏时长"
-    local TxtPlayTime_txt = "03:30:09"
+    local TxtName_txt =  TxtName:GetText():ToString()
+    local TxtLvTitle_txt =  TxtLvTitle:GetText():ToString()
+    local TxtLv_txt = TxtLv:GetText():ToString()
+    local TxtDate_txt =  TxtDate:GetText():ToString()
+    local TxtTime_txt =  TxtTime:GetText():ToString()
+    local TxtPlayTimeTitle_txt =  TxtPlayTimeTitle:GetText():ToString()
+    local TxtPlayTime_txt =  TxtPlayTime:GetText():ToString()
 
     local DescTable = {
-        "测试文本!! ",  -- TODO: remove this
         -- 存档地点
         SaveDescId_txt, TxtName_txt,
         -- 存档日期
