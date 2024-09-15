@@ -305,6 +305,37 @@ GetTextFuncMap["BI_AbilityIcon_GP_Advance_C"] = function(Button, InFocusEvent)
     return TxtName_txt
 end
 
+-- 游戏中:背包
+--
+GetTextFuncMap["BI_EquipItem_Slot_C"] = function(Button, InFocusEvent)
+    local TxtName_txt = "背包物品"
+    return TxtName_txt
+end
+--[[
+BI_GearItem_Slot_C
+GSRichScaleText /.BUI_EquipMain_C_2147461353.WidgetTree.TxtHuluTitleRuby
+]]
+GetTextFuncMap["BI_GearItem_Slot_C"] = function(Button, InFocusEvent)
+    local SuperClassName = Button:GetClass():GetFName():ToString()
+    local ClassName = Button:GetFName():ToString()
+
+    local TxtName_txt = "珍玩物品"
+    if "BI_EquipSlotItem_9" == ClassName then
+        TxtName_txt = "珍玩·一"
+    elseif "BI_EquipSlotItem_10" == ClassName then
+        TxtName_txt = "珍玩·二"
+    elseif "BI_EquipSlotItem_8" == ClassName then
+        TxtName_txt = "老葫芦"
+    end
+
+    return TxtName_txt
+end
+-- GSRichScaleText /.BUI_EquipMain_C_2147461353.WidgetTree.TxtQuickItemTitleRuby
+GetTextFuncMap["BI_QuickItem_C"] = function(Button, InFocusEvent)
+    local TxtName_txt = "随身之物"
+    return TxtName_txt
+end
+
 -- TODO: 游戏中:(土地庙)提示
 --[[
     E Offer Incense:    TextBlock /BUI_BattleInfo_C_2147446787.WidgetTree.BI_InteractIcon.WidgetTree.InteractIcon_98_0.WidgetTree.TxtTips
