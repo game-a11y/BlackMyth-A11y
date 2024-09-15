@@ -573,25 +573,13 @@ function WkUIHook.InitUiHooks()
     RegisterHook("/Script/b1-Managed.BUI_Button:OnAddedToFocusPath", OnAddedToFocusPath_Hook)
     -- RegisterHook("/Script/b1-Managed.BUI_Widget:OnAddedToFocusPath", OnAddedToFocusPath_Hook)
 
-    -- 开发中...
     RegisterHook("/Script/b1-Managed.BUI_Button:OnMouseButtonDown", function(Context, MyGeometry, MouseEvent)
         local Button = Context:get()
-        print(string.format("OnMouseButtonDown: %s\n", tostring(Button:GetFullName())))
-        -- WidgetTree = Button.WidgetTree
-        -- WkUtils.PrintUObject(WidgetTree)
-        -- WkUtils.PrintUObject(WidgetTree.TxtName)
-    
-        -- -- TxtName_name = tostring(Button:GetFullName()) .. ".WidgetTree.TxtName"
-        -- WkUtils.PrintUObject(Button)
-        -- -- TxtName = FindFirstOf("GSTextBlock /.BUI_StartGame_C_2147477556.WidgetTree.BI_StartGameBtn_0")
-        -- -- WkUtils.PrintUObject(TxtName)
-    
-        -- TxtName = WidgetTree.TxtName:get()
-        -- WkUtils.PrintUObject(WidgetTree)
-        -- if TxtName ~= nil then
-        --     BtnText = TxtName
-        --     print(string.format("\t%s\n", tostring(TxtName:GetFullName())))
-        -- end
+        local FullName = Button:GetFullName()
+        local SuperClassName = Button:GetClass():GetFName():ToString()
+        local ClassName = Button:GetFName():ToString()
+        print(string.format("OnMouseButtonDown: %s <: %s\n\t%s\n",
+            ClassName, SuperClassName, FullName))
     end)
 
     -- 返回的是上一步的对象
