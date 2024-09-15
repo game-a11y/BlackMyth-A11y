@@ -31,7 +31,7 @@ local function PrintAllParents(CurWidget)
 end
 
 
--- [[ Hook 函数 ]] --------------------------------------------------------------
+-- [[ Hook 事件处理函数 ]] ----------------------------------------------------------
 
 -- 首次加载 主界面
 GetTextFuncMap["BI_FirstStartBtn_C"] = function(Button, InFocusEvent)
@@ -521,6 +521,8 @@ end
 ]]
 
 
+-- [[ Hook 函数 ]] --------------------------------------------------------------
+
 local function OnAddedToFocusPath_Hook(pContext, pInFocusEvent)
     local Button = pContext:get()
     local SuperClassName = Button:GetClass():GetFName():ToString()
@@ -547,24 +549,6 @@ local function OnAddedToFocusPath_Hook(pContext, pInFocusEvent)
         A11yTolk:Speak(curText, InterruptSpeak)
     else
         print(string.format("Cannot gettext for:  %s <: %s\n", ClassName, SuperClassName))
-    
-        -- -- CanvasPanel
-        -- RootCon = Button.WidgetTree.RootWidget
-        -- WkUtils.PrintUObject(RootCon)
-        -- -- CanvasPanel
-        -- HoverRoot = RootCon:GetChildAt(0)
-        -- WkUtils.PrintUObject(HoverRoot)
-        -- -- CanvasPanel
-        -- BtnCon = HoverRoot:GetChildAt(0)
-        -- WkUtils.PrintUObject(BtnCon)
-        -- -- TextBlock
-        -- TxtName = BtnCon:GetChildAt(1)  -- .PSSlot2
-        -- WkUtils.PrintUObject(TxtName)
-        -- print(string.format("\t%s\n", TxtName:GetText():ToString()))
-        
-        -- TxtName = ps:GetContent()
-        -- WkUtils.PrintUObject(TxtName)
-        -- TxtName:GetContent():ToString()
     end
 end
 
@@ -584,16 +568,11 @@ function WkUIHook.InitUiHooks()
 
     -- 返回的是上一步的对象
     -- RegisterHook("/Script/b1-Managed.BUI_Button:OnCustomWidgetNavigation", function(Context, Navigation)
-    --     Button = Context:get()
-    --     print(string.format("OnCustomWidgetNavigation: %s\n", tostring(Button:GetFullName())))
-    -- end)
-    
-    -- NOTE: 会显示父级的聚焦事件
-    -- RegisterHook("/Script/b1-Managed.BUI_Widget:OnFocusChanging", function(self, InFocusEvent)
-    --     print(string.format("OnFocusChanging: %s\n", tostring(self:get():GetFullName())))
-    -- end)
 
-    -- NOTE: hook "/Script/b1-Managed.BUI_Widget:OnAnimationSequenceEvent" 闪退
+    -- 会显示父级的聚焦事件
+    -- RegisterHook("/Script/b1-Managed.BUI_Widget:OnFocusChanging", function(self, InFocusEvent)
+
+    -- 闪退 hook "/Script/b1-Managed.BUI_Widget:OnAnimationSequenceEvent"
 end
 
 
