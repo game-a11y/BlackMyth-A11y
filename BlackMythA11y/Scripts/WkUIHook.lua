@@ -278,6 +278,32 @@ end
 GetTextFuncMap["BI_ShrineMenuParent_C"] = GetTextFuncMap["BI_StartGame_C"]
 
 -- TODO: 游戏中:背包
+-- 游戏中:背包:技能
+--[[
+TODO: 实时获取文本
+
+BI_AbilityIcon_KB_Basic_C
+BI_AbilityIcon_KB_Advance_C
+
+BI_AbilityIcon_GP_Basic_C   /.BUI_TalentMain_C_2147461288.WidgetTree.AbilityIcon1_GP
+BI_AbilityIcon_GP_Advance_C /.BUI_TalentMain_C_2147461288.WidgetTree.AbilityIcon2_GP
+]]
+GetTextFuncMap["BI_AbilityIcon_KB_Basic_C"] = function(Button, InFocusEvent)
+    local TxtName_txt = "根基"
+    return TxtName_txt
+end
+GetTextFuncMap["BI_AbilityIcon_KB_Advance_C"] = function(Button, InFocusEvent)
+    local TxtName_txt = "棍法"
+    return TxtName_txt
+end
+GetTextFuncMap["BI_AbilityIcon_GP_Basic_C"] = function(Button, InFocusEvent)
+    local TxtName_txt = "根基"
+    return TxtName_txt
+end
+GetTextFuncMap["BI_AbilityIcon_GP_Advance_C"] = function(Button, InFocusEvent)
+    local TxtName_txt = "棍法"
+    return TxtName_txt
+end
 
 -- TODO: 游戏中:(土地庙)提示
 --[[
