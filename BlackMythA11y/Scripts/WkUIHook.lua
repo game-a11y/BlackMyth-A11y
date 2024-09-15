@@ -12,6 +12,25 @@ local WkUIHook = {}
 local GetTextFuncMap = {}
 
 
+-- [[ 辅助函数 ]] -----------------------------------------------------------------
+
+-- 打印出所有父级组件
+local function PrintAllParents(CurWidget)
+    if CurWidget == nil or (not CurWidget:IsValid()) then
+        return
+    end
+
+    local FullName = CurWidget:GetFullName()
+    -- local SuperClassName = CurWidget:GetClass():GetFName():ToString()
+    -- local ClassName = CurWidget:GetFName():ToString()
+    print(string.format("\t%s\n", FullName))
+
+    PrintAllParents(CurWidget:GetParent())
+end
+
+
+-- [[ Hook 函数 ]] --------------------------------------------------------------
+
 -- 首次加载主界面 BI_FirstStartBtn_C
 GetTextFuncMap["BI_FirstStartBtn_C"] = function(Button, InFocusEvent)
     -- CanvasPanel
@@ -65,20 +84,6 @@ GetTextFuncMap["BI_SettingTab_C"] = function(Button, InFocusEvent)
     return TxtName:GetContent():ToString()
 end
 
-
--- 打印出所有父级组件
-local function PrintAllParents(CurWidget)
-    if CurWidget == nil or (not CurWidget:IsValid()) then
-        return
-    end
-
-    local FullName = CurWidget:GetFullName()
-    -- local SuperClassName = CurWidget:GetClass():GetFName():ToString()
-    -- local ClassName = CurWidget:GetFName():ToString()
-    print(string.format("\t%s\n", FullName))
-
-    PrintAllParents(CurWidget:GetParent())
-end
 
 -- 主界面/设置: 左右单项选择
 --[[
