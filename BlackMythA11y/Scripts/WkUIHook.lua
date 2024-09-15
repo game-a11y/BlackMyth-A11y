@@ -80,6 +80,30 @@ GetTextFuncMap["BI_StartGame_C"] = function(Button, InFocusEvent)
     return ContinueBtnTxt .. CurLevelName_txt
 end -- BI_StartGame_C
 
+-- 主界面/主菜单/继续游戏 （无需特殊处理）
+-- 主界面/主菜单/新游戏 （无需特殊处理）
+
+-- 主界面/主菜单/载入游戏
+--[[
+
+InfoCon
+.TimeCon
+    .TxtName:   游戏存档点名
+    .TxtLv:     等级
+    .TxtDate:   日期
+    .TxtTime:   时间
+    .TxtPlayTime: 游玩时间
+
+]]
+GetTextFuncMap["BI_ArchivesBtnV2_C"] = function(Button, InFocusEvent)
+    -- local WidgetTree_Root = Button.WidgetTree.RootWidget
+    -- local BtnCon = WidgetTree_Root:GetChildAt(0)
+    -- local TxtName = BtnCon:GetChildAt(2)
+    -- local TxtName_txt = TxtName:GetContent():ToString()
+    TxtName_txt = "存档"
+    return TxtName_txt
+end
+
 -- 主界面/设置: 一级菜单
 -- BI_SettingTab_C /Game/00Main/UI/BluePrintsV3/Setting/BUI_Setting.BUI_Setting_C:WidgetTree.BI_SettingTab_9
 GetTextFuncMap["BI_SettingTab_C"] = function(Button, InFocusEvent)
@@ -214,27 +238,6 @@ GetTextFuncMap["BI_SettingMainBtn_C"] = function(Button, InFocusEvent)
     return string.format("%s %s %s", TxtName_txt, "文本按钮", desc_txt)
 end
 
-
--- 主界面.加载存档
--- TextBlock /BI_ArchivesBtnV2_C_2147480738.WidgetTree.TxtDate
---[[
-    InfoCon
-    .TimeCon
-        .TxtName:   游戏存档点名
-        .TxtLv:     等级
-        .TxtDate:   日期
-        .TxtTime:   时间
-        .TxtPlayTime: 游玩时间
-]]
-GetTextFuncMap["BI_ArchivesBtnV2_C---"] = function(Button, InFocusEvent)
-    -- CanvasPanel
-    local WidgetTree_Root = Button.WidgetTree.RootWidget
-    -- CanvasPanel
-    local BtnCon = WidgetTree_Root:GetChildAt(0)
-    -- GSScaleText
-    local TxtName = BtnCon:GetChildAt(2)
-    return ""
-end
 
 -- 主界面/音乐
 -- BI_AccordionChildBtn_Echo_C /Engine/Transient.GameEngine_2147482611:BGW_GameInstance_B1_2147482576.BUI_B1_Root_V2_C_2147462481.WidgetTree.BUI_SoundtrackV2_C_2147455841.WidgetTree.BI_ContentBtn.WidgetTree.BI_AccordionChildBtn_Echo_C_2147455810
