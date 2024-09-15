@@ -31,7 +31,7 @@ end
 
 -- [[ Hook 函数 ]] --------------------------------------------------------------
 
--- 首次加载主界面 BI_FirstStartBtn_C
+-- 首次加载 主界面
 GetTextFuncMap["BI_FirstStartBtn_C"] = function(Button, InFocusEvent)
     -- CanvasPanel
     local WidgetTree_Root = Button.WidgetTree.RootWidget
@@ -42,16 +42,23 @@ GetTextFuncMap["BI_FirstStartBtn_C"] = function(Button, InFocusEvent)
     return TxtName:GetContent():ToString()
 end
 
--- 主界面
--- TODO
+-- 主界面/主菜单: 所有按钮
 --[[
-    主地图  TextBlock   /BUI_StartGame_C_2147456059.WidgetTree.TxtMainName
-    地点    TextBlock   /BUI_StartGame_C_2147456059.WidgetTree.TxtSubName
-    版本号  TextBlock   /BUI_StartGame_C_2147456059.WidgetTree.TxtVersion
+<BI_StartGame_C>
+    BI_StartGameBtn_0   继续游戏
+    BI_StartGameBtn_1   新游戏
+    BI_StartGameBtn_2   载入游戏
+    BI_StartGameBtn_3   小曲
+    BI_StartGameBtn_4   设置
+    BI_StartGameBtn_5   退出
+
+TODO:  首屏播报版本号
+版本号  TextBlock   /.BUI_StartGame_C_2147456059.WidgetTree.TxtVersion
 ]]
 GetTextFuncMap["BI_StartGame_C"] = function(Button, InFocusEvent)
     local ClassName = Button:GetFName():ToString()
-    -- 当前关卡
+
+    -- 按钮 [继续游戏] 选中时，输出当前关卡信息: .TxtMainName; .TxtSubName
     local CurLevelName_txt = ""
     if "BI_StartGameBtn_0" == ClassName then
         local MainListCon = Button:GetParent()
@@ -68,9 +75,10 @@ GetTextFuncMap["BI_StartGame_C"] = function(Button, InFocusEvent)
         CurLevelName_txt = string.format(" %s: %s", TxtMainName_txt, TxtSubName_txt)
     end
 
+    -- 当前按钮文本
     local ContinueBtnTxt = Button.BI_TextLoop.Content:GetContent():ToString()
     return ContinueBtnTxt .. CurLevelName_txt
-end
+end -- BI_StartGame_C
 
 -- 主界面/设置: 一级菜单
 -- BI_SettingTab_C /Game/00Main/UI/BluePrintsV3/Setting/BUI_Setting.BUI_Setting_C:WidgetTree.BI_SettingTab_9
