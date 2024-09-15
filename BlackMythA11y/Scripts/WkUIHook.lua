@@ -233,7 +233,7 @@ GetTextFuncMap["BI_SettingMenuItem_C"] = function(Button, InFocusEvent)
     
     local A11yNote = ""
     if "文本语言" == TxtSettingInfo_txt then -- 设置/语言/1
-        A11yNote = "无障碍提示：除汉语英语以外的语言，目前无障碍输出有误，选择语言后可正确读取输出"
+        A11yNote = "无障碍提示：除汉语英语以外的语言，目前下拉选项无障碍输出有误，选择语言后可正确读取已选择的语言"
     end
 
     return string.format("%s %s %s %s", TxtSettingInfo_txt, "下拉单项选择", TxtDesc_txt, A11yNote)
