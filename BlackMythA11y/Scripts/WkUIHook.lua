@@ -90,19 +90,46 @@ InfoCon
 .TimeCon
     .TxtName:   游戏存档点名
     .TxtLv:     等级
+    .TxtLvTitle: 等级标题
     .TxtDate:   日期
     .TxtTime:   时间
     .TxtPlayTime: 游玩时间
+    .TxtPlayTimeTitle: 游玩时间标题
 
+TODO:
+- 读出存档焦点存档信息
+- 读出当前存档数："当前存档 2/10"
 ]]
 GetTextFuncMap["BI_ArchivesBtnV2_C"] = function(Button, InFocusEvent)
     -- local WidgetTree_Root = Button.WidgetTree.RootWidget
     -- local BtnCon = WidgetTree_Root:GetChildAt(0)
     -- local TxtName = BtnCon:GetChildAt(2)
     -- local TxtName_txt = TxtName:GetContent():ToString()
-    TxtName_txt = "存档"
-    return TxtName_txt
-end
+
+    -- TODO: 加上存档编号
+    local SaveDescId_txt = "存档"
+    local TxtName_txt = "前山"
+    local TxtLvTitle_txt = "等级"
+    local TxtLv_txt = "2"
+    local TxtDate_txt = "2024年9月15日"
+    local TxtTime_txt = "下午 3:07:23"
+    local TxtPlayTimeTitle_txt = "游戏时长"
+    local TxtPlayTime_txt = "03:30:09"
+
+    local DescTable = {
+        "测试文本!! ",  -- TODO: remove this
+        -- 存档地点
+        SaveDescId_txt, TxtName_txt,
+        -- 存档日期
+        TxtDate_txt, TxtTime_txt,
+        -- 游戏时长
+        TxtPlayTimeTitle_txt, TxtPlayTime_txt,
+        -- 等级
+        TxtLvTitle_txt, TxtLv_txt
+    }
+
+    return table.concat(DescTable, " ")
+end -- BI_ArchivesBtnV2_C
 
 -- 主界面/设置: 一级菜单
 -- BI_SettingTab_C /Game/00Main/UI/BluePrintsV3/Setting/BUI_Setting.BUI_Setting_C:WidgetTree.BI_SettingTab_9
