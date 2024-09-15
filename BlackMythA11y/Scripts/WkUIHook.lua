@@ -148,18 +148,26 @@ TODO:
 ]]
 GetTextFuncMap["BI_AccordionChildBtn_Echo_C"] = GetTextFuncMap["BI_StartGame_C"]
 
-
--- 主界面/设置: 一级菜单
--- BI_SettingTab_C /Game/00Main/UI/BluePrintsV3/Setting/BUI_Setting.BUI_Setting_C:WidgetTree.BI_SettingTab_9
+-- 主界面/主菜单/设置: 一级菜单
+--[[
+BI_SettingTab_0 ~ 9
+    0. 控制器
+    1. 键盘与鼠标
+    2. 游戏
+    3. 视角
+    4. 语言
+    5. 显示
+    6. 画质
+    7. 声音
+    8. 辅助设置
+    9. 退出游戏
+]]
 GetTextFuncMap["BI_SettingTab_C"] = function(Button, InFocusEvent)
-    -- CanvasPanel
-    local WidgetTree_Root = Button.WidgetTree.RootWidget
-    -- CanvasPanel
-    local BtnCon = WidgetTree_Root:GetChildAt(0)
-    -- GSScaleText
-    local TxtName = BtnCon:GetChildAt(2)
-    return TxtName:GetContent():ToString()
-end
+    local BtnCon = Button.WidgetTree.RootWidget:GetChildAt(0)
+    local TxtName = BtnCon:GetChildAt(2)  -- CPS3
+    local TxtName_txt = TxtName:GetContent():ToString()  -- GSScaleText
+    return TxtName_txt
+end -- BI_SettingTab_C
 
 
 -- 主界面/设置: 左右单项选择
