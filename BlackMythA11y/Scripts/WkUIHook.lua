@@ -304,6 +304,24 @@ GetTextFuncMap["BI_SettingMainBtn_C"] = function(Button, InFocusEvent)
     return string.format("%s %s %s", TxtName_txt, "文本按钮", desc_txt)
 end -- BI_SettingMainBtn_C
 
+-- 主界面/设置: 图标按钮-键盘键位
+--[[
+TODO:
+]]
+GetTextFuncMap["BI_SettingKeyItem_C"] = function(Button, InFocusEvent)
+    -- PrintAllParents(Button)
+    -- local BtnCon = Button.WidgetTree.RootWidget:GetChildAt(0)
+    -- local KeyCon = BtnCon:GetChildAt(1)  -- CPS0
+    -- local ReplaceCon = KeyCon:GetChildAt(1)  -- CPS11
+    -- local TxtShuru = ReplaceCon:GetChildAt(1)  -- CPS1
+    -- local TxtName_txt = TxtShuru:GetText():ToString()
+
+    -- local TxtKeyName = KeyCon:GetChildAt(3)  -- CPS6
+    -- local TxtKeyName_txt = TxtKeyName:GetText():ToString()
+    -- return string.format("%s %s %s", TxtName_txt, "按键配置按钮", TxtKeyName_txt)
+    return "开发中！ 键盘键位配置按钮"
+end -- BI_SettingKeyItem_C
+
 
 -- 二次确定对话框
 --[[
