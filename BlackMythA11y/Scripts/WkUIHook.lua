@@ -176,6 +176,7 @@ TextBlock   /.BI_SettingFixedItem_0.WidgetTree.TxtDesc
 
 TODO:
 - 补充选项的详细说明
+-- 主界面/设置/视角: 文本区分 控制器和键盘
 ]]
 GetTextFuncMap["BI_SettingFixedItem_C"] = function(Button, InFocusEvent)
     local FullName = Button:GetFullName()
@@ -229,9 +230,28 @@ GetTextFuncMap["BI_SettingMenuItem_C"] = function(Button, InFocusEvent)
     local SBox0 = MenuCon:GetChildAt(0)
     local TxtDesc = SBox0:GetChildAt(0)
     local TxtDesc_txt = TxtDesc:GetText():ToString()  -- TextBlock
+    
+    local A11yNote = ""
+    if "文本语言" == TxtSettingInfo_txt then -- 设置/语言/1
+        A11yNote = "无障碍提示：除汉语英语以外的语言，目前无障碍输出有误，选择语言后可正确读取输出"
+    end
 
-    return string.format("%s %s %s", TxtSettingInfo_txt, "下拉单项选择", TxtDesc_txt)
+    return string.format("%s %s %s %s", TxtSettingInfo_txt, "下拉单项选择", TxtDesc_txt, A11yNote)
 end -- BI_SettingMenuItem_C
+
+-- 下拉项
+-- BI_ModeBtnItem_C
+GetTextFuncMap["BI_ModeBtnItem_C"] = function(Button, InFocusEvent)
+    -- print(string.format("Button=%s", Button:GetFullName()))
+    local BtnCon = Button.WidgetTree.RootWidget:GetChildAt(0)
+    -- print(string.format("BtnCon=%s", BtnCon:GetFullName()))
+    local TxtName = BtnCon:GetChildAt(1) -- cps1
+    -- print(string.format("TxtName=%s", TxtName:GetFullName()))
+    local TxtName_txt = TxtName:GetText():ToString()  -- TextBlock
+    -- TODO
+    local A11yNote = "无障碍提示：除汉语英语以外的语言，目前无障碍输出有误。"
+    return string.format("%s %s", TxtName_txt, "下拉项")
+end -- BI_ModeBtnItem_C
 
 -- 主界面/设置: 水平滑块
 GetTextFuncMap["BI_SettingSliderItem_C"] = function(Button, InFocusEvent)
