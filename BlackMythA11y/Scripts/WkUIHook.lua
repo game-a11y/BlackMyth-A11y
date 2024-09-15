@@ -277,7 +277,21 @@ end
 ]]
 GetTextFuncMap["BI_ShrineMenuParent_C"] = GetTextFuncMap["BI_StartGame_C"]
 
--- TODO: 游戏中:背包
+-- TODO: 游戏中:背包栏
+--[[
+背包顶层选项卡
+BI_CommTxtTab_C     /.BUI_RoleMain_C_2147463565.WidgetTree.BI_RoleTab.WidgetTree.BI_SecTab.WidgetTree.BI_CommTxtTab_C_2147463554
+    GSScaleText /.BI_RoleTab.WidgetTree.BI_SecTab.WidgetTree.BI_CommTxtTab_C_2147471225.WidgetTree.TxtName
+BI_EquipItem_Slot_C /.BUI_EquipMain_C_2147465651.WidgetTree.BI_EquipSlotItem_1
+    GSScaleText /.BI_RoleTab.WidgetTree.BI_SecTab.WidgetTree.BI_CommTxtTab_C_2147471217.WidgetTree.TxtName
+BI_InventoryItem_C  /.BUI_BagMain_C_2147464172.WidgetTree.BI_TileView.WidgetTree.BI_InventoryItem_C_2147463997
+    GSScaleText /.BI_RoleTab.WidgetTree.BI_SecTab.WidgetTree.BI_CommTxtTab_C_2147471209.WidgetTree.TxtName
+BI_TravelNotesMain_ListBar_C /.BUI_TravelNotesMain_C_2147463697.WidgetTree.BI_TravelNotesMain_ListBar_0
+    GSScaleText /.BI_RoleTab.WidgetTree.BI_SecTab.WidgetTree.BI_CommTxtTab_C_2147471201.WidgetTree.TxtName
+BI_SettingTab_C     /.BUI_Setting_C_2147463587.WidgetTree.BI_SettingTab_0
+    GSScaleText /.BI_RoleTab.WidgetTree.BI_SecTab.WidgetTree.BI_CommTxtTab_C_2147471193.WidgetTree.TxtName
+]]
+
 -- 游戏中:背包:技能
 --[[
 TODO: 实时获取文本
