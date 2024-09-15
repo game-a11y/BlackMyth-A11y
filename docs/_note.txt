@@ -3,6 +3,10 @@ GSRichScaleText /Engine/Transient.GameEngine_2147482611:BGW_GameInstance_B1_2147
 TextBlock /Engine/Transient.GameEngine_2147482611:BGW_GameInstance_B1_2147482576.BUI_B1_Root_V2_C_2147465802.WidgetTree.BUI_Reconfirm_C_2147450282.WidgetTree.Btn_Cancel.WidgetTree.TxtName
 TextBlock /Engine/Transient.GameEngine_2147482611:BGW_GameInstance_B1_2147482576.BUI_B1_Root_V2_C_2147465802.WidgetTree.BUI_Reconfirm_C_2147450282.WidgetTree.Btn_Confirm.WidgetTree.TxtName
 
+
+FLoadingTipsInfo
+
+
 UAutoTestHelperLib
 UAutoTestHelperLib:Jump(WorldContext)
 UAutoTestHelperLib:GetUnitAllSkillID
