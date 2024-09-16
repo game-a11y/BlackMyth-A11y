@@ -250,7 +250,7 @@ if __name__ == '__main__':
     logger.info("Run as scripts")
 
     ## 首次加载 主界面
-    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Setting/Item/BI_SettingKeyItem.BI_SettingKeyItem_C'"
+    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_FirstStartBtn.BI_FirstStartBtn_C'"
     
     ## 主界面/主菜单
     bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_StartGame.BI_StartGame_C'"
@@ -259,24 +259,24 @@ if __name__ == '__main__':
     # 主界面/主菜单/小曲
     bp_fullpath = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/AccordionView/BI_AccordionChildBtn_Echo.BI_AccordionChildBtn_Echo_C'"
     # 主界面/主菜单/设置
-    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_SettingTab.BI_SettingTab_C'"
+    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_SettingTab.BI_SettingTab_C'"
     # 主界面/设置: 左右单项选择
     bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Setting/Item/BI_SettingFixedItem.BI_SettingFixedItem_C'"
     # 主界面/设置: 下拉单项选择
-    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Setting/BI_SettingMenuItem.BI_SettingMenuItem_C'"
+    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Setting/BI_SettingMenuItem.BI_SettingMenuItem_C'"
     # 主界面/设置: 下拉单选-下拉项
-    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Setting/BI_ModeBtnItem.BI_ModeBtnItem_C'"
+    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Setting/BI_ModeBtnItem.BI_ModeBtnItem_C'"
     # 主界面/设置: 水平滑块
-    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_SettingMainBtn.BI_SettingMainBtn_C'"
+    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Setting/Item/BI_SettingSliderItem.BI_SettingSliderItem_C'"
     # 主界面/设置: 图标按钮
-    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Setting/Item/BI_SettingIconItem.BI_SettingIconItem_C'"
+    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Setting/Item/BI_SettingIconItem.BI_SettingIconItem_C'"
     # 主界面/设置: 文本按钮
-    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_SettingMainBtn.BI_SettingMainBtn_C'"
+    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_SettingMainBtn.BI_SettingMainBtn_C'"
     # 主界面/设置: 图标按钮-键盘键位
-    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Setting/Item/BI_SettingKeyItem.BI_SettingKeyItem_C'"
+    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Setting/Item/BI_SettingKeyItem.BI_SettingKeyItem_C'"
     
     # 二次确定对话框
-    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_ReconfirmBtn.BI_ReconfirmBtn_C'"
+    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_ReconfirmBtn.BI_ReconfirmBtn_C'"
     
     ## 游戏中 ------------------
     # 游戏中:土地庙:菜单
