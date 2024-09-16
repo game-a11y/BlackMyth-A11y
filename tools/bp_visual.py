@@ -103,10 +103,27 @@ def readBpJsonByClassPath(obj_path: str, b1_base_dir: str = "../ref/Exports") ->
 
     # --- 开始读取 json
     bp_json = None
-    logger.info(f"Reading json: {obj_path}.json")
+    # logger.debug(f"Reading json: {obj_path}.json")
     with open(bp_json_path, 'r', encoding='utf-8') as file:
         bp_json = json.load(file)
     return bp_json
+
+def getUObjectByObjectPath(ObjectPath: str) -> dict:
+    """通过 ObjectPath 寻找对象"""
+    # "b1/Content/00Main/UI/BluePrintsV3/BI_BtnTemplate_Special.33"
+    # r"([^.]+)\.(\d+)"
+    match = re.search(r"([^.]+)\.(\d+)", ObjectPath)
+    if match:
+        classpath_str = match.group(1)
+        obj_id_str = match.group(2)
+        obj_id = int(obj_id_str)
+        bp_json = readBpJsonByClassPath(classpath_str)
+        return bp_json[obj_id]
+    
+    # Bad
+    logger.warning(f"Cannot match ObjectPath={ObjectPath}")
+    return None
+
 
 def get_WidgetTree(BP: list) -> dict:
     """获取 WidgetTree"""
@@ -157,23 +174,22 @@ def print_WidgetTree(BP: list):
     # 开始递归打印子组件
     RootWidget = WidgetTree["Properties"]["RootWidget"]
     ObjectPath = RootWidget["ObjectPath"]
-    bp_id = ObjectPath2BpId(ObjectPath)
-    print_WidgetTree_rec(BP, bp_id)
+    # bp_id = ObjectPath2BpId(ObjectPath)
+    print_WidgetTree_rec(ObjectPath)
     
     # -----------------------------------------------------
     print(f"--- Class {widge_tree_name} END ---")
 
-def print_WidgetTree_rec(BP: list, bp_id: int, lv: int=0, slot_idx: int=None):
+def print_WidgetTree_rec(ObjectPath: str, lv: int=0, slot_idx: int=None):
     """递归 辅助打印函数"""
-    assert BP is not None and len(BP) > 0
     assert lv >= 0
 
-    if bp_id and bp_id <= 0:
-        logger.warning(f"[lv{lv}] bad bp_id={bp_id};  递归中止 ret")
-        return
-    
     # 当前组件
-    cur_class = BP[bp_id]
+    cur_class = getUObjectByObjectPath(ObjectPath)
+    if cur_class is None:
+        logger.warning(f"[lv{lv}] cur_class is None;  递归中止 ret")
+        return
+
     class_name = cur_class["Name"]
     Type = cur_class["Type"]
     if Type.endswith("Slot"):  # 打印容器 index
@@ -190,11 +206,11 @@ def print_WidgetTree_rec(BP: list, bp_id: int, lv: int=0, slot_idx: int=None):
         return
     
     for index, slot in enumerate(slots):
-        ObjectName = slot["ObjectName"]
+        # ObjectName = slot["ObjectName"]
         ObjectPath = slot["ObjectPath"]
 
-        rec_bp_id = ObjectPath2BpId(ObjectPath)
-        print_WidgetTree_rec(BP, rec_bp_id, lv+1, slot_idx=index)
+        # rec_bp_id = ObjectPath2BpId(ObjectPath)
+        print_WidgetTree_rec(ObjectPath, lv+1, slot_idx=index)
 
 
 if __name__ == '__main__':
