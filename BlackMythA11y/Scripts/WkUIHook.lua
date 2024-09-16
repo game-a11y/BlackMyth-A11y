@@ -34,12 +34,18 @@ end
 -- [[ Hook 事件处理函数 ]] ----------------------------------------------------------
 
 -- 首次加载 主界面
+--[[
+BI_FirstStartBtn_C.WidgetTree.RootWidget
+RootCon
+[0] BtnCon
+ [0] ImgBgW
+ [1] ImgBg
+ [2] ImgBgFX
+ [3] TxtName
+ [4] FocusWidget
+]]
 GetTextFuncMap["BI_FirstStartBtn_C"] = function(Button, InFocusEvent)
-    -- CanvasPanel
-    local WidgetTree_Root = Button.WidgetTree.RootWidget
-    -- CanvasPanel
-    local BtnCon = WidgetTree_Root:GetChildAt(0)
-    -- GSScaleText
+    local BtnCon = Button.WidgetTree.RootWidget:GetChildAt(0)
     local TxtName = BtnCon:GetChildAt(3)  -- .BtnCon.CanvasPanelSlot_5
     return TxtName:GetContent():ToString()
 end
@@ -99,14 +105,46 @@ InfoCon
 
 TODO:
 - 读出当前存档数："当前存档 2/10"
+
+BI_ArchivesBtnV2_C.WidgetTree.RootWidget
+CanvasPanel_0
+[0] CanvasPanel_28
+ [0] ImgBgShadow
+ [1] ImgBgBloom
+ [2] ImgArchivesBg
+ [3] ImgSelected
+ [4] InfoCon
+  [0] ImgLine
+  [1] HorizontalBox_0
+   [0] TxtName
+   [1] TxtRestartGame
+  [2] TimeCon
+   [0] TxtPlayTimeTitle
+   [1] TxtPlayTime
+   [2] TxtDate
+   [3] TxtTime
+  [3] LevelCon
+   [0] TxtLvTitle
+   [1] TxtLv
+  [4] NGPCon
+   [0] HorizontalBox_58
+    [0] MultiCon
+     [0] ScaleBox_0
+      [0] TxtNewGameMulti
+    [1] TxtNewGame
+    [2] TxtNewGameNum
+    [3] TxtNewGame2
+ [5] NGMarkerCon
+  [0] ImgNGMarker
+ [6] FocusWidget
 ]]
 GetTextFuncMap["BI_ArchivesBtnV2_C"] = function(Button, InFocusEvent)
     local CanvasPanel_0 = Button.WidgetTree.RootWidget
-    local CP28 = CanvasPanel_0:GetChildAt(0)  -- CPS0
-    local InfoCon = CP28:GetChildAt(4)  -- CPS1
+    local CanvasPanel_28 = CanvasPanel_0:GetChildAt(0)  -- CPS0
+    local InfoCon = CanvasPanel_28:GetChildAt(4)  -- CPS1
     -- InfoCon[1]
-    local HBox0 = InfoCon:GetChildAt(1) -- SPS3
-    local TxtName = HBox0:GetChildAt(0) -- HBS0
+    local HorizontalBox_0 = InfoCon:GetChildAt(1) -- SPS3
+    local TxtName = HorizontalBox_0:GetChildAt(0) -- HBS0
     -- InfoCon[2]: TimeCon[0-3]
     local TimeCon = InfoCon:GetChildAt(2)
     local TxtPlayTimeTitle = TimeCon:GetChildAt(0)
@@ -147,6 +185,38 @@ end -- BI_ArchivesBtnV2_C
 TODO:
 - 读出功能按钮
 - 歌曲编号
+
+BI_ArchivesBtnV2_C.WidgetTree.RootWidget
+CanvasPanel_0
+[0] CanvasPanel_28
+ [0] ImgBgShadow
+ [1] ImgBgBloom
+ [2] ImgArchivesBg
+ [3] ImgSelected
+ [4] InfoCon
+  [0] ImgLine
+  [1] HorizontalBox_0
+   [0] TxtName
+   [1] TxtRestartGame
+  [2] TimeCon
+   [0] TxtPlayTimeTitle
+   [1] TxtPlayTime
+   [2] TxtDate
+   [3] TxtTime
+  [3] LevelCon
+   [0] TxtLvTitle
+   [1] TxtLv
+  [4] NGPCon
+   [0] HorizontalBox_58
+    [0] MultiCon
+     [0] ScaleBox_0
+      [0] TxtNewGameMulti
+    [1] TxtNewGame
+    [2] TxtNewGameNum
+    [3] TxtNewGame2
+ [5] NGMarkerCon
+  [0] ImgNGMarker
+ [6] FocusWidget
 ]]
 GetTextFuncMap["BI_AccordionChildBtn_Echo_C"] = GetTextFuncMap["BI_StartGame_C"]
 
@@ -163,6 +233,13 @@ BI_SettingTab_0 ~ 9
     7. 声音
     8. 辅助设置
     9. 退出游戏
+
+BI_SettingTab_C.WidgetTree.RootWidget
+[0] BtnCon
+ [0] ImgBg
+ [1] ImgIcon
+ [2] TxtName
+ [3] FocusWidget
 ]]
 GetTextFuncMap["BI_SettingTab_C"] = function(Button, InFocusEvent)
     local BtnCon = Button.WidgetTree.RootWidget:GetChildAt(0)
@@ -179,6 +256,24 @@ TextBlock   /.BI_SettingFixedItem_0.WidgetTree.TxtDesc
 TODO:
 - 补充选项的详细说明
 -- 主界面/设置/视角: 文本区分 控制器和键盘
+
+BI_SettingFixedItem_C.WidgetTree.RootWidget
+[0] BtnCon
+ [0] BI_Btn
+   Default__BI_SettingMainBtn_C
+    WidgetTree
+     [0] BtnCon
+      [0] ImgBg
+      [1] ImgLock
+      [2] HorizontalBox_0
+       [0] TxtName
+       [1] ModifiedCon
+        [0] ImgModified
+       [2] RestartCon
+        [0] ImgRestart
+       [3] WarningCon
+        [0] TextWarning
+      [3] FocusWidget
 ]]
 GetTextFuncMap["BI_SettingFixedItem_C"] = function(Button, InFocusEvent)
     local FullName = Button:GetFullName()
@@ -190,11 +285,23 @@ GetTextFuncMap["BI_SettingFixedItem_C"] = function(Button, InFocusEvent)
     local TxtName = HBox0:GetChildAt(0)
     local TxtName_txt = TxtName:GetContent():ToString()  -- GSScaleText
 
+    --[[
+    BI_SettingFixedItem_C.WidgetTree.RootWidget
+      [0] BtnCon
+       [0] BI_Btn
+       [1] FocusWidget
+       [2] DescCon
+        [0] ImgLeft
+        [1] CanvasPanel_165
+         [0] ScaleBox_58
+          [0] TxtDesc
+        [2] ImgRight
+    ]]
     BtnCon = Button.WidgetTree.RootWidget:GetChildAt(0)
     local DescCon = BtnCon:GetChildAt(2)
-    local CPanel165 = DescCon:GetChildAt(1)
-    local SBox58 = CPanel165:GetChildAt(0)
-    local TxtDesc = SBox58:GetChildAt(0)
+    local CanvasPanel_165 = DescCon:GetChildAt(1)
+    local ScaleBox_58 = CanvasPanel_165:GetChildAt(0)
+    local TxtDesc = ScaleBox_58:GetChildAt(0)
     local TxtDesc_txt = TxtDesc:GetText():ToString()  -- TextBlock
 
     local BtnType = "左右单项选择"
@@ -216,6 +323,31 @@ end -- BI_SettingFixedItem_C
 TODO:   下拉项读取
 BI_ModeBtnItem_C /.BUI_Setting_C_2147476617.WidgetTree.BI_SettingMenuPage.WidgetTree.BI_Item.WidgetTree.BI_ModeBtnItem_C_2147475188
 TextBlock        /..BUI_Setting_C_2147476617.WidgetTree.BI_SettingMenuPage.WidgetTree.BI_Item.WidgetTree.BI_ModeBtnItem_C_2147475188.WidgetTree.TxtName
+
+BI_SettingMenuItem_C.WidgetTree.RootWidget
+CanvasPanel_0
+[0] BtnCon
+ [0] BI_Btn
+   Default__BI_SettingMenuBtn_C
+    WidgetTree
+     RootCon
+     [0] BtnCon
+      [0] BI_Btn
+        Default__BI_SettingMainBtn_C
+         WidgetTree
+          RootCon
+          [0] BtnCon
+           [0] ImgBg
+           [1] ImgLock
+           [2] HorizontalBox_0
+            [0] TxtName
+            [1] ModifiedCon
+             [0] ImgModified
+            [2] RestartCon
+             [0] ImgRestart
+            [3] WarningCon
+             [0] TextWarning
+           [3] FocusWidget
 ]]
 GetTextFuncMap["BI_SettingMenuItem_C"] = function(Button, InFocusEvent)
     -- print(string.format("Button=%s\n", Button:GetFullName()))
@@ -227,6 +359,22 @@ GetTextFuncMap["BI_SettingMenuItem_C"] = function(Button, InFocusEvent)
     local TxtSettingInfo = HBox0:GetChildAt(0)
     local TxtSettingInfo_txt = TxtSettingInfo:GetContent():ToString()  -- GSScaleText
 
+    --[[
+      BI_SettingMenuItem_C.WidgetTree.RootWidget
+      CanvasPanel_0
+      [0] BtnCon
+       [0] BI_Btn
+         Default__BI_SettingMenuBtn_C
+          WidgetTree
+           RootCon
+           [0] BtnCon
+            [0] BI_Btn
+            [1] TxtName
+            [2] MenuCon
+             [0] ScaleBox_0
+              [0] TxtDesc
+             [1] ImgArrow
+    ]]
     BtnCon = Button.BI_Btn.WidgetTree.RootWidget:GetChildAt(0)
     local MenuCon = BtnCon:GetChildAt(2)
     local SBox0 = MenuCon:GetChildAt(0)
@@ -242,20 +390,45 @@ GetTextFuncMap["BI_SettingMenuItem_C"] = function(Button, InFocusEvent)
 end -- BI_SettingMenuItem_C
 
 -- 下拉项
--- BI_ModeBtnItem_C
+--[[
+BI_ModeBtnItem_C.WidgetTree.RootWidget
+[0] BtnCon
+ [0] ImgBg
+ [1] TxtName
+ [2] ImgIcon
+ [3] FocusWidget
+]]
 GetTextFuncMap["BI_ModeBtnItem_C"] = function(Button, InFocusEvent)
-    -- print(string.format("Button=%s", Button:GetFullName()))
     local BtnCon = Button.WidgetTree.RootWidget:GetChildAt(0)
-    -- print(string.format("BtnCon=%s", BtnCon:GetFullName()))
     local TxtName = BtnCon:GetChildAt(1) -- cps1
-    -- print(string.format("TxtName=%s", TxtName:GetFullName()))
     local TxtName_txt = TxtName:GetText():ToString()  -- TextBlock
-    -- TODO
-    local A11yNote = "无障碍提示：除汉语英语以外的语言，目前无障碍输出有误。"
+    -- TODO "无障碍提示：除汉语英语以外的语言，目前无障碍输出有误。"
     return string.format("%s %s", TxtName_txt, "下拉项")
 end -- BI_ModeBtnItem_C
 
 -- 主界面/设置: 水平滑块
+--[[
+BI_SettingSliderItem_C.WidgetTree.RootWidget
+[0] CanvasPanel_71
+ [0] BI_Btn
+   Default__BI_SettingMainBtn_C
+    WidgetTree
+     RootCon
+     [0] BtnCon
+      [0] ImgBg
+      [1] ImgLock
+      [2] HorizontalBox_0
+       [0] TxtName
+       [1] ModifiedCon
+        [0] ImgModified
+       [2] RestartCon
+        [0] ImgRestart
+       [3] WarningCon
+        [0] TextWarning
+      [3] FocusWidget
+ [1] BI_Slider
+   Default__BI_SettingSlider_C
+]]
 GetTextFuncMap["BI_SettingSliderItem_C"] = function(Button, InFocusEvent)
     local ClassName = Button:GetFName():ToString()
 
@@ -292,13 +465,30 @@ GSScaleText          /   .BI_SettingIconItem_0.WidgetTree.BI_Btn.WidgetTree.TxtN
 
 校准滑块
 BI_SettingSliderL_C /.BUI_BrightnessSetting_C_2147454165.WidgetTree.BI_Slider
+
+BI_SettingIconItem_C.WidgetTree.RootWidget
+[0] BtnCon
+ [0] BI_Btn
+   Default__BI_SettingMainBtn_C
+    WidgetTree
+     RootCon
+     [0] BtnCon
+      [0] ImgBg
+      [1] ImgLock
+      [2] HorizontalBox_0
+       [0] TxtName
+       [1] ModifiedCon
+        [0] ImgModified
+       [2] RestartCon
+        [0] ImgRestart
+       [3] WarningCon
+        [0] TextWarning
+      [3] FocusWidget
 ]]
 GetTextFuncMap["BI_SettingIconItem_C"] = function(Button, InFocusEvent)
     local ClassName = Button:GetFName():ToString()
 
-    local BI_Btn = Button.BI_Btn
-    local RootCon = BI_Btn.WidgetTree.RootWidget
-    local BtnCon = RootCon:GetChildAt(0)
+    local BtnCon = Button.BI_Btn.WidgetTree.RootWidget:GetChildAt(0)
     local HorizontalBox_1 = BtnCon:GetChildAt(2)
     local TxtName = HorizontalBox_1:GetChildAt(0)
     local TxtName_txt = TxtName.Text:ToString()  -- TextBlock
@@ -316,6 +506,20 @@ end -- BI_SettingIconItem_C
 --[[
 BI_SettingMainBtn_C /.BUI_Setting_C_2147457164.WidgetTree.BI_SettingBtnItem_0
 GSScaleText         /.BUI_Setting_C_2147457164.WidgetTree.BI_SettingBtnItem_0.WidgetTree.TxtName
+
+BI_SettingMainBtn_C.WidgetTree.RootWidget
+[0] BtnCon
+ [0] ImgBg
+ [1] ImgLock
+ [2] HorizontalBox_0
+  [0] TxtName
+  [1] ModifiedCon
+   [0] ImgModified
+  [2] RestartCon
+   [0] ImgRestart
+  [3] WarningCon
+   [0] TextWarning
+ [3] FocusWidget
 ]]
 GetTextFuncMap["BI_SettingMainBtn_C"] = function(Button, InFocusEvent)
     local BtnCon = Button.WidgetTree.RootWidget:GetChildAt(0)
@@ -329,6 +533,32 @@ end -- BI_SettingMainBtn_C
 -- 主界面/设置: 图标按钮-键盘键位
 --[[
 TODO:
+
+BI_SettingKeyItem_C.WidgetTree.RootWidget
+[0] BtnCon
+ [0] BI_Btn
+   Default__BI_SettingMainBtn_C
+    WidgetTree
+     RootCon
+     [0] BtnCon
+      [0] ImgBg
+      [1] ImgLock
+      [2] HorizontalBox_0
+       [0] TxtName
+       [1] ModifiedCon
+        [0] ImgModified
+       [2] RestartCon
+        [0] ImgRestart
+       [3] WarningCon
+        [0] TextWarning
+      [3] FocusWidget
+ [1] KeyCon
+  [0] ImgKeyConflictBg
+  [1] ReplaceCon
+   [0] ImgInputBg
+   [1] TxtShuru
+  [2] ImgKeyIcon
+  [3] TxtKeyName
 ]]
 GetTextFuncMap["BI_SettingKeyItem_C"] = function(Button, InFocusEvent)
     -- PrintAllParents(Button)
@@ -350,6 +580,13 @@ end -- BI_SettingKeyItem_C
 BUI_Reconfirm_C_2147454606.WidgetTree.txt
 BUI_Reconfirm_C_2147454606.WidgetTree.Btn_Confirm
 BUI_Reconfirm_C_2147454606.WidgetTree.Btn_Cancel
+
+BI_ReconfirmBtn_C.WidgetTree.RootWidget
+[0] HoverRoot
+ [0] BtnCon
+  [0] ImgBg
+  [1] TxtName
+  [2] FocusWidget
 ]]
 -- TODO: 构造时 BI_ReconfirmBtn_C 读出 .txt
 -- GSRichScaleText /.BUI_Reconfirm_C_2147454627.WidgetTree.txt
@@ -357,20 +594,16 @@ BUI_Reconfirm_C_2147454606.WidgetTree.Btn_Cancel
 GetTextFuncMap["BI_ReconfirmBtn_C"] = function(Button, InFocusEvent)
     local ClassName = Button:GetFName():ToString()
 
-    -- CanvasPanel
-    local RootCon = Button.WidgetTree.RootWidget
-    -- CanvasPanel
-    local HoverRoot = RootCon:GetChildAt(0)
-    -- CanvasPanel
+    local HoverRoot = Button.WidgetTree.RootWidget:GetChildAt(0)
     local BtnCon = HoverRoot:GetChildAt(0)
-    -- TextBlock
     local TxtName = BtnCon:GetChildAt(1)  -- .PSSlot2
-    local TxtName_txt = TxtName:GetText():ToString()
+    local TxtName_txt = TxtName:GetText():ToString()  -- TextBlock
 
     if "Btn_Confirm" == ClassName then
         local HBoxBtn = Button:GetParent()
         local BtnCon = HBoxBtn:GetParent()
         local BoxCon = BtnCon:GetParent()
+        --
         local ContentCon = BoxCon:GetChildAt(1)
         local txt = ContentCon:GetChildAt(0)
         local ContentCon_txt = txt:GetContent():ToString()
