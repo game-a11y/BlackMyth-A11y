@@ -139,7 +139,8 @@ def print_WidgetTree(BP: list):
     print("--- Class WidgetTree Start ---")
     # 打印顶层类
     OuterClass = WidgetTree.get("Outer")
-    print(f"{OuterClass}.WidgetTree")
+    widge_tree_name = f"{OuterClass}.WidgetTree"
+    print(widge_tree_name)
     # -----------------------------------------------------
     
     # 开始递归打印子组件
@@ -149,7 +150,7 @@ def print_WidgetTree(BP: list):
     print_WidgetTree_rec(BP, bp_id)
     
     # -----------------------------------------------------
-    print("--- Class WidgetTree END ---")
+    print(f"--- Class {widge_tree_name} END ---")
 
 def print_WidgetTree_rec(BP: list, bp_id: int, lv: int=0, slot_idx: int=None):
     """递归 辅助打印函数"""
