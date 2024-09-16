@@ -1,0 +1,96 @@
+--- Class WidgetTree Start ---
+BUI_LoadingV2_C.WidgetTree.RootWidget
+RootCon
+[0] GridCon
+ [0] BGTop
+ [1] BGDown
+ [2] BGLeft
+ [3] BGRight
+ [4] MainCon
+  [0] MainBgCanvas
+   [0] MainBgImg
+  [1] CanvasPanel_65
+   [0] ImgChapter
+  [2] SliderCanvas
+   [0] CanvasPanel_188
+    [0] SliderImg
+    [1] MaskLoadingtips
+   [1] CanvasPanel_90
+    [0] TitleBgImg
+    [1] TitleTxt
+   [2] CanvasPanel_3
+    [0] TipsTxt
+  [3] ProgressCanvas
+   [0] ProgressImg
+  [4] ToggleCanvas
+   [0] Continue
+    [0] ContinueHBoxPS5
+     [0] ContinueTipsBtnPS
+     [1] TextTipsC3
+    [1] ContinueHBoxXSX
+     [0] ContinueTipsBtnXSX
+     [1] TextTipsC2
+    [2] ContinueHBoxKB
+     [0] ContinueTipsBtnKB
+     [1] TextTipsC1
+   [1] CanvasPanel_88
+    [0] TipsTurning
+     [0] ImgTipsTextBg
+     [1] HorizontalBoxPS5
+      [0] ImgTipsBtn_5
+      [1] TextTipsP3
+      [2] ImgTipsBtn_6
+      [3] TextTipsN3
+     [2] HorizontalBoxXSX
+      [0] ImgTipsBtn_2
+      [1] TextTipsP2
+      [2] ImgTipsBtn_4
+      [3] TextTipsN2
+     [3] HorizontalBoxKB
+      [0] ImgTipsBtn_3
+      [1] TextTipsP1
+      [2] ImgTipsBtn_1
+      [3] TextTipsN1
+  [5] DebugCanvas
+   [0] DebugTxt
+  [6] CanvasPanel_145
+   [0] ImgTitleBg
+   [1] TextTitle
+   [2] TextDescribe
+   [3] CanvasPanel_282
+    [0] ImgTipsBg
+    [1] HorizontalBox_145
+     [0] ImgTipsBtn
+     [1] TextTips
+   [4] ImgTimer2
+   [5] ImgTimer
+  [7] ChapterDialogueCon
+   [0] BI_Loading_Item_Name_2
+     Default__BI_Loading_Item_Name_C
+      WidgetTree
+       SubfixSize
+       [0] SubfixCon
+        [0] Overlay_50
+         [0] BlurMask
+         [1] ImgBar
+        [1] SizeBox_0
+         [0] HorizontalBox_0
+          [0] ImgLineL
+          [1] SubfixTxt
+          [2] SubfixTxtRuby
+          [3] ImgLineR
+   [1] BI_Loading_Item_Name_1
+     Default__BI_Loading_Item_Name_C
+      WidgetTree
+       SubfixSize
+       [0] SubfixCon
+        [0] Overlay_50
+         [0] BlurMask
+         [1] ImgBar
+        [1] SizeBox_0
+         [0] HorizontalBox_0
+          [0] ImgLineL
+          [1] SubfixTxt
+          [2] SubfixTxtRuby
+          [3] ImgLineR
+--- Class BUI_LoadingV2_C.WidgetTree.RootWidget END ---

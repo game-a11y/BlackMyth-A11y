@@ -248,27 +248,30 @@ def print_WidgetTree_rec(ObjectPath: str, lv: int=0, slot_idx: int=None, is_in_s
 
 if __name__ == '__main__':
     logger.info("Run as scripts")
+    
+    ## 加载界面
+    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Loading/BUI_LoadingV2.BUI_LoadingV2_C'"
 
     ## 首次加载 主界面
-    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_FirstStartBtn.BI_FirstStartBtn_C'"
+    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_FirstStartBtn.BI_FirstStartBtn_C'"
     
     ## 主界面/主菜单
-    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_StartGame.BI_StartGame_C'"
+    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_StartGame.BI_StartGame_C'"
     # 主界面/主菜单/载入游戏
-    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/StartGame/BI_ArchivesBtnV2.BI_ArchivesBtnV2_C'"
+    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/StartGame/BI_ArchivesBtnV2.BI_ArchivesBtnV2_C'"
     # 主界面/主菜单/小曲
-    bp_fullpath = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/AccordionView/BI_AccordionChildBtn_Echo.BI_AccordionChildBtn_Echo_C'"
+    # bp_fullpath = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/AccordionView/BI_AccordionChildBtn_Echo.BI_AccordionChildBtn_Echo_C'"
     # 主界面/主菜单/设置
-    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_SettingTab.BI_SettingTab_C'"
+    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_SettingTab.BI_SettingTab_C'"
     # 主界面/设置: 左右单项选择
-    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Setting/Item/BI_SettingFixedItem.BI_SettingFixedItem_C'"
+    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Setting/Item/BI_SettingFixedItem.BI_SettingFixedItem_C'"
     # 主界面/设置: 下拉单项选择
-    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Setting/BI_SettingMenuItem.BI_SettingMenuItem_C'"
+    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Setting/BI_SettingMenuItem.BI_SettingMenuItem_C'"
     # 主界面/设置: 下拉单选-下拉项
-    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrints  V3/Setting/BI_ModeBtnItem.BI_ModeBtnItem_C'"
+    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrints  V3/Setting/BI_ModeBtnItem.BI_ModeBtnItem_C'"
     # 主界面/设置: 水平滑块
-    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Setting/Item/BI_SettingSliderItem.BI_SettingSliderItem_C'"
-    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Slider/BI_SettingSlider.BI_SettingSlider_C'"
+    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Setting/Item/BI_SettingSliderItem.BI_SettingSliderItem_C'"
+    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Slider/BI_SettingSlider.BI_SettingSlider_C'"
     # 主界面/设置: 图标按钮
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Setting/Item/BI_SettingIconItem.BI_SettingIconItem_C'"
     # 主界面/设置: 文本按钮
@@ -279,7 +282,7 @@ if __name__ == '__main__':
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Setting/BUI_BrightnessSetting.BUI_BrightnessSetting_C'"
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Slider/BI_SettingSliderL.BI_SettingSliderL_C'"
     # 设置右侧描述文本
-    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Setting/BUI_Setting.BUI_Setting_C'"
+    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Setting/BUI_Setting.BUI_Setting_C'"
     # 二次确定对话框
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_ReconfirmBtn.BI_ReconfirmBtn_C'"
     

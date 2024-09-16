@@ -825,6 +825,7 @@ end
 function WkUIHook.InitUiHooks()
     local Hook_BUI_Widget_Class = {}
     Hook_BUI_Widget_Class["BUI_Setting_C"] = 1
+    -- Hook_BUI_Widget_Class["BUI_LoadingV2_C"] = 1  -- 没有挂钩到加载页面
 
     NotifyOnNewObject("/Script/b1-Managed.BUI_Widget", function(ConstructedObject)
         local FullName = ConstructedObject:GetFullName()
