@@ -711,6 +711,7 @@ end
 
 -- 游戏中:背包:技能:根基
 --[[
+Tab 按钮
 BI_SpellPanelTitle_Btn_C.WidgetTree.RootWidget
 [0] BgRoot
  [0] ImgBg
@@ -724,14 +725,52 @@ BI_SpellPanelTitle_Btn_C.WidgetTree.RootWidget
  [3] ImgBar
  [4] ImgDot
  [5] FocusWidget
+
+右侧侧边栏
+"气力" 标题 GSScaleText /.BUI_LearnTalent_C_2147454110.WidgetTree.BI_SpellDetail.WidgetTree.TxtName
+
+"主动" 消耗1 TextBlock /.BUI_LearnTalent_C_2147454110.WidgetTree.BI_SpellDetail.WidgetTree.TxtSpellType
+TextBlock /.BUI_LearnTalent_C_2147454110.WidgetTree.BI_SpellDetail.WidgetTree.TxtEnergy
+TextBlock /.BUI_LearnTalent_C_2147454110.WidgetTree.BI_SpellDetail.WidgetTree.TxtCost
+TextBlock /.BUI_LearnTalent_C_2147454110.WidgetTree.BI_SpellDetail.WidgetTree.TxtCd
+技能描述 GSInputRichTextBlock /.BUI_LearnTalent_C_2147454110.WidgetTree.BI_SpellDetail.WidgetTree.TxtSpellDesc
+
+"已开悟" 学习技能按钮 GSScaleText /.BUI_LearnTalent_C_2147454110.WidgetTree.BI_SpellDetail.WidgetTree.BI_LongPress.WidgetTree.TxtName
 ]]
 GetTextFuncMap["BI_SpellPanelTitle_Btn_C"] = function(Button, InFocusEvent)
     local BtnCon = Button.WidgetTree.RootWidget:GetChildAt(1)
     local SizeBoxName = BtnCon:GetChildAt(2)
     local TxtName = SizeBoxName:GetChildAt(0)
     local TxtName_txt = TxtName:GetText():ToString()
-    local TabName = "根基 "
-    return TabName..TxtName_txt
+
+    -- BUI_LearnTalent_C
+    local SpellDetail_txt = ""
+    local BUI_LearnTalent_C = WkUIHook.WkUIGlobals["BUI_LearnTalent_C"]
+    if BUI_LearnTalent_C then
+        -- local ResizeBg = BUI_LearnTalent_C.WidgetTree.RootWidget:GetChildAt(0)
+        print(string.format("%s\n", BUI_LearnTalent_C:GetFullName()))
+        -- [TitleConTxtName]
+        local ResizeBg = BUI_LearnTalent_C.BI_SpellDetail.WidgetTree.RootWidget:GetChildAt(0)
+        local TitleConTxtName = ResizeBg:GetChildAt(1):GetChildAt(1)
+        -- TODO: 输出不稳定???
+        print(string.format("%s %s\n", TitleConTxtName:GetText():ToString(), TitleConTxtName:GetFullName()))
+        -- [TxtSpellType]
+        -- ResizeBg                  .SizeMain.VerticalBox_195.SizeBase
+        local SizeBase = ResizeBg:GetChildAt(2):GetChildAt(0):GetChildAt(1)
+        -- SpellInfoCon.SizeSpellType.ResizeSpellType.TxtSpellType
+        local TxtSpellType = SizeBase:GetChildAt(0):GetChildAt(0):GetChildAt(0):GetChildAt(0)
+        print(string.format("%s %s\n", TxtSpellType:GetText():ToString(), TxtSpellType:GetFullName()))
+        
+        -- [TxtSpellType]
+        -- -- ResizeBg                  .SizeMain.VerticalBox_195.SizeBase
+        -- local SizeBase = ResizeBg:GetChildAt(2):GetChildAt(0):GetChildAt(1)
+        -- -- SpellInfoCon.SizeSpellType.ResizeSpellType.TxtSpellType
+        -- local TxtSpellType = SizeBase:GetChildAt(0):GetChildAt(0):GetChildAt(0):GetChildAt(0)
+        -- print(string.format("%s %s\n", TxtSpellType:GetText():ToString(), TxtSpellType:GetFullName()))
+    end -- BUI_LearnTalent_C
+
+    local TabName = ""
+    return TabName..TxtName_txt..SpellDetail_txt
 end
 
 -- BI_TalentItem_1_1_C
@@ -877,6 +916,7 @@ function WkUIHook.InitUiHooks()
     local Hook_BUI_Widget_Class = {}
     Hook_BUI_Widget_Class["BUI_Setting_C"] = 1
     -- Hook_BUI_Widget_Class["BUI_LoadingV2_C"] = 1  -- 没有挂钩到加载页面
+    Hook_BUI_Widget_Class["BUI_LearnTalent_C"] = 1
 
     NotifyOnNewObject("/Script/b1-Managed.BUI_Widget", function(ConstructedObject)
         local FullName = ConstructedObject:GetFullName()

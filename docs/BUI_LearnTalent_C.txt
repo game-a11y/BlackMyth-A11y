@@ -1,0 +1,177 @@
+--- Class WidgetTree Start ---
+BUI_LearnTalent_C.WidgetTree.RootWidget
+RootCon
+[0] DebugSafeArea
+ [0] DebugRoot
+  [0] PanelCon
+  [1] DetailCon
+   [0] BI_SpellDetail
+     Default__BI_SpellDetailNew_C
+      WidgetTree
+       RootCon
+       [0] ResizeBg
+        [0] ImgBg
+        [1] TitleCon
+         [0] ImgTitleBar
+         [1] TxtName
+        [2] SizeMain
+         [0] VerticalBox_195
+          [0] SizeCore
+           [0] ViewCon
+            [0] ImgSpellPic
+            [1] MovieMain
+            [2] MovieMainBink
+          [1] SizeBase
+           [0] SpellInfoCon
+            [0] SizeSpellType
+             [0] ResizeSpellType
+              [0] TxtSpellType
+            [1] ImgSpline_a
+            [2] SizeCD
+             [0] HorizontalBox_470
+              [0] ImgCdIcon
+              [1] TxtCd
+            [3] ImgSpline_b
+            [4] SizeCost
+             [0] HorizontalBox_385
+              [0] ImgCostIcon
+              [1] TxtCost
+            [5] SizeEnergy
+             [0] HorizontalBox
+              [0] TxtEnergyCostTItle
+              [1] TxtEnergyCost
+              [2] lmgEnergylcon
+              [3] TxtEnergy
+          [2] ImgSplineBase
+          [3] SizeMiddle
+           [0] SpellCon
+            [0] DescCon_Spell
+             [0] ListMask_Spell
+             [1] ResizeScrollInputTips_Spell
+              [0] BI_ScrollInputTips_Spell
+                Default__BI_ScrollInputTips_C
+            [1] DescCon_Trans
+             [0] ListMask_Trans
+             [1] ResizeScrollInputTips_Trans
+              [0] BI_ScrollInputTips_Trans
+                Default__BI_ScrollInputTips_WithComb_C
+          [4] SizeBottom
+           [0] GridPanel_209
+            [0] SwitchIconRoot
+             [0] Sizebox
+              [0] ResizeConSwitch
+               [0] HorizontalBox_2
+                [0] InputIconSwitch
+                [1] TxtSwitchIconTips_Talent
+                [2] TxtSwitchIconTips_Trans
+            [1] TxtSPCostTips
+            [2] CostCon
+             [0] CostItemList
+              [0] BI_Rank
+                Default__BI_CostItem_C
+                 WidgetTree
+                  Root
+                  [0] Content
+                   [0] ImgBar
+                   [1] FocusWidget
+                   [2] HorBox
+                    [0] IconCon
+                     [0] ResizeIcon
+                      [0] ImgItem
+                    [1] TxtName
+                    [2] TxtUnknow
+                    [3] HorBoxCost
+                     [0] TxtOwn
+                     [1] TxtCost
+              [1] BI_PlayerLevel
+                Default__BI_CostItem_C
+                 WidgetTree
+                  Root
+                  [0] Content
+                   [0] ImgBar
+                   [1] FocusWidget
+                   [2] HorBox
+                    [0] IconCon
+                     [0] ResizeIcon
+                      [0] ImgItem
+                    [1] TxtName
+                    [2] TxtUnknow
+                    [3] HorBoxCost
+                     [0] TxtOwn
+                     [1] TxtCost
+              [2] BI_TalenPoint
+                Default__BI_CostItem_C
+                 WidgetTree
+                  Root
+                  [0] Content
+                   [0] ImgBar
+                   [1] FocusWidget
+                   [2] HorBox
+                    [0] IconCon
+                     [0] ResizeIcon
+                      [0] ImgItem
+                    [1] TxtName
+                    [2] TxtUnknow
+                    [3] HorBoxCost
+                     [0] TxtOwn
+                     [1] TxtCost
+              [3] BI_CostItem_0
+                Default__BI_CostItem_C
+                 WidgetTree
+                  Root
+                  [0] Content
+                   [0] ImgBar
+                   [1] FocusWidget
+                   [2] HorBox
+                    [0] IconCon
+                     [0] ResizeIcon
+                      [0] ImgItem
+                    [1] TxtName
+                    [2] TxtUnknow
+                    [3] HorBoxCost
+                     [0] TxtOwn
+                     [1] TxtCost
+              [4] BI_CostItem_1
+                Default__BI_CostItem_C
+                 WidgetTree
+                  Root
+                  [0] Content
+                   [0] ImgBar
+                   [1] FocusWidget
+                   [2] HorBox
+                    [0] IconCon
+                     [0] ResizeIcon
+                      [0] ImgItem
+                    [1] TxtName
+                    [2] TxtUnknow
+                    [3] HorBoxCost
+                     [0] TxtOwn
+                     [1] TxtCost
+              [5] BI_CostItem_2
+                Default__BI_CostItem_C
+                 WidgetTree
+                  Root
+                  [0] Content
+                   [0] ImgBar
+                   [1] FocusWidget
+                   [2] HorBox
+                    [0] IconCon
+                     [0] ResizeIcon
+                      [0] ImgItem
+                    [1] TxtName
+                    [2] TxtUnknow
+                    [3] HorBoxCost
+                     [0] TxtOwn
+                     [1] TxtCost
+            [3] FooterCon
+             [0] BI_LongPress
+               Default__BI_DetailLongPress_C
+        [3] TxtLockedNode
+        [4] ResetInputCon
+         [0] ResizeCon
+          [0] InputIcon
+         [1] TxtDesc
+  [2] BI_InputRoot
+    Default__BI_InputRoot_C
+[1] DebugCover
+--- Class BUI_LearnTalent_C.WidgetTree.RootWidget END ---
