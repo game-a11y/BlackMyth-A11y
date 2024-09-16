@@ -731,6 +731,29 @@ GetTextFuncMap["BI_SpellPanelTitle_Btn_C"] = function(Button, InFocusEvent)
     return TabName..TxtName_txt
 end
 
+-- BI_TalentItem_1_1_C
+--[[
+BI_TalentItem_1_1_C.WidgetTree.RootWidget
+[0] RootCon
+ [0] HoverRoot
+  [0] UIFX_SelectRipple
+  [1] ImgItem
+  [2] TxtLevelLimit
+  [3] UIFX_CanLearn
+  [4] UIFX_CanRipple
+  [5] UINS_CanLearn
+  [6] LevelRoot
+   [0] BI_TalentLevelsNew
+     Default__BI_TalentLevelsNew_C
+  [7] UIFXLearnedSlot
+  [8] ImgHitArea
+  [9] FocusWidget
+]]
+GetTextFuncMap["BI_TalentItem_1_1_C"] = function(Button, InFocusEvent)
+    TxtName_txt = "根基技能"
+    return DevNote..TxtName_txt
+end
+
 -- 游戏中:背包
 --
 GetTextFuncMap["BI_EquipItem_Slot_C"] = function(Button, InFocusEvent)
