@@ -1,0 +1,171 @@
+--- Class WidgetTree Start ---
+BUI_Setting_C.WidgetTree.RootWidget
+RootCon
+[0] DebugRoot
+ [0] ImgRightSelected
+ [1] TabCon
+  [0] VerticalBox_31
+   [0] BI_SettingTab_10
+     Default__BI_SettingTab_C
+      WidgetTree
+       Root
+       [0] BtnCon
+        [0] ImgBg
+        [1] ImgIcon
+        [2] TxtName
+        [3] FocusWidget
+   [1] BI_SettingTab_0
+     Default__BI_SettingTab_C
+      WidgetTree
+       Root
+       [0] BtnCon
+        [0] ImgBg
+        [1] ImgIcon
+        [2] TxtName
+        [3] FocusWidget
+   [2] BI_SettingTab_1
+     Default__BI_SettingTab_C
+      WidgetTree
+       Root
+       [0] BtnCon
+        [0] ImgBg
+        [1] ImgIcon
+        [2] TxtName
+        [3] FocusWidget
+   [3] BI_SettingTab_2
+     Default__BI_SettingTab_C
+      WidgetTree
+       Root
+       [0] BtnCon
+        [0] ImgBg
+        [1] ImgIcon
+        [2] TxtName
+        [3] FocusWidget
+   [4] BI_SettingTab_3
+     Default__BI_SettingTab_C
+      WidgetTree
+       Root
+       [0] BtnCon
+        [0] ImgBg
+        [1] ImgIcon
+        [2] TxtName
+        [3] FocusWidget
+   [5] BI_SettingTab_4
+     Default__BI_SettingTab_C
+      WidgetTree
+       Root
+       [0] BtnCon
+        [0] ImgBg
+        [1] ImgIcon
+        [2] TxtName
+        [3] FocusWidget
+   [6] BI_SettingTab_5
+     Default__BI_SettingTab_C
+      WidgetTree
+       Root
+       [0] BtnCon
+        [0] ImgBg
+        [1] ImgIcon
+        [2] TxtName
+        [3] FocusWidget
+   [7] BI_SettingTab_6
+     Default__BI_SettingTab_C
+      WidgetTree
+       Root
+       [0] BtnCon
+        [0] ImgBg
+        [1] ImgIcon
+        [2] TxtName
+        [3] FocusWidget
+   [8] BI_SettingTab_7
+     Default__BI_SettingTab_C
+      WidgetTree
+       Root
+       [0] BtnCon
+        [0] ImgBg
+        [1] ImgIcon
+        [2] TxtName
+        [3] FocusWidget
+   [9] BI_SettingTab_8
+     Default__BI_SettingTab_C
+      WidgetTree
+       Root
+       [0] BtnCon
+        [0] ImgBg
+        [1] ImgIcon
+        [2] TxtName
+        [3] FocusWidget
+   [10] BI_SettingTab_9
+     Default__BI_SettingTab_C
+      WidgetTree
+       Root
+       [0] BtnCon
+        [0] ImgBg
+        [1] ImgIcon
+        [2] TxtName
+        [3] FocusWidget
+ [2] RightCon
+  [0] BLOCKCon
+  [1] ListMask
+  [2] BI_SettingInput
+    Default__BI_SettingInput_C
+ [3] OptionsCon
+  [0] BtnMask
+  [1] BI_SettingMenuPage
+    Default__BI_SettingMenuPage_C
+     WidgetTree
+      RootCon
+      [0] ImgMark
+      [1] OptionsCon
+       [0] ImgModeBg
+       [1] OptionSizeBox
+        [0] OptionBox
+         [0] BI_Item
+           Default__BI_ModeBtnItem_C
+       [2] ImgArrow1
+       [3] ImgArrow2
+ [4] ImgMark
+ [5] CanvasPanel_0
+  [0] BI_InputRoot
+    Default__BI_InputRoot_C
+ [6] SecRInfoCon
+  [0] InfoCon
+   [0] TxtSettingInfo
+   [1] CanvasPanel_2
+    [0] ImgSecInfo
+   [2] GSTxtDesc
+ [7] BI_VRAM
+   Default__BI_VRAM_C
+    WidgetTree
+     CanvasPanel_0
+     [0] RootCon
+      [0] TxtTitle
+      [1] ImgVRAM
+      [2] Hbox
+       [0] TxtVramUsed
+       [1] TxtDivide
+       [2] TxtVramLimit
+       [3] TxtVramGb
+ [8] SrtCon
+  [0] BI_Subfix_Item_Srt
+    Default__BI_Subfix_Item_C
+     WidgetTree
+      SubfixSize
+      [0] SubfixCon
+       [0] Overlay_50
+        [0] BlurMask
+        [1] ImgBar
+       [1] HorizontalBox_2
+        [0] ImgSubArrow
+        [1] BI_Subfix_Ex_Item
+          Default__BI_Subfix_Ex_Item_C
+           WidgetTree
+            Root
+            [0] HorizontalBox_30
+             [0] ImgDirection
+             [1] NameCon
+              [0] TxtName
+        [2] SubfixTxt
+ [9] TxtSubtitle
+[1] DebugCover
+--- Class BUI_Setting_C.WidgetTree.RootWidget END ---

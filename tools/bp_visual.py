@@ -278,6 +278,8 @@ if __name__ == '__main__':
     # 主界面/设置: 亮度调整
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Setting/BUI_BrightnessSetting.BUI_BrightnessSetting_C'"
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Slider/BI_SettingSliderL.BI_SettingSliderL_C'"
+    # 设置右侧描述文本
+    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Setting/BUI_Setting.BUI_Setting_C'"
     # 二次确定对话框
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_ReconfirmBtn.BI_ReconfirmBtn_C'"
     
