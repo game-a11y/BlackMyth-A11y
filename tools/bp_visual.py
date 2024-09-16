@@ -212,11 +212,31 @@ if __name__ == '__main__':
     # 主界面/设置: 文本按钮
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_SettingMainBtn.BI_SettingMainBtn_C'"
     # 主界面/设置: 图标按钮-键盘键位
-    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Setting/Item/BI_SettingKeyItem.BI_SettingKeyItem_C'"
+    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Setting/Item/BI_SettingKeyItem.BI_SettingKeyItem_C'"
     
     # 二次确定对话框
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_ReconfirmBtn.BI_ReconfirmBtn_C'"
     
+    ## 游戏中 ------------------
+    # 游戏中:土地庙:菜单
+    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_ShrineMenuParent.BI_ShrineMenuParent_C'"
+    ## 游戏中:背包栏
+    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Tab/BI_CommTxtTab.BI_CommTxtTab_C'"
+    # _bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Remake_CE04/Remake_Item/BI_EquipItem_Slot.BI_EquipItem_Slot_C'"
+    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Remake_CE04/Remake_Item/BI_InventoryItem.BI_InventoryItem_C'"
+    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/TravelNotes/BI_TravelNotesMain_ListBar.BI_TravelNotesMain_ListBar_C'"
+    ## 游戏中:背包:技能
+    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/LearnSpell/Btn/BI_AbilityIcon_GP_Basic.BI_AbilityIcon_GP_Basic_C'"
+    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/LearnSpell/Btn/BI_AbilityIcon_GP_Advance.BI_AbilityIcon_GP_Advance_C'"
+    # 游戏中:背包
+    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Remake_CE04/Remake_Item/BI_EquipItem_Slot.BI_EquipItem_Slot_C'"
+    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Remake_CE04/Remake_Item/BI_GearItem_Slot.BI_GearItem_Slot_C'"
+    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Remake_CE04/Remake_Item/BI_QuickItem.BI_QuickItem_C'"
+    ## 游戏中:背包:游记
+    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/TravelNotes/BI_TravelNotesMain_Tab.BI_TravelNotesMain_Tab_C'"
+    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/TravelNotes/BI_TravelNotesMain_ListBar.BI_TravelNotesMain_ListBar_C'"
+    
+
     # -----------------------------------------------------------
     # 确定文件路径
     fsplit = SplitUObjectFullName(bp_fullname)
