@@ -823,6 +823,33 @@ end
 
 -- 初始化所有 UI 钩子
 function WkUIHook.InitUiHooks()
+    local Hook_BUI_Widget_Class = {}
+    Hook_BUI_Widget_Class["BUI_Setting_C"] = 1
+
+    NotifyOnNewObject("/Script/b1-Managed.BUI_Widget", function(ConstructedObject)
+        local FullName = ConstructedObject:GetFullName()
+        local SuperClassName = ConstructedObject:GetClass():GetFName():ToString()
+        local ClassName = ConstructedObject:GetFName():ToString()
+
+        if not Hook_BUI_Widget_Class[SuperClassName] then
+            return
+        end
+
+        print(string.format("BUI_Widget Constructed: %s\n", FullName))
+    end)
+    RegisterHook("/Script/b1-Managed.BUI_Widget:Destruct", function(Context)
+        local Button = Context:get()
+        local FullName = Button:GetFullName()
+        local SuperClassName = Button:GetClass():GetFName():ToString()
+        local ClassName = Button:GetFName():ToString()
+
+        if not Hook_BUI_Widget_Class[SuperClassName] then
+            return
+        end
+
+        print(string.format("BUI_Widget Destruct: %s\n", FullName))
+    end)
+
     RegisterHook("/Script/b1-Managed.BUI_Button:OnAddedToFocusPath", OnAddedToFocusPath_Hook)
     -- RegisterHook("/Script/b1-Managed.BUI_Widget:OnAddedToFocusPath", OnAddedToFocusPath_Hook)
 
