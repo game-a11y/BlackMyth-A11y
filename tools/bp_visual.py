@@ -13,6 +13,10 @@ def get_all_types(bp_in: list) -> set:
     """打印所有类型"""
     return get_attr_set(bp_in, 'Type')
 
+def get_all_classes(bp_in: list) -> set:
+    """打印所有类型"""
+    return get_attr_set(bp_in, 'Class')
+
 
 def find_node_by_name(bp_in: list, name: str) -> dict:
     """按名称寻找节点"""
@@ -31,27 +35,27 @@ def find_node_by_outer(bp_in: list, outer_name: str) -> List[dict]:
 
 
 allowed_subclass_type = {
+# UI class
+ "UScriptClass'WidgetTree'",
  "UScriptClass'CanvasPanel'",
  "UScriptClass'CanvasPanelSlot'",
+ "UScriptClass'HorizontalBox'",
+ "UScriptClass'HorizontalBoxSlot'",
  # "UScriptClass'Function'",
+ 
+# Text
+ "UScriptClass'TextBlock'",
  "UScriptClass'GSFocusWidget'",
  "UScriptClass'GSScaleText'",
+
+# ignore
   # "UScriptClass'Image'",
+  # "USharpClass'GSImage'",
   # "UScriptClass'MovieScene'",
-  # "UScriptClass'MovieScene2DTransformSection'",
-  # "UScriptClass'MovieScene2DTransformTrack'",
-  # "UScriptClass'MovieSceneBuiltInEasingFunction'",
-  # "UScriptClass'MovieSceneColorSection'",
-  # "UScriptClass'MovieSceneColorTrack'",
-  # "UScriptClass'MovieSceneCompiledData'",
-  # "UScriptClass'MovieSceneFloatSection'",
-  # "UScriptClass'MovieSceneFloatTrack'",
-  # "UScriptClass'MovieSceneParameterSection'",
-  # "UScriptClass'MovieSceneWidgetMaterialTrack'",
- # "UScriptClass'WidgetAnimation'",
+  # "UScriptClass'MovieScene**'",
+  # "UScriptClass'WidgetAnimation'",
+
  "UScriptClass'WidgetBlueprintGeneratedClass'",
- "UScriptClass'WidgetTree'",
- "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_FirstStartBtn.BI_FirstStartBtn_C'"
 }
 def print_class_tree(bp_in: list, class_name: str, lv: int = 0):
     """深度优先打印 UI 树"""
@@ -80,14 +84,31 @@ def print_class_tree(bp_in: list, class_name: str, lv: int = 0):
 
 
 if __name__ == '__main__':
+    # 输入参数
+    bp_fullpath = "b1/Content/00Main/UI/BluePrintsV3/Btn"
     bp_name = "BI_FirstStartBtn"
-    bp_json_path = f"../ref/{bp_name}.json"
+    bp_name = "BI_StartGame"
+    bp_name = "BI_SettingTab"
+    
+    # bp_fullpath = "b1/Content/00Main/UI/BluePrintsV3/StartGame"
+    # bp_name = "BI_ArchivesBtnV2"
+    
+    bp_fullpath = "b1/Content/00Main/UI/BluePrintsV3/Setting/Item/"
+    bp_name = "BI_SettingKeyItem"
 
+    # -----------------------------------------------------------
+    b1_base_dir = "../ref/Exports"
+    # bp_json_path = f"../ref/{bp_name}.json"
+    bp_json_path = f"{b1_base_dir}/{bp_fullpath}/{bp_name}.json"
+
+    # --- 开始读取 json
     bp_json = None
     with open(bp_json_path, 'r', encoding='utf-8') as file:
         bp_json = json.load(file)
-
     print(f"Total {len(bp_json)} items")
+    print(get_all_types(bp_json))
+    # print(get_all_classes(bp_json))
+    # USE    set(i.get('Class') for i in bp_json)
     
     main_class_name = f"{bp_name}_C"
     print(f"main_class_name: {main_class_name}")
