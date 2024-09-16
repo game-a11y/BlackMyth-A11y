@@ -70,20 +70,23 @@ def ObjectPath2BpId(objectPath: str) -> int:
 
 def get_slots(widget: dict) -> List[dict]:
     """获取所有子组件"""
-    sub_widgets = []
-    
+
     # 根据类型分发
     Type = widget["Type"]
+    Properties = widget["Properties"]
     
     if Type in {"WidgetTree"}:
-        return [widget["Properties"]["RootWidget"]]
-    elif Type in {"CanvasPanel", "HorizontalBox", "ScaleBox"}:
-        return widget["Properties"]["Slots"]
-    elif Type in {"CanvasPanelSlot", "HorizontalBoxSlot", "ScaleBoxSlot"}:
-        return [widget["Properties"]["Content"]]
+        return [Properties["RootWidget"]]
+    elif "Slots" in Properties:
+        return Properties["Slots"]
+    elif Type.endswith("Slot"):
+        return [Properties["Content"]]
+    elif "Slot" in Properties:  # 叶子 Widget
+        return []
     else:
         logger.warning(f"Unknown widget: {Type}")
-    return sub_widgets
+    
+    return []
 
 
 def get_WidgetTree(BP: list) -> dict:
