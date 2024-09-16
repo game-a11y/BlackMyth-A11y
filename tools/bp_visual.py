@@ -70,10 +70,10 @@ def ObjectPath2BpId(objectPath: str) -> int:
 
 def get_slots(widget: dict) -> List[dict]:
     """获取所有子组件"""
-
-    # 根据类型分发
     Type = widget["Type"]
+    Name = widget["Name"]
     Class = widget["Class"]
+
     #   C# 模块
     if Class.startswith('USharpClass'):  
         return []
@@ -81,6 +81,16 @@ def get_slots(widget: dict) -> List[dict]:
         return [widget["Template"]]
 
     Properties = widget["Properties"]
+    if Name.startswith('Default__') and "UberGraphFrame" in Properties:
+        # 顶级类对象 => 转发到 .WidgetTree 继续解析
+        obj_type, obj_path, obj_class = SplitUObjectFullName(Class)
+        classpath = obj_path
+        slot = {
+          "ObjectName": str(Class),
+          "ObjectPath": f"{classpath}.-1"  # 从最后一个 WidgetTree 开始
+        }
+        return [slot]
+    
     if Type in {"WidgetTree"}:
         return [Properties["RootWidget"]]
     elif "Slots" in Properties:
@@ -89,8 +99,6 @@ def get_slots(widget: dict) -> List[dict]:
         return [Properties["Content"]]
     # --- 叶子 Widget
     elif "Slot" in Properties:
-        return []
-    elif "UberGraphFrame" in Properties:
         return []
     else:
         logger.warning(f"Unknown widget: {Type}")
@@ -114,7 +122,8 @@ def getUObjectByObjectPath(ObjectPath: str) -> dict:
     """通过 ObjectPath 寻找对象"""
     # "b1/Content/00Main/UI/BluePrintsV3/BI_BtnTemplate_Special.33"
     # r"([^.]+)\.(\d+)"
-    match = re.search(r"([^.]+)\.(\d+)", ObjectPath)
+    # NOTE: 此处兼容负数：classpath.-1
+    match = re.search(r"([^.]+)\.([-]?\d+)", ObjectPath)
     if match:
         classpath_str = match.group(1)
         obj_id_str = match.group(2)
@@ -222,15 +231,15 @@ if __name__ == '__main__':
     bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Setting/Item/BI_SettingKeyItem.BI_SettingKeyItem_C'"
     
     ## 主界面/主菜单
-    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_StartGame.BI_StartGame_C'"
+    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_StartGame.BI_StartGame_C'"
     # 主界面/主菜单/载入游戏
-    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/StartGame/BI_ArchivesBtnV2.BI_ArchivesBtnV2_C'"
+    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/StartGame/BI_ArchivesBtnV2.BI_ArchivesBtnV2_C'"
     # 主界面/主菜单/小曲
-    # bp_fullpath = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/AccordionView/BI_AccordionChildBtn_Echo.BI_AccordionChildBtn_Echo_C'"
+    bp_fullpath = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/AccordionView/BI_AccordionChildBtn_Echo.BI_AccordionChildBtn_Echo_C'"
     # 主界面/主菜单/设置
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_SettingTab.BI_SettingTab_C'"
     # 主界面/设置: 左右单项选择
-    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Setting/Item/BI_SettingFixedItem.BI_SettingFixedItem_C'"
+    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Setting/Item/BI_SettingFixedItem.BI_SettingFixedItem_C'"
     # 主界面/设置: 下拉单项选择
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Setting/BI_SettingMenuItem.BI_SettingMenuItem_C'"
     # 主界面/设置: 下拉单选-下拉项
