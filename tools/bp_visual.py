@@ -74,13 +74,12 @@ def get_slots(widget: dict) -> List[dict]:
     # 根据类型分发
     Type = widget["Type"]
     Class = widget["Class"]
-    if Class.startswith('USharpClass'):  # C# 模块
+    #   C# 模块
+    if Class.startswith('USharpClass'):  
         return []
-    if Type.endswith("_C"):
-        # TODO: 给出警告
-        return []
-    # TODO: 查找到其他包
-    
+    if "Template" in widget:  # 外部类
+        return [widget["Template"]]
+
     Properties = widget["Properties"]
     if Type in {"WidgetTree"}:
         return [Properties["RootWidget"]]
@@ -91,8 +90,11 @@ def get_slots(widget: dict) -> List[dict]:
     # --- 叶子 Widget
     elif "Slot" in Properties:
         return []
+    elif "UberGraphFrame" in Properties:
+        return []
     else:
         logger.warning(f"Unknown widget: {Type}")
+        logger.debug(widget)
     
     return []
 
