@@ -13,7 +13,7 @@ RootCon
         [0] ImgBg
         [1] TitleCon
          [0] ImgTitleBar
-         [1] TxtName
+         [1] TxtName        "标题"
         [2] SizeMain
          [0] VerticalBox_195
           [0] SizeCore
@@ -25,23 +25,23 @@ RootCon
            [0] SpellInfoCon
             [0] SizeSpellType
              [0] ResizeSpellType
-              [0] TxtSpellType
+              [0] TxtSpellType    "主动"
             [1] ImgSpline_a
             [2] SizeCD
              [0] HorizontalBox_470
               [0] ImgCdIcon
-              [1] TxtCd
+              [1] TxtCd           "20秒"
             [3] ImgSpline_b
             [4] SizeCost
              [0] HorizontalBox_385
               [0] ImgCostIcon
-              [1] TxtCost
+              [1] TxtCost         "20点"
             [5] SizeEnergy
              [0] HorizontalBox
-              [0] TxtEnergyCostTItle
-              [1] TxtEnergyCost
+              [0] TxtEnergyCostTItle  "神力消耗："
+              [1] TxtEnergyCost       "高"
               [2] lmgEnergylcon
-              [3] TxtEnergy
+              [3] TxtEnergy           "Text Block"
           [2] ImgSplineBase
           [3] SizeMiddle
            [0] SpellCon
@@ -62,9 +62,9 @@ RootCon
               [0] ResizeConSwitch
                [0] HorizontalBox_2
                 [0] InputIconSwitch
-                [1] TxtSwitchIconTips_Talent
-                [2] TxtSwitchIconTips_Trans
-            [1] TxtSPCostTips
+                [1] TxtSwitchIconTips_Talent  "查看变身"
+                [2] TxtSwitchIconTips_Trans   "查看天赋"
+            [1] TxtSPCostTips         "灵光点需求说明"
             [2] CostCon
              [0] CostItemList
               [0] BI_Rank
@@ -78,99 +78,34 @@ RootCon
                     [0] IconCon
                      [0] ResizeIcon
                       [0] ImgItem
-                    [1] TxtName
-                    [2] TxtUnknow
+                    [1] TxtName     "材料名"
+                    [2] TxtUnknow   "? ? ?"
                     [3] HorBoxCost
-                     [0] TxtOwn
-                     [1] TxtCost
+                     [0] TxtOwn     "1000"
+                     [1] TxtCost    "1000"
               [1] BI_PlayerLevel
                 Default__BI_CostItem_C
-                 WidgetTree
-                  Root
-                  [0] Content
-                   [0] ImgBar
-                   [1] FocusWidget
-                   [2] HorBox
-                    [0] IconCon
-                     [0] ResizeIcon
-                      [0] ImgItem
-                    [1] TxtName
-                    [2] TxtUnknow
-                    [3] HorBoxCost
-                     [0] TxtOwn
-                     [1] TxtCost
+                  等同于其他同类对象
               [2] BI_TalenPoint
                 Default__BI_CostItem_C
-                 WidgetTree
-                  Root
-                  [0] Content
-                   [0] ImgBar
-                   [1] FocusWidget
-                   [2] HorBox
-                    [0] IconCon
-                     [0] ResizeIcon
-                      [0] ImgItem
-                    [1] TxtName
-                    [2] TxtUnknow
-                    [3] HorBoxCost
-                     [0] TxtOwn
-                     [1] TxtCost
+                  等同于其他同类对象
               [3] BI_CostItem_0
                 Default__BI_CostItem_C
-                 WidgetTree
-                  Root
-                  [0] Content
-                   [0] ImgBar
-                   [1] FocusWidget
-                   [2] HorBox
-                    [0] IconCon
-                     [0] ResizeIcon
-                      [0] ImgItem
-                    [1] TxtName
-                    [2] TxtUnknow
-                    [3] HorBoxCost
-                     [0] TxtOwn
-                     [1] TxtCost
+                  等同于其他同类对象
               [4] BI_CostItem_1
                 Default__BI_CostItem_C
-                 WidgetTree
-                  Root
-                  [0] Content
-                   [0] ImgBar
-                   [1] FocusWidget
-                   [2] HorBox
-                    [0] IconCon
-                     [0] ResizeIcon
-                      [0] ImgItem
-                    [1] TxtName
-                    [2] TxtUnknow
-                    [3] HorBoxCost
-                     [0] TxtOwn
-                     [1] TxtCost
+                  等同于其他同类对象
               [5] BI_CostItem_2
                 Default__BI_CostItem_C
-                 WidgetTree
-                  Root
-                  [0] Content
-                   [0] ImgBar
-                   [1] FocusWidget
-                   [2] HorBox
-                    [0] IconCon
-                     [0] ResizeIcon
-                      [0] ImgItem
-                    [1] TxtName
-                    [2] TxtUnknow
-                    [3] HorBoxCost
-                     [0] TxtOwn
-                     [1] TxtCost
+                  等同于其他同类对象
             [3] FooterCon
              [0] BI_LongPress
                Default__BI_DetailLongPress_C
-        [3] TxtLockedNode
+        [3] TxtLockedNode   "尚未开放此天赋"
         [4] ResetInputCon
          [0] ResizeCon
           [0] InputIcon
-         [1] TxtDesc
+         [1] TxtDesc        "洗髓"
   [2] BI_InputRoot
     Default__BI_InputRoot_C
 [1] DebugCover
