@@ -97,6 +97,17 @@ def get_slots(widget: dict) -> List[dict]:
     return []
 
 
+def readBpJsonByClassPath(obj_path: str, b1_base_dir: str = "../ref/Exports") -> List[dict]:
+    """通过类路径读取类（命名空间）"""
+    bp_json_path = f"{b1_base_dir}/{obj_path}.json"
+
+    # --- 开始读取 json
+    bp_json = None
+    logger.info(f"Reading json: {obj_path}.json")
+    with open(bp_json_path, 'r', encoding='utf-8') as file:
+        bp_json = json.load(file)
+    return bp_json
+
 def get_WidgetTree(BP: list) -> dict:
     """获取 WidgetTree"""
     assert BP is not None and len(BP) > 0
@@ -249,10 +260,7 @@ if __name__ == '__main__':
     bp_json_path = f"{b1_base_dir}/{obj_path}.json"
 
     # --- 开始读取 json
-    bp_json = None
-    logger.info(f"Reading json: {obj_path}.json")
-    with open(bp_json_path, 'r', encoding='utf-8') as file:
-        bp_json = json.load(file)
+    bp_json = readBpJsonByClassPath(obj_path)
     
     # --- 输出整体信息
     print(f"Total {len(bp_json)} items")
