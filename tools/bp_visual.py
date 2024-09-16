@@ -68,6 +68,10 @@ def ObjectPath2BpId(objectPath: str) -> int:
     # Bad
     return -1
 
+
+# 跳过容量为 1 的包装容器
+g_SKIP_WRAP_SLOT = True
+# g_SKIP_WRAP_SLOT = False
 def get_slots(widget: dict) -> List[dict]:
     """获取所有子组件"""
     Type = widget["Type"]
@@ -80,9 +84,11 @@ def get_slots(widget: dict) -> List[dict]:
     if "Template" in widget:  # 外部类
         return [widget["Template"]]
 
-    Properties = widget["Properties"]
-    if Name.startswith('Default__') and "UberGraphFrame" in Properties:
+    if Name.startswith('Default__'):
         # 顶级类对象 => 转发到 .WidgetTree 继续解析
+        if "Properties" not in widget:
+            return [] # 非模板类
+        
         obj_type, obj_path, obj_class = SplitUObjectFullName(Class)
         classpath = obj_path
         slot = {
@@ -90,12 +96,19 @@ def get_slots(widget: dict) -> List[dict]:
           "ObjectPath": f"{classpath}.-1"  # 从最后一个 WidgetTree 开始
         }
         return [slot]
-    
+
+    Properties = widget["Properties"]
+    # 检查包装器类型
+    is_slot_type = (
+        Type.endswith("Slot")
+        and "Slots" not in Properties
+        and "Content" in Properties
+    )
     if Type in {"WidgetTree"}:
         return [Properties["RootWidget"]]
     elif "Slots" in Properties:
         return Properties["Slots"]
-    elif Type.endswith("Slot"):
+    elif is_slot_type:
         return [Properties["Content"]]
     # --- 叶子 Widget
     elif "Slot" in Properties:
@@ -178,7 +191,7 @@ def print_WidgetTree(BP: list):
     print("--- Class WidgetTree Start ---")
     # 打印顶层类
     OuterClass = WidgetTree.get("Outer")
-    widge_tree_name = f"{OuterClass}.WidgetTree"
+    widge_tree_name = f"{OuterClass}.WidgetTree.RootWidget"
     print(widge_tree_name)
     # -----------------------------------------------------
     
@@ -191,8 +204,9 @@ def print_WidgetTree(BP: list):
     # -----------------------------------------------------
     print(f"--- Class {widge_tree_name} END ---")
 
-def print_WidgetTree_rec(ObjectPath: str, lv: int=0, slot_idx: int=None):
+def print_WidgetTree_rec(ObjectPath: str, lv: int=0, slot_idx: int=None, is_in_slot: bool=False):
     """递归 辅助打印函数"""
+    global g_SKIP_WRAP_SLOT
     assert lv >= 0
 
     # 当前组件
@@ -203,7 +217,15 @@ def print_WidgetTree_rec(ObjectPath: str, lv: int=0, slot_idx: int=None):
 
     class_name = cur_class["Name"]
     Type = cur_class["Type"]
-    if Type.endswith("Slot"):  # 打印容器 index
+    if g_SKIP_WRAP_SLOT and Type.endswith("Slot"):
+        # ---- 跳过打印容器
+        slots = get_slots(cur_class)
+        assert 1 == len(slots)
+        ObjectPath = slots[0]["ObjectPath"]
+        print_WidgetTree_rec(ObjectPath, lv, slot_idx, is_in_slot=True)
+        return  # 不再重复打印
+
+    if Type.endswith("Slot") or is_in_slot:  # 打印容器 index
         indent = ' ' * (lv-1)
         print(f"{indent}[{slot_idx}] {class_name}")
     else:
@@ -299,4 +321,3 @@ if __name__ == '__main__':
 
     # --- 
     print_WidgetTree(bp_json)
-
