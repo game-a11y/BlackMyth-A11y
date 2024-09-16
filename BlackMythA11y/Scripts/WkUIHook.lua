@@ -519,8 +519,6 @@ end -- BI_SettingMainBtn_C
 
 -- 主界面/设置: 图标按钮-键盘键位
 --[[
-TODO:
-
 BI_SettingKeyItem_C.WidgetTree.RootWidget
 [0] BtnCon
  [0] BI_Btn
@@ -531,7 +529,7 @@ BI_SettingKeyItem_C.WidgetTree.RootWidget
       [0] ImgBg
       [1] ImgLock
       [2] HorizontalBox_0
-       [0] TxtName
+       [0] TxtName:     "向前移动"  按键功能名称
        [1] ModifiedCon
         [0] ImgModified
        [2] RestartCon
@@ -543,22 +541,29 @@ BI_SettingKeyItem_C.WidgetTree.RootWidget
   [0] ImgKeyConflictBg
   [1] ReplaceCon
    [0] ImgInputBg
-   [1] TxtShuru
+   [1] TxtShuru:        "输入按键"  自定义按键时，占位提示文本
   [2] ImgKeyIcon
-  [3] TxtKeyName
+  [3] TxtKeyName:       "W" 按键名称，但目前固定为 W
 ]]
 GetTextFuncMap["BI_SettingKeyItem_C"] = function(Button, InFocusEvent)
-    -- PrintAllParents(Button)
-    -- local BtnCon = Button.WidgetTree.RootWidget:GetChildAt(0)
-    -- local KeyCon = BtnCon:GetChildAt(1)  -- CPS0
-    -- local ReplaceCon = KeyCon:GetChildAt(1)  -- CPS11
-    -- local TxtShuru = ReplaceCon:GetChildAt(1)  -- CPS1
-    -- local TxtName_txt = TxtShuru:GetText():ToString()
+    local BI_Btn_BtnCon = Button.BI_Btn.WidgetTree.RootWidget:GetChildAt(0)
+    local HorizontalBox_0 = BI_Btn_BtnCon:GetChildAt(2)
+    local TxtName = HorizontalBox_0:GetChildAt(0)
+    local TxtName_txt = TxtName:GetText():ToString()  -- GSScaleText
 
-    -- local TxtKeyName = KeyCon:GetChildAt(3)  -- CPS6
+    local BtnCon = Button.WidgetTree.RootWidget:GetChildAt(0)
+    local KeyCon = BtnCon:GetChildAt(1)
+    local ReplaceCon = KeyCon:GetChildAt(1)
+    -- local TxtShuru = ReplaceCon:GetChildAt(1)
+    -- local TxtShuru_txt = TxtShuru:GetText():ToString()
+    -- local TxtKeyName = KeyCon:GetChildAt(3)
     -- local TxtKeyName_txt = TxtKeyName:GetText():ToString()
-    -- return string.format("%s %s %s", TxtName_txt, "按键配置按钮", TxtKeyName_txt)
-    return "开发中！ 键盘键位配置按钮"
+    -- local ImgKeyIcon = KeyCon:GetChildAt(2)
+    -- local ImgKeyIcon_txt = ImgKeyIcon:GetFullName()
+
+    -- TODO: 读取按键名称
+    local TxtKeyName_txt = "无障碍说明：目前无法获取当前按键名称，读取的值固定为 W"
+    return string.format("%s %s %s", TxtName_txt, "按键配置按钮", TxtKeyName_txt)
 end -- BI_SettingKeyItem_C
 
 
