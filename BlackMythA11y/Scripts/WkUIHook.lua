@@ -15,20 +15,7 @@ local DevNote = "开发中! "
 
 
 -- [[ 辅助函数 ]] -----------------------------------------------------------------
-
--- 打印出所有父级组件
-local function PrintAllParents(CurWidget)
-    if CurWidget == nil or (not CurWidget:IsValid()) then
-        return
-    end
-
-    local FullName = CurWidget:GetFullName()
-    -- local SuperClassName = CurWidget:GetClass():GetFName():ToString()
-    -- local ClassName = CurWidget:GetFName():ToString()
-    print(string.format("\t%s\n", FullName))
-
-    PrintAllParents(CurWidget:GetParent())
-end
+-- WkUtils.PrintAllParents
 
 
 -- [[ Hook 事件处理函数 ]] ----------------------------------------------------------

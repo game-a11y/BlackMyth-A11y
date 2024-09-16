@@ -67,5 +67,18 @@ function WkUtils.PrintUIPage()
         ShowSpecialUI.ChapterID, ShowSpecialUI.MediaId))
 end
 
+-- 打印出所有父级组件
+function WkUtils.PrintAllParents(CurWidget)
+    if CurWidget == nil or (not CurWidget:IsValid()) then
+        return
+    end
+
+    local FullName = CurWidget:GetFullName()
+    -- local SuperClassName = CurWidget:GetClass():GetFName():ToString()
+    -- local ClassName = CurWidget:GetFName():ToString()
+    print(string.format("\t%s\n", FullName))
+
+    WkUtils.PrintAllParents(CurWidget:GetParent())
+end
 
 return WkUtils
