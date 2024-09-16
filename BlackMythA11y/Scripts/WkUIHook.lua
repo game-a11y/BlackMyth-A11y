@@ -13,6 +13,9 @@ local GetTextFuncMap = {}
 -- 开发中标记
 local DevNote = "开发中! "
 
+-- UI 相关的全局变量
+WkUIHook.WkUIGlobals = {}
+
 
 -- [[ 辅助函数 ]] -----------------------------------------------------------------
 -- WkUtils.PrintAllParents
@@ -883,7 +886,9 @@ function WkUIHook.InitUiHooks()
         if not Hook_BUI_Widget_Class[SuperClassName] then
             return
         end
-
+        
+        -- 保存引用
+        WkUIHook.WkUIGlobals[SuperClassName] = ConstructedObject
         print(string.format("BUI_Widget Constructed: %s\n", FullName))
     end)
     RegisterHook("/Script/b1-Managed.BUI_Widget:Destruct", function(Context)
@@ -896,6 +901,8 @@ function WkUIHook.InitUiHooks()
             return
         end
 
+        -- 清除引用
+        WkUIHook.WkUIGlobals[SuperClassName] = nil
         print(string.format("BUI_Widget Destruct: %s\n", FullName))
     end)
 
