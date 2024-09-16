@@ -36,6 +36,27 @@ def find_node_by_outer(bp_in: list, outer_name: str) -> List[dict]:
             outer_list.append(i)
     return outer_list
 
+def SplitUObjectFullName(fullname: str):
+    assert len(fullname) > 0
+    pattern = r"([^']+)\'([^.]+)\.(.+)'"
+    pattern = ''.join([
+        r"([^']+)",  # 对象类型名称
+        r"'",
+            r"([^.]+)",  # 对象包路径
+            r"\.",
+            r"(.+)",  # 对象类名
+        r"'",
+    ])
+    match = re.match(pattern, fullname)
+    if not match:
+        return
+
+    obj_type = match.group(1)  # 对象类型名称
+    obj_path = match.group(2)  # 对象包路径
+    obj_class = match.group(3) # 对象类名
+    return (obj_type, obj_path, obj_class)
+    
+
 def ObjectPath2BpId(objectPath: str) -> int:
     # NOTE: 此处假设在同一个类里
     # "b1/Content/00Main/UI/BluePrintsV3/Btn/BI_FirstStartBtn.2"
@@ -53,12 +74,15 @@ def get_slots(widget: dict) -> List[dict]:
     
     # 根据类型分发
     Type = widget["Type"]
+    
     if Type in {"WidgetTree"}:
         return [widget["Properties"]["RootWidget"]]
     elif Type in {"CanvasPanel", "HorizontalBox", "ScaleBox"}:
         return widget["Properties"]["Slots"]
     elif Type in {"CanvasPanelSlot", "HorizontalBoxSlot", "ScaleBoxSlot"}:
         return [widget["Properties"]["Content"]]
+    else:
+        logger.warning(f"Unknown widget: {Type}")
     return sub_widgets
 
 
@@ -153,34 +177,56 @@ def print_WidgetTree_rec(BP: list, bp_id: int, lv: int, slot_idx: int=None):
 if __name__ == '__main__':
     logger.info("Run as scripts")
 
-    # 输入参数
-    bp_fullpath = "b1/Content/00Main/UI/BluePrintsV3/Btn"
-    bp_name = "BI_FirstStartBtn"
-    bp_name = "BI_StartGame"
-    bp_name = "BI_SettingTab"
+    ## 首次加载 主界面
+    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Setting/Item/BI_SettingKeyItem.BI_SettingKeyItem_C'"
     
-    bp_fullpath = "b1/Content/00Main/UI/BluePrintsV3/StartGame"
-    bp_name = "BI_ArchivesBtnV2"
+    ## 主界面/主菜单
+    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_StartGame.BI_StartGame_C'"
+    # 主界面/主菜单/载入游戏
+    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/StartGame/BI_ArchivesBtnV2.BI_ArchivesBtnV2_C'"
+    # 主界面/主菜单/小曲
+    bp_fullpath = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/AccordionView/BI_AccordionChildBtn_Echo.BI_AccordionChildBtn_Echo_C'"
+    # 主界面/主菜单/设置
+    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_SettingTab.BI_SettingTab_C'"
+    # 主界面/设置: 左右单项选择
+    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Setting/Item/BI_SettingFixedItem.BI_SettingFixedItem_C'"
+    # 主界面/设置: 下拉单项选择
+    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_SettingMenuBtn.BI_SettingMenuBtn_C'"
+    # 主界面/设置: 下拉单选-下拉项
+    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Setting/BI_ModeBtnItem.BI_ModeBtnItem_C'"
+    # 主界面/设置: 水平滑块
+    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_SettingMainBtn.BI_SettingMainBtn_C'"
+    # 主界面/设置: 图标按钮
+    # 主界面/设置: 文本按钮
+    # 主界面/设置: 图标按钮-键盘键位
     
-    bp_fullpath = "b1/Content/00Main/UI/BluePrintsV3/Setting/Item/"
-    bp_name = "BI_SettingKeyItem"
-
+    # 二次确定对话框
+    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_ReconfirmBtn.BI_ReconfirmBtn_C'"
+    
     # -----------------------------------------------------------
+    # 确定文件路径
+    fsplit = SplitUObjectFullName(bp_fullname)
+    if fsplit is None:
+        logger.warning(f"SplitUObjectFullName failed!  bp_fullname={bp_fullname}")
+        exit()
+    obj_type, obj_path, obj_class = fsplit
     b1_base_dir = "../ref/Exports"
-    # bp_json_path = f"../ref/{bp_name}.json"
-    bp_json_path = f"{b1_base_dir}/{bp_fullpath}/{bp_name}.json"
+    bp_json_path = f"{b1_base_dir}/{obj_path}.json"
 
     # --- 开始读取 json
     bp_json = None
+    logger.info(f"Reading json: {obj_path}.json")
     with open(bp_json_path, 'r', encoding='utf-8') as file:
         bp_json = json.load(file)
+    
+    # --- 输出整体信息
     print(f"Total {len(bp_json)} items")
     print(get_all_types(bp_json))
     # print(get_all_classes(bp_json))
     # USE    set(i.get('Class') for i in bp_json)
-    
-    main_class_name = f"{bp_name}_C"
+    main_class_name = obj_class
     print(f"main_class_name: {main_class_name}")
 
+    # --- 
     print_WidgetTree(bp_json)
 
