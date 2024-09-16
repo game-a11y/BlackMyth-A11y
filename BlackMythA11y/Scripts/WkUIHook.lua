@@ -839,22 +839,45 @@ function WkUIHook.InitUiHooks()
     ---@param Context UBUI_Button
     ---@param MyGeometry FGeometry
     ---@param InAnalogInputEvent FAnalogInputEvent
-    RegisterHook("/Script/b1-Managed.BUI_Button:OnAnalogValueChanged", function(Context, MyGeometry, InAnalogInputEvent)
-        local Button = Context:get()
-        local AnalogInputEvent = InAnalogInputEvent:get()
-        local FullName = Button:GetFullName()
-        local SuperClassName = Button:GetClass():GetFName():ToString()
-        local ClassName = Button:GetFName():ToString()
+    -- RegisterHook("/Script/b1-Managed.BUI_Button:OnAnalogValueChanged", function(Context, MyGeometry, InAnalogInputEvent)
+    --     local Button = Context:get()
+    --     local AnalogInputEvent = InAnalogInputEvent:get()
+    --     local FullName = Button:GetFullName()
+    --     local SuperClassName = Button:GetClass():GetFName():ToString()
+    --     local ClassName = Button:GetFName():ToString()
         
-        if not string.find(ClassName, "Slider") then
-            return
-        end
+    --     if not string.find(ClassName, "Slider") then
+    --         return
+    --     end
 
-        print(string.format("OnAnalogValueChanged(%s): %s <: %s\n\t%s\n",
-            AnalogInputEvent:GetFName():ToString(),
-            ClassName, SuperClassName, FullName))
-    end)
+    --     print(string.format("OnAnalogValueChanged(%s): %s <: %s\n\t%s\n",
+    --         AnalogInputEvent:GetFName():ToString(),
+    --         ClassName, SuperClassName, FullName))
+    -- end)
 
+    -- hook 按键抬起输入
+    -- TODO: 目前不能按 InKeyEvent 筛选事件
+    -- RegisterHook("/Script/b1-Managed.BUI_Button:OnKeyUp", function(Context, MyGeometry, InKeyEvent)
+    --     local Button = Context:get()
+    --     local AnalogInputEvent = InKeyEvent:get()
+    --     local FullName = Button:GetFullName()
+    --     local SuperClassName = Button:GetClass():GetFName():ToString()
+    --     local ClassName = Button:GetFName():ToString()
+        
+    --     local log_class = {}
+    --     log_class["BI_SettingFixedItem_C"] = 1
+    --     log_class["BI_SettingSliderItem_C"] = 1
+    --     if not log_class[SuperClassName] then
+    --         return
+    --     end
+
+    --     print(string.format("OnKeyUp(%s): %s <: %s\n\t%s\n",
+    --         AnalogInputEvent:GetFName():ToString(),
+    --         ClassName, SuperClassName, FullName))
+    --     print(string.format("InKeyEvent(%s): %s\n",
+    --     InKeyEvent, AnalogInputEvent:GetFullName()))
+    -- end)
+    
     -- 返回的是上一步的对象
     -- RegisterHook("/Script/b1-Managed.BUI_Button:OnCustomWidgetNavigation", function(Context, Navigation)
 
