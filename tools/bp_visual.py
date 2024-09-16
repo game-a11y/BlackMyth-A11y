@@ -37,6 +37,8 @@ def find_node_by_outer(bp_in: list, outer_name: str) -> List[dict]:
     return outer_list
 
 def ObjectPath2BpId(objectPath: str) -> int:
+    # NOTE: 此处假设在同一个类里
+    # "b1/Content/00Main/UI/BluePrintsV3/Btn/BI_FirstStartBtn.2"
     match = re.search(r'\.(\d+)$', objectPath)
     if match:
         num_str = match.group(1)
@@ -60,25 +62,53 @@ def get_slots(widget: dict) -> List[dict]:
     return sub_widgets
 
 
-def print_WidgetTree(BP: list, class_name: str="WidgetTree"):
+def get_WidgetTree(BP: list) -> dict:
+    """获取 WidgetTree"""
+    assert BP is not None and len(BP) > 0
+    
+    def is_WidgetTree(widget: dict) -> bool:
+        "判断是否为 WidgetTree"
+        if WidgetTree is None:
+            return False
+        if "WidgetTree" != WidgetTree["Type"]:
+            return False
+        if "UScriptClass'WidgetTree'" != WidgetTree["Class"]:
+            return False
+    
+        return True
+    
+    # 一般在最后一个
+    WidgetTree = BP[-1]
+    if is_WidgetTree(WidgetTree):
+        return WidgetTree
+    
+    # 按名字查找
+    WidgetTree = find_node_by_name(BP, "WidgetTree")
+    if is_WidgetTree(WidgetTree):
+        return WidgetTree
+    
+    return None
+
+def print_WidgetTree(BP: list):
     """深度优先打印 UI WidgetTree。
     会打印出中间的 Slot 容器
     """
     assert BP is not None and len(BP) > 0
-    assert class_name is not None and len(class_name) > 0
 
-    print("--- Class WidgetTree Start ---")
-    TopClass = find_node_by_name(BP, class_name)
-    if TopClass is None:
-        logger.warn("TopClass is None.  ret")
+    # 查找 WidgetTree
+    WidgetTree = get_WidgetTree(BP)
+    if WidgetTree is None:
+        logger.warn("Cannot find WidgetTree.  Skip Print")
         return
 
+    print("--- Class WidgetTree Start ---")
     # 打印顶层类
-    print(TopClass.get("Outer"))
-    print(TopClass.get("Name"))
+    OuterClass = WidgetTree.get("Outer")
+    print(f"{OuterClass}.WidgetTree")
     # -----------------------------------------------------
     
-    RootWidget = TopClass["Properties"]["RootWidget"]
+    # 开始递归打印子组件
+    RootWidget = WidgetTree["Properties"]["RootWidget"]
     ObjectPath = RootWidget["ObjectPath"]
     bp_id = ObjectPath2BpId(ObjectPath)
     print_WidgetTree_rec(BP, bp_id, 1)
