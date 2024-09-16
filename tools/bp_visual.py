@@ -146,15 +146,15 @@ def print_WidgetTree(BP: list):
     RootWidget = WidgetTree["Properties"]["RootWidget"]
     ObjectPath = RootWidget["ObjectPath"]
     bp_id = ObjectPath2BpId(ObjectPath)
-    print_WidgetTree_rec(BP, bp_id, 1)
+    print_WidgetTree_rec(BP, bp_id)
     
     # -----------------------------------------------------
     print("--- Class WidgetTree END ---")
 
-def print_WidgetTree_rec(BP: list, bp_id: int, lv: int, slot_idx: int=None):
+def print_WidgetTree_rec(BP: list, bp_id: int, lv: int=0, slot_idx: int=None):
     """递归 辅助打印函数"""
     assert BP is not None and len(BP) > 0
-    assert lv > 0
+    assert lv >= 0
 
     if bp_id and bp_id <= 0:
         logger.warning(f"[lv{lv}] bad bp_id={bp_id};  递归中止 ret")
