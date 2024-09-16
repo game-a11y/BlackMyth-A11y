@@ -706,6 +706,31 @@ GetTextFuncMap["BI_AbilityIcon_GP_Advance_C"] = function(Button, InFocusEvent)
     return TxtName_txt
 end
 
+-- 游戏中:背包:技能:根基
+--[[
+BI_SpellPanelTitle_Btn_C.WidgetTree.RootWidget
+[0] BgRoot
+ [0] ImgBg
+[1] BtnCon
+ [0] ResizeSelectRipple
+  [0] UIFX_SelectRipple
+ [1] ResizeBtn
+  [0] ImgBtn
+ [2] SizeBoxName
+  [0] TxtName
+ [3] ImgBar
+ [4] ImgDot
+ [5] FocusWidget
+]]
+GetTextFuncMap["BI_SpellPanelTitle_Btn_C"] = function(Button, InFocusEvent)
+    local BtnCon = Button.WidgetTree.RootWidget:GetChildAt(1)
+    local SizeBoxName = BtnCon:GetChildAt(2)
+    local TxtName = SizeBoxName:GetChildAt(0)
+    local TxtName_txt = TxtName:GetText():ToString()
+    local TabName = "根基 "
+    return TabName..TxtName_txt
+end
+
 -- 游戏中:背包
 --
 GetTextFuncMap["BI_EquipItem_Slot_C"] = function(Button, InFocusEvent)

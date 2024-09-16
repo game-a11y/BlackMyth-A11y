@@ -297,6 +297,8 @@ if __name__ == '__main__':
     ## 游戏中:背包:技能
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/LearnSpell/Btn/BI_AbilityIcon_GP_Basic.BI_AbilityIcon_GP_Basic_C'"
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/LearnSpell/Btn/BI_AbilityIcon_GP_Advance.BI_AbilityIcon_GP_Advance_C'"
+    # 游戏中:背包:技能:根基
+    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/LearnSpell/Btn/BI_SpellPanelTitle_Btn.BI_SpellPanelTitle_Btn_C'"
     # 游戏中:背包
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Remake_CE04/Remake_Item/BI_EquipItem_Slot.BI_EquipItem_Slot_C'"
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Remake_CE04/Remake_Item/BI_GearItem_Slot.BI_GearItem_Slot_C'"
