@@ -566,6 +566,50 @@ GetTextFuncMap["BI_SettingKeyItem_C"] = function(Button, InFocusEvent)
     return string.format("%s %s %s", TxtName_txt, "按键配置按钮", TxtKeyName_txt)
 end -- BI_SettingKeyItem_C
 
+-- 主界面/设置: 亮度调整
+--[[
+BUI_BrightnessSetting_C.WidgetTree.RootWidget
+RootCon
+[0] BI_BlackBG
+  Default__BI_BlackBG_C
+   WidgetTree
+    Root
+    [0] BlurBg
+    [1] BlackBg
+[1] Image_87
+[2] CanvasPanel_96
+ [0] ImgPreview
+[3] CanvasPanel_0
+ [0] BI_Slider
+   Default__BI_SettingSliderL_C
+ [1] TxtBriInc
+ [2] TxtBriDec
+ [3] TextBlock_168
+[4] CanvasPanel
+ [0] BI_InputRoot
+   Default__BI_InputRoot_C
+
+BI_SettingSliderL_C.WidgetTree.RootWidget
+RootCon
+[0] BtnCon
+ [0] HorizontalBox_0
+  [0] SizeBox_0
+   [0] TxtMinNum
+  [1] SliderBar
+   [0] ImgSliderBar
+   [1] ImgSliderProg
+   [2] SliderBarClickArea
+   [3] SliderBtn
+    [0] SliderImg
+    [1] ImgArrowLeft
+    [2] ImgArrowRight
+    [3] TxtNum
+    [4] SliderBtnClickArea
+  [2] SizeBox_1
+   [0] TxtMaxNum
+]]
+-- TODO: 此处没有控制器焦点控件
+
 
 -- 二次确定对话框
 --[[
@@ -788,6 +832,26 @@ function WkUIHook.InitUiHooks()
         local SuperClassName = Button:GetClass():GetFName():ToString()
         local ClassName = Button:GetFName():ToString()
         print(string.format("OnMouseButtonDown: %s <: %s\n\t%s\n",
+            ClassName, SuperClassName, FullName))
+    end)
+
+    -- hook 模拟输入
+    ---@param Context UBUI_Button
+    ---@param MyGeometry FGeometry
+    ---@param InAnalogInputEvent FAnalogInputEvent
+    RegisterHook("/Script/b1-Managed.BUI_Button:OnAnalogValueChanged", function(Context, MyGeometry, InAnalogInputEvent)
+        local Button = Context:get()
+        local AnalogInputEvent = InAnalogInputEvent:get()
+        local FullName = Button:GetFullName()
+        local SuperClassName = Button:GetClass():GetFName():ToString()
+        local ClassName = Button:GetFName():ToString()
+        
+        if not string.find(ClassName, "Slider") then
+            return
+        end
+
+        print(string.format("OnAnalogValueChanged(%s): %s <: %s\n\t%s\n",
+            AnalogInputEvent:GetFName():ToString(),
             ClassName, SuperClassName, FullName))
     end)
 
