@@ -4,6 +4,9 @@
 """
 from typing import List
 import json
+import re
+# 3rd
+from loguru import logger
 
 
 def get_attr_set(bp_in: list, attr_name: str) -> set:
@@ -33,65 +36,101 @@ def find_node_by_outer(bp_in: list, outer_name: str) -> List[dict]:
             outer_list.append(i)
     return outer_list
 
+def ObjectPath2BpId(objectPath: str) -> int:
+    match = re.search(r'\.(\d+)$', objectPath)
+    if match:
+        num_str = match.group(1)
+        return int(num_str)
+    
+    # Bad
+    return -1
 
-allowed_subclass_type = {
-# UI class
- "UScriptClass'WidgetTree'",
- "UScriptClass'CanvasPanel'",
- "UScriptClass'CanvasPanelSlot'",
- "UScriptClass'HorizontalBox'",
- "UScriptClass'HorizontalBoxSlot'",
- # "UScriptClass'Function'",
- 
-# Text
- "UScriptClass'TextBlock'",
- "UScriptClass'GSFocusWidget'",
- "UScriptClass'GSScaleText'",
+def get_slots(widget: dict) -> List[dict]:
+    """获取所有子组件"""
+    sub_widgets = []
+    
+    # 根据类型分发
+    Type = widget["Type"]
+    if Type in {"WidgetTree"}:
+        return [widget["Properties"]["RootWidget"]]
+    elif Type in {"CanvasPanel", "HorizontalBox", "ScaleBox"}:
+        return widget["Properties"]["Slots"]
+    elif Type in {"CanvasPanelSlot", "HorizontalBoxSlot", "ScaleBoxSlot"}:
+        return [widget["Properties"]["Content"]]
+    return sub_widgets
 
-# ignore
-  # "UScriptClass'Image'",
-  # "USharpClass'GSImage'",
-  # "UScriptClass'MovieScene'",
-  # "UScriptClass'MovieScene**'",
-  # "UScriptClass'WidgetAnimation'",
 
- "UScriptClass'WidgetBlueprintGeneratedClass'",
-}
-def print_class_tree(bp_in: list, class_name: str, lv: int = 0):
-    """深度优先打印 UI 树"""
-    if bp_in is None or class_name is None or lv < 0:
+def print_WidgetTree(BP: list, class_name: str="WidgetTree"):
+    """深度优先打印 UI WidgetTree。
+    会打印出中间的 Slot 容器
+    """
+    assert BP is not None and len(BP) > 0
+    assert class_name is not None and len(class_name) > 0
+
+    print("--- Class WidgetTree Start ---")
+    TopClass = find_node_by_name(BP, class_name)
+    if TopClass is None:
+        logger.warn("TopClass is None.  ret")
         return
-    b_on_top = 0 == lv
-    if b_on_top:
-        print("--- Class Tree Start ---")
 
-    indent = ' ' * lv
-    print(f"{indent}{class_name}")
-    outer_list = find_node_by_outer(bp_in, class_name)
-    if len(outer_list) == 0:
+    # 打印顶层类
+    print(TopClass.get("Outer"))
+    print(TopClass.get("Name"))
+    # -----------------------------------------------------
+    
+    RootWidget = TopClass["Properties"]["RootWidget"]
+    ObjectPath = RootWidget["ObjectPath"]
+    bp_id = ObjectPath2BpId(ObjectPath)
+    print_WidgetTree_rec(BP, bp_id, 1)
+    
+    # -----------------------------------------------------
+    print("--- Class WidgetTree END ---")
+
+def print_WidgetTree_rec(BP: list, bp_id: int, lv: int, slot_idx: int=None):
+    """递归 辅助打印函数"""
+    assert BP is not None and len(BP) > 0
+    assert lv > 0
+
+    if bp_id and bp_id <= 0:
+        logger.warning(f"[lv{lv}] bad bp_id={bp_id};  递归中止 ret")
         return
     
-    for SubClass in outer_list:
-        subclass_type = SubClass.get('Class')
-        if subclass_type not in allowed_subclass_type:
-            continue
+    # 当前组件
+    cur_class = BP[bp_id]
+    class_name = cur_class["Name"]
+    Type = cur_class["Type"]
+    if Type.endswith("Slot"):  # 打印容器 index
+        indent = ' ' * (lv-1)
+        print(f"{indent}[{slot_idx}] {class_name}")
+    else:
+        indent = ' ' * lv
+        print(f"{indent}{class_name}")
 
-        sub_class_name = SubClass.get('Name')
-        print_class_tree(bp_in, sub_class_name, lv+1)
+    # --- 获取子组件
+    slots = get_slots(cur_class)
+    if slots is None or 0 == len(slots):
+        # logger.debug(f"[lv{lv}] slots is None;  ret")
+        return
+    
+    for index, slot in enumerate(slots):
+        ObjectName = slot["ObjectName"]
+        ObjectPath = slot["ObjectPath"]
 
-    if b_on_top:
-        print("--- Class Tree END ---")
+        rec_bp_id = ObjectPath2BpId(ObjectPath)
+        print_WidgetTree_rec(BP, rec_bp_id, lv+1, slot_idx=index)
 
 
 if __name__ == '__main__':
+    logger.info("Run as scripts")
+
     # 输入参数
     bp_fullpath = "b1/Content/00Main/UI/BluePrintsV3/Btn"
     bp_name = "BI_FirstStartBtn"
     bp_name = "BI_StartGame"
     bp_name = "BI_SettingTab"
     
-    # bp_fullpath = "b1/Content/00Main/UI/BluePrintsV3/StartGame"
-    # bp_name = "BI_ArchivesBtnV2"
+    bp_fullpath = "b1/Content/00Main/UI/BluePrintsV3/StartGame"
+    bp_name = "BI_ArchivesBtnV2"
     
     bp_fullpath = "b1/Content/00Main/UI/BluePrintsV3/Setting/Item/"
     bp_name = "BI_SettingKeyItem"
@@ -113,4 +152,5 @@ if __name__ == '__main__':
     main_class_name = f"{bp_name}_C"
     print(f"main_class_name: {main_class_name}")
 
-    print_class_tree(bp_json, main_class_name)
+    print_WidgetTree(bp_json)
+
