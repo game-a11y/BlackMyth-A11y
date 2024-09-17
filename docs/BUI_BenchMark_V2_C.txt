@@ -1,0 +1,313 @@
+--- Class WidgetTree Start ---
+BUI_BenchMark_V2_C.WidgetTree.RootWidget
+CanvasPanel_20
+[0] Canvas_full
+ [0] ImgBg
+ [1] BlurBg
+ [2] Cht_Final
+ [3] BlackMask_Cht
+ [4] ImgLogo
+ [5] ResultsCon
+  [0] TitleResults
+   [0] ImgTitle_Results
+   [1] VerticalBox_161
+    [0] TxtTitle_Results
+    [1] Txt_timeStamp
+  [1] ListResults
+   [0] ResultsCore
+    [0] ImgBarCore
+    [1] VerticalBox
+     [0] TxtTitle_AFR
+     [1] HorizontalBox_11
+      [0] Txt_FPSAbs
+      [1] TxtUnit_5
+   [1] ResultsSub_a
+    [0] ImgBarSub_a
+    [1] HorizontalBox_108
+     [0] VerticalBox_8
+      [0] TxtTitle_MaxFR
+      [1] HorizontalBox_3
+       [0] Txt_FPSMax
+       [1] TxtUnit
+     [1] VerticalBox_9
+      [0] TxtTitle_MinFR
+      [1] HorizontalBox_12
+       [0] Txt_FPSMin
+       [1] TxtUnit_1
+   [2] ResultsSub_b
+    [0] ImgBarSub_b
+    [1] VerticalBox_10
+     [0] TxtTitle_95
+     [1] HorizontalBox_14
+      [0] Txt_FPS95
+      [1] TxtUnit_2
+   [3] ResultsSub_c
+    [0] ImgBarSub_c
+    [1] HorizontalBox_13
+     [0] VerticalBox_11
+      [0] TxtTitle_ACL
+      [1] HorizontalBox_15
+       [0] Txt_CPUAbs
+       [1] TxtUnit_3
+     [1] VerticalBox_12
+      [0] TxtTitle_AGL
+      [1] HorizontalBox_16
+       [0] Txt_GPUAbs
+       [1] TxtUnit_4
+   [4] ResultsSub_d
+    [0] ImgBarSub_d
+    [1] VerticalBox_13
+     [0] TxtTitle_VRAM
+     [1] HorizontalBox_17
+      [0] Txt_VideoMem
+      [1] TxtUnit_6
+ [6] SettingCon
+  [0] TitleSetting
+   [0] ImgTitle_Setting
+   [1] VerticalBox_1
+    [0] TxtTitle_Setting
+  [1] VB_SystemInfo
+   [0] BI_BenchMarkSystemInfo_0
+     Default__BI_BenchMarkSystemInfo_C
+      WidgetTree
+       Root
+       [0] BarCon
+        [0] ImgBar
+        [1] Txt_Title
+        [2] Txt_Content
+   [1] BI_BenchMarkSystemInfo_1
+     Default__BI_BenchMarkSystemInfo_C
+      WidgetTree
+       Root
+       [0] BarCon
+        [0] ImgBar
+        [1] Txt_Title
+        [2] Txt_Content
+   [2] BI_BenchMarkSystemInfo_2
+     Default__BI_BenchMarkSystemInfo_C
+      WidgetTree
+       Root
+       [0] BarCon
+        [0] ImgBar
+        [1] Txt_Title
+        [2] Txt_Content
+   [3] BI_BenchMarkSystemInfo_3
+     Default__BI_BenchMarkSystemInfo_C
+      WidgetTree
+       Root
+       [0] BarCon
+        [0] ImgBar
+        [1] Txt_Title
+        [2] Txt_Content
+   [4] BI_BenchMarkSystemInfo_4
+     Default__BI_BenchMarkSystemInfo_C
+      WidgetTree
+       Root
+       [0] BarCon
+        [0] ImgBar
+        [1] Txt_Title
+        [2] Txt_Content
+   [5] BI_BenchMarkSystemInfo_5
+     Default__BI_BenchMarkSystemInfo_C
+      WidgetTree
+       Root
+       [0] BarCon
+        [0] ImgBar
+        [1] Txt_Title
+        [2] Txt_Content
+   [6] BI_BenchMarkSystemInfo_6
+     Default__BI_BenchMarkSystemInfo_C
+      WidgetTree
+       Root
+       [0] BarCon
+        [0] ImgBar
+        [1] Txt_Title
+        [2] Txt_Content
+ [7] InfoCon
+  [0] TitleInfo
+   [0] ImgTitle_Info
+   [1] VerticalBox_2
+    [0] TxtTitle_Info
+  [1] VB_GraphicInfo
+   [0] BI_BenchMarkGraphicInfo_0
+     Default__BI_BenchMarkGraphicInfo_C
+      WidgetTree
+       Root
+       [0] BarCon
+        [0] ImgBar
+        [1] Txt_Title
+        [2] Txt_Content
+   [1] BI_BenchMarkGraphicInfo_1
+     Default__BI_BenchMarkGraphicInfo_C
+      WidgetTree
+       Root
+       [0] BarCon
+        [0] ImgBar
+        [1] Txt_Title
+        [2] Txt_Content
+   [2] BI_BenchMarkGraphicInfo_2
+     Default__BI_BenchMarkGraphicInfo_C
+      WidgetTree
+       Root
+       [0] BarCon
+        [0] ImgBar
+        [1] Txt_Title
+        [2] Txt_Content
+   [3] BI_BenchMarkGraphicInfo_3
+     Default__BI_BenchMarkGraphicInfo_C
+      WidgetTree
+       Root
+       [0] BarCon
+        [0] ImgBar
+        [1] Txt_Title
+        [2] Txt_Content
+   [4] BI_BenchMarkGraphicInfo_4
+     Default__BI_BenchMarkGraphicInfo_C
+      WidgetTree
+       Root
+       [0] BarCon
+        [0] ImgBar
+        [1] Txt_Title
+        [2] Txt_Content
+   [5] BI_BenchMarkGraphicInfo_5
+     Default__BI_BenchMarkGraphicInfo_C
+      WidgetTree
+       Root
+       [0] BarCon
+        [0] ImgBar
+        [1] Txt_Title
+        [2] Txt_Content
+   [6] BI_BenchMarkGraphicInfo_6
+     Default__BI_BenchMarkGraphicInfo_C
+      WidgetTree
+       Root
+       [0] BarCon
+        [0] ImgBar
+        [1] Txt_Title
+        [2] Txt_Content
+   [7] BI_BenchMarkGraphicInfo_7
+     Default__BI_BenchMarkGraphicInfo_C
+      WidgetTree
+       Root
+       [0] BarCon
+        [0] ImgBar
+        [1] Txt_Title
+        [2] Txt_Content
+   [8] BI_BenchMarkGraphicInfo_8
+     Default__BI_BenchMarkGraphicInfo_C
+      WidgetTree
+       Root
+       [0] BarCon
+        [0] ImgBar
+        [1] Txt_Title
+        [2] Txt_Content
+   [9] BI_BenchMarkGraphicInfo_9
+     Default__BI_BenchMarkGraphicInfo_C
+      WidgetTree
+       Root
+       [0] BarCon
+        [0] ImgBar
+        [1] Txt_Title
+        [2] Txt_Content
+   [10] BI_BenchMarkGraphicInfo_10
+     Default__BI_BenchMarkGraphicInfo_C
+      WidgetTree
+       Root
+       [0] BarCon
+        [0] ImgBar
+        [1] Txt_Title
+        [2] Txt_Content
+   [11] BI_BenchMarkGraphicInfo_11
+     Default__BI_BenchMarkGraphicInfo_C
+      WidgetTree
+       Root
+       [0] BarCon
+        [0] ImgBar
+        [1] Txt_Title
+        [2] Txt_Content
+   [12] BI_BenchMarkGraphicInfo_12
+     Default__BI_BenchMarkGraphicInfo_C
+      WidgetTree
+       Root
+       [0] BarCon
+        [0] ImgBar
+        [1] Txt_Title
+        [2] Txt_Content
+   [13] BI_BenchMarkGraphicInfo_13
+     Default__BI_BenchMarkGraphicInfo_C
+      WidgetTree
+       Root
+       [0] BarCon
+        [0] ImgBar
+        [1] Txt_Title
+        [2] Txt_Content
+   [14] BI_BenchMarkGraphicInfo_14
+     Default__BI_BenchMarkGraphicInfo_C
+      WidgetTree
+       Root
+       [0] BarCon
+        [0] ImgBar
+        [1] Txt_Title
+        [2] Txt_Content
+   [15] BI_BenchMarkGraphicInfo_15
+     Default__BI_BenchMarkGraphicInfo_C
+      WidgetTree
+       Root
+       [0] BarCon
+        [0] ImgBar
+        [1] Txt_Title
+        [2] Txt_Content
+ [8] GPULowTips
+  [0] ImgTipsBar
+  [1] Marker
+  [2] Txt_GPULowTips
+[1] Canvas_corner
+ [0] ImgMaskCorner
+ [1] VB_corner
+  [0] CanvasPanel_10
+   [0] TxtDesc_22
+   [1] HorizontalBox_1
+    [0] Txt_FrameRate
+    [1] TxtDesc_6
+    [2] CanvasPanel_234
+  [1] CanvasPanel_8
+   [0] TxtDesc
+   [1] HorizontalBox_2
+    [0] Txt_CPUUsage
+    [1] TxtDesc_2
+    [2] CanvasPanel_6
+  [2] CanvasPanel_9
+   [0] TxtDesc_3
+   [1] HorizontalBox
+    [0] Txt_GPUUsage
+    [1] TxtDesc_4
+    [2] CanvasPanel_113
+[2] InputRoot
+ [0] BI_InputRoot
+   Default__BI_InputRoot_C
+[3] BlackMask_Full
+[4] Canvas_History
+ [0] BlurMask
+ [1] ImgMainBg
+ [2] TitleCon
+  [0] TxtNpcName
+  [1] SizeBox_95
+   [0] ImgTitleLine
+ [3] ListMask
+ [4] IA_Back
+  [0] ResizeCon
+   [0] InputIcon
+  [1] TxtDesc_23
+[5] _Pass
+ [0] CanvasPanel_7
+  [0] TxtDesc_14
+ [1] Btn_Share
+   Default__BI_BenchMarkShareBtn_C
+    WidgetTree
+     Root
+     [0] BtnCon
+      [0] ImgBtnBg
+      [1] ResizeName
+       [0] TxtName
+      [2] FocusWidget
+--- Class BUI_BenchMark_V2_C.WidgetTree.RootWidget END ---

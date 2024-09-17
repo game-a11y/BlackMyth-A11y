@@ -1,0 +1,127 @@
+[07:14:55.6051446] [Lua] TextBlock /.BUI_BenchMark_V2_C_2147477808.WidgetTree.Txt_GPUUsage
+[07:14:55.6465467] [Lua] "显示模式"
+[07:14:55.6601210] [Lua] GSScaleText /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkGraphicInfo_0.WidgetTree.Txt_Title
+[07:14:55.6743866] [Lua] "窗口模式"
+[07:14:55.6756675] [Lua] TextBlock /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkGraphicInfo_0.WidgetTree.Txt_Content
+[07:14:55.6891134] [Lua] "显示分辨率"
+[07:14:55.6897550] [Lua] GSScaleText /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkGraphicInfo_1.WidgetTree.Txt_Title
+[07:14:55.6900900] [Lua] "2048 × 1152"
+[07:14:55.6907945] [Lua] TextBlock /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkGraphicInfo_1.WidgetTree.Txt_Content
+[07:14:55.6913892] [Lua] "画质等级"
+[07:14:55.6924703] [Lua] GSScaleText /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkGraphicInfo_2.WidgetTree.Txt_Title
+[07:14:55.6926807] [Lua] "低"
+[07:14:55.6939278] [Lua] TextBlock /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkGraphicInfo_2.WidgetTree.Txt_Content
+[07:14:55.6943575] [Lua] "超采样清晰度"
+[07:14:55.7096413] [Lua] GSScaleText /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkGraphicInfo_3.WidgetTree.Txt_Title
+[07:14:55.7099896] [Lua] "60"
+[07:14:55.7106218] [Lua] TextBlock /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkGraphicInfo_3.WidgetTree.Txt_Content
+[07:14:55.7113346] [Lua] "视野距离"
+[07:14:55.7120786] [Lua] GSScaleText /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkGraphicInfo_4.WidgetTree.Txt_Title
+[07:14:55.7134910] [Lua] "低"
+[07:14:55.7141546] [Lua] TextBlock /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkGraphicInfo_4.WidgetTree.Txt_Content
+[07:14:55.7146563] [Lua] "抗锯齿"
+[07:14:55.7153110] [Lua] GSScaleText /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkGraphicInfo_5.WidgetTree.Txt_Title
+[07:14:55.7286258] [Lua] "低"
+[07:14:55.7449120] [Lua] TextBlock /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkGraphicInfo_5.WidgetTree.Txt_Content
+[07:14:55.7578191] [Lua] "后期处理"
+[07:14:55.7587649] [Lua] GSScaleText /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkGraphicInfo_6.WidgetTree.Txt_Title
+[07:14:55.7721064] [Lua] "低"
+[07:14:55.7733618] [Lua] TextBlock /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkGraphicInfo_6.WidgetTree.Txt_Content
+[07:14:55.7741097] [Lua] "阴影质量"
+[07:14:55.7756307] [Lua] GSScaleText /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkGraphicInfo_7.WidgetTree.Txt_Title
+[07:14:55.7758890] [Lua] "低"
+[07:14:55.7767263] [Lua] TextBlock /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkGraphicInfo_7.WidgetTree.Txt_Content
+[07:14:55.7916528] [Lua] "贴图质量"
+[07:14:55.7920931] [Lua] GSScaleText /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkGraphicInfo_8.WidgetTree.Txt_Title
+[07:14:55.7923353] [Lua] "低"
+[07:14:55.7932741] [Lua] TextBlock /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkGraphicInfo_8.WidgetTree.Txt_Content
+[07:14:55.8079717] [Lua] "毛发质量"
+[07:14:55.8093948] [Lua] GSScaleText /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkGraphicInfo_9.WidgetTree.Txt_Title
+[07:14:55.8099801] [Lua] "低"
+[07:14:55.8254684] [Lua] TextBlock /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkGraphicInfo_9.WidgetTree.Txt_Content
+[07:14:55.8262403] [Lua] "植被质量"
+[07:14:55.8270900] [Lua] GSScaleText /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkGraphicInfo_10.WidgetTree.Txt_Title
+[07:14:55.8408668] [Lua] "低"
+[07:14:55.8418540] [Lua] TextBlock /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkGraphicInfo_10.WidgetTree.Txt_Content
+[07:14:55.8424526] [Lua] "动态模糊"
+[07:14:55.8431926] [Lua] GSScaleText /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkGraphicInfo_11.WidgetTree.Txt_Title
+[07:14:55.8434451] [Lua] "关闭"
+[07:14:55.8442188] [Lua] TextBlock /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkGraphicInfo_11.WidgetTree.Txt_Content
+[07:14:55.8447985] [Lua] "全景光线追踪"
+[07:14:55.8455625] [Lua] GSScaleText /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkGraphicInfo_12.WidgetTree.Txt_Title
+[07:14:55.8458656] [Lua] "关闭"
+[07:14:55.8464909] [Lua] TextBlock /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkGraphicInfo_12.WidgetTree.Txt_Content
+[07:14:55.8469632] [Lua] "超分辨率采样"
+[07:14:55.8475359] [Lua] GSScaleText /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkGraphicInfo_13.WidgetTree.Txt_Title
+[07:14:55.8477468] [Lua] "DLSS"
+[07:14:55.8484626] [Lua] TextBlock /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkGraphicInfo_13.WidgetTree.Txt_Content
+[07:14:55.8489223] [Lua] "帧生成"
+[07:14:55.8638558] [Lua] GSScaleText /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkGraphicInfo_14.WidgetTree.Txt_Title
+[07:14:55.8641415] [Lua] "关闭"
+[07:14:55.8647338] [Lua] TextBlock /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkGraphicInfo_14.WidgetTree.Txt_Content
+[07:14:55.8653742] [Lua] "DX12"
+[07:14:55.8660272] [Lua] GSScaleText /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkGraphicInfo_15.WidgetTree.Txt_Title
+[07:14:55.8663347] [Lua] "开启"
+[07:14:55.8668557] [Lua] TextBlock /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkGraphicInfo_15.WidgetTree.Txt_Content
+[07:14:55.8691113] [Lua] "游戏版本"
+[07:14:55.8848941] [Lua] GSScaleText /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkSystemInfo_0.WidgetTree.Txt_Title
+[07:14:55.8993901] [Lua] "1.0.3.14649"
+[07:14:55.8999086] [Lua] TextBlock /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkSystemInfo_0.WidgetTree.Txt_Content
+[07:14:55.9158655] [Lua] "系统版本"
+[07:14:55.9302041] [Lua] GSScaleText /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkSystemInfo_1.WidgetTree.Txt_Title
+[07:14:55.9305529] [Lua] "10.0.22631.1.256.64bit"
+[07:14:55.9471004] [Lua] TextBlock /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkSystemInfo_1.WidgetTree.Txt_Content
+[07:14:55.9610561] [Lua] "中央处理器"
+[07:14:55.9762276] [Lua] GSScaleText /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkSystemInfo_2.WidgetTree.Txt_Title
+[07:14:55.9765322] [Lua] "13th Gen Intel(R) Core(TM) i9-13900HX"
+[07:14:55.9769271] [Lua] TextBlock /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkSystemInfo_2.WidgetTree.Txt_Content
+[07:14:55.9775729] [Lua] "显卡型号"
+[07:14:55.9784534] [Lua] GSScaleText /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkSystemInfo_3.WidgetTree.Txt_Title
+[07:14:55.9787273] [Lua] "NVIDIA GeForce RTX 4060 Laptop GPU"
+[07:14:55.9792984] [Lua] TextBlock /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkSystemInfo_3.WidgetTree.Txt_Content
+[07:14:55.9797112] [Lua] "显卡驱动"
+[07:14:55.9806658] [Lua] GSScaleText /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkSystemInfo_4.WidgetTree.Txt_Title
+[07:14:55.9948840] [Lua] "31.0.101.5187"
+[07:14:55.9953506] [Lua] TextBlock /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkSystemInfo_4.WidgetTree.Txt_Content
+[07:14:56.0097699] [Lua] "显卡内存"
+[07:14:56.0232378] [Lua] GSScaleText /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkSystemInfo_5.WidgetTree.Txt_Title
+[07:14:56.0234975] [Lua] "8GB"
+[07:14:56.0239518] [Lua] TextBlock /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkSystemInfo_5.WidgetTree.Txt_Content
+[07:14:56.0247035] [Lua] "系统内存"
+[07:14:56.0253808] [Lua] GSScaleText /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkSystemInfo_6.WidgetTree.Txt_Title
+[07:14:56.0394240] [Lua] "32GB"
+[07:14:56.0404567] [Lua] TextBlock /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_BenchMarkSystemInfo_6.WidgetTree.Txt_Content
+[07:14:56.0409705] [Lua] "51"
+[07:14:56.0417177] [Lua] TextBlock /.BUI_BenchMark_V2_C_2147477808.WidgetTree.Txt_FPSAbs
+[07:14:56.0564387] [Lua] "101"
+[07:14:56.0570792] [Lua] TextBlock /.BUI_BenchMark_V2_C_2147477808.WidgetTree.Txt_FPSMax
+[07:14:56.0575881] [Lua] "11"
+[07:14:56.0580359] [Lua] TextBlock /.BUI_BenchMark_V2_C_2147477808.WidgetTree.Txt_FPSMin
+[07:14:56.0585836] [Lua] "31"
+[07:14:56.0594318] [Lua] TextBlock /.BUI_BenchMark_V2_C_2147477808.WidgetTree.Txt_FPS95
+[07:14:56.0737052] [Lua] "33"
+[07:14:56.0744947] [Lua] TextBlock /.BUI_BenchMark_V2_C_2147477808.WidgetTree.Txt_CPUAbs
+[07:14:56.0748871] [Lua] "95"
+[07:14:56.0752765] [Lua] TextBlock /.BUI_BenchMark_V2_C_2147477808.WidgetTree.Txt_GPUAbs
+[07:14:56.0769527] [Lua] "3"
+[07:14:56.0904340] [Lua] TextBlock /.BUI_BenchMark_V2_C_2147477808.WidgetTree.Txt_VideoMem
+[07:14:56.1000168] [Lua] "2024年9月17日"
+[07:14:56.1069001] [Lua] TextBlock /.BUI_BenchMark_V2_C_2147477808.WidgetTree.Txt_timeStamp
+[07:14:56.2860261] [Lua] "平均帧率：51"
+[07:14:56.2918515] [Lua] GSScaleText /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_HistoryBtn.WidgetTree.BI_BenchMarkHistoryBtn_C_2147475898.WidgetTree.TxtName
+[07:14:56.3048293] [Lua] "2024年9月17日"
+[07:14:56.3054824] [Lua] GSScaleText /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_HistoryBtn.WidgetTree.BI_BenchMarkHistoryBtn_C_2147475898.WidgetTree.TxtTime
+[07:14:56.4510893] [Lua] "平均帧率：63"
+[07:14:56.4568836] [Lua] GSScaleText /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_HistoryBtn.WidgetTree.BI_BenchMarkHistoryBtn_C_2147475893.WidgetTree.TxtName
+[07:14:56.4572104] [Lua] "2024年9月17日"
+[07:14:56.4581926] [Lua] GSScaleText /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_HistoryBtn.WidgetTree.BI_BenchMarkHistoryBtn_C_2147475893.WidgetTree.TxtTime
+[07:14:56.7375561] [Lua] "平均帧率：133"
+[07:14:56.7459818] [Lua] GSScaleText /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_HistoryBtn.WidgetTree.BI_BenchMarkHistoryBtn_C_2147475888.WidgetTree.TxtName
+[07:14:56.7597380] [Lua] "2024年9月17日"
+[07:14:56.7609618] [Lua] GSScaleText /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_HistoryBtn.WidgetTree.BI_BenchMarkHistoryBtn_C_2147475888.WidgetTree.TxtTime
+[07:14:56.7759074] [Lua] "重新运行"
+[07:14:56.7778312] [Lua] TextBlock /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_InputRoot.WidgetTree.BI_InputOne.WidgetTree.BI_InputOne_C_2147477795.WidgetTree.TxtDesc
+[07:14:56.7789003] [Lua] "查看历史"
+[07:14:56.7804012] [Lua] TextBlock /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_InputRoot.WidgetTree.BI_InputOne.WidgetTree.BI_InputOne_C_2147475883.WidgetTree.TxtDesc
+[07:14:56.7812209] [Lua] "退出"
+[07:14:56.7955609] [Lua] TextBlock /.BUI_BenchMark_V2_C_2147477808.WidgetTree.BI_InputRoot.WidgetTree.BI_InputOne.WidgetTree.BI_InputOne_C_2147475880.WidgetTree.TxtDesc
