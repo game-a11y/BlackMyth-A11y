@@ -83,7 +83,7 @@ local function CallCppModTest()
     A11yTolk:Speak("aaaaa")
     A11yTolk:Speak("你好")
 end
-KeyBindArgMap[Key.F11] = CallCppModTest
+-- KeyBindArgMap[Key.F11] = CallCppModTest
 
 
 function WkKeyBind.init()
