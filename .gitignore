@@ -4,6 +4,9 @@ ref/
 *.dll
 *.pdb
 
+# rel
+mod-*/
+
 # ---- UE4SS
 .xmake
 BuildFiles/
