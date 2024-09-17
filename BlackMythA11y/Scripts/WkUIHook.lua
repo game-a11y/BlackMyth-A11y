@@ -37,7 +37,7 @@ RootCon
 GetTextFuncMap["BI_FirstStartBtn_C"] = function(Button, InFocusEvent)
     local BtnCon = Button.WidgetTree.RootWidget:GetChildAt(0)
     local TxtName = BtnCon:GetChildAt(3)  -- .BtnCon.CanvasPanelSlot_5
-    return TxtName:GetContent():ToString()
+    return TxtName:GetText():ToString()
 end
 
 -- 主界面/主菜单: 所有按钮
@@ -74,7 +74,7 @@ GetTextFuncMap["BI_StartGame_C"] = function(Button, InFocusEvent)
     end
 
     -- 当前按钮文本
-    local ContinueBtnTxt = Button.BI_TextLoop.Content:GetContent():ToString()
+    local ContinueBtnTxt = Button.BI_TextLoop.Content:GetText():ToString()
     return ContinueBtnTxt .. CurLevelName_txt
 end -- BI_StartGame_C
 
@@ -233,8 +233,8 @@ BI_SettingTab_C.WidgetTree.RootWidget
 ]]
 GetTextFuncMap["BI_SettingTab_C"] = function(Button, InFocusEvent)
     local BtnCon = Button.WidgetTree.RootWidget:GetChildAt(0)
-    local TxtName = BtnCon:GetChildAt(2)  -- CPS3
-    local TxtName_txt = TxtName:GetContent():ToString()  -- GSScaleText
+    local TxtName = BtnCon:GetChildAt(2)  -- CPS1
+    local TxtName_txt = TxtName:GetText():ToString()  -- GSScaleText
     return TxtName_txt
 end -- BI_SettingTab_C
 
@@ -273,7 +273,7 @@ GetTextFuncMap["BI_SettingFixedItem_C"] = function(Button, InFocusEvent)
     local BtnCon = Button.BI_Btn.WidgetTree.RootWidget:GetChildAt(0)
     local HBox0 = BtnCon:GetChildAt(2)
     local TxtName = HBox0:GetChildAt(0)
-    local TxtName_txt = TxtName:GetContent():ToString()  -- GSScaleText
+    local TxtName_txt = TxtName:GetText():ToString()  -- GSScaleText
 
     --[[
     BI_SettingFixedItem_C.WidgetTree.RootWidget
@@ -347,7 +347,7 @@ GetTextFuncMap["BI_SettingMenuItem_C"] = function(Button, InFocusEvent)
     local BtnCon = Button.BI_Btn.BI_Btn.WidgetTree.RootWidget:GetChildAt(0)
     local HBox0 = BtnCon:GetChildAt(2)
     local TxtSettingInfo = HBox0:GetChildAt(0)
-    local TxtSettingInfo_txt = TxtSettingInfo:GetContent():ToString()  -- GSScaleText
+    local TxtSettingInfo_txt = TxtSettingInfo:GetText():ToString()  -- GSScaleText
 
     --[[
       BI_SettingMenuItem_C.WidgetTree.RootWidget
@@ -434,7 +434,7 @@ GetTextFuncMap["BI_SettingSliderItem_C"] = function(Button, InFocusEvent)
     local BI_Slider = Button.BI_Slider
     local SliderBtn = BI_Slider.SliderBtn
     local TxtNum = SliderBtn:GetChildAt(3)
-    local Volume = TxtNum:GetContent():ToString()  -- GSScaleText
+    local Volume = TxtNum:GetText():ToString()  -- GSScaleText
 
     -- BI_Slider.WidgetTree.TxtMaxNum
     local RootCon2 = BI_Slider.WidgetTree.RootWidget
@@ -645,7 +645,7 @@ GetTextFuncMap["BI_ReconfirmBtn_C"] = function(Button, InFocusEvent)
         --
         local ContentCon = BoxCon:GetChildAt(1)
         local txt = ContentCon:GetChildAt(0)
-        local ContentCon_txt = txt:GetContent():ToString()
+        local ContentCon_txt = txt:GetText():ToString()
         -- print(string.format("txt=%s:  %s\n", txt:GetFullName(), ContentCon_txt))
 
         return string.format("%s %s", TxtName_txt, ContentCon_txt)
