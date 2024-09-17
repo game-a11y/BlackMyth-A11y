@@ -939,9 +939,9 @@ RegisterKeyBind(Key.F12, function()
         "百分之95帧率", TxtTitle_95:GetText():ToString(),
         "显存占用", Txt_VideoMem:GetText():ToString(), "GB",
         
-        "系统信息", "(跳过)",
+        -- "系统信息", "(跳过)",
         
-        "画面设置", 
+        -- "画面设置", 
     }
 
     -- join string
