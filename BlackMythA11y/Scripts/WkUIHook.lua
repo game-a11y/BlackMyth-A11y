@@ -265,6 +265,8 @@ BI_SettingFixedItem_C.WidgetTree.RootWidget
        [3] WarningCon
         [0] TextWarning
       [3] FocusWidget
+
+    BI_SettingFixedItem_C /.BUI_InitSetting_C_2147482286.WidgetTree.BI_SettingLocalization
 ]]
 GetTextFuncMap["BI_SettingFixedItem_C"] = function(Button, InFocusEvent)
     local FullName = Button:GetFullName()
@@ -301,6 +303,11 @@ GetTextFuncMap["BI_SettingFixedItem_C"] = function(Button, InFocusEvent)
         A11yNote = "无障碍提示：类型一是 XBox 手柄；类型二是 PS 手柄"
     elseif "输入类型" == TxtName_txt then
         A11yNote = "无障碍提示：输入类型用于切换键位布局，目前不支持自定义手柄键位，建议使用 Steam 自定义映射"
+    end
+
+    -- 首次启动
+    if "文本语言" == TxtName_txt and string.find(FullName, "BUI_InitSetting_C") then
+        A11yNote = "手柄按 A 确定，键盘按 E 确定"
     end
 
     return string.format("%s %s %s %s", TxtName_txt, BtnType, TxtDesc_txt, A11yNote)
@@ -613,6 +620,7 @@ RootCon
    [0] TxtMaxNum
 ]]
 -- TODO: 此处没有控制器焦点控件
+-- 首次启动 BI_SettingSliderL_C /.BUI_InitSetting_C_2147482286.WidgetTree.BI_Slider
 
 
 -- 二次确定对话框
