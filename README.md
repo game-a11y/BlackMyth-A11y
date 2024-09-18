@@ -25,3 +25,4 @@
 - [kboykboy2/UnrealEngine: Unreal Engine source code](https://github.com/kboykboy2/UnrealEngine)
     这是黑神话使用的修改版本
 - 蓝图MOd框架: https://github.com/narknon/WukongB1
+- https://modding.wiki/en/hogwartslegacy/developers
