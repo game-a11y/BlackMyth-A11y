@@ -1362,7 +1362,7 @@ RootCon
      [1] TxtQuickItemTitleRuby
    [1] EquipSlotCon
     [0] HorizontalBox_0
-     [0] BI_EquipSlotItem_5
+     [0] BI_EquipSlotItem_5     # ---- 背包物品 1,1
        Default__BI_EquipItem_Slot_C
         WidgetTree
          Root
@@ -1374,18 +1374,8 @@ RootCon
             [1] MarkerSlot
              [0] MarkerBase
            [2] FocusWidget
-     [1] BI_EquipSlotItem_6
+     [1] BI_EquipSlotItem_6     # ---- 背包物品 1,2
        Default__BI_EquipItem_Slot_C
-        WidgetTree
-         Root
-         [0] ResizeCon
-          [0] HoverRoot
-           [0] ImgItem
-           [1] MarkerCon
-            [0] ImgRedPoint
-            [1] MarkerSlot
-             [0] MarkerBase
-           [2] FocusWidget
      [2] BI_EquipSlotItem_7
        Default__BI_EquipItem_RZDSlot_C
         WidgetTree
@@ -1399,56 +1389,16 @@ RootCon
              [0] MarkerBase
            [2] FocusWidget
     [1] HorizontalBox_1
-     [0] BI_EquipSlotItem_1
+     [0] BI_EquipSlotItem_1     # ---- 背包物品 2,1
        Default__BI_EquipItem_Slot_C
-        WidgetTree
-         Root
-         [0] ResizeCon
-          [0] HoverRoot
-           [0] ImgItem
-           [1] MarkerCon
-            [0] ImgRedPoint
-            [1] MarkerSlot
-             [0] MarkerBase
-           [2] FocusWidget
-     [1] BI_EquipSlotItem_2
+     [1] BI_EquipSlotItem_2     # ---- 背包物品 2,2
        Default__BI_EquipItem_Slot_C
-        WidgetTree
-         Root
-         [0] ResizeCon
-          [0] HoverRoot
-           [0] ImgItem
-           [1] MarkerCon
-            [0] ImgRedPoint
-            [1] MarkerSlot
-             [0] MarkerBase
-           [2] FocusWidget
-     [2] BI_EquipSlotItem_3
+     [2] BI_EquipSlotItem_3     # ---- 背包物品 2,3
        Default__BI_EquipItem_Slot_C
-        WidgetTree
-         Root
-         [0] ResizeCon
-          [0] HoverRoot
-           [0] ImgItem
-           [1] MarkerCon
-            [0] ImgRedPoint
-            [1] MarkerSlot
-             [0] MarkerBase
-           [2] FocusWidget
-     [3] BI_EquipSlotItem_4
+     [3] BI_EquipSlotItem_4     # ---- 背包物品 2,4
        Default__BI_EquipItem_Slot_C
-        WidgetTree
-         Root
-         [0] ResizeCon
-          [0] HoverRoot
-           [0] ImgItem
-           [1] MarkerCon
-            [0] ImgRedPoint
-            [1] MarkerSlot
-             [0] MarkerBase
-           [2] FocusWidget
    [2] JewelrySlotCon
-    [0] BI_EquipSlotItem_9
+    [0] BI_EquipSlotItem_9      # ---- 背包珍玩 3,1
       Default__BI_GearItem_Slot_C
        WidgetTree
         Root
@@ -1460,69 +1410,20 @@ RootCon
            [1] MarkerSlot
             [0] MarkerBase
           [2] FocusWidget
-    [1] BI_EquipSlotItem_10
+    [1] BI_EquipSlotItem_10     # ---- 背包珍玩 3,2
       Default__BI_GearItem_Slot_C
-       WidgetTree
-        Root
-        [0] ResizeCon
-         [0] HoverRoot
-          [0] ImgItem
-          [1] MarkerCon
-           [0] ImgRedPoint
-           [1] MarkerSlot
-            [0] MarkerBase
-          [2] FocusWidget
     [2] BI_EquipSlotItem_11
       Default__BI_GearItem_Slot_C
-       WidgetTree
-        Root
-        [0] ResizeCon
-         [0] HoverRoot
-          [0] ImgItem
-          [1] MarkerCon
-           [0] ImgRedPoint
-           [1] MarkerSlot
-            [0] MarkerBase
-          [2] FocusWidget
     [3] BI_EquipSlotItem_12
       Default__BI_GearItem_Slot_C
-       WidgetTree
-        Root
-        [0] ResizeCon
-         [0] HoverRoot
-          [0] ImgItem
-          [1] MarkerCon
-           [0] ImgRedPoint
-           [1] MarkerSlot
-            [0] MarkerBase
-          [2] FocusWidget
     [4] BI_EquipSlotItem_13
       Default__BI_GearItem_Slot_C
-       WidgetTree
-        Root
-        [0] ResizeCon
-         [0] HoverRoot
-          [0] ImgItem
-          [1] MarkerCon
-           [0] ImgRedPoint
-           [1] MarkerSlot
-            [0] MarkerBase
-          [2] FocusWidget
    [3] DynamicSlotCon
-    [0] BI_EquipSlotItem_8
+    [0] BI_EquipSlotItem_8      # ---- 背包葫芦 4,1
       Default__BI_GearItem_Slot_C
-       WidgetTree
-        Root
-        [0] ResizeCon
-         [0] HoverRoot
-          [0] ImgItem
-          [1] MarkerCon
-           [0] ImgRedPoint
-           [1] MarkerSlot
-            [0] MarkerBase
-          [2] FocusWidget
-    [1] BI_EquipQuickSlot
+    [1] BI_EquipQuickSlot       # ---- 背包快速物品 4,2-5
       Default__BI_EquipQuickSlot_C
+        # TODO
    [4] EquipCon
     [0] BgEquip
     [1] BI_CommSubTab
