@@ -1,0 +1,9 @@
+
+!b1/Binaries/
+
+*.dll
+*.pdb
+*.log
+
+# SR config
+ZDSRAPI.ini
