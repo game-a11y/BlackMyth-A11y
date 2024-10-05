@@ -1,5 +1,7 @@
 *.code-workspace
 
+# 游戏 Mod 安装文件夹
+Mods.lnk
 ref/
 *.dll
 *.pdb
