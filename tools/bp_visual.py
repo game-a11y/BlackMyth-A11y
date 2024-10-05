@@ -303,8 +303,20 @@ if __name__ == '__main__':
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/LearnSpell/Btn/BI_AbilityIcon_GP_Basic.BI_AbilityIcon_GP_Basic_C'"
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/LearnSpell/Btn/BI_AbilityIcon_GP_Advance.BI_AbilityIcon_GP_Advance_C'"
     # 游戏中:背包:技能:根基
-    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/LearnSpell/BUI_LearnTalent.BUI_LearnTalent_C'"
-    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/LearnSpell/BI_SpellDetailNew.BI_SpellDetailNew_C'"
+    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/LearnSpell/BUI_LearnTalent.BUI_LearnTalent_C'"
+    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/LearnSpell/BI_SpellDetailNew.BI_SpellDetailNew_C'"
+    # 少了 TxtSpellDesc 字段
+    """
+    "TxtSpellNextDesc"
+    263     VerticalBoxSlot_2
+    246     VerticalBox_0
+    256     VerticalBoxSlot_3
+    243     VBoxMiddle
+    VBoxMiddle 没有 slot 上级，可能是 bug
+    """
+    # TODO: BI_DetailLongPress_C
+    # 
+    
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/LearnSpell/Btn/BI_SpellPanelTitle_Btn.BI_SpellPanelTitle_Btn_C'"
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/LearnSpell/Node/BI_TalentItem_1_1.BI_TalentItem_1_1_C'"
     # 游戏中:背包
