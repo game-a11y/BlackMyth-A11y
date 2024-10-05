@@ -11,7 +11,7 @@ local WkConfig = {}
 
 
 -- 是否为性能测试工具 模式
-WkConfig.IsBencmarkTools = true
+WkConfig.IsBencmarkTools = false
 
 
 return WkConfig
