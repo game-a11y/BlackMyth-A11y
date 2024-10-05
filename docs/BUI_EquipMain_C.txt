@@ -1,0 +1,1574 @@
+-- 背包：披挂：背包物品1
+BUI_EquipMain_C.WidgetTree.RootWidget
+RootCon
+[0] DebugSafeArea
+ [0] DragArea
+ [1] RoleAttrObsRoot
+  [0] RoleAttrRoot
+   [0] BI_RoleAttr
+     Default__BI_RoleAttr_V3_C
+      WidgetTree
+       ObsRoot
+       [0] RootCon
+        [0] SimpleCon
+         [0] HoverBoxSimple
+         [1] LevelCon
+          [0] ImgFoldBg
+          [1] TxtLevel
+          [2] ExpBar
+           [0] ProgBG
+           [1] ProgBar
+         [2] SecAttrCon
+          [0] BI_SecRoleAttrFold_0
+            Default__BI_SecRoleAttrFold_V3_C
+             WidgetTree
+              RootCon
+              [0] ResizeCon
+               [0] UIFX_HighLight
+               [1] ImgBarState
+               [2] PropertyCon
+                [0] ImgMarkerOther
+                [1] TxtOtherNum
+                [2] TxtOtherChange
+          [1] BI_SecRoleAttrFold_1
+            Default__BI_SecRoleAttrFold_V3_C
+             WidgetTree
+              RootCon
+              [0] ResizeCon
+               [0] UIFX_HighLight
+               [1] ImgBarState
+               [2] PropertyCon
+                [0] ImgMarkerOther
+                [1] TxtOtherNum
+                [2] TxtOtherChange
+          [2] BI_SecRoleAttrFold_2
+            Default__BI_SecRoleAttrFold_V3_C
+             WidgetTree
+              RootCon
+              [0] ResizeCon
+               [0] UIFX_HighLight
+               [1] ImgBarState
+               [2] PropertyCon
+                [0] ImgMarkerOther
+                [1] TxtOtherNum
+                [2] TxtOtherChange
+          [3] BI_SecRoleAttrFold_3
+            Default__BI_SecRoleAttrFold_V3_C
+             WidgetTree
+              RootCon
+              [0] ResizeCon
+               [0] UIFX_HighLight
+               [1] ImgBarState
+               [2] PropertyCon
+                [0] ImgMarkerOther
+                [1] TxtOtherNum
+                [2] TxtOtherChange
+          [4] BI_SecRoleAttrFold_4
+            Default__BI_SecRoleAttrFold_V3_C
+             WidgetTree
+              RootCon
+              [0] ResizeCon
+               [0] UIFX_HighLight
+               [1] ImgBarState
+               [2] PropertyCon
+                [0] ImgMarkerOther
+                [1] TxtOtherNum
+                [2] TxtOtherChange
+          [5] BI_SecRoleAttrFold_5
+            Default__BI_SecRoleAttrFold_V3_C
+             WidgetTree
+              RootCon
+              [0] ResizeCon
+               [0] UIFX_HighLight
+               [1] ImgBarState
+               [2] PropertyCon
+                [0] ImgMarkerOther
+                [1] TxtOtherNum
+                [2] TxtOtherChange
+          [6] BI_SecRoleAttrFold_6
+            Default__BI_SecRoleAttrFold_V3_C
+             WidgetTree
+              RootCon
+              [0] ResizeCon
+               [0] UIFX_HighLight
+               [1] ImgBarState
+               [2] PropertyCon
+                [0] ImgMarkerOther
+                [1] TxtOtherNum
+                [2] TxtOtherChange
+          [7] BI_SecRoleAttrFold_7
+            Default__BI_SecRoleAttrFold_V3_C
+             WidgetTree
+              RootCon
+              [0] ResizeCon
+               [0] UIFX_HighLight
+               [1] ImgBarState
+               [2] PropertyCon
+                [0] ImgMarkerOther
+                [1] TxtOtherNum
+                [2] TxtOtherChange
+          [8] BI_SecRoleAttrFold_8
+            Default__BI_SecRoleAttrFold_V3_C
+             WidgetTree
+              RootCon
+              [0] ResizeCon
+               [0] UIFX_HighLight
+               [1] ImgBarState
+               [2] PropertyCon
+                [0] ImgMarkerOther
+                [1] TxtOtherNum
+                [2] TxtOtherChange
+          [9] BI_SecRoleAttrFold_9
+            Default__BI_SecRoleAttrFold_V3_C
+             WidgetTree
+              RootCon
+              [0] ResizeCon
+               [0] UIFX_HighLight
+               [1] ImgBarState
+               [2] PropertyCon
+                [0] ImgMarkerOther
+                [1] TxtOtherNum
+                [2] TxtOtherChange
+        [1] ComplexCon
+         [0] BgBlur
+         [1] ImgUnfoldBg
+         [2] HoverBox
+         [3] LevelConUnfold
+          [0] TxtLevelUnfold
+          [1] HorizontalBox_71
+           [0] Image_93
+           [1] TxtLevelTitle
+           [2] Image
+          [2] ExpBarUnfold
+           [0] ProgBGUnfold
+           [1] ProgBarUnfold
+          [3] HorizontalBox_69
+           [0] TxtExpNow
+           [1] TxtExpSlash
+           [2] TxtExpTotal
+         [4] SizeBox_87
+          [0] ComplexSecAttrCon
+           [0] NormalCon
+            [0] AttrTitleConA
+             [0] HorizontalBox
+              [0] Image_1
+              [1] TxtAttrTitleA
+              [2] Image_2
+            [1] BI_SecRoleAttrUnfold_0
+              Default__BI_SecRoleAttrUnfold_V3_C
+               WidgetTree
+                RootCon
+                [0] OtherCon
+                 [0] ImgBarOther
+                 [1] UIFX_HighLight
+                 [2] ImgBarState
+                 [3] HBoxNum
+                  [0] TxtOtherNum
+                  [1] SpacerChange
+                  [2] TxtChangeCon
+                   [0] RootChange
+                    [0] TxtOtherChange
+                 [4] HBoxProperty
+                  [0] ImgMarkerOther
+                  [1] TxtOtherName
+            [2] BI_SecRoleAttrUnfold_1
+              Default__BI_SecRoleAttrUnfold_V3_C
+               WidgetTree
+                RootCon
+                [0] OtherCon
+                 [0] ImgBarOther
+                 [1] UIFX_HighLight
+                 [2] ImgBarState
+                 [3] HBoxNum
+                  [0] TxtOtherNum
+                  [1] SpacerChange
+                  [2] TxtChangeCon
+                   [0] RootChange
+                    [0] TxtOtherChange
+                 [4] HBoxProperty
+                  [0] ImgMarkerOther
+                  [1] TxtOtherName
+            [3] BI_SecRoleAttrUnfold_2
+              Default__BI_SecRoleAttrUnfold_V3_C
+               WidgetTree
+                RootCon
+                [0] OtherCon
+                 [0] ImgBarOther
+                 [1] UIFX_HighLight
+                 [2] ImgBarState
+                 [3] HBoxNum
+                  [0] TxtOtherNum
+                  [1] SpacerChange
+                  [2] TxtChangeCon
+                   [0] RootChange
+                    [0] TxtOtherChange
+                 [4] HBoxProperty
+                  [0] ImgMarkerOther
+                  [1] TxtOtherName
+            [4] BI_SecRoleAttrUnfold_3
+              Default__BI_SecRoleAttrUnfold_V3_C
+               WidgetTree
+                RootCon
+                [0] OtherCon
+                 [0] ImgBarOther
+                 [1] UIFX_HighLight
+                 [2] ImgBarState
+                 [3] HBoxNum
+                  [0] TxtOtherNum
+                  [1] SpacerChange
+                  [2] TxtChangeCon
+                   [0] RootChange
+                    [0] TxtOtherChange
+                 [4] HBoxProperty
+                  [0] ImgMarkerOther
+                  [1] TxtOtherName
+            [5] BI_SecRoleAttrUnfold_4
+              Default__BI_SecRoleAttrUnfold_V3_C
+               WidgetTree
+                RootCon
+                [0] OtherCon
+                 [0] ImgBarOther
+                 [1] UIFX_HighLight
+                 [2] ImgBarState
+                 [3] HBoxNum
+                  [0] TxtOtherNum
+                  [1] SpacerChange
+                  [2] TxtChangeCon
+                   [0] RootChange
+                    [0] TxtOtherChange
+                 [4] HBoxProperty
+                  [0] ImgMarkerOther
+                  [1] TxtOtherName
+            [6] BI_SecRoleAttrUnfold_5
+              Default__BI_SecRoleAttrUnfold_V3_C
+               WidgetTree
+                RootCon
+                [0] OtherCon
+                 [0] ImgBarOther
+                 [1] UIFX_HighLight
+                 [2] ImgBarState
+                 [3] HBoxNum
+                  [0] TxtOtherNum
+                  [1] SpacerChange
+                  [2] TxtChangeCon
+                   [0] RootChange
+                    [0] TxtOtherChange
+                 [4] HBoxProperty
+                  [0] ImgMarkerOther
+                  [1] TxtOtherName
+            [7] BI_SecRoleAttrUnfold_6
+              Default__BI_SecRoleAttrUnfold_V3_C
+               WidgetTree
+                RootCon
+                [0] OtherCon
+                 [0] ImgBarOther
+                 [1] UIFX_HighLight
+                 [2] ImgBarState
+                 [3] HBoxNum
+                  [0] TxtOtherNum
+                  [1] SpacerChange
+                  [2] TxtChangeCon
+                   [0] RootChange
+                    [0] TxtOtherChange
+                 [4] HBoxProperty
+                  [0] ImgMarkerOther
+                  [1] TxtOtherName
+            [8] BI_SecRoleAttrUnfold_7
+              Default__BI_SecRoleAttrUnfold_V3_C
+               WidgetTree
+                RootCon
+                [0] OtherCon
+                 [0] ImgBarOther
+                 [1] UIFX_HighLight
+                 [2] ImgBarState
+                 [3] HBoxNum
+                  [0] TxtOtherNum
+                  [1] SpacerChange
+                  [2] TxtChangeCon
+                   [0] RootChange
+                    [0] TxtOtherChange
+                 [4] HBoxProperty
+                  [0] ImgMarkerOther
+                  [1] TxtOtherName
+            [9] BI_SecRoleAttrUnfold_8
+              Default__BI_SecRoleAttrUnfold_V3_C
+               WidgetTree
+                RootCon
+                [0] OtherCon
+                 [0] ImgBarOther
+                 [1] UIFX_HighLight
+                 [2] ImgBarState
+                 [3] HBoxNum
+                  [0] TxtOtherNum
+                  [1] SpacerChange
+                  [2] TxtChangeCon
+                   [0] RootChange
+                    [0] TxtOtherChange
+                 [4] HBoxProperty
+                  [0] ImgMarkerOther
+                  [1] TxtOtherName
+            [10] BI_SecRoleAttrUnfold_9
+              Default__BI_SecRoleAttrUnfold_V3_C
+               WidgetTree
+                RootCon
+                [0] OtherCon
+                 [0] ImgBarOther
+                 [1] UIFX_HighLight
+                 [2] ImgBarState
+                 [3] HBoxNum
+                  [0] TxtOtherNum
+                  [1] SpacerChange
+                  [2] TxtChangeCon
+                   [0] RootChange
+                    [0] TxtOtherChange
+                 [4] HBoxProperty
+                  [0] ImgMarkerOther
+                  [1] TxtOtherName
+           [1] SpecialCon
+            [0] AttrTitleConB
+             [0] HorizontalBox_1
+              [0] Image_3
+              [1] TxtAttrTitleA_1
+              [2] Image_4
+            [1] BI_SecRoleAttrUnfold_10
+              Default__BI_SecRoleAttrUnfold_V3_C
+               WidgetTree
+                RootCon
+                [0] OtherCon
+                 [0] ImgBarOther
+                 [1] UIFX_HighLight
+                 [2] ImgBarState
+                 [3] HBoxNum
+                  [0] TxtOtherNum
+                  [1] SpacerChange
+                  [2] TxtChangeCon
+                   [0] RootChange
+                    [0] TxtOtherChange
+                 [4] HBoxProperty
+                  [0] ImgMarkerOther
+                  [1] TxtOtherName
+            [2] BI_SecRoleAttrUnfold_11
+              Default__BI_SecRoleAttrUnfold_V3_C
+               WidgetTree
+                RootCon
+                [0] OtherCon
+                 [0] ImgBarOther
+                 [1] UIFX_HighLight
+                 [2] ImgBarState
+                 [3] HBoxNum
+                  [0] TxtOtherNum
+                  [1] SpacerChange
+                  [2] TxtChangeCon
+                   [0] RootChange
+                    [0] TxtOtherChange
+                 [4] HBoxProperty
+                  [0] ImgMarkerOther
+                  [1] TxtOtherName
+            [3] BI_SecRoleAttrUnfold_12
+              Default__BI_SecRoleAttrUnfold_V3_C
+               WidgetTree
+                RootCon
+                [0] OtherCon
+                 [0] ImgBarOther
+                 [1] UIFX_HighLight
+                 [2] ImgBarState
+                 [3] HBoxNum
+                  [0] TxtOtherNum
+                  [1] SpacerChange
+                  [2] TxtChangeCon
+                   [0] RootChange
+                    [0] TxtOtherChange
+                 [4] HBoxProperty
+                  [0] ImgMarkerOther
+                  [1] TxtOtherName
+            [4] BI_SecRoleAttrUnfold_13
+              Default__BI_SecRoleAttrUnfold_V3_C
+               WidgetTree
+                RootCon
+                [0] OtherCon
+                 [0] ImgBarOther
+                 [1] UIFX_HighLight
+                 [2] ImgBarState
+                 [3] HBoxNum
+                  [0] TxtOtherNum
+                  [1] SpacerChange
+                  [2] TxtChangeCon
+                   [0] RootChange
+                    [0] TxtOtherChange
+                 [4] HBoxProperty
+                  [0] ImgMarkerOther
+                  [1] TxtOtherName
+ [2] EqDetailObsRoot
+  [0] EquipDetailRoot
+   [0] BI_EquipDetailCompare
+     Default__BI_EquipDetailCompare_C
+      WidgetTree
+       EquipDetailCon
+       [0] BuildCheckRoot
+        [0] BlurBg
+        [1] ImgBgMask
+        [2] OpacityCtrlArrow
+         [0] TxtWBTips
+         [1] ImgArrow_T
+         [2] ImgArrow_D
+       [1] CompareRoot
+        [0] CompareCon
+         [0] ResizeCompare
+          [0] BI_EquipCompare
+            Default__BI_EquipDetail_C
+             WidgetTree
+              Root
+              [0] OpacityCtrl
+               [0] DetailCon
+                [0] BI_GearDetailBg
+                  Default__BI_GearDetailBg_C
+                   WidgetTree
+                    Root
+                    [0] ImgBgCon
+                     [0] BlurMask
+                     [1] ImgBg
+                     [2] ImgCoreBg
+                     [3] UING_EquipSpark_Top
+                     [4] UING_EquipSpark_Left
+                     [5] UING_EquipSpark_Right
+                [1] SizeMain
+                 [0] CanvasPanel_242
+                  [0] VerticalBox_195
+                   [0] SizeCore
+                    [0] VBoxCore
+                     [0] TxtTier
+                     [1] NameCon
+                      [0] TxtNameRuby
+                     [2] AttrCon
+                      [0] BI_ComplexSecRoleAttr_0
+                        Default__BI_ComplexSecRoleAttr_C
+                         WidgetTree
+                          Root
+                          [0] ResizeCon
+                           [0] ImgBar
+                           [1] ImgMarker
+                           [2] HBox
+                            [0] Spacer_93
+                            [1] TxtAttrTitle
+                            [2] AttrCon
+                             [0] ResizeAttrNum
+                              [0] TxtAttrNum
+                             [1] ImgArrow
+                             [2] ResizeAttrNumNew
+                              [0] TxtAttrNumNew
+                           [3] Arrow
+                             Default__BI_ArrowRoleAttr_C
+                      [1] BI_ComplexSecRoleAttr_1
+                        Default__BI_ComplexSecRoleAttr_C
+                         WidgetTree
+                          Root
+                          [0] ResizeCon
+                           [0] ImgBar
+                           [1] ImgMarker
+                           [2] HBox
+                            [0] Spacer_93
+                            [1] TxtAttrTitle
+                            [2] AttrCon
+                             [0] ResizeAttrNum
+                              [0] TxtAttrNum
+                             [1] ImgArrow
+                             [2] ResizeAttrNumNew
+                              [0] TxtAttrNumNew
+                           [3] Arrow
+                             Default__BI_ArrowRoleAttr_C
+                      [2] BI_ComplexSecRoleAttr_2
+                        Default__BI_ComplexSecRoleAttr_C
+                         WidgetTree
+                          Root
+                          [0] ResizeCon
+                           [0] ImgBar
+                           [1] ImgMarker
+                           [2] HBox
+                            [0] Spacer_93
+                            [1] TxtAttrTitle
+                            [2] AttrCon
+                             [0] ResizeAttrNum
+                              [0] TxtAttrNum
+                             [1] ImgArrow
+                             [2] ResizeAttrNumNew
+                              [0] TxtAttrNumNew
+                           [3] Arrow
+                             Default__BI_ArrowRoleAttr_C
+                      [3] BI_ComplexSecRoleAttr_3
+                        Default__BI_ComplexSecRoleAttr_C
+                         WidgetTree
+                          Root
+                          [0] ResizeCon
+                           [0] ImgBar
+                           [1] ImgMarker
+                           [2] HBox
+                            [0] Spacer_93
+                            [1] TxtAttrTitle
+                            [2] AttrCon
+                             [0] ResizeAttrNum
+                              [0] TxtAttrNum
+                             [1] ImgArrow
+                             [2] ResizeAttrNumNew
+                              [0] TxtAttrNumNew
+                           [3] Arrow
+                             Default__BI_ArrowRoleAttr_C
+                      [4] BI_ComplexSecRoleAttr_4
+                        Default__BI_ComplexSecRoleAttr_C
+                         WidgetTree
+                          Root
+                          [0] ResizeCon
+                           [0] ImgBar
+                           [1] ImgMarker
+                           [2] HBox
+                            [0] Spacer_93
+                            [1] TxtAttrTitle
+                            [2] AttrCon
+                             [0] ResizeAttrNum
+                              [0] TxtAttrNum
+                             [1] ImgArrow
+                             [2] ResizeAttrNumNew
+                              [0] TxtAttrNumNew
+                           [3] Arrow
+                             Default__BI_ArrowRoleAttr_C
+                      [5] BI_ComplexSecRoleAttr_5
+                        Default__BI_ComplexSecRoleAttr_C
+                         WidgetTree
+                          Root
+                          [0] ResizeCon
+                           [0] ImgBar
+                           [1] ImgMarker
+                           [2] HBox
+                            [0] Spacer_93
+                            [1] TxtAttrTitle
+                            [2] AttrCon
+                             [0] ResizeAttrNum
+                              [0] TxtAttrNum
+                             [1] ImgArrow
+                             [2] ResizeAttrNumNew
+                              [0] TxtAttrNumNew
+                           [3] Arrow
+                             Default__BI_ArrowRoleAttr_C
+                      [6] BI_ComplexSecRoleAttr_6
+                        Default__BI_ComplexSecRoleAttr_C
+                         WidgetTree
+                          Root
+                          [0] ResizeCon
+                           [0] ImgBar
+                           [1] ImgMarker
+                           [2] HBox
+                            [0] Spacer_93
+                            [1] TxtAttrTitle
+                            [2] AttrCon
+                             [0] ResizeAttrNum
+                              [0] TxtAttrNum
+                             [1] ImgArrow
+                             [2] ResizeAttrNumNew
+                              [0] TxtAttrNumNew
+                           [3] Arrow
+                             Default__BI_ArrowRoleAttr_C
+                      [7] BI_ComplexSecRoleAttr_7
+                        Default__BI_ComplexSecRoleAttr_C
+                         WidgetTree
+                          Root
+                          [0] ResizeCon
+                           [0] ImgBar
+                           [1] ImgMarker
+                           [2] HBox
+                            [0] Spacer_93
+                            [1] TxtAttrTitle
+                            [2] AttrCon
+                             [0] ResizeAttrNum
+                              [0] TxtAttrNum
+                             [1] ImgArrow
+                             [2] ResizeAttrNumNew
+                              [0] TxtAttrNumNew
+                           [3] Arrow
+                             Default__BI_ArrowRoleAttr_C
+                      [8] BI_ComplexSecRoleAttr_8
+                        Default__BI_ComplexSecRoleAttr_C
+                         WidgetTree
+                          Root
+                          [0] ResizeCon
+                           [0] ImgBar
+                           [1] ImgMarker
+                           [2] HBox
+                            [0] Spacer_93
+                            [1] TxtAttrTitle
+                            [2] AttrCon
+                             [0] ResizeAttrNum
+                              [0] TxtAttrNum
+                             [1] ImgArrow
+                             [2] ResizeAttrNumNew
+                              [0] TxtAttrNumNew
+                           [3] Arrow
+                             Default__BI_ArrowRoleAttr_C
+                      [9] BI_ComplexSecRoleAttr_9
+                        Default__BI_ComplexSecRoleAttr_C
+                         WidgetTree
+                          Root
+                          [0] ResizeCon
+                           [0] ImgBar
+                           [1] ImgMarker
+                           [2] HBox
+                            [0] Spacer_93
+                            [1] TxtAttrTitle
+                            [2] AttrCon
+                             [0] ResizeAttrNum
+                              [0] TxtAttrNum
+                             [1] ImgArrow
+                             [2] ResizeAttrNumNew
+                              [0] TxtAttrNumNew
+                           [3] Arrow
+                             Default__BI_ArrowRoleAttr_C
+                     [3] SpacerCore
+                   [1] SizeMiddle
+                    [0] CanvasPanel_0
+                     [0] RetainerMaskSuitDesc
+                     [1] ResizeScrollInputTips
+                      [0] BI_ScrollInputTips
+                        Default__BI_ScrollInputTips_WithComb_C
+                   [2] SizeBottom
+                    [0] GridPanel_209
+                     [0] CostCon
+                      [0] CostItemCon
+                       [0] KeyCostItemList
+                        [0] BI_KeyCostItem
+                          Default__BI_CostItemKey_C
+                           WidgetTree
+                            Root
+                            [0] Content
+                             [0] ImgBar
+                             [1] FocusWidget
+                             [2] HorBox
+                              [0] IconCon
+                               [0] ResizeIcon
+                                [0] ImgItem
+                              [1] TxtName
+                              [2] TxtUnknow
+                              [3] HorBoxCost
+                               [0] TxtOwn
+                               [1] TxtCost
+                       [1] CostItemList
+                        [0] BI_CostItem
+                          Default__BI_CostItem_C
+                           WidgetTree
+                            Root
+                            [0] Content
+                             [0] ImgBar
+                             [1] FocusWidget
+                             [2] HorBox
+                              [0] IconCon
+                               [0] ResizeIcon
+                                [0] ImgItem
+                              [1] TxtName
+                              [2] TxtUnknow
+                              [3] HorBoxCost
+                               [0] TxtOwn
+                               [1] TxtCost
+                      [1] ForgePageBar
+                       [0] PageRoot
+                        [0] ImgPageFrame
+                        [1] BI_DetailPageSwitcher
+                          Default__BI_DetailPageSwitcher_C
+                           WidgetTree
+                            Root
+                            [0] ResizeRoot
+                             [0] EffectRoot
+                              [0] GridPanel_39
+                               [0] ForgedRoot
+                                [0] ResizeNGForgeSpark
+                                 [0] NGForgeSpark
+                               [1] ForgingRoot
+                                [0] ResizeCon
+                                 [0] UIFX_ForgingLight
+                               [2] None1_0
+                               [3] None1_1
+                               [4] None1_2
+                               [5] None1_3
+                               [6] None1_4
+                               [7] None1_5
+                             [1] HorizontalBox_19
+                              [0] Page_1
+                              [1] Page_2
+                              [2] Page_3
+                              [3] Page_4
+                              [4] Page_5
+                              [5] Page_6
+                              [6] Page_7
+                              [7] Page_8
+                     [1] FooterCon
+                      [0] BI_EquipLongPress
+                        Default__BI_DetailLongPress_C
+                [2] MarkerRoot
+                 [0] MarkerWearing
+                 [1] MarkerCurForge
+                  [0] CtrlCurForge
+                   [0] CurForgeCon
+                    [0] UIFX_CurForge
+                    [1] UIFX_CurForgeManual
+                    [2] MarkerForged
+                [3] BI_UIFXDetailForged
+                  Default__BI_UIFXDetailForged_C
+                   WidgetTree
+                    Root
+                    [0] UIFX_Forged
+                    [1] UIFX_DestroyedMask
+                    [2] UINS_DestroyedSpark
+                    [3] UING_ForgeSpark_Left
+                    [4] UING_ForgeSpark_Right
+                    [5] UING_ForgeSpark_Top
+        [1] BI_EquipDetail
+          Default__BI_EquipDetail_C
+           WidgetTree
+            Root
+            [0] OpacityCtrl
+             [0] DetailCon
+              [0] BI_GearDetailBg
+                Default__BI_GearDetailBg_C
+                 WidgetTree
+                  Root
+                  [0] ImgBgCon
+                   [0] BlurMask
+                   [1] ImgBg
+                   [2] ImgCoreBg
+                   [3] UING_EquipSpark_Top
+                   [4] UING_EquipSpark_Left
+                   [5] UING_EquipSpark_Right
+              [1] SizeMain
+               [0] CanvasPanel_242
+                [0] VerticalBox_195
+                 [0] SizeCore
+                  [0] VBoxCore
+                   [0] TxtTier
+                   [1] NameCon
+                    [0] TxtNameRuby
+                   [2] AttrCon
+                    [0] BI_ComplexSecRoleAttr_0
+                      Default__BI_ComplexSecRoleAttr_C
+                       WidgetTree
+                        Root
+                        [0] ResizeCon
+                         [0] ImgBar
+                         [1] ImgMarker
+                         [2] HBox
+                          [0] Spacer_93
+                          [1] TxtAttrTitle
+                          [2] AttrCon
+                           [0] ResizeAttrNum
+                            [0] TxtAttrNum
+                           [1] ImgArrow
+                           [2] ResizeAttrNumNew
+                            [0] TxtAttrNumNew
+                         [3] Arrow
+                           Default__BI_ArrowRoleAttr_C
+                    [1] BI_ComplexSecRoleAttr_1
+                      Default__BI_ComplexSecRoleAttr_C
+                       WidgetTree
+                        Root
+                        [0] ResizeCon
+                         [0] ImgBar
+                         [1] ImgMarker
+                         [2] HBox
+                          [0] Spacer_93
+                          [1] TxtAttrTitle
+                          [2] AttrCon
+                           [0] ResizeAttrNum
+                            [0] TxtAttrNum
+                           [1] ImgArrow
+                           [2] ResizeAttrNumNew
+                            [0] TxtAttrNumNew
+                         [3] Arrow
+                           Default__BI_ArrowRoleAttr_C
+                    [2] BI_ComplexSecRoleAttr_2
+                      Default__BI_ComplexSecRoleAttr_C
+                       WidgetTree
+                        Root
+                        [0] ResizeCon
+                         [0] ImgBar
+                         [1] ImgMarker
+                         [2] HBox
+                          [0] Spacer_93
+                          [1] TxtAttrTitle
+                          [2] AttrCon
+                           [0] ResizeAttrNum
+                            [0] TxtAttrNum
+                           [1] ImgArrow
+                           [2] ResizeAttrNumNew
+                            [0] TxtAttrNumNew
+                         [3] Arrow
+                           Default__BI_ArrowRoleAttr_C
+                    [3] BI_ComplexSecRoleAttr_3
+                      Default__BI_ComplexSecRoleAttr_C
+                       WidgetTree
+                        Root
+                        [0] ResizeCon
+                         [0] ImgBar
+                         [1] ImgMarker
+                         [2] HBox
+                          [0] Spacer_93
+                          [1] TxtAttrTitle
+                          [2] AttrCon
+                           [0] ResizeAttrNum
+                            [0] TxtAttrNum
+                           [1] ImgArrow
+                           [2] ResizeAttrNumNew
+                            [0] TxtAttrNumNew
+                         [3] Arrow
+                           Default__BI_ArrowRoleAttr_C
+                    [4] BI_ComplexSecRoleAttr_4
+                      Default__BI_ComplexSecRoleAttr_C
+                       WidgetTree
+                        Root
+                        [0] ResizeCon
+                         [0] ImgBar
+                         [1] ImgMarker
+                         [2] HBox
+                          [0] Spacer_93
+                          [1] TxtAttrTitle
+                          [2] AttrCon
+                           [0] ResizeAttrNum
+                            [0] TxtAttrNum
+                           [1] ImgArrow
+                           [2] ResizeAttrNumNew
+                            [0] TxtAttrNumNew
+                         [3] Arrow
+                           Default__BI_ArrowRoleAttr_C
+                    [5] BI_ComplexSecRoleAttr_5
+                      Default__BI_ComplexSecRoleAttr_C
+                       WidgetTree
+                        Root
+                        [0] ResizeCon
+                         [0] ImgBar
+                         [1] ImgMarker
+                         [2] HBox
+                          [0] Spacer_93
+                          [1] TxtAttrTitle
+                          [2] AttrCon
+                           [0] ResizeAttrNum
+                            [0] TxtAttrNum
+                           [1] ImgArrow
+                           [2] ResizeAttrNumNew
+                            [0] TxtAttrNumNew
+                         [3] Arrow
+                           Default__BI_ArrowRoleAttr_C
+                    [6] BI_ComplexSecRoleAttr_6
+                      Default__BI_ComplexSecRoleAttr_C
+                       WidgetTree
+                        Root
+                        [0] ResizeCon
+                         [0] ImgBar
+                         [1] ImgMarker
+                         [2] HBox
+                          [0] Spacer_93
+                          [1] TxtAttrTitle
+                          [2] AttrCon
+                           [0] ResizeAttrNum
+                            [0] TxtAttrNum
+                           [1] ImgArrow
+                           [2] ResizeAttrNumNew
+                            [0] TxtAttrNumNew
+                         [3] Arrow
+                           Default__BI_ArrowRoleAttr_C
+                    [7] BI_ComplexSecRoleAttr_7
+                      Default__BI_ComplexSecRoleAttr_C
+                       WidgetTree
+                        Root
+                        [0] ResizeCon
+                         [0] ImgBar
+                         [1] ImgMarker
+                         [2] HBox
+                          [0] Spacer_93
+                          [1] TxtAttrTitle
+                          [2] AttrCon
+                           [0] ResizeAttrNum
+                            [0] TxtAttrNum
+                           [1] ImgArrow
+                           [2] ResizeAttrNumNew
+                            [0] TxtAttrNumNew
+                         [3] Arrow
+                           Default__BI_ArrowRoleAttr_C
+                    [8] BI_ComplexSecRoleAttr_8
+                      Default__BI_ComplexSecRoleAttr_C
+                       WidgetTree
+                        Root
+                        [0] ResizeCon
+                         [0] ImgBar
+                         [1] ImgMarker
+                         [2] HBox
+                          [0] Spacer_93
+                          [1] TxtAttrTitle
+                          [2] AttrCon
+                           [0] ResizeAttrNum
+                            [0] TxtAttrNum
+                           [1] ImgArrow
+                           [2] ResizeAttrNumNew
+                            [0] TxtAttrNumNew
+                         [3] Arrow
+                           Default__BI_ArrowRoleAttr_C
+                    [9] BI_ComplexSecRoleAttr_9
+                      Default__BI_ComplexSecRoleAttr_C
+                       WidgetTree
+                        Root
+                        [0] ResizeCon
+                         [0] ImgBar
+                         [1] ImgMarker
+                         [2] HBox
+                          [0] Spacer_93
+                          [1] TxtAttrTitle
+                          [2] AttrCon
+                           [0] ResizeAttrNum
+                            [0] TxtAttrNum
+                           [1] ImgArrow
+                           [2] ResizeAttrNumNew
+                            [0] TxtAttrNumNew
+                         [3] Arrow
+                           Default__BI_ArrowRoleAttr_C
+                   [3] SpacerCore
+                 [1] SizeMiddle
+                  [0] CanvasPanel_0
+                   [0] RetainerMaskSuitDesc
+                   [1] ResizeScrollInputTips
+                    [0] BI_ScrollInputTips
+                      Default__BI_ScrollInputTips_WithComb_C
+                 [2] SizeBottom
+                  [0] GridPanel_209
+                   [0] CostCon
+                    [0] CostItemCon
+                     [0] KeyCostItemList
+                      [0] BI_KeyCostItem
+                        Default__BI_CostItemKey_C
+                         WidgetTree
+                          Root
+                          [0] Content
+                           [0] ImgBar
+                           [1] FocusWidget
+                           [2] HorBox
+                            [0] IconCon
+                             [0] ResizeIcon
+                              [0] ImgItem
+                            [1] TxtName
+                            [2] TxtUnknow
+                            [3] HorBoxCost
+                             [0] TxtOwn
+                             [1] TxtCost
+                     [1] CostItemList
+                      [0] BI_CostItem
+                        Default__BI_CostItem_C
+                         WidgetTree
+                          Root
+                          [0] Content
+                           [0] ImgBar
+                           [1] FocusWidget
+                           [2] HorBox
+                            [0] IconCon
+                             [0] ResizeIcon
+                              [0] ImgItem
+                            [1] TxtName
+                            [2] TxtUnknow
+                            [3] HorBoxCost
+                             [0] TxtOwn
+                             [1] TxtCost
+                    [1] ForgePageBar
+                     [0] PageRoot
+                      [0] ImgPageFrame
+                      [1] BI_DetailPageSwitcher
+                        Default__BI_DetailPageSwitcher_C
+                         WidgetTree
+                          Root
+                          [0] ResizeRoot
+                           [0] EffectRoot
+                            [0] GridPanel_39
+                             [0] ForgedRoot
+                              [0] ResizeNGForgeSpark
+                               [0] NGForgeSpark
+                             [1] ForgingRoot
+                              [0] ResizeCon
+                               [0] UIFX_ForgingLight
+                             [2] None1_0
+                             [3] None1_1
+                             [4] None1_2
+                             [5] None1_3
+                             [6] None1_4
+                             [7] None1_5
+                           [1] HorizontalBox_19
+                            [0] Page_1
+                            [1] Page_2
+                            [2] Page_3
+                            [3] Page_4
+                            [4] Page_5
+                            [5] Page_6
+                            [6] Page_7
+                            [7] Page_8
+                   [1] FooterCon
+                    [0] BI_EquipLongPress
+                      Default__BI_DetailLongPress_C
+              [2] MarkerRoot
+               [0] MarkerWearing
+               [1] MarkerCurForge
+                [0] CtrlCurForge
+                 [0] CurForgeCon
+                  [0] UIFX_CurForge
+                  [1] UIFX_CurForgeManual
+                  [2] MarkerForged
+              [3] BI_UIFXDetailForged
+                Default__BI_UIFXDetailForged_C
+                 WidgetTree
+                  Root
+                  [0] UIFX_Forged
+                  [1] UIFX_DestroyedMask
+                  [2] UINS_DestroyedSpark
+                  [3] UING_ForgeSpark_Left
+                  [4] UING_ForgeSpark_Right
+                  [5] UING_ForgeSpark_Top
+   [1] SingleDetailRoot
+    [0] BI_RZDDetail
+      Default__BI_RZDDetail_C
+       WidgetTree
+        Root
+        [0] DetailCon
+         [0] BI_GearDetailBg
+           Default__BI_GearDetailBg_C
+            WidgetTree
+             Root
+             [0] ImgBgCon
+              [0] BlurMask
+              [1] ImgBg
+              [2] ImgCoreBg
+              [3] UING_EquipSpark_Top
+              [4] UING_EquipSpark_Left
+              [5] UING_EquipSpark_Right
+         [1] SizeMain
+          [0] CanvasPanel_242
+           [0] VideoCon
+            [0] Overlay_270
+             [0] ImgVideo
+             [1] ImgVideoBink
+            [1] InputCon_HideVideo
+             [0] InputIcon_HideVideo
+             [1] TxtHideVideo
+           [1] VerticalBox_195
+            [0] SizeCore
+             [0] VBoxCore
+              [0] TxtTier
+              [1] NameCon
+               [0] TxtNameRuby
+              [2] YuanqiCostCon
+               [0] TxtCostTItle
+               [1] TxtCost
+              [3] SpacerCore
+            [1] SizeMiddle
+             [0] CanvasPanel_0
+              [0] RetainerMaskSuitDesc
+              [1] ResizeScrollInputTips
+               [0] BI_ScrollInputTips
+                 Default__BI_ScrollInputTips_WithComb_C
+            [2] SizeVideo
+             [0] InputCon_ShowVideo
+              [0] InputIcon_ShowVideo
+              [1] TxtShowVideo
+            [3] SizeBottom
+             [0] GridPanel_209
+              [0] CostCon
+               [0] CostItemCon
+                [0] KeyCostItemList
+                 [0] BI_KeyCostItem
+                   Default__BI_CostItemKey_C
+                    WidgetTree
+                     Root
+                     [0] Content
+                      [0] ImgBar
+                      [1] FocusWidget
+                      [2] HorBox
+                       [0] IconCon
+                        [0] ResizeIcon
+                         [0] ImgItem
+                       [1] TxtName
+                       [2] TxtUnknow
+                       [3] HorBoxCost
+                        [0] TxtOwn
+                        [1] TxtCost
+                [1] CostItemList
+                 [0] BI_CostItem
+                   Default__BI_CostItem_C
+                    WidgetTree
+                     Root
+                     [0] Content
+                      [0] ImgBar
+                      [1] FocusWidget
+                      [2] HorBox
+                       [0] IconCon
+                        [0] ResizeIcon
+                         [0] ImgItem
+                       [1] TxtName
+                       [2] TxtUnknow
+                       [3] HorBoxCost
+                        [0] TxtOwn
+                        [1] TxtCost
+               [1] ForgePageBar
+                [0] PageRoot
+                 [0] ImgPageFrame
+                 [1] BI_DetailPageSwitcher
+                   Default__BI_DetailPageSwitcher_C
+                    WidgetTree
+                     Root
+                     [0] ResizeRoot
+                      [0] EffectRoot
+                       [0] GridPanel_39
+                        [0] ForgedRoot
+                         [0] ResizeNGForgeSpark
+                          [0] NGForgeSpark
+                        [1] ForgingRoot
+                         [0] ResizeCon
+                          [0] UIFX_ForgingLight
+                        [2] None1_0
+                        [3] None1_1
+                        [4] None1_2
+                        [5] None1_3
+                        [6] None1_4
+                        [7] None1_5
+                      [1] HorizontalBox_19
+                       [0] Page_1
+                       [1] Page_2
+                       [2] Page_3
+                       [3] Page_4
+                       [4] Page_5
+                       [5] Page_6
+                       [6] Page_7
+                       [7] Page_8
+              [1] FooterCon
+               [0] BI_EquipLongPress
+                 Default__BI_DetailLongPress_C
+           [2] FXRoot_Forge
+            [0] NGForgeSpark_Left
+            [1] NGForgeSpark_Right
+            [2] NGForgeSpark_Top
+            [3] UIFX_ForgedLight
+         [2] MarkerRoot
+          [0] MarkerWearing
+         [3] RZDItem
+           Default__BI_RZDDetailItem_C
+         [4] BI_UIFXDetailForged
+           Default__BI_UIFXDetailForged_C
+            WidgetTree
+             Root
+             [0] UIFX_Forged
+             [1] UIFX_DestroyedMask
+             [2] UINS_DestroyedSpark
+             [3] UING_ForgeSpark_Left
+             [4] UING_ForgeSpark_Right
+             [5] UING_ForgeSpark_Top
+    [1] BI_HuluDetail
+      Default__BI_HuluDetail_C
+       WidgetTree
+        Root
+        [0] DetailCon
+         [0] BI_GearDetailBg
+           Default__BI_GearDetailBg_C
+            WidgetTree
+             Root
+             [0] ImgBgCon
+              [0] BlurMask
+              [1] ImgBg
+              [2] ImgCoreBg
+              [3] UING_EquipSpark_Top
+              [4] UING_EquipSpark_Left
+              [5] UING_EquipSpark_Right
+         [1] SizeMain
+          [0] CanvasPanel_242
+           [0] VerticalBox_195
+            [0] SizeCore
+             [0] VBoxCore
+              [0] TxtTier
+              [1] NameCon
+               [0] TxtNameRuby
+              [2] NumCon
+               [0] HuluNumCon
+                [0] ImgBgHuluNum
+                [1] TxtEffectNum
+               [1] ImgArrow
+               [2] HuluNumUpCon
+                [0] ImgBgHuluUpNum
+                [1] TxtHuluUpNum
+              [3] DescCon
+               [0] TxtHuluDesc
+              [4] SpacerCore
+            [1] SizeMiddle
+             [0] CanvasPanel_0
+              [0] RetainerMaskSuitDesc
+              [1] ResizeScrollInputTips
+               [0] BI_ScrollInputTips
+                 Default__BI_ScrollInputTips_WithComb_C
+            [2] SizeBottom
+             [0] GridPanel_209
+              [0] CostCon
+               [0] CostItemCon
+                [0] KeyCostItemList
+                 [0] BI_KeyCostItem
+                   Default__BI_CostItemKey_C
+                    WidgetTree
+                     Root
+                     [0] Content
+                      [0] ImgBar
+                      [1] FocusWidget
+                      [2] HorBox
+                       [0] IconCon
+                        [0] ResizeIcon
+                         [0] ImgItem
+                       [1] TxtName
+                       [2] TxtUnknow
+                       [3] HorBoxCost
+                        [0] TxtOwn
+                        [1] TxtCost
+                [1] CostItemList
+                 [0] BI_CostItem
+                   Default__BI_CostItem_C
+                    WidgetTree
+                     Root
+                     [0] Content
+                      [0] ImgBar
+                      [1] FocusWidget
+                      [2] HorBox
+                       [0] IconCon
+                        [0] ResizeIcon
+                         [0] ImgItem
+                       [1] TxtName
+                       [2] TxtUnknow
+                       [3] HorBoxCost
+                        [0] TxtOwn
+                        [1] TxtCost
+               [1] ForgePageBar
+                [0] PageRoot
+                 [0] ImgPageFrame
+                 [1] BI_DetailPageSwitcher
+                   Default__BI_DetailPageSwitcher_C
+                    WidgetTree
+                     Root
+                     [0] ResizeRoot
+                      [0] EffectRoot
+                       [0] GridPanel_39
+                        [0] ForgedRoot
+                         [0] ResizeNGForgeSpark
+                          [0] NGForgeSpark
+                        [1] ForgingRoot
+                         [0] ResizeCon
+                          [0] UIFX_ForgingLight
+                        [2] None1_0
+                        [3] None1_1
+                        [4] None1_2
+                        [5] None1_3
+                        [6] None1_4
+                        [7] None1_5
+                      [1] HorizontalBox_19
+                       [0] Page_1
+                       [1] Page_2
+                       [2] Page_3
+                       [3] Page_4
+                       [4] Page_5
+                       [5] Page_6
+                       [6] Page_7
+                       [7] Page_8
+              [1] FooterCon
+               [0] BI_EquipLongPress
+                 Default__BI_DetailLongPress_C
+           [1] FXRoot_Forge
+            [0] NGForgeSpark_Left
+            [1] NGForgeSpark_Right
+            [2] NGForgeSpark_Top
+            [3] UIFX_ForgedLight
+         [2] MarkerRoot
+          [0] MarkerWearing
+         [3] BI_UIFXDetailForged
+           Default__BI_UIFXDetailForged_C
+            WidgetTree
+             Root
+             [0] UIFX_Forged
+             [1] UIFX_DestroyedMask
+             [2] UINS_DestroyedSpark
+             [3] UING_ForgeSpark_Left
+             [4] UING_ForgeSpark_Right
+             [5] UING_ForgeSpark_Top
+    [2] BI_TreasureDetail
+      Default__BI_TreasureDetail_C
+       WidgetTree
+        Root
+        [0] DetailCon
+         [0] BI_GearDetailBg
+           Default__BI_GearDetailBg_C
+            WidgetTree
+             Root
+             [0] ImgBgCon
+              [0] BlurMask
+              [1] ImgBg
+              [2] ImgCoreBg
+              [3] UING_EquipSpark_Top
+              [4] UING_EquipSpark_Left
+              [5] UING_EquipSpark_Right
+         [1] SizeMain
+          [0] CanvasPanel_242
+           [0] VideoCon
+            [0] Overlay_270
+             [0] ImgVideo
+             [1] ImgVideoBink
+            [1] InputCon_HideVideo
+             [0] InputIcon_HideVideo
+             [1] TxtHideVideo
+           [1] VerticalBox_195
+            [0] SizeCore
+             [0] VBoxCore
+              [0] TxtTier
+              [1] NameCon
+               [0] TxtNameRuby
+              [2] HorizontalBox_0
+               [0] TxtCostTItle
+               [1] TxtCost
+              [3] SpacerCore
+            [1] SizeMiddle
+             [0] Overlay_0
+              [0] CanvasPanel_0
+               [0] RetainerMaskSuitDesc
+               [1] ResizeScrollInputTips
+                [0] BI_ScrollInputTips
+                  Default__BI_ScrollInputTips_WithComb_C
+            [2] SizeVideo
+             [0] InputCon_ShowVideo
+              [0] InputIcon_ShowVideo
+              [1] TxtShowVideo
+            [3] SizeBottom
+             [0] FooterCon
+              [0] BI_EquipLongPress
+                Default__BI_DetailLongPress_C
+           [2] TreasureItem
+             Default__BI_TreasureDetailItem_C
+         [2] MarkerRoot
+          [0] MarkerWearing
+ [3] EquipObsRoot
+  [0] EquipRoot
+   [0] TitleRoot
+    [0] TitleEquip
+     [0] BarEquipTitle
+     [1] TxtEquipTitleRuby
+    [1] TitleJewelry
+     [0] BarJewelryTitle
+     [1] TxtJewelryTitleRuby
+    [2] TitleJewelryRedpoint
+     [0] BarJewelryRedpoint
+     [1] MarkerJewelry
+     [2] TxtJewelryRedpoint
+    [3] TitleHulu
+     [0] BarHuluTitle
+     [1] TxtHuluTitleRuby
+    [4] TitleQuickItem
+     [0] BarQuickItemTitle
+     [1] TxtQuickItemTitleRuby
+   [1] EquipSlotCon
+    [0] HorizontalBox_0
+     [0] BI_EquipSlotItem_5
+       Default__BI_EquipItem_Slot_C
+        WidgetTree
+         Root
+         [0] ResizeCon
+          [0] HoverRoot
+           [0] ImgItem
+           [1] MarkerCon
+            [0] ImgRedPoint
+            [1] MarkerSlot
+             [0] MarkerBase
+           [2] FocusWidget
+     [1] BI_EquipSlotItem_6
+       Default__BI_EquipItem_Slot_C
+        WidgetTree
+         Root
+         [0] ResizeCon
+          [0] HoverRoot
+           [0] ImgItem
+           [1] MarkerCon
+            [0] ImgRedPoint
+            [1] MarkerSlot
+             [0] MarkerBase
+           [2] FocusWidget
+     [2] BI_EquipSlotItem_7
+       Default__BI_EquipItem_RZDSlot_C
+        WidgetTree
+         Root
+         [0] ResizeCon
+          [0] HoverRoot
+           [0] ImgItem
+           [1] MarkerCon
+            [0] ImgRedPoint
+            [1] MarkerSlot
+             [0] MarkerBase
+           [2] FocusWidget
+    [1] HorizontalBox_1
+     [0] BI_EquipSlotItem_1
+       Default__BI_EquipItem_Slot_C
+        WidgetTree
+         Root
+         [0] ResizeCon
+          [0] HoverRoot
+           [0] ImgItem
+           [1] MarkerCon
+            [0] ImgRedPoint
+            [1] MarkerSlot
+             [0] MarkerBase
+           [2] FocusWidget
+     [1] BI_EquipSlotItem_2
+       Default__BI_EquipItem_Slot_C
+        WidgetTree
+         Root
+         [0] ResizeCon
+          [0] HoverRoot
+           [0] ImgItem
+           [1] MarkerCon
+            [0] ImgRedPoint
+            [1] MarkerSlot
+             [0] MarkerBase
+           [2] FocusWidget
+     [2] BI_EquipSlotItem_3
+       Default__BI_EquipItem_Slot_C
+        WidgetTree
+         Root
+         [0] ResizeCon
+          [0] HoverRoot
+           [0] ImgItem
+           [1] MarkerCon
+            [0] ImgRedPoint
+            [1] MarkerSlot
+             [0] MarkerBase
+           [2] FocusWidget
+     [3] BI_EquipSlotItem_4
+       Default__BI_EquipItem_Slot_C
+        WidgetTree
+         Root
+         [0] ResizeCon
+          [0] HoverRoot
+           [0] ImgItem
+           [1] MarkerCon
+            [0] ImgRedPoint
+            [1] MarkerSlot
+             [0] MarkerBase
+           [2] FocusWidget
+   [2] JewelrySlotCon
+    [0] BI_EquipSlotItem_9
+      Default__BI_GearItem_Slot_C
+       WidgetTree
+        Root
+        [0] ResizeCon
+         [0] HoverRoot
+          [0] ImgItem
+          [1] MarkerCon
+           [0] ImgRedPoint
+           [1] MarkerSlot
+            [0] MarkerBase
+          [2] FocusWidget
+    [1] BI_EquipSlotItem_10
+      Default__BI_GearItem_Slot_C
+       WidgetTree
+        Root
+        [0] ResizeCon
+         [0] HoverRoot
+          [0] ImgItem
+          [1] MarkerCon
+           [0] ImgRedPoint
+           [1] MarkerSlot
+            [0] MarkerBase
+          [2] FocusWidget
+    [2] BI_EquipSlotItem_11
+      Default__BI_GearItem_Slot_C
+       WidgetTree
+        Root
+        [0] ResizeCon
+         [0] HoverRoot
+          [0] ImgItem
+          [1] MarkerCon
+           [0] ImgRedPoint
+           [1] MarkerSlot
+            [0] MarkerBase
+          [2] FocusWidget
+    [3] BI_EquipSlotItem_12
+      Default__BI_GearItem_Slot_C
+       WidgetTree
+        Root
+        [0] ResizeCon
+         [0] HoverRoot
+          [0] ImgItem
+          [1] MarkerCon
+           [0] ImgRedPoint
+           [1] MarkerSlot
+            [0] MarkerBase
+          [2] FocusWidget
+    [4] BI_EquipSlotItem_13
+      Default__BI_GearItem_Slot_C
+       WidgetTree
+        Root
+        [0] ResizeCon
+         [0] HoverRoot
+          [0] ImgItem
+          [1] MarkerCon
+           [0] ImgRedPoint
+           [1] MarkerSlot
+            [0] MarkerBase
+          [2] FocusWidget
+   [3] DynamicSlotCon
+    [0] BI_EquipSlotItem_8
+      Default__BI_GearItem_Slot_C
+       WidgetTree
+        Root
+        [0] ResizeCon
+         [0] HoverRoot
+          [0] ImgItem
+          [1] MarkerCon
+           [0] ImgRedPoint
+           [1] MarkerSlot
+            [0] MarkerBase
+          [2] FocusWidget
+    [1] BI_EquipQuickSlot
+      Default__BI_EquipQuickSlot_C
+   [4] EquipCon
+    [0] BgEquip
+    [1] BI_CommSubTab
+      Default__BI_CommSubTab_C
+    [2] EquipDecCon
+     [0] ImgBg
+     [1] HorizontalBox_2
+      [0] MarkerRoot
+       [0] ResizeSlotType
+        [0] MarkerSlotType
+      [1] TxtDesc
+    [3] BI_SubTabJewelry
+      Default__BI_SubTabJewelry_C
+    [4] JewelryTitle
+     [0] SubTitleBar
+     [1] TxtSubTitle
+    [5] ListMask
+    [6] BI_Sorting
+      Default__BI_Sorting_C
+       WidgetTree
+        CanvasPanel_35
+        [0] CanvasPanel_138
+         [0] ImgBg
+         [1] IARoot
+          [0] InputIcon
+         [2] TxtSorting
+ [4] StoryCon
+  [0] BI_ItemStory
+    Default__BI_ItemStory_C
+     WidgetTree
+      StoryObsRoot
+      [0] StoryCon
+       [0] StoryRoot
+        [0] Overlay_160
+         [0] ResizeStoryBar
+          [0] ImgStoryBar
+         [1] TxtStoryRuby
+ [5] JewelryDetailObsRoot
+  [0] JewelryDetailRoot
+   [0] SlotRoot
+    [0] BI_JewelrySlotDetail
+      Default__BI_JewelrySlotDetail_C
+   [1] CurrentRoot
+    [0] BI_JewelryDetail
+      Default__BI_JewelryDetail_C
+ [6] CanvasPanel_0
+  [0] BI_InputRoot
+    Default__BI_InputRoot_C
+[1] DebugCover
