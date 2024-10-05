@@ -19,8 +19,9 @@ function WkbHook.BenchMarkReportBind(WkUIGlobals)
     -- BUI_LearnTalent_C
     local A11yReport_txt = ""
     local BUI_BenchMark_V2_C = WkUIGlobals["BUI_BenchMark_V2_C"]
-    BUI_BenchMark_V2_C = FindFirstOf("BUI_BenchMark_V2_C")
-    if BUI_BenchMark_V2_C == nil then
+    -- BUI_BenchMark_V2_C = FindFirstOf("BUI_BenchMark_V2_C")
+    local isClassGood = BUI_BenchMark_V2_C and BUI_BenchMark_V2_C:IsValid()
+    if not isClassGood then
         A11yReport_txt = "无障碍 MOD 未找到性能报告，请截图 OCR 以确认测试是否结束"
         print(string.format("%s\n", A11yReport_txt))
         A11yTolk:Speak(A11yReport_txt, true)
