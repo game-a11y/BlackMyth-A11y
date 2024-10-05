@@ -855,17 +855,16 @@ end -- GetTextureName1
 
 -- 游戏中:背包:物品
 --[[
-Default__BI_EquipItem_Slot_C
-WidgetTree
- Root
- [0] ResizeCon
-  [0] HoverRoot
-   [0] ImgItem
-   [1] MarkerCon
-    [0] ImgRedPoint
-    [1] MarkerSlot
-     [0] MarkerBase
-   [2] FocusWidget
+BI_EquipItem_Slot_C.WidgetTree.RootWidget
+Root
+[0] ResizeCon
+ [0] HoverRoot
+  [0] ImgItem
+  [1] MarkerCon
+   [0] ImgRedPoint
+   [1] MarkerSlot
+    [0] MarkerBase
+  [2] FocusWidget
 ]]
 GetTextFuncMap["BI_EquipItem_Slot_C"] = function(Button, InFocusEvent)
     local ResizeCon = Button.WidgetTree.RootWidget:GetChildAt(0)
@@ -886,10 +885,19 @@ GetTextFuncMap["BI_EquipItem_Slot_C"] = function(Button, InFocusEvent)
     return string.format("背包物品 %s", TextureName)
 end
 
--- 游戏中:背包:珍玩
+-- 游戏中:背包:珍玩（葫芦等）
 --[[
-BI_GearItem_Slot_C
 GSRichScaleText /.BUI_EquipMain_C_2147461353.WidgetTree.TxtHuluTitleRuby
+BI_GearItem_Slot_C.WidgetTree.RootWidget
+Root
+[0] ResizeCon
+ [0] HoverRoot
+  [0] ImgItem
+  [1] MarkerCon
+   [0] ImgRedPoint
+   [1] MarkerSlot
+    [0] MarkerBase
+  [2] FocusWidget
 ]]
 GetTextFuncMap["BI_GearItem_Slot_C"] = function(Button, InFocusEvent)
     local SuperClassName = Button:GetClass():GetFName():ToString()
