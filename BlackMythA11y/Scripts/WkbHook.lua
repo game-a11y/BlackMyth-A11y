@@ -9,15 +9,16 @@ local SubModeName = "[BlackMythA11y.WkbHook] "
 -- [[Global Var]]
 local WkbHook = {}
 
-
--- 【性能测试工具】 测试报告
-RegisterKeyBind(Key.F12, function()
-    print("性能报告")
-    A11yTolk:Speak("性能报告")
+-- 【性能测试工具】 测试报告输出
+-- @param WkUIGlobals 全局变量捕获
+function WkbHook.BenchMarkReportBind(WkUIGlobals)
+    local msg = "性能报告"
+    print(msg.."\n")
+    A11yTolk:Speak(msg)
 
     -- BUI_LearnTalent_C
     local A11yReport_txt = ""
-    local BUI_BenchMark_V2_C = WkUIHook.WkUIGlobals["BUI_BenchMark_V2_C"]
+    local BUI_BenchMark_V2_C = WkUIGlobals["BUI_BenchMark_V2_C"]
     BUI_BenchMark_V2_C = FindFirstOf("BUI_BenchMark_V2_C")
     if BUI_BenchMark_V2_C == nil then
         A11yReport_txt = "无障碍 MOD 未找到性能报告，请截图 OCR 以确认测试是否结束"
@@ -55,7 +56,6 @@ RegisterKeyBind(Key.F12, function()
     local Txt_VideoMem = ListResults:GetChildAt(4):GetChildAt(1):GetChildAt(1):GetChildAt(0)
     -- print(string.format("ResultsCon=%s\n", ResultsCon:GetFullName()))
 
-    
     local DescTable = {
         -- 1111
         "性能总结",
@@ -75,6 +75,6 @@ RegisterKeyBind(Key.F12, function()
     local A11yReport_txt = table.concat(DescTable, " ")
     print(A11yReport_txt.."\n")
     A11yTolk:Speak(A11yReport_txt, true)
-end)
+end
 
 return WkbHook
