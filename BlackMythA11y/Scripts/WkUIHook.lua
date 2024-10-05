@@ -6,6 +6,7 @@ local SubModeName = "[BlackMythA11y.WkUIHook] "
 
 -- [[require Local]]
 local WkUtils = require("WkUtils")
+local WkConfig = require("WkConfig")
 -- [[Global Var]]
 local WkUIHook = {}
 -- 父类名 => GetText 函数
@@ -37,7 +38,7 @@ RootCon
 GetTextFuncMap["BI_FirstStartBtn_C"] = function(Button, InFocusEvent)
     local BtnCon = Button.WidgetTree.RootWidget:GetChildAt(0)
     local TxtName = BtnCon:GetChildAt(3)  -- .BtnCon.CanvasPanelSlot_5
-    return TxtName:GetContent():ToString()
+    return TxtName:GetText():ToString()
 end
 
 -- 主界面/主菜单: 所有按钮
@@ -74,7 +75,7 @@ GetTextFuncMap["BI_StartGame_C"] = function(Button, InFocusEvent)
     end
 
     -- 当前按钮文本
-    local ContinueBtnTxt = Button.BI_TextLoop.Content:GetContent():ToString()
+    local ContinueBtnTxt = Button.BI_TextLoop.Content:GetText():ToString()
     return ContinueBtnTxt .. CurLevelName_txt
 end -- BI_StartGame_C
 
@@ -233,8 +234,8 @@ BI_SettingTab_C.WidgetTree.RootWidget
 ]]
 GetTextFuncMap["BI_SettingTab_C"] = function(Button, InFocusEvent)
     local BtnCon = Button.WidgetTree.RootWidget:GetChildAt(0)
-    local TxtName = BtnCon:GetChildAt(2)  -- CPS3
-    local TxtName_txt = TxtName:GetContent():ToString()  -- GSScaleText
+    local TxtName = BtnCon:GetChildAt(2)  -- CPS1
+    local TxtName_txt = TxtName:GetText():ToString()  -- GSScaleText
     return TxtName_txt
 end -- BI_SettingTab_C
 
@@ -264,6 +265,8 @@ BI_SettingFixedItem_C.WidgetTree.RootWidget
        [3] WarningCon
         [0] TextWarning
       [3] FocusWidget
+
+    BI_SettingFixedItem_C /.BUI_InitSetting_C_2147482286.WidgetTree.BI_SettingLocalization
 ]]
 GetTextFuncMap["BI_SettingFixedItem_C"] = function(Button, InFocusEvent)
     local FullName = Button:GetFullName()
@@ -273,7 +276,7 @@ GetTextFuncMap["BI_SettingFixedItem_C"] = function(Button, InFocusEvent)
     local BtnCon = Button.BI_Btn.WidgetTree.RootWidget:GetChildAt(0)
     local HBox0 = BtnCon:GetChildAt(2)
     local TxtName = HBox0:GetChildAt(0)
-    local TxtName_txt = TxtName:GetContent():ToString()  -- GSScaleText
+    local TxtName_txt = TxtName:GetText():ToString()  -- GSScaleText
 
     --[[
     BI_SettingFixedItem_C.WidgetTree.RootWidget
@@ -300,6 +303,11 @@ GetTextFuncMap["BI_SettingFixedItem_C"] = function(Button, InFocusEvent)
         A11yNote = "无障碍提示：类型一是 XBox 手柄；类型二是 PS 手柄"
     elseif "输入类型" == TxtName_txt then
         A11yNote = "无障碍提示：输入类型用于切换键位布局，目前不支持自定义手柄键位，建议使用 Steam 自定义映射"
+    end
+
+    -- 首次启动
+    if "文本语言" == TxtName_txt and string.find(FullName, "BUI_InitSetting_C") then
+        A11yNote = "手柄按 A 确定，键盘按 E 确定"
     end
 
     return string.format("%s %s %s %s", TxtName_txt, BtnType, TxtDesc_txt, A11yNote)
@@ -347,7 +355,7 @@ GetTextFuncMap["BI_SettingMenuItem_C"] = function(Button, InFocusEvent)
     local BtnCon = Button.BI_Btn.BI_Btn.WidgetTree.RootWidget:GetChildAt(0)
     local HBox0 = BtnCon:GetChildAt(2)
     local TxtSettingInfo = HBox0:GetChildAt(0)
-    local TxtSettingInfo_txt = TxtSettingInfo:GetContent():ToString()  -- GSScaleText
+    local TxtSettingInfo_txt = TxtSettingInfo:GetText():ToString()  -- GSScaleText
 
     --[[
       BI_SettingMenuItem_C.WidgetTree.RootWidget
@@ -434,7 +442,7 @@ GetTextFuncMap["BI_SettingSliderItem_C"] = function(Button, InFocusEvent)
     local BI_Slider = Button.BI_Slider
     local SliderBtn = BI_Slider.SliderBtn
     local TxtNum = SliderBtn:GetChildAt(3)
-    local Volume = TxtNum:GetContent():ToString()  -- GSScaleText
+    local Volume = TxtNum:GetText():ToString()  -- GSScaleText
 
     -- BI_Slider.WidgetTree.TxtMaxNum
     local RootCon2 = BI_Slider.WidgetTree.RootWidget
@@ -612,6 +620,7 @@ RootCon
    [0] TxtMaxNum
 ]]
 -- TODO: 此处没有控制器焦点控件
+-- 首次启动 BI_SettingSliderL_C /.BUI_InitSetting_C_2147482286.WidgetTree.BI_Slider
 
 
 -- 二次确定对话框
@@ -645,7 +654,7 @@ GetTextFuncMap["BI_ReconfirmBtn_C"] = function(Button, InFocusEvent)
         --
         local ContentCon = BoxCon:GetChildAt(1)
         local txt = ContentCon:GetChildAt(0)
-        local ContentCon_txt = txt:GetContent():ToString()
+        local ContentCon_txt = txt:GetText():ToString()
         -- print(string.format("txt=%s:  %s\n", txt:GetFullName(), ContentCon_txt))
 
         return string.format("%s %s", TxtName_txt, ContentCon_txt)
@@ -880,8 +889,79 @@ end
 ]]
 
 
--- [[ Hook 函数 ]] --------------------------------------------------------------
+if WkConfig.IsBencmarkTools then
+    
+-- 【性能测试工具】 测试报告
+RegisterKeyBind(Key.F12, function()
+    print("性能报告")
+    A11yTolk:Speak("性能报告")
 
+    -- BUI_LearnTalent_C
+    local A11yReport_txt = ""
+    local BUI_BenchMark_V2_C = WkUIHook.WkUIGlobals["BUI_BenchMark_V2_C"]
+    BUI_BenchMark_V2_C = FindFirstOf("BUI_BenchMark_V2_C")
+    if BUI_BenchMark_V2_C == nil then
+        A11yReport_txt = "无障碍 MOD 未找到性能报告，请截图 OCR 以确认测试是否结束"
+        print(string.format("%s\n", A11yReport_txt))
+        A11yTolk:Speak(A11yReport_txt, true)
+        return
+    end
+
+--[[BI_BenchMarkHistoryBtn_C.WidgetTree.RootWidget
+[0] BtnCon
+ [0] ResizeCon
+  [0] ImgBar
+  [1] ImgBarCk
+ [1] ContentCon
+  [0] TxtName
+  [1] TxtTime
+ [2] ArrowCon
+ [3] FocusWidget
+]]
+    -- BI_HistoryBtn
+    local BI_HistoryBtn = BUI_BenchMark_V2_C.BI_HistoryBtn
+    print(string.format("%s\n", BI_HistoryBtn:GetFullName()))
+
+    local Canvas_full = BUI_BenchMark_V2_C.WidgetTree.RootWidget:GetChildAt(0)
+    local ResultsCon = Canvas_full:GetChildAt(5)
+    local TitleResults = ResultsCon:GetChildAt(0)
+    local Txt_timeStamp = TitleResults:GetChildAt(1):GetChildAt(1)
+    -- TODO: 标题、单位
+    local ListResults = ResultsCon:GetChildAt(1)
+    --                            .ListResults.VerticalBox.HorizontalBox_11.Txt_FPSAbs
+    local Txt_FPSAbs = ListResults:GetChildAt(0):GetChildAt(1):GetChildAt(1):GetChildAt(0)
+    local Txt_FPSMax = ListResults:GetChildAt(1):GetChildAt(1):GetChildAt(0):GetChildAt(1):GetChildAt(0)
+    local Txt_FPSMin = ListResults:GetChildAt(1):GetChildAt(1):GetChildAt(1):GetChildAt(1):GetChildAt(0)
+    local TxtTitle_95 = ListResults:GetChildAt(2):GetChildAt(1):GetChildAt(1):GetChildAt(0)
+    local Txt_VideoMem = ListResults:GetChildAt(4):GetChildAt(1):GetChildAt(1):GetChildAt(0)
+    -- print(string.format("ResultsCon=%s\n", ResultsCon:GetFullName()))
+
+    
+    local DescTable = {
+        -- 1111
+        "性能总结",
+        Txt_timeStamp:GetText():ToString(),
+        "平均帧率", Txt_FPSAbs:GetText():ToString(),
+        "最高帧率", Txt_FPSMax:GetText():ToString(),
+        "最低帧率", Txt_FPSMin:GetText():ToString(),
+        "百分之95帧率", TxtTitle_95:GetText():ToString(),
+        "显存占用", Txt_VideoMem:GetText():ToString(), "GB",
+        
+        -- "系统信息", "(跳过)",
+        
+        -- "画面设置", 
+    }
+
+    -- join string
+    local A11yReport_txt = table.concat(DescTable, " ")
+    print(A11yReport_txt.."\n")
+    A11yTolk:Speak(A11yReport_txt, true)
+end)
+
+end -- WkConfig.IsBencmarkTools
+
+
+-- [[ Hook 函数 ]] --------------------------------------------------------------
 local function OnAddedToFocusPath_Hook(pContext, pInFocusEvent)
     local Button = pContext:get()
     local SuperClassName = Button:GetClass():GetFName():ToString()
@@ -914,9 +994,11 @@ end
 -- 初始化所有 UI 钩子
 function WkUIHook.InitUiHooks()
     local Hook_BUI_Widget_Class = {}
+    -- 性能测试结果
+    Hook_BUI_Widget_Class["BUI_BenchMark_V2_C"] = 1
     Hook_BUI_Widget_Class["BUI_Setting_C"] = 1
-    -- Hook_BUI_Widget_Class["BUI_LoadingV2_C"] = 1  -- 没有挂钩到加载页面
-    Hook_BUI_Widget_Class["BUI_LearnTalent_C"] = 1
+    -- -- Hook_BUI_Widget_Class["BUI_LoadingV2_C"] = 1  -- 没有挂钩到加载页面
+    -- Hook_BUI_Widget_Class["BUI_LearnTalent_C"] = 1
 
     NotifyOnNewObject("/Script/b1-Managed.BUI_Widget", function(ConstructedObject)
         local FullName = ConstructedObject:GetFullName()

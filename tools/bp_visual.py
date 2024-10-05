@@ -71,7 +71,7 @@ def ObjectPath2BpId(objectPath: str) -> int:
 
 # 跳过容量为 1 的包装容器
 g_SKIP_WRAP_SLOT = True
-g_SKIP_WRAP_SLOT = False
+# g_SKIP_WRAP_SLOT = False
 def get_slots(widget: dict) -> List[dict]:
     """获取所有子组件"""
     Type = widget["Type"]
@@ -249,8 +249,13 @@ def print_WidgetTree_rec(ObjectPath: str, lv: int=0, slot_idx: int=None, is_in_s
 if __name__ == '__main__':
     logger.info("Run as scripts")
     
+    ## 性能测试工具
+    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/BenchMark/BUI_BenchMark_V2.BUI_BenchMark_V2_C'"
+    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_BenchMarkHistoryBtn.BI_BenchMarkHistoryBtn_C'"
+    
+    
     ## 加载界面
-    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Loading/BUI_LoadingV2.BUI_LoadingV2_C'"
+    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Loading/BUI_LoadingV2.BUI_LoadingV2_C'"
 
     ## 首次加载 主界面
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_FirstStartBtn.BI_FirstStartBtn_C'"
@@ -298,8 +303,8 @@ if __name__ == '__main__':
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/LearnSpell/Btn/BI_AbilityIcon_GP_Basic.BI_AbilityIcon_GP_Basic_C'"
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/LearnSpell/Btn/BI_AbilityIcon_GP_Advance.BI_AbilityIcon_GP_Advance_C'"
     # 游戏中:背包:技能:根基
-    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/LearnSpell/BUI_LearnTalent.BUI_LearnTalent_C'"
-    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/LearnSpell/BI_SpellDetailNew.BI_SpellDetailNew_C'"
+    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/LearnSpell/BUI_LearnTalent.BUI_LearnTalent_C'"
+    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/LearnSpell/BI_SpellDetailNew.BI_SpellDetailNew_C'"
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/LearnSpell/Btn/BI_SpellPanelTitle_Btn.BI_SpellPanelTitle_Btn_C'"
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/LearnSpell/Node/BI_TalentItem_1_1.BI_TalentItem_1_1_C'"
     # 游戏中:背包
