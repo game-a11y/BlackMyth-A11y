@@ -57,10 +57,19 @@ function WkbHook.BenchMarkReportBind(WkUIGlobals)
     local Txt_VideoMem = ListResults:GetChildAt(4):GetChildAt(1):GetChildAt(1):GetChildAt(0)
     -- print(string.format("ResultsCon=%s\n", ResultsCon:GetFullName()))
 
+    local Txt_timeStamp_str = Txt_timeStamp:GetText():ToString()
+    if "2024/08/20 08:20" == Txt_timeStamp_str then
+        -- 性能测试中, 报告日期为特定时间
+        local A11yReport_txt = "性能测试中..."
+        print(A11yReport_txt.."\n")
+        A11yTolk:Speak(A11yReport_txt, true)
+        return
+    end
+
     local DescTable = {
         -- 1111
         "性能总结",
-        Txt_timeStamp:GetText():ToString(),
+        Txt_timeStamp_str,
         "平均帧率", Txt_FPSAbs:GetText():ToString(),
         "最高帧率", Txt_FPSMax:GetText():ToString(),
         "最低帧率", Txt_FPSMin:GetText():ToString(),
