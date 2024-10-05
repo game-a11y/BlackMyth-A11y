@@ -675,6 +675,26 @@ end
     文字描述    TextBlock   /BUI_Tudi_Enter_C.WidgetTree.TxtTips
 ]]
 GetTextFuncMap["BI_ShrineMenuParent_C"] = GetTextFuncMap["BI_StartGame_C"]
+-- 游戏中:土地庙:菜单:缩地（传送菜单）
+--[[
+BI_ShrineMenuChild_C.WidgetTree.RootWidget
+Root
+[0] BtnCon
+ [0] ResizeCon
+  [0] ImgBar
+ [1] ResizeName
+  [0] ImgUnusableMarker
+  [1] ImgNPCIcon_Ck
+  [2] ImgNPCIcon_Df
+  [3] HorizontalBox_0
+   [0] BI_TextLoop
+     Default__BI_TextLoop_C
+ [2] FocusWidget
+ [3] MarkerCon
+  [0] MarkerTeleport
+  [1] ImgRedPoint
+]]
+GetTextFuncMap["BI_ShrineMenuChild_C"] = GetTextFuncMap["BI_StartGame_C"]
 
 -- TODO: 游戏中:背包栏
 --[[
