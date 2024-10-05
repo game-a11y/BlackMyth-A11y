@@ -826,10 +826,55 @@ GetTextFuncMap["BI_TalentItem_1_1_C"] = function(Button, InFocusEvent)
 end
 
 -- 游戏中:背包
---
+--[[
+Default__BI_EquipItem_Slot_C
+WidgetTree
+ Root
+ [0] ResizeCon
+  [0] HoverRoot
+   [0] ImgItem
+   [1] MarkerCon
+    [0] ImgRedPoint
+    [1] MarkerSlot
+     [0] MarkerBase
+   [2] FocusWidget
+]]
 GetTextFuncMap["BI_EquipItem_Slot_C"] = function(Button, InFocusEvent)
-    local TxtName_txt = "背包物品"
-    return DevNote ..TxtName_txt
+    local ResizeCon = Button.WidgetTree.RootWidget:GetChildAt(0)
+    local ImgItem = ResizeCon:GetChildAt(0):GetChildAt(0)
+    local Brush = ImgItem.Brush
+    -- MaterialInstanceDynamic
+    local ResourceObject = Brush.ResourceObject
+    print(string.format("  %s\n", ResourceObject:GetFullName()))
+    -- TArray< struct FTextureParameterValue >
+    local TextureParameterValues = ResourceObject.TextureParameterValues
+    
+    -- 检查是否有物品在格子中
+    local has_Texture = false
+    local TextureName = ""
+    if TextureParameterValues and TextureParameterValues:IsValid() then
+        if #TextureParameterValues > 0 then
+            -- 有贴图材料
+            local Texture1 = TextureParameterValues[1]
+            -- print(string.format("  %s\n", Texture1:GetFullName()))
+            -- ParameterValue UTexture
+            local ParameterValue = Texture1.ParameterValue
+            TextureName = ParameterValue:GetFName():ToString()
+            -- 默认材质 Texture2D /Game/00MainHZ/UI/Atlas/Icon/Item_Icon_Default_t.Item_Icon_Default_t
+            if nil == string.find(TextureName, "Item_Icon_Default_t") then
+                has_Texture = true
+            else
+                has_Texture = false
+                TextureName = "(空)"
+            end
+        end
+    end
+
+    -- TODO: 获取物品名称
+
+    --
+    local TxtName_txt = string.format("%s %s", "背包物品", TextureName)
+    return TxtName_txt
 end
 --[[
 BI_GearItem_Slot_C
