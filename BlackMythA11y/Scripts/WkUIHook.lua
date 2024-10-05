@@ -853,7 +853,7 @@ function TArray_GetTextureName1(TextureParameterValues)
     return TextureName
 end -- GetTextureName1
 
--- 游戏中:背包
+-- 游戏中:背包:物品
 --[[
 Default__BI_EquipItem_Slot_C
 WidgetTree
@@ -877,32 +877,13 @@ GetTextFuncMap["BI_EquipItem_Slot_C"] = function(Button, InFocusEvent)
     -- TArray< struct FTextureParameterValue >
     local TextureParameterValues = ResourceObject.TextureParameterValues
 
-    -- 检查是否有物品在格子中
-    local has_Texture = false
-    local TextureName = ""
-    if TextureParameterValues and TextureParameterValues:IsValid() then
-        if #TextureParameterValues > 0 then
-            -- 有贴图材料
-            local Texture1 = TextureParameterValues[1]
-            -- print(string.format("  %s\n", Texture1:GetFullName()))
-            -- ParameterValue UTexture
-            local ParameterValue = Texture1.ParameterValue
-            TextureName = ParameterValue:GetFName():ToString()
-            -- 默认材质 Texture2D /Game/00MainHZ/UI/Atlas/Icon/Item_Icon_Default_t.Item_Icon_Default_t
-            if nil == string.find(TextureName, "Item_Icon_Default_t") then
-                has_Texture = true
-            else
-                has_Texture = false
-                TextureName = "(空)"
-            end
-        end
+    local TextureName = TArray_GetTextureName1(TextureParameterValues)
+    if nil == TextureName then
+        TextureName = "(空)"
     end
-
     -- TODO: 获取物品名称
 
-    --
-    local TxtName_txt = string.format("%s %s", "背包物品", TextureName)
-    return TxtName_txt
+    return string.format("背包物品 %s", TextureName)
 end
 
 -- 游戏中:背包:珍玩
