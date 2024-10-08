@@ -1,16 +1,16 @@
 -- SPDX-License-Identifier: MIT
 -- WuKong Benchmark Tools Mod
 -- Author: inkydragon
-local SubModeName = "[BlackMythA11y.WkbHook] "
+local SubModeName = "[BlackMythA11y.BmTools] "
 -- [[require Global]]
 
 -- [[require Local]]
 local WkGlobals = require("WkGlobals")
 -- [[Global Var]]
-local WkbHook = {}
+local BmTools = {}
 
 -- 【性能测试工具】 测试报告输出
-function WkbHook.BenchMarkReportBind()
+function BmTools.BenchMarkReportBind()
     local msg = "性能报告"
     print(msg.."\n")
     A11yTolk:Speak(msg)
@@ -86,4 +86,4 @@ function WkbHook.BenchMarkReportBind()
     A11yTolk:Speak(A11yReport_txt, true)
 end
 
-return WkbHook
+return BmTools

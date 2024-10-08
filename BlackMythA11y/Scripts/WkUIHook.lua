@@ -233,8 +233,8 @@ end
 
 -- bmb 性能测试工具
 if WkConfig.IsBencmarkTools then
-    local WkbHook = require("UIHooks.WkbHook")
-    RegisterKeyBind(Key.F12, WkbHook.BenchMarkReportBind)
+    local BmTools = require("UIHooks.BmTools")
+    RegisterKeyBind(Key.F12, BmTools.BenchMarkReportBind)
 end -- WkConfig.IsBencmarkTools
 
 return WkUIHook
