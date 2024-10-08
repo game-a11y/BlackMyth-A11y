@@ -1,7 +1,7 @@
 # 黑神话悟空-性能测试工具-无障碍补丁
 
 > 适用于黑神话悟空性能测试工具
-> inkydragob @ B站/Gtihub
+> inkydragon @ B站/Github
 > 版本 v20241005+1700
 
 ## 目录大纲
