@@ -703,8 +703,6 @@ BI_CommTxtTab_C     /.BUI_RoleMain_C_2147463565.WidgetTree.BI_RoleTab.WidgetTree
     GSScaleText /.BI_RoleTab.WidgetTree.BI_SecTab.WidgetTree.BI_CommTxtTab_C_2147471225.WidgetTree.TxtName
 BI_EquipItem_Slot_C /.BUI_EquipMain_C_2147465651.WidgetTree.BI_EquipSlotItem_1
     GSScaleText /.BI_RoleTab.WidgetTree.BI_SecTab.WidgetTree.BI_CommTxtTab_C_2147471217.WidgetTree.TxtName
-BI_InventoryItem_C  /.BUI_BagMain_C_2147464172.WidgetTree.BI_TileView.WidgetTree.BI_InventoryItem_C_2147463997
-    GSScaleText /.BI_RoleTab.WidgetTree.BI_SecTab.WidgetTree.BI_CommTxtTab_C_2147471209.WidgetTree.TxtName
 BI_TravelNotesMain_ListBar_C /.BUI_TravelNotesMain_C_2147463697.WidgetTree.BI_TravelNotesMain_ListBar_0
     GSScaleText /.BI_RoleTab.WidgetTree.BI_SecTab.WidgetTree.BI_CommTxtTab_C_2147471201.WidgetTree.TxtName
 BI_SettingTab_C     /.BUI_Setting_C_2147463587.WidgetTree.BI_SettingTab_0
@@ -966,6 +964,50 @@ GetTextFuncMap["BI_QuickItem_C"] = function(Button, InFocusEvent)
 
     return string.format("随身之物 %s %s", TextureName, TxtNum_txt)
 end
+
+-- 游戏中:背包1:行囊(物品)
+--[[
+BI_InventoryItem_C.WidgetTree.RootWidget
+Root
+[0] ResizeCon
+ [0] HoverRoot
+  [0] ImgItem
+  [1] MarkerCon
+   [0] ImgRedPoint
+   [1] MarkerBase
+   [2] TxtNum
+   [3] ImgTimeMarker
+   [4] MarkerSlot
+  [2] FocusWidget
+]]
+GetTextFuncMap["BI_InventoryItem_C"] = function(Button, InFocusEvent)
+    local ClassName = Button:GetFName():ToString()
+
+    -- 物品名称
+    local hasItem = false
+    local ResizeCon = Button.WidgetTree.RootWidget:GetChildAt(0)
+    local ImgItem = ResizeCon:GetChildAt(0):GetChildAt(0)
+    -- TArray< struct FTextureParameterValue >
+    local TextureParameterValues = ImgItem.Brush.ResourceObject.TextureParameterValues
+    local TextureName = TArray_GetTextureName1(TextureParameterValues)
+    hasItem = (nil ~= TextureName)
+    -- TODO: 获取物品名称
+
+    -- 物品数量
+    local MarkerCon = ResizeCon:GetChildAt(0):GetChildAt(1)
+    local TxtNum = MarkerCon:GetChildAt(2) -- 物品数量。默认 99
+    local TxtNum_txt = TxtNum:GetText():ToString()
+
+    -- 物品类型：用品/材料/酒食/药材/要紧物事
+    local ItemType = "用品"
+
+    if not hasItem then
+        return string.format("%s (空)", ItemType)
+    else
+        return string.format("%s %s %s", ItemType, TextureName, TxtNum_txt)
+    end
+end
+
 
 -- 游戏中:背包:游记
 --[[
