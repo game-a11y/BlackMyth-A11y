@@ -5,17 +5,13 @@ local SubModeName = "[BlackMythA11y.WkUIHook] "
 -- [[require Global]]
 
 -- [[require Local]]
+local WkGlobals = require("WkGlobals")
 local WkUtils = require("WkUtils")
 local WkConfig = require("WkConfig")
 -- [[Global Var]]
 local WkUIHook = {}
--- 父类名 => GetText 函数
-local GetTextFuncMap = {}
 -- 开发中标记
 local DevNote = "开发中! "
-
--- UI 相关的全局变量
-WkUIHook.WkUIGlobals = {}
 
 
 -- [[ 辅助函数 ]] -----------------------------------------------------------------
@@ -35,7 +31,7 @@ RootCon
  [3] TxtName
  [4] FocusWidget
 ]]
-GetTextFuncMap["BI_FirstStartBtn_C"] = function(Button, InFocusEvent)
+WkGlobals.GetTextFuncMap["BI_FirstStartBtn_C"] = function(Button, InFocusEvent)
     local BtnCon = Button.WidgetTree.RootWidget:GetChildAt(0)
     local TxtName = BtnCon:GetChildAt(3)  -- .BtnCon.CanvasPanelSlot_5
     return TxtName:GetText():ToString()
@@ -54,7 +50,7 @@ end
 TODO:  首屏播报版本号
 版本号  TextBlock   /.BUI_StartGame_C_2147456059.WidgetTree.TxtVersion
 ]]
-GetTextFuncMap["BI_StartGame_C"] = function(Button, InFocusEvent)
+WkGlobals.GetTextFuncMap["BI_StartGame_C"] = function(Button, InFocusEvent)
     local ClassName = Button:GetFName():ToString()
 
     -- 按钮 [继续游戏] 选中时，输出当前关卡信息: .TxtMainName; .TxtSubName
@@ -129,7 +125,7 @@ CanvasPanel_0
   [0] ImgNGMarker
  [6] FocusWidget
 ]]
-GetTextFuncMap["BI_ArchivesBtnV2_C"] = function(Button, InFocusEvent)
+WkGlobals.GetTextFuncMap["BI_ArchivesBtnV2_C"] = function(Button, InFocusEvent)
     local CanvasPanel_0 = Button.WidgetTree.RootWidget
     local CanvasPanel_28 = CanvasPanel_0:GetChildAt(0)  -- CPS0
     local InfoCon = CanvasPanel_28:GetChildAt(4)  -- CPS1
@@ -209,7 +205,7 @@ CanvasPanel_0
   [0] ImgNGMarker
  [6] FocusWidget
 ]]
-GetTextFuncMap["BI_AccordionChildBtn_Echo_C"] = GetTextFuncMap["BI_StartGame_C"]
+WkGlobals.GetTextFuncMap["BI_AccordionChildBtn_Echo_C"] = WkGlobals.GetTextFuncMap["BI_StartGame_C"]
 
 -- 主界面/主菜单/设置: 一级菜单
 --[[
@@ -232,7 +228,7 @@ BI_SettingTab_C.WidgetTree.RootWidget
  [2] TxtName
  [3] FocusWidget
 ]]
-GetTextFuncMap["BI_SettingTab_C"] = function(Button, InFocusEvent)
+WkGlobals.GetTextFuncMap["BI_SettingTab_C"] = function(Button, InFocusEvent)
     local BtnCon = Button.WidgetTree.RootWidget:GetChildAt(0)
     local TxtName = BtnCon:GetChildAt(2)  -- CPS1
     local TxtName_txt = TxtName:GetText():ToString()  -- GSScaleText
@@ -268,7 +264,7 @@ BI_SettingFixedItem_C.WidgetTree.RootWidget
 
     BI_SettingFixedItem_C /.BUI_InitSetting_C_2147482286.WidgetTree.BI_SettingLocalization
 ]]
-GetTextFuncMap["BI_SettingFixedItem_C"] = function(Button, InFocusEvent)
+WkGlobals.GetTextFuncMap["BI_SettingFixedItem_C"] = function(Button, InFocusEvent)
     local FullName = Button:GetFullName()
     local ClassName = Button:GetFName():ToString()
 
@@ -347,7 +343,7 @@ CanvasPanel_0
              [0] TextWarning
            [3] FocusWidget
 ]]
-GetTextFuncMap["BI_SettingMenuItem_C"] = function(Button, InFocusEvent)
+WkGlobals.GetTextFuncMap["BI_SettingMenuItem_C"] = function(Button, InFocusEvent)
     -- print(string.format("Button=%s\n", Button:GetFullName()))
     -- PrintAllParents(Button)
 
@@ -396,7 +392,7 @@ BI_ModeBtnItem_C.WidgetTree.RootWidget
  [2] ImgIcon
  [3] FocusWidget
 ]]
-GetTextFuncMap["BI_ModeBtnItem_C"] = function(Button, InFocusEvent)
+WkGlobals.GetTextFuncMap["BI_ModeBtnItem_C"] = function(Button, InFocusEvent)
     local BtnCon = Button.WidgetTree.RootWidget:GetChildAt(0)
     local TxtName = BtnCon:GetChildAt(1) -- cps1
     local TxtName_txt = TxtName:GetText():ToString()  -- TextBlock
@@ -427,7 +423,7 @@ BI_SettingSliderItem_C.WidgetTree.RootWidget
  [1] BI_Slider
    Default__BI_SettingSlider_C
 ]]
-GetTextFuncMap["BI_SettingSliderItem_C"] = function(Button, InFocusEvent)
+WkGlobals.GetTextFuncMap["BI_SettingSliderItem_C"] = function(Button, InFocusEvent)
     local ClassName = Button:GetFName():ToString()
 
     -- BI_Btn.WidgetTree.TxtName
@@ -483,7 +479,7 @@ BI_SettingIconItem_C.WidgetTree.RootWidget
         [0] TextWarning
       [3] FocusWidget
 ]]
-GetTextFuncMap["BI_SettingIconItem_C"] = function(Button, InFocusEvent)
+WkGlobals.GetTextFuncMap["BI_SettingIconItem_C"] = function(Button, InFocusEvent)
     local ClassName = Button:GetFName():ToString()
 
     local BtnCon = Button.BI_Btn.WidgetTree.RootWidget:GetChildAt(0)
@@ -519,7 +515,7 @@ BI_SettingMainBtn_C.WidgetTree.RootWidget
    [0] TextWarning
  [3] FocusWidget
 ]]
-GetTextFuncMap["BI_SettingMainBtn_C"] = function(Button, InFocusEvent)
+WkGlobals.GetTextFuncMap["BI_SettingMainBtn_C"] = function(Button, InFocusEvent)
     local BtnCon = Button.WidgetTree.RootWidget:GetChildAt(0)
     local HBox0 = BtnCon:GetChildAt(2)
     local TxtName = HBox0:GetChildAt(0)
@@ -556,7 +552,7 @@ BI_SettingKeyItem_C.WidgetTree.RootWidget
   [2] ImgKeyIcon
   [3] TxtKeyName:       "W" 按键名称，但目前固定为 W
 ]]
-GetTextFuncMap["BI_SettingKeyItem_C"] = function(Button, InFocusEvent)
+WkGlobals.GetTextFuncMap["BI_SettingKeyItem_C"] = function(Button, InFocusEvent)
     local BI_Btn_BtnCon = Button.BI_Btn.WidgetTree.RootWidget:GetChildAt(0)
     local HorizontalBox_0 = BI_Btn_BtnCon:GetChildAt(2)
     local TxtName = HorizontalBox_0:GetChildAt(0)
@@ -639,7 +635,7 @@ BI_ReconfirmBtn_C.WidgetTree.RootWidget
 -- TODO: 构造时 BI_ReconfirmBtn_C 读出 .txt
 -- GSRichScaleText /.BUI_Reconfirm_C_2147454627.WidgetTree.txt
 -- /BUI_Reconfirm_C.WidgetTree.Btn_Cancel
-GetTextFuncMap["BI_ReconfirmBtn_C"] = function(Button, InFocusEvent)
+WkGlobals.GetTextFuncMap["BI_ReconfirmBtn_C"] = function(Button, InFocusEvent)
     local ClassName = Button:GetFName():ToString()
 
     local HoverRoot = Button.WidgetTree.RootWidget:GetChildAt(0)
@@ -674,7 +670,7 @@ end
     [Reset]     BI_ShrineMenuParent_C   /BUI_Tudi_Enter_C.WidgetTree.BI_ShrineFirMenu.WidgetTree.BI_Item.WidgetTree.BI_Item_9
     文字描述    TextBlock   /BUI_Tudi_Enter_C.WidgetTree.TxtTips
 ]]
-GetTextFuncMap["BI_ShrineMenuParent_C"] = GetTextFuncMap["BI_StartGame_C"]
+WkGlobals.GetTextFuncMap["BI_ShrineMenuParent_C"] = WkGlobals.GetTextFuncMap["BI_StartGame_C"]
 -- 游戏中:土地庙:菜单:缩地（传送菜单）
 --[[
 BI_ShrineMenuChild_C.WidgetTree.RootWidget
@@ -694,7 +690,7 @@ Root
   [0] MarkerTeleport
   [1] ImgRedPoint
 ]]
-GetTextFuncMap["BI_ShrineMenuChild_C"] = GetTextFuncMap["BI_StartGame_C"]
+WkGlobals.GetTextFuncMap["BI_ShrineMenuChild_C"] = WkGlobals.GetTextFuncMap["BI_StartGame_C"]
 
 -- TODO: 游戏中:背包栏
 --[[
@@ -719,19 +715,19 @@ BI_AbilityIcon_KB_Advance_C
 BI_AbilityIcon_GP_Basic_C   /.BUI_TalentMain_C_2147461288.WidgetTree.AbilityIcon1_GP
 BI_AbilityIcon_GP_Advance_C /.BUI_TalentMain_C_2147461288.WidgetTree.AbilityIcon2_GP
 ]]
-GetTextFuncMap["BI_AbilityIcon_KB_Basic_C"] = function(Button, InFocusEvent)
+WkGlobals.GetTextFuncMap["BI_AbilityIcon_KB_Basic_C"] = function(Button, InFocusEvent)
     local TxtName_txt = "根基"
     return TxtName_txt
 end
-GetTextFuncMap["BI_AbilityIcon_KB_Advance_C"] = function(Button, InFocusEvent)
+WkGlobals.GetTextFuncMap["BI_AbilityIcon_KB_Advance_C"] = function(Button, InFocusEvent)
     local TxtName_txt = "棍法"
     return TxtName_txt
 end
-GetTextFuncMap["BI_AbilityIcon_GP_Basic_C"] = function(Button, InFocusEvent)
+WkGlobals.GetTextFuncMap["BI_AbilityIcon_GP_Basic_C"] = function(Button, InFocusEvent)
     local TxtName_txt = "根基"
     return TxtName_txt
 end
-GetTextFuncMap["BI_AbilityIcon_GP_Advance_C"] = function(Button, InFocusEvent)
+WkGlobals.GetTextFuncMap["BI_AbilityIcon_GP_Advance_C"] = function(Button, InFocusEvent)
     local TxtName_txt = "棍法"
     return TxtName_txt
 end
@@ -764,7 +760,7 @@ TextBlock /.BUI_LearnTalent_C_2147454110.WidgetTree.BI_SpellDetail.WidgetTree.Tx
 
 "已开悟" 学习技能按钮 GSScaleText /.BUI_LearnTalent_C_2147454110.WidgetTree.BI_SpellDetail.WidgetTree.BI_LongPress.WidgetTree.TxtName
 ]]
-GetTextFuncMap["BI_SpellPanelTitle_Btn_C"] = function(Button, InFocusEvent)
+WkGlobals.GetTextFuncMap["BI_SpellPanelTitle_Btn_C"] = function(Button, InFocusEvent)
     local BtnCon = Button.WidgetTree.RootWidget:GetChildAt(1)
     local SizeBoxName = BtnCon:GetChildAt(2)
     local TxtName = SizeBoxName:GetChildAt(0)
@@ -772,7 +768,7 @@ GetTextFuncMap["BI_SpellPanelTitle_Btn_C"] = function(Button, InFocusEvent)
 
     -- BUI_LearnTalent_C
     local SpellDetail_txt = ""
-    local BUI_LearnTalent_C = WkUIHook.WkUIGlobals["BUI_LearnTalent_C"]
+    local BUI_LearnTalent_C = WkGlobals.UIGlobals["BUI_LearnTalent_C"]
     if BUI_LearnTalent_C then
         -- local ResizeBg = BUI_LearnTalent_C.WidgetTree.RootWidget:GetChildAt(0)
         print(string.format("%s\n", BUI_LearnTalent_C:GetFullName()))
@@ -818,7 +814,7 @@ BI_TalentItem_1_1_C.WidgetTree.RootWidget
   [8] ImgHitArea
   [9] FocusWidget
 ]]
-GetTextFuncMap["BI_TalentItem_1_1_C"] = function(Button, InFocusEvent)
+WkGlobals.GetTextFuncMap["BI_TalentItem_1_1_C"] = function(Button, InFocusEvent)
     TxtName_txt = "根基技能"
     return DevNote..TxtName_txt
 end
@@ -864,7 +860,7 @@ Root
     [0] MarkerBase
   [2] FocusWidget
 ]]
-GetTextFuncMap["BI_EquipItem_Slot_C"] = function(Button, InFocusEvent)
+WkGlobals.GetTextFuncMap["BI_EquipItem_Slot_C"] = function(Button, InFocusEvent)
     local ResizeCon = Button.WidgetTree.RootWidget:GetChildAt(0)
     local ImgItem = ResizeCon:GetChildAt(0):GetChildAt(0)
     local Brush = ImgItem.Brush
@@ -897,7 +893,7 @@ Root
     [0] MarkerBase
   [2] FocusWidget
 ]]
-GetTextFuncMap["BI_GearItem_Slot_C"] = function(Button, InFocusEvent)
+WkGlobals.GetTextFuncMap["BI_GearItem_Slot_C"] = function(Button, InFocusEvent)
     local SuperClassName = Button:GetClass():GetFName():ToString()
     local ClassName = Button:GetFName():ToString()
     
@@ -944,7 +940,7 @@ Root
   [3] FocusWidget
   [4] ImgHitArea
 ]]
-GetTextFuncMap["BI_QuickItem_C"] = function(Button, InFocusEvent)
+WkGlobals.GetTextFuncMap["BI_QuickItem_C"] = function(Button, InFocusEvent)
     local ResizeCon = Button.WidgetTree.RootWidget:GetChildAt(0)
     local ImgItem = ResizeCon:GetChildAt(0):GetChildAt(0)
     local Brush = ImgItem.Brush
@@ -980,7 +976,7 @@ Root
    [4] MarkerSlot
   [2] FocusWidget
 ]]
-GetTextFuncMap["BI_InventoryItem_C"] = function(Button, InFocusEvent)
+WkGlobals.GetTextFuncMap["BI_InventoryItem_C"] = function(Button, InFocusEvent)
     local ClassName = Button:GetFName():ToString()
 
     -- 物品名称
@@ -1015,7 +1011,7 @@ BI_TravelNotesMain_Tab_1 <: BI_TravelNotesMain_Tab_C
     BI_TravelNotesMain_ListBar_1 <: BI_TravelNotesMain_ListBar_C
     BI_TravelNotesMain_ListBar_0 <: BI_TravelNotesMain_ListBar_C
 ]]
-GetTextFuncMap["BI_TravelNotesMain_Tab_C"] = function(Button, InFocusEvent)
+WkGlobals.GetTextFuncMap["BI_TravelNotesMain_Tab_C"] = function(Button, InFocusEvent)
     local ClassName = Button:GetFName():ToString()
 
     local TxtName_txt = ""
@@ -1027,7 +1023,7 @@ GetTextFuncMap["BI_TravelNotesMain_Tab_C"] = function(Button, InFocusEvent)
 
     return TxtName_txt
 end
-GetTextFuncMap["BI_TravelNotesMain_ListBar_C"] = function(Button, InFocusEvent)
+WkGlobals.GetTextFuncMap["BI_TravelNotesMain_ListBar_C"] = function(Button, InFocusEvent)
     local TxtName_txt = "游记 二级选项"
     return DevNote..TxtName_txt
 end
@@ -1081,10 +1077,10 @@ local function OnAddedToFocusPath_Hook(pContext, pInFocusEvent)
         tostring(Button:GetFullName())))
 
     -- Print text
-    if GetTextFuncMap[SuperClassName] then
+    if WkGlobals.GetTextFuncMap[SuperClassName] then
         -- 默认打断输出
         InterruptSpeak = true
-        local curText = GetTextFuncMap[SuperClassName](Button, InFocusEvent)
+        local curText = WkGlobals.GetTextFuncMap[SuperClassName](Button, InFocusEvent)
         print(string.format("\t\"%s\"\n", curText))
         A11yTolk:Speak(curText, InterruptSpeak)
     else
@@ -1111,7 +1107,7 @@ function WkUIHook.InitUiHooks()
         end
         
         -- 保存引用
-        WkUIHook.WkUIGlobals[SuperClassName] = ConstructedObject
+        WkGlobals.UIGlobals[SuperClassName] = ConstructedObject
         print(string.format("BUI_Widget Constructed: %s\n", FullName))
     end)
     RegisterHook("/Script/b1-Managed.BUI_Widget:Destruct", function(Context)
@@ -1125,7 +1121,7 @@ function WkUIHook.InitUiHooks()
         end
 
         -- 清除引用
-        WkUIHook.WkUIGlobals[SuperClassName] = nil
+        WkGlobals.UIGlobals[SuperClassName] = nil
         print(string.format("BUI_Widget Destruct: %s\n", FullName))
     end)
 
@@ -1197,7 +1193,7 @@ end
 if WkConfig.IsBencmarkTools then
     local WkbHook = require("WkbHook")
     RegisterKeyBind(Key.F12, function()
-        WkbHook.BenchMarkReportBind(WkUIHook.WkUIGlobals)
+        WkbHook.BenchMarkReportBind(WkGlobals.UIGlobals)
     end)
 end -- WkConfig.IsBencmarkTools
 
