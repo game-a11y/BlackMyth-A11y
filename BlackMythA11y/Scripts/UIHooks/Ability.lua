@@ -84,7 +84,7 @@ WkGlobals.GetTextFuncMap["BI_AbilityIcon_GP_Advance_C"] = function(Button, InFoc
     return TxtName_txt
 end
 
--- 游戏中:背包:技能:根基
+-- 游戏中:背包-1:修行（技能）:根基:气力
 --[[
 Tab 按钮
 BI_SpellPanelTitle_Btn_C.WidgetTree.RootWidget
