@@ -11,6 +11,35 @@ local WkGlobals = require("WkGlobals")
 
 -- [[ Hook 事件处理函数 ]] ----------------------------------------------------------
 
+-- 获取 TArray< struct FTextureParameterValue > 中的第一个材质名称
+-- 用于判断背包物品是否为空
+function TArray_GetTextureName1(TextureParameterValues)
+    local UObjGood = TextureParameterValues and TextureParameterValues:IsValid()
+    local TextureName = nil
+    if not UObjGood then
+        -- 无效的对象
+        return TextureName
+    end
+
+    if #TextureParameterValues > 0 then
+        -- 有贴图材料
+        local Texture1 = TextureParameterValues[1]
+        -- print(string.format("  %s\n", Texture1:GetFullName()))
+        -- ParameterValue UTexture
+        local ParameterValue = Texture1.ParameterValue
+        TextureName = ParameterValue:GetFName():ToString()
+
+        -- 默认材质 Texture2D /Game/00MainHZ/UI/Atlas/Icon/Item_Icon_Default_t.Item_Icon_Default_t
+        if string.find(TextureName, "Item_Icon_Default_t") then
+            -- 默认材质，忽略
+            TextureName = nil
+        end
+    end
+
+    return TextureName
+end -- GetTextureName1
+
+
 -- 游戏中:背包0:披挂（装备）
 --[[
 BI_EquipItem_Slot_C.WidgetTree.RootWidget
