@@ -1,0 +1,205 @@
+BUI_TalentMain_C.WidgetTree.RootWidget
+RootCon
+[0] DebugSafeArea
+ [0] MainRoot
+  [0] LeftRoot
+   [0] ContentAbilityRoot
+    [0] TxtAbilityTitle
+    [1] TxtAbilityDesc
+    [2] TxtAbilityTypeTitle
+    [3] TxtAbilityTypeDesc
+   [1] AbilityMainRoot
+    [0] AbilityRoot_GP
+     [0] ImgAbilityBg_GP
+     [1] Overlay_10
+      [0] AbilityIcon1_GP
+        Default__BI_AbilityIcon_GP_Basic_C
+         WidgetTree
+          Root
+          [0] RootCon
+           [0] HoverRoot
+            [0] UIFX_Resetted
+            [1] ImgItem
+            [2] ImgHitArea
+            [3] ImgRedPoint
+            [4] FocusWidget
+      [1] AbilityIcon1_Ex_GP
+        Default__BI_AbilityIcon_GP_Basic_Ex_C
+         WidgetTree
+          Root
+          [0] RootCon
+           [0] SPRoot
+            [0] SPViewCon
+             [0] BI_SPView
+               Default__BI_SPViewNew_C
+                WidgetTree
+                 Root
+                 [0] BarCon
+                  [0] ImgBar
+                  [1] HorizontalBox_39
+                   [0] TxtHas
+                   [1] Slash
+                   [2] TxtTotal
+            [1] InputCon
+             [0] ResizeInputIcon
+              [0] InputIcon
+     [2] Overlay_11
+      [0] AbilityIcon2_GP
+        Default__BI_AbilityIcon_GP_Advance_C
+         WidgetTree
+          Root
+          [0] RootCon
+           [0] HoverRoot
+            [0] UIFX_Resetted
+            [1] ImgItem
+            [2] ImgHitArea
+            [3] ImgRedPoint
+            [4] FocusWidget
+      [1] AbilityIcon2_Ex_GP
+        Default__BI_AbilityIcon_GP_Advance_Ex_C
+         WidgetTree
+          Root
+          [0] RootCon
+           [0] SPRoot
+            [0] SPViewCon
+             [0] BI_SPView
+               Default__BI_SPViewNew_C
+                WidgetTree
+                 Root
+                 [0] BarCon
+                  [0] ImgBar
+                  [1] HorizontalBox_39
+                   [0] TxtHas
+                   [1] Slash
+                   [2] TxtTotal
+            [1] InputCon
+             [0] ResizeInputIcon
+              [0] InputIcon
+    [1] AbilityRoot_KB
+     [0] ImgAbilityBg_KB
+     [1] Overlay_12
+      [0] AbilityIcon1_KB       # <---- 本事：根基
+        Default__BI_AbilityIcon_KB_Basic_C
+         WidgetTree
+          Root
+          [0] RootCon
+           [0] HoverRoot
+            [0] UIFX_Resetted
+            [1] ImgItem
+            [2] ImgHitArea
+            [3] ImgRedPoint
+            [4] FocusWidget
+      [1] AbilityIcon1_Ex_KB
+        Default__BI_AbilityIcon_KB_Ex_C
+         WidgetTree
+          Root
+          [0] RootCon
+           [0] SPRoot
+            [0] SPViewCon
+             [0] BI_SPView
+               Default__BI_SPViewNew_C
+                WidgetTree
+                 Root
+                 [0] BarCon
+                  [0] ImgBar
+                  [1] HorizontalBox_39
+                   [0] TxtHas
+                   [1] Slash
+                   [2] TxtTotal
+            [1] InputCon
+             [0] ResizeInputIcon
+              [0] InputIcon
+     [2] Overlay_13
+      [0] AbilityIcon2_KB       # <---- 本事：棍法
+        Default__BI_AbilityIcon_KB_Advance_C
+         WidgetTree
+          Root
+          [0] RootCon
+           [0] HoverRoot
+            [0] UIFX_Resetted
+            [1] ImgItem
+            [2] ImgHitArea
+            [3] ImgRedPoint
+            [4] FocusWidget
+      [1] AbilityIcon2_Ex_KB
+        Default__BI_AbilityIcon_KB_Ex_C
+         WidgetTree
+          Root
+          [0] RootCon
+           [0] SPRoot
+            [0] SPViewCon
+             [0] BI_SPView
+               Default__BI_SPViewNew_C
+                WidgetTree
+                 Root
+                 [0] BarCon
+                  [0] ImgBar
+                  [1] HorizontalBox_39
+                   [0] TxtHas
+                   [1] Slash
+                   [2] TxtTotal
+            [1] InputCon
+             [0] ResizeInputIcon
+              [0] InputIcon
+  [1] MiddleRoot
+   [0] SplineResetProg
+   [1] ImgResetProg
+   [2] SPRoot
+    [0] UIFX_RippleLight
+    [1] ImgCoreBg
+    [2] UIFX_RippleRing
+    [3] UIFX_RippleLensFlares
+    [4] ImgCore
+    [5] ImgCoreHighLight
+    [6] SPTitleCon
+     [0] ImgSPTitleBar
+     [1] TxtSPTitle
+    [7] TxtSP
+    [8] ImgSp
+    [9] UIFX_Resetted
+    [10] UINS_SparkBurst
+   [3] SPResetCon
+    [0] SPBoxAbility
+      Default__BI_TalentResetSPBox_Left_C
+    [1] SPBoxSkill
+      Default__BI_TalentResetSPBox_Right_C
+   [4] ResetInputCon
+    [0] VerticalBox_28
+     [0] TxtResetTItle
+     [1] HorizontalBox_34
+      [0] InputIcon
+      [1] TxtInput
+  [2] RightRoot
+   [0] ContentSkillRoot
+    [0] TxtSkillTitle
+    [1] TxtSkillDesc
+    [2] TxtSkillTypeTitle
+    [3] TxtSkillTypeDesc
+   [1] SkillMainRoot
+    [0] SkillRoot_GP
+     [0] ImgSkillBg_GP
+     [1] SkillIconCon2_GP
+      [0] SkillIcon2_GP
+        Default__BI_SkillIcon_GP_Top_C
+         WidgetTree
+          Root
+          [0] RootCon
+           [0] HoverRoot
+            [0] UIFX_Resetted
+            [1] ImgItem
+            [2] ImgHitArea
+            [3] ImgRedPoint
+            [4] FocusWidget
+            [5] InputRoot
+             [0] InputCon
+              [0] InputVisableCtrl
+               [0] InputIcon
+      [1] SkillIcon2_Ex_GP
+        Default__BI_SkillIcon_GP_Top_Ex_C
+         WidgetTree
+          Root
+          [0] RootCon
+           [0] ChildRoot
+            [0] ImgArrow_T
+            [1] ResizeTop
+        # TODO

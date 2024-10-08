@@ -6,10 +6,25 @@ local SubModeName = "[BlackMythA11y.UIHooks] "
 
 -- [[require Local]]
 local WkGlobals = require("WkGlobals")
+local WkUtils = require("WkUtils")
 -- [[Global Var]]
 
 
 -- [[ Hook 事件处理函数 ]] ----------------------------------------------------------
+
+--[[ 父对象树
+BI_AbilityIcon_KB_Basic_C /BUI_TalentMain_C_2147464952.WidgetTree.AbilityIcon1_KB
+    Overlay /BUI_TalentMain_C_2147464952.WidgetTree.Overlay_12
+    CanvasPanel /BUI_TalentMain_C_2147464952.WidgetTree.AbilityRoot_KB
+    CanvasPanel /BUI_TalentMain_C_2147464952.WidgetTree.AbilityMainRoot
+    CanvasPanel /BUI_TalentMain_C_2147464952.WidgetTree.LeftRoot    # <-----
+    CanvasPanel /BUI_TalentMain_C_2147464952.WidgetTree.MainRoot
+    CanvasPanel /BUI_TalentMain_C_2147464952.WidgetTree.DebugSafeArea
+    CanvasPanel /BUI_TalentMain_C_2147464952.WidgetTree.RootCon
+]]
+local function GetLeftRoot(AbilityIcon_KB)
+    return WkUtils.FindParentByName(AbilityIcon_KB, "LeftRoot")
+end
 
 -- 游戏中:背包-1:修行（技能）
 --[[
@@ -21,14 +36,45 @@ BI_AbilityIcon_KB_Advance_C
 BI_AbilityIcon_GP_Basic_C   /.BUI_TalentMain_C_2147461288.WidgetTree.AbilityIcon1_GP
 BI_AbilityIcon_GP_Advance_C /.BUI_TalentMain_C_2147461288.WidgetTree.AbilityIcon2_GP
 ]]
+
+-- 从 BI_AbilityIcon_KB_*_C 开始获取 LeftRoot 然后得到描述
+--[[
+LeftRoot
+   [0] ContentAbilityRoot
+    [0] TxtAbilityTitle         本事
+    [1] TxtAbilityDesc          求仙问卜，不如自己做主。诵佛念经，不如本事在身。
+    [2] TxtAbilityTypeTitle     棍法
+    [3] TxtAbilityTypeDesc      学习招式，精进棍术，壮大棍势。
+]]
+local function GetAbilityIcon_KB_desc(Button, txt_desc)
+    -- WkUtils.PrintAllParents(Button)
+    local LeftRoot = GetLeftRoot(Button)
+    if LeftRoot then
+        -- print(string.format("\t%s\n", LeftRoot:GetFullName()))
+        local TxtAbilityTitle = LeftRoot:GetChildAt(0):GetChildAt(0):GetText():ToString()
+        local TxtAbilityDesc = LeftRoot:GetChildAt(0):GetChildAt(1):GetText():ToString()
+        local TxtAbilityTypeTitle = LeftRoot:GetChildAt(0):GetChildAt(2):GetText():ToString()
+        local TxtAbilityTypeDesc = LeftRoot:GetChildAt(0):GetChildAt(3):GetText():ToString()
+        -- print(string.format("\tTxtAbilityTitle      = %s\n", TxtAbilityTitle))
+        -- print(string.format("\tTxtAbilityDesc       = %s\n", TxtAbilityDesc))
+        -- print(string.format("\tTxtAbilityTypeTitle  = %s\n", TxtAbilityTypeTitle))
+        -- print(string.format("\tTxtAbilityTypeDesc   = %s\n", TxtAbilityTypeDesc))
+    
+        txt_desc = string.format("%s：%s %s", TxtAbilityTitle, TxtAbilityTypeTitle, TxtAbilityTypeDesc)
+    end
+
+    return txt_desc
+end
+
+-- 游戏中:背包-1:修行（技能）:本事：根基
 WkGlobals.GetTextFuncMap["BI_AbilityIcon_KB_Basic_C"] = function(Button, InFocusEvent)
-    local TxtName_txt = "根基"
-    return TxtName_txt
+    return GetAbilityIcon_KB_desc(Button, "本事：根基")
 end
+-- 游戏中:背包-1:修行（技能）:本事：根基
 WkGlobals.GetTextFuncMap["BI_AbilityIcon_KB_Advance_C"] = function(Button, InFocusEvent)
-    local TxtName_txt = "棍法"
-    return TxtName_txt
+    return GetAbilityIcon_KB_desc(Button, "本事：棍法")
 end
+
 WkGlobals.GetTextFuncMap["BI_AbilityIcon_GP_Basic_C"] = function(Button, InFocusEvent)
     local TxtName_txt = "根基"
     return TxtName_txt
