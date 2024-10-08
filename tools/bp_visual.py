@@ -220,7 +220,8 @@ def print_WidgetTree_rec(ObjectPath: str, lv: int=0, slot_idx: int=None, is_in_s
     if g_SKIP_WRAP_SLOT and Type.endswith("Slot"):
         # ---- 跳过打印容器
         slots = get_slots(cur_class)
-        assert 1 == len(slots)
+        # assert 1 == len(slots)
+        assert len(slots) >= 1
         ObjectPath = slots[0]["ObjectPath"]
         print_WidgetTree_rec(ObjectPath, lv, slot_idx, is_in_slot=True)
         return  # 不再重复打印
@@ -293,8 +294,8 @@ if __name__ == '__main__':
     
     ## 游戏中 ------------------
     # 游戏中:土地庙:菜单
-    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_ShrineMenuParent.BI_ShrineMenuParent_C'"
-    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_ShrineMenuChild.BI_ShrineMenuChild_C'"
+    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_ShrineMenuParent.BI_ShrineMenuParent_C'"
+    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_ShrineMenuChild.BI_ShrineMenuChild_C'"
     
     ## 游戏中:背包栏
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Tab/BI_CommTxtTab.BI_CommTxtTab_C'"
@@ -305,7 +306,9 @@ if __name__ == '__main__':
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/LearnSpell/Btn/BI_AbilityIcon_GP_Basic.BI_AbilityIcon_GP_Basic_C'"
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/LearnSpell/Btn/BI_AbilityIcon_GP_Advance.BI_AbilityIcon_GP_Advance_C'"
     # 游戏中:背包:技能:根基
-    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/LearnSpell/BUI_LearnTalent.BUI_LearnTalent_C'"
+    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/LearnSpell/BUI_TalentMain.BUI_TalentMain_C'"
+    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/LearnSpell/BUI_LearnTalent.BUI_LearnTalent_C'"
+    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/LearnSpell/SpellPanel_New/BI_Spell_Panel_Base.BI_Spell_Panel_Base_C'"
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/LearnSpell/BI_SpellDetailNew.BI_SpellDetailNew_C'"
     # 少了 TxtSpellDesc 字段
     """
@@ -323,7 +326,7 @@ if __name__ == '__main__':
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/LearnSpell/Node/BI_TalentItem_1_1.BI_TalentItem_1_1_C'"
     # 游戏中:背包
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Role/BUI_EquipMain.BUI_EquipMain_C'"
-    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Remake_CE04/Remake_Item/BI_EquipItem_Slot.BI_EquipItem_Slot_C'"
+    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Remake_CE04/Remake_Item/BI_EquipItem_Slot.BI_EquipItem_Slot_C'"
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Remake_CE04/Remake_Item/BI_GearItem_Slot.BI_GearItem_Slot_C'"
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Remake_CE04/Remake_Item/BI_QuickItem.BI_QuickItem_C'"
     ## 游戏中:背包:游记
