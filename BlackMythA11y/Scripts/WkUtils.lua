@@ -81,4 +81,33 @@ function WkUtils.PrintAllParents(CurWidget)
     WkUtils.PrintAllParents(CurWidget:GetParent())
 end
 
+
+-- 找到指定名称的父对象
+---@param CurWidget UObject     当前对象
+---@param TargetName string     目标对象名称
+---@return UObject 找到的目标对象 可能为空
+function WkUtils.FindParentByName(CurWidget, TargetName)
+    -- 目标名不为空
+    if TargetName == nil or TargetName == "" then
+        return nil
+    end
+    -- 有效的 UObj
+    if CurWidget == nil or (not CurWidget:IsValid()) then
+        return nil
+    end
+
+    local FullName = CurWidget:GetFullName()
+    local SuperClassName = CurWidget:GetClass():GetFName():ToString()
+    local ClassName = CurWidget:GetFName():ToString()
+    -- print(string.format("\t%s\n", FullName))
+
+    -- 找到目标
+    if TargetName == ClassName then
+        return CurWidget
+    end
+
+    -- 继续递归
+    return WkUtils.FindParentByName(CurWidget:GetParent(), TargetName)
+end
+
 return WkUtils
