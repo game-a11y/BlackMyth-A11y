@@ -5,20 +5,19 @@ local SubModeName = "[BlackMythA11y.WkbHook] "
 -- [[require Global]]
 
 -- [[require Local]]
-
+local WkGlobals = require("WkGlobals")
 -- [[Global Var]]
 local WkbHook = {}
 
 -- 【性能测试工具】 测试报告输出
--- @param WkUIGlobals 全局变量捕获
-function WkbHook.BenchMarkReportBind(WkUIGlobals)
+function WkbHook.BenchMarkReportBind()
     local msg = "性能报告"
     print(msg.."\n")
     A11yTolk:Speak(msg)
 
     -- BUI_LearnTalent_C
     local A11yReport_txt = ""
-    local BUI_BenchMark_V2_C = WkUIGlobals["BUI_BenchMark_V2_C"]
+    local BUI_BenchMark_V2_C = WkGlobals.UIGlobals["BUI_BenchMark_V2_C"]
     -- BUI_BenchMark_V2_C = FindFirstOf("BUI_BenchMark_V2_C")
     local isClassGood = BUI_BenchMark_V2_C and BUI_BenchMark_V2_C:IsValid()
     if not isClassGood then
