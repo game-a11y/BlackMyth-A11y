@@ -42,6 +42,22 @@ require("UIHooks.SettingMenu")
 -- 游戏中:土地庙:菜单:缩地
 require("UIHooks.Tudi")
 
+-- 游戏中:背包-1:修行（技能）
+require("UIHooks.Ability")
+-- 游戏中:背包0:披挂（装备）
+require("UIHooks.EquipItem")
+-- 游戏中:背包1:行囊（道具物品）
+require("UIHooks.InventoryItem")
+-- 游戏中:背包2:游记
+require("UIHooks.TravelNotes")
+-- 游戏中:背包3:设置    SKIP
+
+-- 游戏中:交互/弹出提示
+require("UIHooks.InteractIcon")
+
+
+-- TODO: 加载界面
+
 -- 二次确定对话框
 --[[
 BUI_Reconfirm_C_2147454606.WidgetTree.txt
@@ -82,33 +98,6 @@ WkGlobals.GetTextFuncMap["BI_ReconfirmBtn_C"] = function(Button, InFocusEvent)
     return TxtName_txt
 end
 
--- TODO: 加载界面
-
--- TODO: 游戏中:背包栏
---[[
-背包顶层选项卡
-BI_CommTxtTab_C     /.BUI_RoleMain_C_2147463565.WidgetTree.BI_RoleTab.WidgetTree.BI_SecTab.WidgetTree.BI_CommTxtTab_C_2147463554
-    GSScaleText /.BI_RoleTab.WidgetTree.BI_SecTab.WidgetTree.BI_CommTxtTab_C_2147471225.WidgetTree.TxtName
-BI_EquipItem_Slot_C /.BUI_EquipMain_C_2147465651.WidgetTree.BI_EquipSlotItem_1
-    GSScaleText /.BI_RoleTab.WidgetTree.BI_SecTab.WidgetTree.BI_CommTxtTab_C_2147471217.WidgetTree.TxtName
-BI_TravelNotesMain_ListBar_C /.BUI_TravelNotesMain_C_2147463697.WidgetTree.BI_TravelNotesMain_ListBar_0
-    GSScaleText /.BI_RoleTab.WidgetTree.BI_SecTab.WidgetTree.BI_CommTxtTab_C_2147471201.WidgetTree.TxtName
-BI_SettingTab_C     /.BUI_Setting_C_2147463587.WidgetTree.BI_SettingTab_0
-    GSScaleText /.BI_RoleTab.WidgetTree.BI_SecTab.WidgetTree.BI_CommTxtTab_C_2147471193.WidgetTree.TxtName
-]]
-
--- 游戏中:背包-1:修行（技能）
-require("UIHooks.Ability")
--- 游戏中:背包0:披挂（装备）
-require("UIHooks.EquipItem")
--- 游戏中:背包1:行囊（道具物品）
-require("UIHooks.InventoryItem")
--- 游戏中:背包2:游记
-require("UIHooks.TravelNotes")
--- 游戏中:背包3:设置    SKIP
-
--- 游戏中:交互/弹出提示
-require("UIHooks.InteractIcon")
 
 
 -- [[ Hook 函数 ]] --------------------------------------------------------------
