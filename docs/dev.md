@@ -7,6 +7,19 @@
     - 可以用 nexusmods 的专用版本；或者按照子模块 commit 自行编译
 - https://github.com/sig-a11y/tolk
 
+### 构建失败
+
+特别是更新了 RE-UE4SS 版本后。
+
+- 检查构建工具版本
+- 清理构建文件夹
+
+```bash
+rm -rf .xmake
+rm -rf Binaries
+rm -rf Intermediate
+```
+
 
 ## Mod 成品
 
