@@ -1,5 +1,16 @@
 # Mod 开发
 
+## 项目结构
+
+- `b1/`:  UE 5.0.3 版本的项目文件。用于尝试打包 `.pak` 类型的 Mod
+- `BlackMythA11y/`:     Mod Lua 脚本代码。
+- `BlackMythA11yCpp/`:  Mod C++ 代码。
+- `docs/`:      文档。
+- `RE-UE4SS/`:  MOD 框架。
+- `release/`:   发布版本的 MOD 二进制包。
+- `tools/`:     工具脚本。
+
+
 ## Mod 开发环境
 
 依赖:
