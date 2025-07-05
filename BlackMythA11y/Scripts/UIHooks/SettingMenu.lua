@@ -41,23 +41,22 @@ end -- BI_SettingTab_C
 
 -- 主界面/设置: 左右单项选择
 --[[
-GSScaleText /.BI_SettingFixedItem_0.WidgetTree.BI_Btn.WidgetTree.TxtName
-TextBlock   /.BI_SettingFixedItem_0.WidgetTree.TxtDesc
-
 TODO:
 - 补充选项的详细说明
 -- 主界面/设置/视角: 文本区分 控制器和键盘
 
 BI_SettingFixedItem_C.WidgetTree.RootWidget
+RootCon
 [0] BtnCon
  [0] BI_Btn
    Default__BI_SettingMainBtn_C
     WidgetTree
+     RootCon
      [0] BtnCon
       [0] ImgBg
       [1] ImgLock
       [2] HorizontalBox_0
-       [0] TxtName
+       [0] TxtName      <------ GSScaleText 设置项名称: 教学模式
        [1] ModifiedCon
         [0] ImgModified
        [2] RestartCon
@@ -65,8 +64,14 @@ BI_SettingFixedItem_C.WidgetTree.RootWidget
        [3] WarningCon
         [0] TextWarning
       [3] FocusWidget
-
-    BI_SettingFixedItem_C /.BUI_InitSetting_C_2147482286.WidgetTree.BI_SettingLocalization
+ [1] FocusWidget
+ [2] DescCon
+  [0] ImgLeft
+  [1] CanvasPanel_165
+   [0] ScaleBox_58
+    [0] TxtDesc         <------ TextBlock 设置项选项: 关闭/开启
+  [2] ImgRight
+--- Class BI_SettingFixedItem_C.WidgetTree.RootWidget END ---
 ]]
 WkGlobals.GetTextFuncMap["BI_SettingFixedItem_C"] = function(Button, InFocusEvent)
     local FullName = Button:GetFullName()
@@ -87,7 +92,7 @@ WkGlobals.GetTextFuncMap["BI_SettingFixedItem_C"] = function(Button, InFocusEven
         [0] ImgLeft
         [1] CanvasPanel_165
          [0] ScaleBox_58
-          [0] TxtDesc
+          [0] TxtDesc       <------ 选项名称:  关闭/开启
         [2] ImgRight
     ]]
     BtnCon = Button.WidgetTree.RootWidget:GetChildAt(0)
