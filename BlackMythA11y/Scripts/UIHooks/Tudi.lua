@@ -19,6 +19,23 @@ local WkGlobals = require("WkGlobals")
 
     [Reset]     BI_ShrineMenuParent_C   /BUI_Tudi_Enter_C.WidgetTree.BI_ShrineFirMenu.WidgetTree.BI_Item.WidgetTree.BI_Item_9
     文字描述    TextBlock   /BUI_Tudi_Enter_C.WidgetTree.TxtTips
+
+BI_ShrineMenuParent_C.WidgetTree.RootWidget
+Root
+[0] BtnCon
+ [0] ResizeCon
+  [0] ImgBar
+  [1] ImgBarAct
+ [1] ResizeName
+  [0] BI_TextLoop
+    Default__BI_TextLoop_C
+ [2] ImgNPCMarker
+ [3] FocusWidget
+ [4] MarkerCon
+  [0] MarkerTeleport
+  [1] ImgRedPoint
+ [5] ArrowCon
+--- Class BI_ShrineMenuParent_C.WidgetTree.RootWidget END ---
 ]]
 WkGlobals.GetTextFuncMap["BI_ShrineMenuParent_C"] = WkGlobals.GetTextFuncMap["BI_StartGame_C"]
 
