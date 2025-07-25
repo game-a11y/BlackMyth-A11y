@@ -28,7 +28,11 @@
 ```bash
 rm -rf .xmake
 rm -rf Binaries
-rm -rf Intermediate
+rm -rf Intermediates
+xmake config --mode="Game__Shipping__Win64" --yes
+
+# if get error:  dllmain.cpp: No such file or directory #927
+xmake build proxy_generator
 ```
 
 
