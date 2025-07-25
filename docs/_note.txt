@@ -1,3 +1,43 @@
+TODO: C++ 暴露给 lua log.info/warn.error
+
+
+[TextBlock] "教学模式"
+TextBlock /.BUI_Setting_C_2147480227.WidgetTree.TxtSettingInfo
+[RichTextBlock] "开启后，游戏过程中将显示教学信息。"
+GSInputRichTextBlock /.BUI_Setting_C_2147480227.WidgetTree.GSTxtDesc
+
+设置选项滚动
+GSScrollBoxSlot
+BUI_Setting_C_2147480227.WidgetTree.BI_ScrollBox.WidgetTree.ScrollBox.GSScrollBoxSlot_1
+
+
+GSTxtDesc
+
+
+
+
+
+
+
+
+
+
+
+## 首屏 StartGame/BUI_StartGame
+
+按任意键开始
+TextBlock /Game/00Main/UI/BluePrintsV3/StartGame/BUI_StartGame.BUI_StartGame_C:WidgetTree.TxtEnter
+TextBlock /Engine/Transient.GameEngine_2147482611:BGW_GameInstance_B1_2147482576.BUI_B1_Root_V2_C_2147480891.WidgetTree.BUI_StartGame_C_2147480884.WidgetTree.TxtEnter
+
+版本号
+TextBlock /Game/00Main/UI/BluePrintsV3/StartGame/BUI_StartGame.BUI_StartGame_C:WidgetTree.TxtVersion
+TextBlock /Engine/Transient.GameEngine_2147482611:BGW_GameInstance_B1_2147482576.BUI_B1_Root_V2_C_2147480891.WidgetTree.BUI_StartGame_C_2147480884.WidgetTree.TxtVersion
+
+## 加载中
+
+TextBlock /Game/00Main/UI/BluePrintsV3/Loading/BUI_LoadingV2.BUI_LoadingV2_C:WidgetTree.TitleTxt
+
+
 二次确认框描述文字
 GSRichScaleText /Engine/Transient.GameEngine_2147482611:BGW_GameInstance_B1_2147482576.BUI_B1_Root_V2_C_2147465802.WidgetTree.BUI_Reconfirm_C_2147450282.WidgetTree.txt
 TextBlock /Engine/Transient.GameEngine_2147482611:BGW_GameInstance_B1_2147482576.BUI_B1_Root_V2_C_2147465802.WidgetTree.BUI_Reconfirm_C_2147450282.WidgetTree.Btn_Cancel.WidgetTree.TxtName

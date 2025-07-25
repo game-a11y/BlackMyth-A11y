@@ -274,7 +274,7 @@ if __name__ == '__main__':
     # 主界面/设置: 下拉单项选择
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Setting/BI_SettingMenuItem.BI_SettingMenuItem_C'"
     # 主界面/设置: 下拉单选-下拉项
-    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrints  V3/Setting/BI_ModeBtnItem.BI_ModeBtnItem_C'"
+    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Setting/BI_ModeBtnItem.BI_ModeBtnItem_C'"
     # 主界面/设置: 水平滑块
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Setting/Item/BI_SettingSliderItem.BI_SettingSliderItem_C'"
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Slider/BI_SettingSlider.BI_SettingSlider_C'"
@@ -289,12 +289,14 @@ if __name__ == '__main__':
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Slider/BI_SettingSliderL.BI_SettingSliderL_C'"
     # 设置右侧描述文本
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Setting/BUI_Setting.BUI_Setting_C'"
+    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Setting/BUI_Setting_Screen_Detail.BUI_Setting_Screen_Detail_C'"
     # 二次确定对话框
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_ReconfirmBtn.BI_ReconfirmBtn_C'"
     
     ## 游戏中 ------------------
     # 游戏中:土地庙:菜单
-    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_ShrineMenuParent.BI_ShrineMenuParent_C'"
+    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/ShrineInteractive/BUI_Tudi_Enter.BUI_Tudi_Enter_C'"
+    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_ShrineMenuParent.BI_ShrineMenuParent_C'"
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/Btn/BI_ShrineMenuChild.BI_ShrineMenuChild_C'"
     
     ## 游戏中:背包栏
@@ -307,8 +309,8 @@ if __name__ == '__main__':
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/LearnSpell/Btn/BI_AbilityIcon_GP_Advance.BI_AbilityIcon_GP_Advance_C'"
     # 游戏中:背包:技能:根基
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/LearnSpell/BUI_TalentMain.BUI_TalentMain_C'"
-    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/LearnSpell/BUI_LearnTalent.BUI_LearnTalent_C'"
-    bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/LearnSpell/SpellPanel_New/BI_Spell_Panel_Base.BI_Spell_Panel_Base_C'"
+    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/LearnSpell/BUI_LearnTalent.BUI_LearnTalent_C'"
+    # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/LearnSpell/SpellPanel_New/BI_Spell_Panel_Base.BI_Spell_Panel_Base_C'"
     # bp_fullname = "WidgetBlueprintGeneratedClass'b1/Content/00Main/UI/BluePrintsV3/LearnSpell/BI_SpellDetailNew.BI_SpellDetailNew_C'"
     # 少了 TxtSpellDesc 字段
     """
