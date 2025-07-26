@@ -22,8 +22,15 @@ require("WkScriptHooks")
 -- [[ 初始化 Managed 挂钩 ]] --------------------------------------------------
 -- NOTE: 需要等 UE 加载完后才能挂钩
 
+-- 打印游戏信息
+local function PrintGameInfo()
+    WkUtils.PrintGameVersion()
+end
+
 -- 仅在游戏初始化后执行挂钩
 local function AfterInitGameStateHook()
+    PrintGameInfo()
+
     WkUIHook.InitUiHooks()
 end
 
