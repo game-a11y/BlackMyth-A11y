@@ -30,9 +30,12 @@ rm -rf .xmake
 rm -rf Binaries
 rm -rf Intermediates
 xmake config --mode="Game__Shipping__Win64" --yes
+xmake config --mode="Game__Debug__Win64" --yes
 
 # if get error:  dllmain.cpp: No such file or directory #927
 xmake build proxy_generator
+# raw_pdb
+#   https://github.com/xmake-io/xmake-repo/blob/44eb9538ac9bdbaa9eddb516fb6f295f22a535c1/packages/r/raw_pdb/xmake.lua
 ```
 
 
