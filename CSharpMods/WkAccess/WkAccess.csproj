@@ -51,6 +51,10 @@
         <PackageReference Include="B1CSharpLoader.ModBase" Version="0.1.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="A11y\" />
+    </ItemGroup>
+
     <Target Name="CopyToModsFolder" AfterTargets="Build" Condition="Exists('$(GameFolder)')">
         <MakeDir Directories="$(ModFolder)" Condition="!Exists('$(ModFolder)')" />
         <Copy SourceFiles="$(OutputPath)\$(AssemblyName).dll" DestinationFolder="$(ModFolder)" />

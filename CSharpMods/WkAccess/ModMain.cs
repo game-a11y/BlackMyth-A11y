@@ -13,7 +13,7 @@ public sealed class WkAccess : ICSharpMod
 
     public void Init()
     {
-        Console.WriteLine($"{Name} Init");
+        A11yLog.Info($"{Name} Init");
         Utils.RegisterKeyBind(Key.ENTER, () => Console.WriteLine("Enter pressed"));
         Utils.RegisterKeyBind(ModifierKeys.Control, Key.ENTER, FindPlayer);
 
@@ -23,24 +23,24 @@ public sealed class WkAccess : ICSharpMod
 
     public void DeInit()
     {
-        Console.WriteLine($"{Name} DeInit");
+        A11yLog.Info($"{Name} DeInit");
         // harmony.UnpatchAll();
     }
 
     private static void FindPlayer()
     {
-        Console.WriteLine("Ctrl+Enter pressed");
+        A11yLog.Info("Ctrl+Enter pressed");
         var player = WkUtils.GetControlledPawn();
         if (player == null)
         {
-            Console.WriteLine("Player not found");
+            A11yLog.Error("Player not found");
         }
         else
         {
-            Console.WriteLine($"Player found: {player}");
+            A11yLog.Warning($"Player found: {player}");
             var hp = BGUFunctionLibraryCS.GetAttrValue(player, EBGUAttrFloat.Hp);
             var hpMax = BGUFunctionLibraryCS.GetAttrValue(player, EBGUAttrFloat.HpMax);
-            Console.WriteLine($"HP: {hp}/{hpMax}");
+            A11yLog.Warning($"HP: {hp}/{hpMax}");
         }
     }
 }
