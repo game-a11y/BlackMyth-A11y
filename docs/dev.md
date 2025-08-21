@@ -17,6 +17,8 @@
 - UE4SS https://www.nexusmods.com/blackmythwukong/mods/19
     - 可以用 nexusmods 的专用版本；或者按照子模块 commit 自行编译
 - https://github.com/sig-a11y/tolk
+- 建立游戏根目录的软连接
+  - Win CMD:  `mklink /d GameDir  G:\Steam\steamapps\common\BlackMythWukong`
 
 ### 构建失败
 
