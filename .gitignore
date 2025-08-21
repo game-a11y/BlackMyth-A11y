@@ -8,6 +8,8 @@ ref/
 
 # rel
 mod-*/
+BmA11y-*/
+WkA11y-*/
 *.zip
 
 # ---- UE4SS
