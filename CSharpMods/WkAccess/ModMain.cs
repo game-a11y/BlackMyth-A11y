@@ -13,7 +13,8 @@ public sealed class WkAccess : ICSharpMod
 
     public void Init()
     {
-        A11yLog.Info($"{Name} Init");
+        A11yLog.SetConsoleUTF8();
+        A11yLog.Info($"{Name} Init()");
         Utils.RegisterKeyBind(Key.ENTER, () => Console.WriteLine("Enter pressed"));
         Utils.RegisterKeyBind(ModifierKeys.Control, Key.ENTER, FindPlayer);
 

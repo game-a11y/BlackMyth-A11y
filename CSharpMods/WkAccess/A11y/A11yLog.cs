@@ -1,4 +1,6 @@
-﻿namespace WkAccess.A11y;
+﻿using System.Runtime.InteropServices;
+
+namespace WkAccess.A11y;
 
 /// <summary>
 /// 输出到所有可能的输出.
@@ -7,7 +9,20 @@ public class A11yLog
 {
     const string LOG_PREFIX = "A11y";
 
+    [DllImport("kernel32.dll", SetLastError = true)]
+    private static extern bool SetConsoleOutputCP(uint wCodePageID);
+    [DllImport("kernel32.dll", SetLastError = true)]
+    private static extern bool SetConsoleCP(uint wCodePageID);
+
     #region Public API 公共API
+    public static void SetConsoleUTF8()
+    {
+        SetConsoleCP(65001);
+        SetConsoleOutputCP(65001);
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
+        Info("SetConsoleUTF8()");
+    }
+
     public static void Info(string message)
     {
         FormatConsoleMsg(LogType.Info, message);
