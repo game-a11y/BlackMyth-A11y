@@ -18,6 +18,9 @@
     </ItemDefinitionGroup>
 
     <ItemGroup>
+        <Reference Include="B1UI_GSE.Script">
+          <HintPath>..\B1CSharpLoader\GameDll\B1UI_GSE.Script.dll</HintPath>
+        </Reference>
         <Reference Include="BtlSvr.Main">
             <HintPath>..\B1CSharpLoader\GameDll\BtlSvr.Main.dll</HintPath>
         </Reference>

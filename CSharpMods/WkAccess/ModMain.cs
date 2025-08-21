@@ -1,31 +1,139 @@
 ﻿using CSharpModBase.Input;
-
-// using HarmonyLib;
+using HarmonyLib;
+using System.Reflection;
 
 namespace WkAccess;
 
 public sealed class WkAccess : ICSharpMod
 {
-    // private readonly Harmony harmony;
+    private readonly Harmony _harmony;
 
     public string Name => ModName;
     public string Version => ModVersion;
+
+    public WkAccess()
+    {
+        _harmony = new Harmony($"{BuildInfo.ModName}.{BuildInfo.ModVersion}");
+        A11yLog.Info($"{Name} Constructor called @ {DateTime.Now}");
+    }
 
     public void Init()
     {
         A11yLog.SetConsoleUTF8();
         A11yLog.Info($"{Name} Init()");
+        var gameVersion = GSVersionUtil.GetAppVersionWithRevision();
+        A11yLog.Info($"Game Version: {gameVersion}");
         Utils.RegisterKeyBind(Key.ENTER, () => Console.WriteLine("Enter pressed"));
         Utils.RegisterKeyBind(ModifierKeys.Control, Key.ENTER, FindPlayer);
+        Utils.RegisterKeyBind(ModifierKeys.Control, Key.F12, PrintAllAssemblies);
 
-        // hook
-        // harmony.PatchAll();
+        try
+        {
+
+            MethodInfo m = null;
+            
+            // 方法1：直接通过字符串获取方法
+            m = AccessTools.Method("B1UI.GSUI.UIStartGame:OnLoadingScreenClose");
+            if (m != null)
+            {
+                A11yLog.Info($"Found method: {m.DeclaringType.FullName}.{m.Name}");
+                _harmony.PatchAll();
+                return;
+            }
+            
+            A11yLog.Warning("Not work: AccessTools.Method(\"B1UI.GSUI.UIStartGame:OnLoadingScreenClose\")");
+            
+            // 方法2：先获取类型再获取方法
+            var uiStartGameType = AccessTools.TypeByName("B1UI.GSUI.UIStartGame");
+            if (uiStartGameType != null)
+            {
+                m = AccessTools.Method(uiStartGameType, "OnLoadingScreenClose");
+                if (m == null)
+                {
+                    m = AccessTools.Method(uiStartGameType, "PlayAnimtionOnConstruct");
+                }
+                
+                if (m != null)
+                {
+                    A11yLog.Info($"Found method: {m.DeclaringType.FullName}.{m.Name}");
+                    _harmony.PatchAll();
+                    return;
+                }
+            }
+            
+            A11yLog.Warning("Not work: AccessTools.TypeByName(\"B1UI.GSUI.UIStartGame\")");
+            
+            // 方法3：通过程序集名称获取类型
+            var assembly = AppDomain.CurrentDomain.GetAssemblies()
+                .FirstOrDefault(a => a.GetName().Name == "B1UI_GSE.Script");
+                
+            if (assembly == null)
+            {
+                A11yLog.Error("Assembly 'B1UI_GSE.Script' not found");
+                // 列出所有已加载的程序集进行调试
+                var assemblies = AppDomain.CurrentDomain.GetAssemblies()
+                    .Where(a => a.GetName().Name.Contains("B1") || a.GetName().Name.Contains("b1") || a.GetName().Name.Contains("GSE"))
+                    .Select(a => a.GetName().Name)
+                    .ToArray();
+                A11yLog.Info($"Related assemblies found: {string.Join(", ", assemblies)}");
+                _harmony.PatchAll();
+                return;
+            }
+            
+            A11yLog.Info($"Found assembly: {assembly.FullName}");
+            uiStartGameType = assembly.GetType("B1UI.GSUI.UIStartGame");
+            
+            if (uiStartGameType == null)
+            {
+                A11yLog.Error("Type 'B1UI.GSUI.UIStartGame' not found in assembly");
+                // 列出程序集中的所有类型进行调试
+                var types = assembly.GetTypes().Where(t => t.Name.Contains("UIStartGame")).ToArray();
+                A11yLog.Info($"Similar types found: {string.Join(", ", types.Select(t => t.FullName))}");
+                _harmony.PatchAll();
+                return;
+            }
+            
+            A11yLog.Info($"Found type: {uiStartGameType.FullName}");
+            
+            // 尝试获取方法
+            m = AccessTools.Method(uiStartGameType, "OnLoadingScreenClose");
+            if (m == null)
+            {
+                m = AccessTools.Method(uiStartGameType, "PlayAnimtionOnConstruct");
+            }
+            
+            if (m != null)
+            {
+                A11yLog.Info($"Found method: {m.DeclaringType.FullName}.{m.Name}");
+            }
+            else
+            {
+                A11yLog.Error("Failed to find any target method in UIStartGame class");
+            }
+        }
+        catch (Exception ex)
+        {
+            A11yLog.Exception($"获取 UIStartGame 方法失败", ex);
+        }
+
+        _harmony.PatchAll();
     }
 
     public void DeInit()
     {
         A11yLog.Info($"{Name} DeInit");
-        // harmony.UnpatchAll();
+        _harmony.UnpatchAll();
+    }
+
+    public static void PrintAllAssemblies()
+    {
+        A11yLog.Info("All loaded assemblies:");
+        // 列出所有已加载的程序集进行调试
+        var assemblies = AppDomain.CurrentDomain.GetAssemblies()
+            .Where(a => a.GetName().Name.Contains("B1") || a.GetName().Name.Contains("b1") || a.GetName().Name.Contains("GSE"))
+            .Select(a => a.GetName().Name)
+            .ToArray();
+        A11yLog.Info($"Related assemblies found: {string.Join(", ", assemblies)}");
     }
 
     private static void FindPlayer()
