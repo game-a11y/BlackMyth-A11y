@@ -13,19 +13,19 @@ local WkGlobals = require("WkGlobals")
 
 -- TODO: 游戏中:(土地庙)提示
 --[[
-    E Offer Incense:    TextBlock /BUI_BattleInfo_C_2147446787.WidgetTree.BI_InteractIcon.WidgetTree.InteractIcon_98_0.WidgetTree.TxtTips
+    E Offer Incense:    TextBlock /.BI_InteractIcon.WidgetTree.InteractIcon_98_0.WidgetTree.TxtTips
 
-    CanvasPanel /.BUI_BattleInfo_C_2147446787.WidgetTree.BI_InteractIcon.WidgetTree.InteractIcon_98_0.WidgetTree.TipsCon
+    CanvasPanel /..BI_InteractIcon.WidgetTree.InteractIcon_98_0.WidgetTree.TipsCon
         可以用 TipsCon 的 StructProperty /Script/UMG.Widget:RenderTransform
             StructProperty /Script/UMG.WidgetTransform:Translation - X
             < 0 == -50 隐藏
             ==0     显示
-    或 CanvasPanel /Engine/Transient.GameEngine_2147482611:BGW_GameInstance_B1_2147482576.BUI_BattleInfo_C_2147446787.WidgetTree.BI_InteractIcon.WidgetTree.InteractIcon_98_0.WidgetTree.TipsRoot
+    或 CanvasPanel /WidgetTree.BI_InteractIcon.WidgetTree.InteractIcon_98_0.WidgetTree.TipsRoot
         RenderOpacity 
 ]]
 -- TODO: 游戏中:可拾取物品 提示
 --[[
-    Gather:    TextBlock /BUI_BattleInfo_C_2147446787.WidgetTree.BI_InteractIcon.WidgetTree.InteractIcon_98_1.WidgetTree.TxtTips
+    Gather:    TextBlock /.BI_InteractIcon.WidgetTree.InteractIcon_98_1.WidgetTree.TxtTips
 ]]
 
 -- TODO: 游戏中:物品掉落\经验
