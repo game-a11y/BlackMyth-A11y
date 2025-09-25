@@ -17,6 +17,15 @@ public sealed class WkAccess : ICSharpMod
         A11yLog.Info($"{Name} Constructor called @ {DateTime.Now}");
     }
 
+    /// <summary>
+    /// 应用所有补丁，打印已应用的补丁方法。
+    /// </summary>
+    void PatchAll()
+    {
+        _harmony.PatchAll();
+        PrintPatchedMethods();
+    }
+
     public void Init()
     {
         A11yLog.SetConsoleUTF8();
@@ -25,8 +34,9 @@ public sealed class WkAccess : ICSharpMod
         A11yLog.Info($"Game Version: {gameVersion}");
         Utils.RegisterKeyBind(Key.ENTER, () => Console.WriteLine("Enter pressed"));
         Utils.RegisterKeyBind(ModifierKeys.Control, Key.ENTER, FindPlayer);
+        Utils.RegisterKeyBind(ModifierKeys.Control, Key.F11, PrintPatchedMethods);
         Utils.RegisterKeyBind(ModifierKeys.Control, Key.F12, PrintAllAssemblies);
-
+        
         try
         {
 
@@ -37,7 +47,7 @@ public sealed class WkAccess : ICSharpMod
             if (m != null)
             {
                 A11yLog.Info($"Found method: {m.DeclaringType.FullName}.{m.Name}");
-                _harmony.PatchAll();
+                PatchAll();
                 return;
             }
             
@@ -56,7 +66,7 @@ public sealed class WkAccess : ICSharpMod
                 if (m != null)
                 {
                     A11yLog.Info($"Found method: {m.DeclaringType.FullName}.{m.Name}");
-                    _harmony.PatchAll();
+                    PatchAll();
                     return;
                 }
             }
@@ -71,12 +81,8 @@ public sealed class WkAccess : ICSharpMod
             {
                 A11yLog.Error("Assembly 'B1UI_GSE.Script' not found");
                 // 列出所有已加载的程序集进行调试
-                var assemblies = AppDomain.CurrentDomain.GetAssemblies()
-                    .Where(a => a.GetName().Name.Contains("B1") || a.GetName().Name.Contains("b1") || a.GetName().Name.Contains("GSE"))
-                    .Select(a => a.GetName().Name)
-                    .ToArray();
-                A11yLog.Info($"Related assemblies found: {string.Join(", ", assemblies)}");
-                _harmony.PatchAll();
+                PrintAllAssemblies();
+                PatchAll();
                 return;
             }
             
@@ -89,7 +95,7 @@ public sealed class WkAccess : ICSharpMod
                 // 列出程序集中的所有类型进行调试
                 var types = assembly.GetTypes().Where(t => t.Name.Contains("UIStartGame")).ToArray();
                 A11yLog.Info($"Similar types found: {string.Join(", ", types.Select(t => t.FullName))}");
-                _harmony.PatchAll();
+                PatchAll();
                 return;
             }
             
@@ -116,24 +122,38 @@ public sealed class WkAccess : ICSharpMod
             A11yLog.Exception($"获取 UIStartGame 方法失败", ex);
         }
 
-        _harmony.PatchAll();
+        PatchAll();
     }
 
     public void DeInit()
     {
         A11yLog.Info($"{Name} DeInit");
+    
+        PrintPatchedMethods();
         _harmony.UnpatchAll();
+        PrintPatchedMethods();
+    }
+
+    /// <summary>
+    /// 打印所有已应用的补丁方法。
+    /// </summary>
+    void PrintPatchedMethods()
+    {
+        A11yLog.Warning($"All Patched Methods count: {_harmony.GetPatchedMethods().Count()}");
+        foreach (var method in _harmony.GetPatchedMethods()) {
+            A11yLog.Warning($"\t{method.DeclaringType.FullName}.{method.Name}");
+        }
     }
 
     public static void PrintAllAssemblies()
     {
-        A11yLog.Info("All loaded assemblies:");
+        A11yLog.Warning("All loaded assemblies:");
         // 列出所有已加载的程序集进行调试
         var assemblies = AppDomain.CurrentDomain.GetAssemblies()
             .Where(a => a.GetName().Name.Contains("B1") || a.GetName().Name.Contains("b1") || a.GetName().Name.Contains("GSE"))
             .Select(a => a.GetName().Name)
             .ToArray();
-        A11yLog.Info($"Related assemblies found: {string.Join(", ", assemblies)}");
+        A11yLog.Info($"  Related assemblies found: {string.Join(", ", assemblies)}");
     }
 
     private static void FindPlayer()
