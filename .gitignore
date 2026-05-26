@@ -2,7 +2,7 @@
 
 # 游戏 Mod 安装文件夹
 GameDir
-Mods.lnk
+Mods-*
 ref/
 *.dll
 *.pdb
