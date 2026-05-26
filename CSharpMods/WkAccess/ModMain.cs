@@ -1,6 +1,7 @@
 ﻿using CSharpModBase.Input;
 using HarmonyLib;
 using System.Reflection;
+using WkAccess.A11yPatch;
 
 namespace WkAccess;
 
@@ -8,12 +9,16 @@ public sealed class WkAccess : ICSharpMod
 {
     private readonly Harmony _harmony;
 
+    /// <summary>供补丁类延迟注册 Harmony 补丁。</summary>
+    internal static Harmony Harmony { get; private set; } = null!;
+
     public string Name => ModName;
     public string Version => ModVersion;
 
     public WkAccess()
     {
         _harmony = new Harmony($"{BuildInfo.ModName}.{BuildInfo.ModVersion}");
+        Harmony = _harmony;
         A11yLog.Info($"{Name} Constructor called @ {DateTime.Now}");
     }
 
@@ -36,7 +41,12 @@ public sealed class WkAccess : ICSharpMod
         Utils.RegisterKeyBind(ModifierKeys.Control, Key.ENTER, FindPlayer);
         Utils.RegisterKeyBind(ModifierKeys.Control, Key.F11, PrintPatchedMethods);
         Utils.RegisterKeyBind(ModifierKeys.Control, Key.F12, PrintAllAssemblies);
-        
+
+        // 尝试立即应用延迟补丁（若 BtlSvr.Main 尚未加载则静默跳过）
+        BGWManagersPatch.ApplyPatches(Harmony);
+        // BtlSvr.Main 之后加载时自动重试
+        AppDomain.CurrentDomain.AssemblyLoad += OnAssemblyLoad;
+
         try
         {
 
@@ -123,6 +133,15 @@ public sealed class WkAccess : ICSharpMod
         }
 
         PatchAll();
+    }
+
+    static void OnAssemblyLoad(object? sender, AssemblyLoadEventArgs args)
+    {
+        if (args.LoadedAssembly.GetName().Name == "BtlSvr.Main")
+        {
+            A11yLog.Info("BtlSvr.Main loaded, applying deferred patches...");
+            BGWManagersPatch.ApplyPatches(Harmony);
+        }
     }
 
     public void DeInit()
