@@ -53,40 +53,49 @@
 | 测试阶段 | 注册 | 触发 | 结论 |
 |---|---|---|---|
 | 主菜单 (Startup_V2_P) | ✅ 全部成功 | ❌ 零触发 | 主菜单不实例化 GameMode/ECS 系统 |
-| 进入游戏 (HFS01_PersistentLevel) | ✅ | ❌ 零触发 | GameMode/ECS 已运行但补丁不触发 |
+| 进入游戏 (HFS01_PersistentLevel) | ✅ | ❌ 零触发 | 首次测试时 EnableJit 未启用 |
 
 ## 关键发现
 
-### 第二轮精确测试
+### 第二轮精确测试（EnableJit=1 确认后）
 
-参考社区 mod（BattleLog, PlayerStatus, RealDamageNumber, NoRandomDamage）的用法，进行了第二轮更精确的测试：
+在 `b1cs.ini` 中确认 `enableJit: 1` 后重新测试，**所有补丁正常工作**：
 
-| 编号 | 目标方法 | 参考来源 | 期望触发时机 |
-|---|---|---|---|
-| Ref-1 | `BGWGameInstanceCS.ReceiveInit_Implementation` | BattleLog, ProtobufLoader | 游戏启动时 |
-| Ref-2 | `BGUPlayerCharacterCS.AfterInitAllComp` | PlayerStatus | 玩家角色创建时 |
-| Ref-3 | `BGUFunctionLibraryCS.LogBattleInfo` | BattleLog | 战斗日志输出时 |
-| Ref-4 | `BUI_MSimNum.SetDamageNumParam` | RealDamageNumber | 伤害数字显示时 |
-| Ref-5 | `BUS_BeAttackedComp.GetDmgNoiseMultiplier` | NoRandomDamage | 受击时 |
+```
+Ref-1 GameInstanceInit              ← 游戏启动时触发
+Invoker.Btn.MouseDown               ← 主菜单按钮点击
+UI.OnClickTryChangeValue            ← 点击所有主菜单按钮
+Ctrl.GameModeTick                   ← 进入游戏后每帧约 1 次
+Ref-2 PlayerInit                    ← 玩家角色创建时触发
+ECS.Audio                           ← 游戏中每帧触发
+Ref-5 DamageMult                    ← 受击时触发
+```
 
-全部使用完全一致的 `[HarmonyPatch]` + `harmony.PatchAll()` 模式，**5 个测试全部零触发**。包括最关键的 Ref-1（游戏启动时就应触发，两个参考 mod 确认过）。
+| 测试类别 | 结果 |
+|---|---|
+| `[HarmonyPatch]` 属性 (`PatchAll()`) | ✅ 触发 |
+| 手动 `harmony.Patch()` + `AccessTools` | ✅ 触发 |
+| `_Implementation` 方法（UFunction） | ✅ 触发 |
+| `__Invoker` 静态方法 | ✅ 触发 |
+| 非 UFunction 方法 (C# delegate 调用) | ✅ 触发 |
 
-### 与社区参考 mod 的矛盾
+### Harmony 工作条件
 
-**此游戏版本（1.0.21.23831，BuildTime 2025-12-30）Harmony 补丁完全无效。** 社区参考 mod 能工作，最可能的解释是它们运行在更早的游戏版本上，USharp 运行时仍是解释/编译执行模式，而此版本可能启用了 IL2CPP / AOT 编译（B1CSharpLoader 配置项 `EnableJit` 相关），导致 Harmony 的运行时 IL 注入失效。
+**EnableJit 是必要条件。** B1CSharpLoader 0.0.7 版本将 mono 从解释执行模式改为 JIT 模式，使 Harmony 的 IL 注入生效。确认 `b1cs.ini` 中 `EnableJit=true`。
 
 ## 可行方案
 
-| 手段 | 状态 | 说明 |
+| 手段 | 状态 | 要求 |
 |---|---|---|
-| `BGW_EventCollection` 事件 | **可用** | PreLoadMap、UIActived、SetGamePause 等 |
-| 定时器轮询 | **可用** | FSM 状态检测、UI 页面轮询 |
-| `GSG.GSPageOP` 页面查询 | **可用** | `PageGraphRawIsUiPageShowIng()` |
-| USharp API 直接调用 | **可用** | `BGUFunctionLibraryCS`、`WkUtils` 等 |
-| `BGW_GameLifeTimeMgr` FSM 查询 | **可用** | `IsInFSMState()`、`GlobalFSMInstanceCurState` |
-| **Harmony 补丁** | **不可用** | 方法注册成功但从不触发 |
-| **UFunction `_Implementation`** | **不可用** | 被 `__Invoker` 绕过 |
-| **`__Invoker` 静态方法** | **不可用** | 同样不触发 |
+| `BGW_EventCollection` 事件 | **可用** | 无 |
+| 定时器轮询 | **可用** | 无 |
+| `GSG.GSPageOP` 页面查询 | **可用** | 无 |
+| USharp API 直接调用 | **可用** | 无 |
+| `BGW_GameLifeTimeMgr` FSM 查询 | **可用** | 无 |
+| **Harmony 补丁** | **可用** | `b1cs.ini` 中 `EnableJit=true` |
+| **`[HarmonyPatch]` 属性** | **可用** | 同上 |
+| **手动 `harmony.Patch()`** | **可用** | 同上 |
+| **`__Invoker` 静态方法** | **可用** | 同上 |
 
 ## 相关代码
 
