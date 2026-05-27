@@ -36,6 +36,9 @@ public static class SceneDetector
     static bool _eventsSubscribed;
     static bool _gsgAvailable;
 
+    /// <summary>UI 页面打开/关闭时触发。(pageId, isActive)</summary>
+    public static event Action<int, bool>? OnUIPageChanged;
+
     // 当前可见 UI 页面集合
     static readonly HashSet<int> _visiblePages = new();
     static DateTime _lastUiCheck = DateTime.MinValue;
@@ -289,6 +292,7 @@ public static class SceneDetector
             _visiblePages.Remove(pageId);
             A11yLog.Info($"[SceneDetector] 📄 UI关闭: {name} (ID={pageId})");
         }
+        OnUIPageChanged?.Invoke(pageId, active);
     }
 
     static void OnEvtSetGamePause(EPauseEvent pauseEvent, bool isPaused)
