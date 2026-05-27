@@ -15,7 +15,7 @@ public sealed class WkAccess : ICSharpMod
     public void Init()
     {
         A11yLog.Init();
-        DebugCommands.PrintGameVersion();
+        DebugCommands.PrintBuildInfo();
         // 注册快捷键
         KeyBindings.RegisterAll();
 
