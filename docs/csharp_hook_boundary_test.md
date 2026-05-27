@@ -57,24 +57,23 @@
 
 ## 关键发现
 
-### USharp UFunction 调度链
+### 第二轮精确测试
 
-```
-C++ 侧 / UE 蓝图
-  ↓ 通过函数指针
-UFunction__Invoker(IntPtr buffer, IntPtr obj)     ← private static 方法
-  ↓ 直接调用 (非虚函数表)
-ClassName.MethodName_Implementation(...)           ← protected virtual override
-```
+参考社区 mod（BattleLog, PlayerStatus, RealDamageNumber, NoRandomDamage）的用法，进行了第二轮更精确的测试：
 
-Harmony 补丁在 `_Implementation` 上注册成功（IL 被替换），但运行时 C++ 通过 `__Invoker` 调用时，绕过了 Harmony 的 IL 注入点。即使直接补丁 `__Invoker` 本身，同样不触发。
+| 编号 | 目标方法 | 参考来源 | 期望触发时机 |
+|---|---|---|---|
+| Ref-1 | `BGWGameInstanceCS.ReceiveInit_Implementation` | BattleLog, ProtobufLoader | 游戏启动时 |
+| Ref-2 | `BGUPlayerCharacterCS.AfterInitAllComp` | PlayerStatus | 玩家角色创建时 |
+| Ref-3 | `BGUFunctionLibraryCS.LogBattleInfo` | BattleLog | 战斗日志输出时 |
+| Ref-4 | `BUI_MSimNum.SetDamageNumParam` | RealDamageNumber | 伤害数字显示时 |
+| Ref-5 | `BUS_BeAttackedComp.GetDmgNoiseMultiplier` | NoRandomDamage | 受击时 |
+
+全部使用完全一致的 `[HarmonyPatch]` + `harmony.PatchAll()` 模式，**5 个测试全部零触发**。包括最关键的 Ref-1（游戏启动时就应触发，两个参考 mod 确认过）。
 
 ### 与社区参考 mod 的矛盾
 
-BattleLog、PlayerStatus、RealDamageNumber 等 mod 使用 Harmony 并正常工作。最可能的解释：
-
-1. **游戏版本差异** — 社区 mod 编写时使用的游戏版本 USharp 运行时还是解释/编译执行模式，而此版本（1.0.21.23831）可能启用了 **IL2CPP / AOT 编译**（B1CSharpLoader 配置项 `EnableJit` 相关），导致 Harmony 的运行时 IL 注入失效
-2. **B1CSharpLoader 版本差异** — 加载器本身可能更新了 mono 执行模式，影响了 Harmony 的工作方式
+**此游戏版本（1.0.21.23831，BuildTime 2025-12-30）Harmony 补丁完全无效。** 社区参考 mod 能工作，最可能的解释是它们运行在更早的游戏版本上，USharp 运行时仍是解释/编译执行模式，而此版本可能启用了 IL2CPP / AOT 编译（B1CSharpLoader 配置项 `EnableJit` 相关），导致 Harmony 的运行时 IL 注入失效。
 
 ## 可行方案
 
