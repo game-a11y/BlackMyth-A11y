@@ -1,9 +1,12 @@
 using CSharpModBase.Input;
+using HarmonyLib;
 
 namespace WkAccess;
 
 public sealed class WkAccess : ICSharpMod
 {
+    static readonly Harmony _harmony = new($"{BuildInfo.ModName}.{BuildInfo.ModVersion}");
+
     public string Name => ModName;
     public string Version => ModVersion;
 
@@ -16,19 +19,16 @@ public sealed class WkAccess : ICSharpMod
     {
         A11yLog.Init();
         DebugCommands.PrintBuildInfo();
-        // 注册快捷键
         KeyBindings.RegisterAll();
-
-        // 启动后备定时器，检测场景和 UI 变化
         A11y.SceneDetector.StartFallbackTimer();
-
+        _harmony.PatchAll();
         A11yLog.Info($"{Name} Init()");
     }
 
     public void DeInit()
     {
         A11yLog.Info($"{Name} DeInit");
+        _harmony.UnpatchAll();
         A11y.SceneDetector.Deinit();
     }
-
 }
