@@ -7,6 +7,8 @@ global using UnrealEngine.Runtime;
 
 global using b1.UI;
 global using b1.UI.Comm;
+global using GSE.GSUI;
+global using UnrealEngine.UMG;
 
 /* WkAccess */
 global using WkAccess.A11y;
