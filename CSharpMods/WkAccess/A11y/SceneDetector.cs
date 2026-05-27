@@ -296,7 +296,7 @@ public static class SceneDetector
         A11yLog.Info($"[SceneDetector] ⏸️ SetGamePause: {pauseEvent} -> {(isPaused ? "暂停" : "恢复")}");
     }
 
-    // ── Tick 轮询（由 GameMode.ReceiveTick 补丁驱动） ──
+    // ── Tick 轮询（由后备定时器驱动） ──
 
     public static void OnTick(float deltaTime)
     {
@@ -421,36 +421,6 @@ public static class SceneDetector
         {
             TryInitGSG();
         }
-    }
-
-    // ── Harmony 补丁辅助方法 ──
-
-    /// <summary>由 GameMode/GameState Tick 补丁调用。</summary>
-    public static void OnTickUpdate()
-    {
-        StartFallbackTimer(); // 确保后备定时器已启动（幂等）
-        OnTick(0.33f);
-    }
-
-    /// <summary>由 BGW_GameInstance_B1.InitGameInstObj 后置补丁调用。</summary>
-    public static void OnGameInstanceInit_Postfix(UObject context)
-    {
-        A11yLog.Info("[SceneDetector] GameInstance 初始化，尝试订阅事件...");
-        TryInit(context);
-        StartFallbackTimer();
-    }
-
-    /// <summary>由 BGW_ManagedReflectMgr.LoadScriptAssemblyFile 后置补丁调用。</summary>
-    public static void OnScriptAssemblyLoaded_Postfix()
-    {
-        A11yLog.Info("[SceneDetector] 脚本程序集加载完成，尝试初始化 GSG...");
-        TryInitGSG();
-    }
-
-    /// <summary>由 HandleLeavingMap 前置补丁调用。</summary>
-    public static void OnHandleLeavingMap_Prefix()
-    {
-        A11yLog.Info("[SceneDetector] 👋 HandleLeavingMap — 即将离开当前地图");
     }
 
     /// <summary>清理资源（Mod 卸载时调用）。</summary>
