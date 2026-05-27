@@ -11,6 +11,14 @@ namespace WkAccess.A11y;
 /// <summary>
 /// 场景检测器：挂钩场景加载/UI 页面切换，用于无障碍功能可行性测试。
 /// 输出所有场景变化和页面切换到控制台日志。
+///
+/// 架构问题（暂不重构，待实现首个无障碍功能时一并处理）：
+///   1. 职责过重 — 470 行混入事件订阅/轮询/状态管理/调试打印四项职责
+///   2. 状态不对外暴露 — _currentScene 和 _visiblePages 是私有字段，
+///      无障碍功能代码只能通过 OnUIPageChanged 事件间接感知，
+///      无法主动查询"当前是否在土地庙"等具体状态
+///   3. 重构方向 — 提取 GameState(只读查询+事件) 和 SceneMonitor(检测驱动) 两个类，
+///      见 CLAUDE.md 架构分析章节
 /// </summary>
 public static class SceneDetector
 {
