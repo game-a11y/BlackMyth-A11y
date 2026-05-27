@@ -29,7 +29,11 @@ static class H_FocusEnter
         var gsid = __instance.GetGSID();
         if (gsid < 0) return;
         var cn = __instance.GetType().Name;
-        A11yLog.Info($"[UI.Focus] 聚焦 WidgetID={gsid} ({cn})");
+        var text = UIScreenTextProvider.Extract(__instance as UnrealEngine.UMG.UUserWidget);
+        if (!string.IsNullOrEmpty(text))
+            A11yLog.Info($"[UI.Focus] 聚焦 {text} (GSID={gsid})");
+        else
+            A11yLog.Info($"[UI.Focus] 聚焦 WidgetID={gsid} ({cn})");
         UIFocusTracker.NotifyEnter(gsid, cn);
     }
 }
