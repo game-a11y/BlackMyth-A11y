@@ -18,9 +18,8 @@ public sealed class WkAccess : ICSharpMod
         A11yLog.Info($"{Name} Init()");
         var gameVersion = GSVersionUtil.GetAppVersionWithRevision();
         A11yLog.Info($"Game Version: {gameVersion}");
-        Utils.RegisterKeyBind(Key.ENTER, () => Console.WriteLine("Enter pressed"));
-        Utils.RegisterKeyBind(ModifierKeys.Control, Key.ENTER, FindPlayer);
-        Utils.RegisterKeyBind(ModifierKeys.Control, Key.D1, () => A11y.SceneDetector.PrintCurrentUI());
+        // 注册快捷键
+        KeyBindings.RegisterAll();
 
         // 启动后备定时器，检测场景和 UI 变化
         AppDomain.CurrentDomain.AssemblyLoad += OnAssemblyLoad;
@@ -42,20 +41,4 @@ public sealed class WkAccess : ICSharpMod
         A11y.SceneDetector.Deinit();
     }
 
-    private static void FindPlayer()
-    {
-        A11yLog.Info("Ctrl+Enter pressed");
-        var player = WkUtils.GetControlledPawn();
-        if (player == null)
-        {
-            A11yLog.Error("Player not found");
-        }
-        else
-        {
-            A11yLog.Warning($"Player found: {player}");
-            var hp = BGUFunctionLibraryCS.GetAttrValue(player, EBGUAttrFloat.Hp);
-            var hpMax = BGUFunctionLibraryCS.GetAttrValue(player, EBGUAttrFloat.HpMax);
-            A11yLog.Warning($"HP: {hp}/{hpMax}");
-        }
-    }
 }
