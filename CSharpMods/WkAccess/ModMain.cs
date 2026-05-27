@@ -20,19 +20,9 @@ public sealed class WkAccess : ICSharpMod
         KeyBindings.RegisterAll();
 
         // 启动后备定时器，检测场景和 UI 变化
-        AppDomain.CurrentDomain.AssemblyLoad += OnAssemblyLoad;
         A11y.SceneDetector.StartFallbackTimer();
 
         A11yLog.Info($"{Name} Init()");
-    }
-
-    static void OnAssemblyLoad(object? sender, AssemblyLoadEventArgs args)
-    {
-        if (args.LoadedAssembly.GetName().Name == "B1UI_GSE.Script")
-        {
-            A11yLog.Info("B1UI_GSE.Script loaded, notifying SceneDetector...");
-            A11y.SceneDetector.TryInitGSG();
-        }
     }
 
     public void DeInit()
