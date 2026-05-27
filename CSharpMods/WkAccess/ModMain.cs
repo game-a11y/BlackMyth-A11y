@@ -41,9 +41,11 @@ public sealed class WkAccess : ICSharpMod
         Utils.RegisterKeyBind(ModifierKeys.Control, Key.ENTER, FindPlayer);
         Utils.RegisterKeyBind(ModifierKeys.Control, Key.F11, PrintPatchedMethods);
         Utils.RegisterKeyBind(ModifierKeys.Control, Key.F12, PrintAllAssemblies);
+        Utils.RegisterKeyBind(ModifierKeys.Control, Key.D1, () => A11y.SceneDetector.PrintCurrentUI());
 
         // 尝试立即应用延迟补丁（若 BtlSvr.Main 尚未加载则静默跳过）
         BGWManagersPatch.ApplyPatches(Harmony);
+        SceneDetectorPatch.ApplyPatches(Harmony);
         // BtlSvr.Main 之后加载时自动重试
         AppDomain.CurrentDomain.AssemblyLoad += OnAssemblyLoad;
 
@@ -137,20 +139,33 @@ public sealed class WkAccess : ICSharpMod
 
     static void OnAssemblyLoad(object? sender, AssemblyLoadEventArgs args)
     {
-        if (args.LoadedAssembly.GetName().Name == "BtlSvr.Main")
+        var name = args.LoadedAssembly.GetName().Name;
+        A11yLog.Info($"Assembly loaded: {name}");
+
+        switch (name)
         {
-            A11yLog.Info("BtlSvr.Main loaded, applying deferred patches...");
-            BGWManagersPatch.ApplyPatches(Harmony);
+            case "BtlSvr.Main":
+                A11yLog.Info("BtlSvr.Main loaded, applying deferred patches...");
+                BGWManagersPatch.ApplyPatches(Harmony);
+                SceneDetectorPatch.ApplyPatches(Harmony);
+                break;
+
+            case "B1UI_GSE.Script":
+                A11yLog.Info("B1UI_GSE.Script loaded, notifying SceneDetector...");
+                // UI 系统加载完成，场景检测器可以开始检查 UI 页面
+                A11y.SceneDetector.TryInitGSG();
+                break;
         }
     }
 
     public void DeInit()
     {
         A11yLog.Info($"{Name} DeInit");
-    
+
         PrintPatchedMethods();
         _harmony.UnpatchAll();
         PrintPatchedMethods();
+        A11y.SceneDetector.Deinit();
     }
 
     /// <summary>
