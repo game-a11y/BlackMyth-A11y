@@ -16,8 +16,7 @@ public sealed class WkAccess : ICSharpMod
     {
         A11yLog.SetConsoleUTF8();
         A11yLog.Info($"{Name} Init()");
-        var gameVersion = GSVersionUtil.GetAppVersionWithRevision();
-        A11yLog.Info($"Game Version: {gameVersion}");
+        DebugCommands.PrintGameVersion();
         // 注册快捷键
         KeyBindings.RegisterAll();
 

@@ -5,6 +5,12 @@ namespace WkAccess.A11y;
 /// </summary>
 internal static class DebugCommands
 {
+    public static void PrintGameVersion()
+    {
+        var v = GSVersionUtil.GetAppVersionWithRevision();
+        A11yLog.Info($"Game Version: {v}");
+    }
+
     public static void PrintPlayerInfo()
     {
         var player = WkUtils.GetControlledPawn();
