@@ -15,12 +15,13 @@ public class A11yLog
     private static extern bool SetConsoleCP(uint wCodePageID);
 
     #region Public API 公共API
-    public static void SetConsoleUTF8()
+
+    /// <summary>初始化日志系统（设置控制台编码等）。调用前不应输出日志。</summary>
+    public static void Init()
     {
         SetConsoleCP(65001);
         SetConsoleOutputCP(65001);
         Console.OutputEncoding = System.Text.Encoding.UTF8;
-        Info("SetConsoleUTF8()");
     }
 
     public static void Info(string message)

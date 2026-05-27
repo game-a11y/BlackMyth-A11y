@@ -14,8 +14,7 @@ public sealed class WkAccess : ICSharpMod
 
     public void Init()
     {
-        A11yLog.SetConsoleUTF8();
-        A11yLog.Info($"{Name} Init()");
+        A11yLog.Init();
         DebugCommands.PrintGameVersion();
         // 注册快捷键
         KeyBindings.RegisterAll();
@@ -23,6 +22,8 @@ public sealed class WkAccess : ICSharpMod
         // 启动后备定时器，检测场景和 UI 变化
         AppDomain.CurrentDomain.AssemblyLoad += OnAssemblyLoad;
         A11y.SceneDetector.StartFallbackTimer();
+
+        A11yLog.Info($"{Name} Init()");
     }
 
     static void OnAssemblyLoad(object? sender, AssemblyLoadEventArgs args)
