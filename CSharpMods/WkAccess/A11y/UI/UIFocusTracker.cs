@@ -31,7 +31,10 @@ static class H_FocusEnter
         var cn = __instance.GetType().Name;
         var text = UIScreenTextProvider.Extract(__instance as UnrealEngine.UMG.UUserWidget);
         if (!string.IsNullOrEmpty(text))
+        {
             A11yLog.Info($"[UI.Focus] 聚焦 {text} (GSID={gsid})");
+            A11yTolk.Speak(text!, true);
+        }
         else
             A11yLog.Info($"[UI.Focus] 聚焦 WidgetID={gsid} ({cn})");
         UIFocusTracker.NotifyEnter(gsid, cn);
