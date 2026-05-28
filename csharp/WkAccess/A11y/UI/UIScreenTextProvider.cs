@@ -492,14 +492,14 @@ public static class UIScreenTextProvider
             if (string.IsNullOrEmpty(name) || name.Contains("Default"))
                 return "装备 [??]";
 
-            if (_pageCache.TryGetValue("BUI_EquipMain_C", out var page))
+            var inCache = _pageCache.TryGetValue("BUI_EquipMain_C", out var page);
+            A11yLog.Debug($"[EquipItem] slot={name} inCache={inCache} pageValid={page?.IsValidLowLevel()} pageClass={page?.GetClass().GetFName().ToString() ?? "(null)"}");
+            if (inCache && page != null)
             {
-                var valid = page.IsValidLowLevel();
-                var cn = page.GetClass().GetFName().ToString();
                 var desc = FindTextByName(page, "TxtDesc");
-                var deep = desc == null ? FindAnyText(page) : null;
                 var sub = FindTextByName(page, "TxtSubTitle");
-                A11yLog.Debug($"[EquipItem] slot={name} pageValid={valid} pageClass={cn} TxtDesc={desc ?? "(null)"} TxtSubTitle={sub ?? "(null)"} FindAnyText={deep ?? "(null)"}");
+                var deep = desc == null && sub == null ? FindAnyText(page) : null;
+                A11yLog.Debug($"[EquipItem] TxtDesc={desc ?? "(null)"} TxtSubTitle={sub ?? "(null)"} FindAnyText={deep ?? "(null)"}");
                 var text = desc ?? sub ?? deep;
                 if (!string.IsNullOrEmpty(text))
                     return $"装备 {name} - {text}";
