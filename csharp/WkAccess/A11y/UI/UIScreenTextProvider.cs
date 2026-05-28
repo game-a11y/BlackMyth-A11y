@@ -163,15 +163,13 @@ public static class UIScreenTextProvider
         try
         {
             if (GSG.GamePlayer == null) return null;
-            var tabIdx = slotIdx - 14; // QuickItem 从 14 开始
-            if (tabIdx < 0) return null;
-            var shortcuts = GSG.GamePlayer.Actor.Wear.ShortcutsList.ValueList;
-            if (tabIdx < shortcuts.Count)
+            var position = slotIdx - 14; // Position = slotIdx - 14
+            if (position < 0) return null;
+            foreach (var s in GSG.GamePlayer.Actor.Wear.ShortcutsList.ValueList)
             {
-                var itemId = shortcuts[tabIdx].ItemId;
-                if (itemId > 0)
+                if (s.Position == position && s.ItemId > 0)
                 {
-                    var desc = GameDBRuntime.GetItemDesc(itemId);
+                    var desc = GameDBRuntime.GetItemDesc(s.ItemId);
                     return CleanEquipName(desc?.Name);
                 }
             }
