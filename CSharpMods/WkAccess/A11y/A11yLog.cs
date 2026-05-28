@@ -81,6 +81,8 @@ public class A11yLog
         }
     }
 
+    public static void Debug(string message) => Write(LogType.Debug, message);
+
     public static void Info(string message) => Write(LogType.Info, message);
 
     public static void Warning(string message) => Write(LogType.Warning, message);

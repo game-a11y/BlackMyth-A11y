@@ -51,7 +51,7 @@ static class H_FocusLeave
             var gsid = btn.GetGSID();
             if (gsid < 0) return;
             var cn = __instance.GetType().Name;
-            A11yLog.Info($"[UI.Focus] 失焦 WidgetID={gsid} ({cn})");
+            // A11yLog.Debug($"[UI.Focus] 失焦 WidgetID={gsid} ({cn})");
             UIFocusTracker.NotifyLeave(gsid, cn);
         }
     }
