@@ -321,7 +321,20 @@ public static class UIScreenTextProvider
     static string? Extract_TalentItem(UUserWidget w) => "根基技能";
     static string? Extract_AbilityIcon_KB(UUserWidget w) => FindAnyText(w);
     static string? Extract_AbilityIcon_GP(UUserWidget w) => FindAnyText(w);
-    static string? Extract_InventoryItem(UUserWidget w) => FindAnyText(w);
+    /// <summary>行囊物品: 用品 [??] x{数量} | 用品 (空)</summary>
+    /// <remarks>TODO: 物品名/类型需从数据层读取，当前仅通过 TxtNum 判断是否为空。</remarks>
+    static string? Extract_InventoryItem(UUserWidget w)
+    {
+        try
+        {
+            var num = FindTextByName(w, "TxtNum");
+            if (string.IsNullOrEmpty(num) || num == "0") return "用品 (空)";
+            return $"用品 [??] x{num}";
+        }
+        catch { }
+        return FindAnyText(w) ?? "用品 [??]";
+    }
+
     /// <summary>装备槽: {槽位} [??]</summary>
     /// <remarks>TODO: 物品名/介绍在 BUI_EquipMain_C 的 TxtDesc/TxtSubTitle，
     /// 需通过数据层（ItemPool 或弹出物品信息面板）读取。</remarks>
