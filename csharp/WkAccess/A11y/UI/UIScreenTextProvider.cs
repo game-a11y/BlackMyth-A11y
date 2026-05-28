@@ -397,14 +397,23 @@ public static class UIScreenTextProvider
         catch { }
         return "根基";
     }
-    /// <summary>行囊物品: 用品 [??] x{数量} | 用品 (空)</summary>
-    /// <remarks>TODO: 物品名/类型需从数据层读取，当前仅通过 TxtNum 判断是否为空。</remarks>
+    /// <summary>行囊物品: 用品 x{数量} / 用品 - {描述} x{数量} | 用品 (空)</summary>
     static string? Extract_InventoryItem(UUserWidget w)
     {
         try
         {
             var num = FindTextByName(w, "TxtNum");
-            if (string.IsNullOrEmpty(num) || num == "0") return "用品 (空)";
+            var empty = string.IsNullOrEmpty(num) || num == "0";
+
+            if (_pageCache.TryGetValue("BUI_BagMain_C", out var page))
+            {
+                var desc = FindTextByName(page, "TxtDesc");
+                A11yLog.Debug($"[InventoryItem] empty={empty} num={num} TxtDesc={desc ?? "(null)"}");
+                if (!string.IsNullOrEmpty(desc))
+                    return empty ? "用品 (空)" : $"用品 {desc} x{num}";
+            }
+
+            if (empty) return "用品 (空)";
             return $"用品 [??] x{num}";
         }
         catch { }
