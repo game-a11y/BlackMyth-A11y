@@ -139,6 +139,16 @@ public static class UIScreenTextProvider
         return null;
     }
 
+    /// <summary>清理 EquipName：过滤占位符、剥离 ruby 注音标签</summary>
+    static string? CleanEquipName(string? raw)
+    {
+        if (string.IsNullOrEmpty(raw)) return null;
+        if (raw.Contains("名字名字")) return null; // 未装备占位符
+        // 剥离 <zhy ...> 标签，保留纯文本
+        var cleaned = System.Text.RegularExpressions.Regex.Replace(raw, "<[^>]+>", "");
+        return string.IsNullOrEmpty(cleaned) ? null : cleaned;
+    }
+
     /// <summary>从玩家装备数据解析物品名（绕过 UI 时序问题）</summary>
     static string? ResolveEquipName(int slotIdx)
     {
@@ -153,8 +163,7 @@ public static class UIScreenTextProvider
                 if (w.Position == position)
                 {
                     var desc = GameDBRuntime.GetEquipDesc(w.Id);
-                    if (desc != null && !string.IsNullOrEmpty(desc.EquipName))
-                        return desc.EquipName;
+                    return CleanEquipName(desc?.EquipName);
                 }
             }
         }
