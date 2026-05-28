@@ -322,7 +322,17 @@ public static class UIScreenTextProvider
     static string? Extract_SpellPanelTitle(UUserWidget w) => FindAnyText(w);
     static string? Extract_TalentItem(UUserWidget w) => "根基技能";
     static string? Extract_AbilityIcon_KB(UUserWidget w) => FindAnyText(w);
-    static string? Extract_AbilityIcon_GP(UUserWidget w) => FindAnyText(w);
+    /// <summary>手柄技能图标: 根基 / 棍法（控件树无文本，硬编码标签名）</summary>
+    static string? Extract_AbilityIcon_GP(UUserWidget w)
+    {
+        try
+        {
+            var cn = w.GetClass().GetFName().ToString();
+            if (cn.Contains("_Advance")) return "棍法";
+        }
+        catch { }
+        return "根基";
+    }
     /// <summary>行囊物品: 用品 [??] x{数量} | 用品 (空)</summary>
     /// <remarks>TODO: 物品名/类型需从数据层读取，当前仅通过 TxtNum 判断是否为空。</remarks>
     static string? Extract_InventoryItem(UUserWidget w)
