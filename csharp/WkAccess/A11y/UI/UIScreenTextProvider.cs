@@ -339,7 +339,8 @@ public static class UIScreenTextProvider
 
     /// <summary>装备槽: {槽位} [??]</summary>
     /// <remarks>TODO: 物品名/介绍在 BUI_EquipMain_C 的 TxtDesc/TxtSubTitle，
-    /// 需通过数据层（ItemPool 或弹出物品信息面板）读取。</remarks>
+    /// 需通过数据层（ItemPool 或弹出物品信息面板）读取。
+    /// TODO: 空装备槽判断依赖 ImgItem 材质纹理名，FSlateBrush 限制无法运行时读取。</remarks>
     /// <summary>随身之物: 随身之物 [??] x{数量} | 随身之物 (空)</summary>
     static string? Extract_QuickItem(UUserWidget w)
     {
@@ -353,14 +354,19 @@ public static class UIScreenTextProvider
         return FindAnyText(w) ?? "随身之物 [??]";
     }
 
-    /// <summary>珍玩槽: {槽位} [??]</summary>
+    /// <summary>珍玩槽: {珍玩名} [??]</summary>
     static string? Extract_GearItem(UUserWidget w)
     {
         try
         {
             var name = w.GetFName().ToString();
-            if (!string.IsNullOrEmpty(name) && !name.Contains("Default"))
-                return $"珍玩 {name} [??]";
+            if (string.IsNullOrEmpty(name) || name.Contains("Default"))
+                return "珍玩 [??]";
+            // 已知槽位实例名 → 硬编码名称
+            if (name == "BI_EquipSlotItem_8") return "老葫芦 [??]";
+            if (name == "BI_EquipSlotItem_9") return "珍玩·一 [??]";
+            if (name == "BI_EquipSlotItem_10") return "珍玩·二 [??]";
+            return $"珍玩 {name} [??]";
         }
         catch { }
         return "珍玩 [??]";
