@@ -2,6 +2,16 @@
 
 ## 编译
 
+### 方式一：构建脚本（推荐）
+
+终端执行（Windows / PowerShell）：
+
+```powershell
+CSharpMods\build.ps1
+```
+
+### 方式二：dotnet CLI 手动编译
+
 ```bash
 # WSL / Linux
 dotnet build CSharpMods/WkAccess/WkAccess.csproj
@@ -34,7 +44,7 @@ dotnet build CSharpMods/WkAccess/WkAccess.csproj \
 ## 开发流程
 
 1. 编辑 C# 代码（`CSharpMods/WkAccess/`）
-2. 编译：`dotnet build CSharpMods/WkAccess/WkAccess.csproj`
+2. 编译（见上方）
 3. 启动/重启游戏，或按 Ctrl+F5 热重载（需 `b1cs.ini` 中 `Develop=1`）
 4. 查看日志确认行为
 
