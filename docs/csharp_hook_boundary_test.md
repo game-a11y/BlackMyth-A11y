@@ -99,9 +99,9 @@ Ref-5 DamageMult                    ← 受击时触发
 
 ## 相关代码
 
-- 测试类: `CSharpMods/WkAccess/A11y/HookTest.cs`
-- Mod 入口: `CSharpMods/WkAccess/ModMain.cs`
-- 社区参考 mod: `CSharpMods/.cyhan/MyBlackMythWukongMods-master/CSharpMods/`
+- 测试类: `csharp/WkAccess/A11y/HookTest.cs`
+- Mod 入口: `csharp/WkAccess/ModMain.cs`
+- 社区参考 mod: `csharp/.cyhan/MyBlackMythWukongMods-master/csharp/`
   - BattleLog/Program.cs — 使用 `[HarmonyPatch(typeof(BGUFunctionLibraryCS), nameof(BGUFunctionLibraryCS.LogBattleInfo))]`
   - PlayerStatus/Program.cs — 使用 `[HarmonyPatch(typeof(BGUPlayerCharacterCS), nameof(BGUPlayerCharacterCS.AfterInitAllComp))]`
   - RealDamageNumber/Program.cs — 使用 `[HarmonyPatch(typeof(BUI_MSimNum), nameof(BUI_MSimNum.SetDamageNumParam))]`

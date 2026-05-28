@@ -7,7 +7,7 @@
 《黑神话：悟空》无障碍 Mod，分为三部分：
 
 - **UE4SS 部分：** `ue4ss/BlackMythA11y/`（Lua 脚本）+ `ue4ss/BlackMythA11yCpp/`（C++ 插件）+ `ue4ss/RE-UE4SS/`（框架），同属一个 UE4SS Mod 项目
-- **C# 部分：** `CSharpMods/` — 通过 B1CSharpLoader 框架热加载的 C# Mod
+- **C# 部分：** `csharp/` — 通过 B1CSharpLoader 框架热加载的 C# Mod
 - **项目公共部分：** `docs/`（公共文档）、`b1/`（UE4 测试工程）
 
 
@@ -26,7 +26,7 @@ Root/
 │   ├── tools/                   # 构建/打包工具
 │   └── docs/                    # UE4SS 相关文档
 │
-├── 📦 C# 部分 (CSharpMods/)
+├── 📦 C# 部分 (csharp/)
 │   ├── B1CSharpLoader/          # C# 加载器框架（来自上游）
 │   │   ├── GameDll/             # 编译好的游戏 DLL（仅供引用）
 │   │   ├── GameDll-src/         # 游戏 DLL 源码（参考用）

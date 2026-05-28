@@ -53,7 +53,7 @@ C# 路线通过 `B1CSharpLoader` 进入游戏托管环境，并直接引用游�
 
 **验证内容**
 
-- 编译 `CSharpMods/WkAccess/WkAccess.csproj`。
+- 编译 `csharp/WkAccess/WkAccess.csproj`。
 - 将 `WkAccess.dll` 安装到 `CSharpLoader/Mods/WkAccess/`。
 - 确认 Loader 启动后执行 `WkAccess.Init()`。
 - 记录使用的游戏版本、Loader 版本、`EnableJit` 设置与日志位置。

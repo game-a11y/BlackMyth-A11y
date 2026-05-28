@@ -8,16 +8,16 @@
 
 | # | DLL 程序集 | 源码路径 (GameDll-src) | 编译产物 (GameDll) | 文档 |
 |---|-----------|----------------------|-------------------|------|
-| 1 | **b1.Managed** | `CSharpMods/B1CSharpLoader/GameDll-src/b1.Managed/` | `CSharpMods/B1CSharpLoader/GameDll/b1.Managed.dll` | [b1.Managed.md](b1.Managed.md) |
-| 2 | **b1.Native** | `CSharpMods/B1CSharpLoader/GameDll-src/b1.Native/` | `CSharpMods/B1CSharpLoader/GameDll/b1.Native.dll` | [b1.Native.md](b1.Native.md) |
-| 3 | **b1.NativePlugins** | `CSharpMods/B1CSharpLoader/GameDll-src/b1.NativePlugins/` | `CSharpMods/B1CSharpLoader/GameDll/b1.NativePlugins.dll` | [b1.NativePlugins.md](b1.NativePlugins.md) |
-| 4 | **B1UI_GSE.Script** | `CSharpMods/B1CSharpLoader/GameDll-src/B1UI_GSE.Script/` | `CSharpMods/B1CSharpLoader/GameDll/B1UI_GSE.Script.dll` | [B1UI_GSE.Script.md](B1UI_GSE.Script.md) |
-| 5 | **BtlSvr.Main** | `CSharpMods/B1CSharpLoader/GameDll-src/BtlSvr.Main/` | `CSharpMods/B1CSharpLoader/GameDll/BtlSvr.Main.dll` | [BtlSvr.Main.md](BtlSvr.Main.md) |
-| 6 | **GSE.Core** | `CSharpMods/B1CSharpLoader/GameDll-src/GSE.Core/` | `CSharpMods/B1CSharpLoader/GameDll/GSE.Core.dll` | [GSE.Core.md](GSE.Core.md) |
-| 7 | **GSE.GSNet** | `CSharpMods/B1CSharpLoader/GameDll-src/GSE.GSNet/` | `CSharpMods/B1CSharpLoader/GameDll/GSE.GSNet.dll` | [GSE.GSNet.md](GSE.GSNet.md) |
-| 8 | **GSE.GSSdk** | `CSharpMods/B1CSharpLoader/GameDll-src/GSE.GSSdk/` | `CSharpMods/B1CSharpLoader/GameDll/GSE.GSSdk.dll` | [GSE.GSSdk.md](GSE.GSSdk.md) |
-| 9 | **GSE.OnlineBase** | `CSharpMods/B1CSharpLoader/GameDll-src/GSE.OnlineBase/` | `CSharpMods/B1CSharpLoader/GameDll/GSE.OnlineBase.dll` | [GSE.OnlineBase.md](GSE.OnlineBase.md) |
-| 10 | **GSE.ProtobufDB** | `CSharpMods/B1CSharpLoader/GameDll-src/GSE.ProtobufDB/` | `CSharpMods/B1CSharpLoader/GameDll/GSE.ProtobufDB.dll` | [GSE.ProtobufDB.md](GSE.ProtobufDB.md) |
+| 1 | **b1.Managed** | `csharp/B1CSharpLoader/GameDll-src/b1.Managed/` | `csharp/B1CSharpLoader/GameDll/b1.Managed.dll` | [b1.Managed.md](b1.Managed.md) |
+| 2 | **b1.Native** | `csharp/B1CSharpLoader/GameDll-src/b1.Native/` | `csharp/B1CSharpLoader/GameDll/b1.Native.dll` | [b1.Native.md](b1.Native.md) |
+| 3 | **b1.NativePlugins** | `csharp/B1CSharpLoader/GameDll-src/b1.NativePlugins/` | `csharp/B1CSharpLoader/GameDll/b1.NativePlugins.dll` | [b1.NativePlugins.md](b1.NativePlugins.md) |
+| 4 | **B1UI_GSE.Script** | `csharp/B1CSharpLoader/GameDll-src/B1UI_GSE.Script/` | `csharp/B1CSharpLoader/GameDll/B1UI_GSE.Script.dll` | [B1UI_GSE.Script.md](B1UI_GSE.Script.md) |
+| 5 | **BtlSvr.Main** | `csharp/B1CSharpLoader/GameDll-src/BtlSvr.Main/` | `csharp/B1CSharpLoader/GameDll/BtlSvr.Main.dll` | [BtlSvr.Main.md](BtlSvr.Main.md) |
+| 6 | **GSE.Core** | `csharp/B1CSharpLoader/GameDll-src/GSE.Core/` | `csharp/B1CSharpLoader/GameDll/GSE.Core.dll` | [GSE.Core.md](GSE.Core.md) |
+| 7 | **GSE.GSNet** | `csharp/B1CSharpLoader/GameDll-src/GSE.GSNet/` | `csharp/B1CSharpLoader/GameDll/GSE.GSNet.dll` | [GSE.GSNet.md](GSE.GSNet.md) |
+| 8 | **GSE.GSSdk** | `csharp/B1CSharpLoader/GameDll-src/GSE.GSSdk/` | `csharp/B1CSharpLoader/GameDll/GSE.GSSdk.dll` | [GSE.GSSdk.md](GSE.GSSdk.md) |
+| 9 | **GSE.OnlineBase** | `csharp/B1CSharpLoader/GameDll-src/GSE.OnlineBase/` | `csharp/B1CSharpLoader/GameDll/GSE.OnlineBase.dll` | [GSE.OnlineBase.md](GSE.OnlineBase.md) |
+| 10 | **GSE.ProtobufDB** | `csharp/B1CSharpLoader/GameDll-src/GSE.ProtobufDB/` | `csharp/B1CSharpLoader/GameDll/GSE.ProtobufDB.dll` | [GSE.ProtobufDB.md](GSE.ProtobufDB.md) |
 
 ## DLL 概述
 
@@ -38,9 +38,9 @@
 
 项目使用 Visual Studio 方案文件进行构建：
 
-- 方案文件: `CSharpMods/B1CSharpLoader/CSharpLoader.sln`
+- 方案文件: `csharp/B1CSharpLoader/CSharpLoader.sln`
 - 每个 .csproj 配置了 Debug/Release 两个配置，输出到各项目的 `bin/Debug/` 或 `bin/Release/`
-- 最终 DLL 产物被复制到 `CSharpMods/B1CSharpLoader/GameDll/` 目录，由 B1CSharpLoader 加载
+- 最终 DLL 产物被复制到 `csharp/B1CSharpLoader/GameDll/` 目录，由 B1CSharpLoader 加载
 
 ## 文档格式
 

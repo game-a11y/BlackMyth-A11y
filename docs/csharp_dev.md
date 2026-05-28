@@ -7,22 +7,22 @@
 终端执行（Windows / PowerShell）：
 
 ```powershell
-CSharpMods\build.ps1
+csharp\build.ps1
 ```
 
 ### 方式二：dotnet CLI 手动编译
 
 ```bash
 # WSL / Linux
-dotnet build CSharpMods/WkAccess/WkAccess.csproj
+dotnet build csharp/WkAccess/WkAccess.csproj
 
 # 指定中间目录（解决 WSL /mnt/ 权限问题）
-dotnet build CSharpMods/WkAccess/WkAccess.csproj \
+dotnet build csharp/WkAccess/WkAccess.csproj \
   -p:BaseIntermediateOutputPath=/tmp/wkobj/ \
   -p:IntermediateOutputPath=/tmp/wkobj/net472/
 ```
 
-编译产出 `CSharpMods/WkAccess/bin/Debug/net472/WkAccess.dll`，自动复制到游戏 Mod 目录。
+编译产出 `csharp/WkAccess/bin/Debug/net472/WkAccess.dll`，自动复制到游戏 Mod 目录。
 
 ## 日志
 
@@ -43,7 +43,7 @@ dotnet build CSharpMods/WkAccess/WkAccess.csproj \
 
 ## 开发流程
 
-1. 编辑 C# 代码（`CSharpMods/WkAccess/`）
+1. 编辑 C# 代码（`csharp/WkAccess/`）
 2. 编译（见上方）
 3. 启动/重启游戏，或按 Ctrl+F5 热重载（需 `b1cs.ini` 中 `Develop=1`）
 4. 查看日志确认行为
