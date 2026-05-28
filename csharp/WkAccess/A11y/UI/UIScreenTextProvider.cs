@@ -477,7 +477,6 @@ public static class UIScreenTextProvider
         try
         {
             var num = FindTextByName(w, "TxtNum");
-            var empty = string.IsNullOrEmpty(num) || num == "0";
 
             var name = w.GetFName().ToString();
             var idx = ParseSlotIndex(name);
@@ -485,9 +484,11 @@ public static class UIScreenTextProvider
             {
                 var itemName = ResolveEquipName(idx);
                 if (itemName != null)
-                    return empty ? "随身之物 (空)" : $"{itemName} x{num}";
+                    return $"{itemName} x{num}";
+                return "随身之物 (空)";
             }
 
+            var empty = string.IsNullOrEmpty(num) || num == "0";
             if (empty) return "随身之物 (空)";
             return $"随身之物 [??] x{num}";
         }
