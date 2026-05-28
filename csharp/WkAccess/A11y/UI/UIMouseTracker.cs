@@ -9,7 +9,10 @@ static class H_MouseDown
     {
         var gsid = __instance.GetGSID();
         if (gsid >= 0)
-            A11yLog.Debug($"[UI.Click] 点击 WidgetID={gsid}");
+        {
+            var cn = UIFocusTracker.GetClassName(__instance);
+            A11yLog.Debug($"[UI.Click] 点击 {cn}#{gsid}");
+        }
     }
 }
 
@@ -20,6 +23,9 @@ static class H_KeyUp
     {
         var gsid = __instance.GetGSID();
         if (gsid >= 0)
-            A11yLog.Debug($"[UI.KeyUp] 按键 WidgetID={gsid}");
+        {
+            var cn = UIFocusTracker.GetClassName(__instance);
+            A11yLog.Debug($"[UI.KeyUp] 按键 {cn}#{gsid}");
+        }
     }
 }
