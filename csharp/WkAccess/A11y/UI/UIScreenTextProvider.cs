@@ -49,15 +49,13 @@ public static class UIScreenTextProvider
         if (rootWidget == null || !rootWidget.IsValidLowLevel())
             return null;
 
-        // 先尝试专用提取器
-        var cn = rootWidget.GetType().Name;
+        var cn = UIFocusTracker.GetClassName(rootWidget);
         if (_providers.TryGetValue(cn, out var func))
             return func(rootWidget);
         foreach (var kv in _providers)
             if (cn.StartsWith(kv.Key, StringComparison.Ordinal))
                 return kv.Value(rootWidget);
 
-        // 通用兜底：搜索所有常见的文本子控件名称
         return FindAnyText(rootWidget);
     }
 
@@ -73,13 +71,11 @@ public static class UIScreenTextProvider
                 var w = GSUIUtil.FindChildWidget(root, name);
                 if (w == null || !w.IsValidLowLevel()) continue;
 
-                // UTextBlock
                 if (w is UTextBlock tb)
                 {
                     var t = tb.GetText().ToString();
                     if (!string.IsNullOrEmpty(t)) return t;
                 }
-                // UUserWidget (如 BI_TextLoop 是 UserWidget 含 Content 属性)
                 if (w is UUserWidget uw)
                 {
                     var p = uw.GetType().GetProperty("Content");
@@ -88,7 +84,6 @@ public static class UIScreenTextProvider
                         var t = tb2.GetText().ToString();
                         if (!string.IsNullOrEmpty(t)) return t;
                     }
-                    // 递归
                     var nested = FindAnyText(uw);
                     if (nested != null) return nested;
                 }
@@ -100,18 +95,142 @@ public static class UIScreenTextProvider
 
     // ── 各 UI 类型的专用提取器 ──
 
+    #region 通用辅助
+
+    /// <summary>在指定根控件下按名称查找文本控件并返回其文本。</summary>
+    static string? FindTextByName(UUserWidget? root, string childName)
+    {
+        if (root == null || !root.IsValidLowLevel()) return null;
+        try
+        {
+            var w = GSUIUtil.FindChildWidget(root, childName);
+            if (w is UTextBlock tb)
+                return tb.GetText()?.ToString();
+            if (w is UUserWidget uw)
+            {
+                var p = uw.GetType().GetProperty("Content");
+                if (p?.GetValue(uw) is UTextBlock tb2)
+                    return tb2.GetText()?.ToString();
+                return FindAnyText(uw);
+            }
+        }
+        catch { }
+        return null;
+    }
+
+    #endregion
+
+    #region 设置菜单提取器
+
+    /// <summary>标签页: 标签页 - {Tab名称}</summary>
+    static string? Extract_SettingTab(UUserWidget w)
+    {
+        var label = FindTextByName(w, "TxtName");
+        if (label != null) return $"标签页 - {label}";
+        return FindAnyText(w);
+    }
+
+    /// <summary>
+    /// 多选按钮: 多选按钮 - {设置项名称} - {当前值}
+    /// 通过检测子控件 BI_Btn 是否存在来排除子控件焦点事件。
+    /// </summary>
+    static string? Extract_SettingFixedItem(UUserWidget w)
+    {
+        var biBtn = GSUIUtil.FindChildWidget(w, "BI_Btn") as UUserWidget;
+        if (biBtn == null) return null; // 子控件焦点事件，抑制
+
+        var label = FindTextByName(biBtn, "TxtName");
+        var value = FindTextByName(w, "TxtDesc");
+        if (label != null && value != null) return $"多选按钮 - {label} - {value}";
+        if (label != null) return $"多选按钮 - {label}";
+        return FindAnyText(w);
+    }
+
+    /// <summary>
+    /// 下拉框: 下拉框 - {设置项名称} - {当前值}
+    /// 路径: root → BI_Btn(1) → BI_Btn(2) → TxtName
+    /// </summary>
+    static string? Extract_SettingMenuItem(UUserWidget w)
+    {
+        var biBtn1 = GSUIUtil.FindChildWidget(w, "BI_Btn") as UUserWidget;
+        if (biBtn1 == null) return null;
+
+        var biBtn2 = GSUIUtil.FindChildWidget(biBtn1, "BI_Btn") as UUserWidget;
+        var label = FindTextByName(biBtn2, "TxtName");
+        var value = FindTextByName(biBtn1, "TxtDesc");
+        if (label != null && value != null) return $"下拉框 - {label} - {value}";
+        if (label != null) return $"下拉框 - {label}";
+        return FindAnyText(w);
+    }
+
+    /// <summary>下拉选项: 下拉项 - {选项名}</summary>
+    static string? Extract_ModeBtnItem(UUserWidget w)
+    {
+        var label = FindAnyText(w);
+        if (label != null) return $"下拉项 - {label}";
+        return null;
+    }
+
+    /// <summary>滑块: 拖动条 - {设置项名称} - {当前值}</summary>
+    static string? Extract_SettingSliderItem(UUserWidget w)
+    {
+        var biBtn = GSUIUtil.FindChildWidget(w, "BI_Btn") as UUserWidget;
+        if (biBtn == null) return null;
+
+        var label = FindTextByName(biBtn, "TxtName");
+        if (label != null)
+        {
+            var biSlider = GSUIUtil.FindChildWidget(w, "BI_Slider") as UUserWidget;
+            if (biSlider != null)
+            {
+                var value = FindTextByName(biSlider, "TxtNum");
+                if (value != null) return $"拖动条 - {label} - {value}";
+                value = FindAnyText(biSlider);
+                if (value != null) return $"拖动条 - {label} - {value}";
+            }
+            return $"拖动条 - {label}";
+        }
+        return FindAnyText(w);
+    }
+
+    /// <summary>图标按钮: 图标按钮 - {按钮名}</summary>
+    static string? Extract_SettingIconItem(UUserWidget w)
+    {
+        var biBtn = GSUIUtil.FindChildWidget(w, "BI_Btn") as UUserWidget;
+        if (biBtn == null) return null;
+
+        var label = FindTextByName(biBtn, "TxtName");
+        if (label != null) return $"图标按钮 - {label}";
+        return FindAnyText(w);
+    }
+
+    /// <summary>文本按钮: 文本按钮 - {按钮名}</summary>
+    static string? Extract_SettingMainBtn(UUserWidget w)
+    {
+        var label = FindTextByName(w, "TxtName");
+        if (label != null) return $"文本按钮 - {label}";
+        return FindAnyText(w);
+    }
+
+    /// <summary>按键配置: 按键配置 - {按钮名}</summary>
+    static string? Extract_SettingKeyItem(UUserWidget w)
+    {
+        var biBtn = GSUIUtil.FindChildWidget(w, "BI_Btn") as UUserWidget;
+        if (biBtn == null) return null;
+
+        var label = FindTextByName(biBtn, "TxtName");
+        if (label != null) return $"按键配置 - {label}";
+        return FindAnyText(w);
+    }
+
+    #endregion
+
+    #region 其他 UI 提取器
+
     static string? Extract_StartGame(UUserWidget w) => FindAnyText(w);
     static string? Extract_StartGameBtn(UUserWidget w) => FindAnyText(w);
     static string? Extract_ArchivesBtn(UUserWidget w) => FindAnyText(w);
     static string? Extract_FirstStartBtn(UUserWidget w) => FindAnyText(w);
-    static string? Extract_SettingTab(UUserWidget w) => FindAnyText(w);
-    static string? Extract_SettingFixedItem(UUserWidget w) => FindAnyText(w);
-    static string? Extract_SettingMenuItem(UUserWidget w) => FindAnyText(w);
-    static string? Extract_ModeBtnItem(UUserWidget w) => FindAnyText(w);
-    static string? Extract_SettingSliderItem(UUserWidget w) => FindAnyText(w);
-    static string? Extract_SettingIconItem(UUserWidget w) => FindAnyText(w);
-    static string? Extract_SettingMainBtn(UUserWidget w) => FindAnyText(w);
-    static string? Extract_SettingKeyItem(UUserWidget w) => FindAnyText(w);
     static string? Extract_ShrineMenu(UUserWidget w) => FindAnyText(w);
     static string? Extract_SpellPanelTitle(UUserWidget w) => FindAnyText(w);
     static string? Extract_TalentItem(UUserWidget w) => "根基技能";
@@ -120,4 +239,6 @@ public static class UIScreenTextProvider
     static string? Extract_InventoryItem(UUserWidget w) => FindAnyText(w);
     static string? Extract_EquipItem(UUserWidget w) => FindAnyText(w);
     static string? Extract_Interact(UUserWidget w) => FindAnyText(w);
+
+    #endregion
 }
