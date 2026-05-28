@@ -37,6 +37,7 @@ public static class UIScreenTextProvider
         Register("BI_InventoryItem_C",        Extract_InventoryItem);
         Register("BI_EquipItem_Slot_C",       Extract_EquipItem);
         Register("BI_InteractIcon",           Extract_Interact);
+        Register("BI_ReconfirmBtn_C",          Extract_ReconfirmBtn);
     }
 
     public static void Register(string className, Func<UUserWidget, string?> extractor)
@@ -273,6 +274,45 @@ public static class UIScreenTextProvider
         if (joined.Length > 0) return joined;
         return FindAnyText(w);
     }
+
+    /// <summary>确认按钮: {按钮文本} {待确认内容}。确定按钮（Btn_Confirm）读取父级确认内容。</summary>
+    static string? Extract_ReconfirmBtn(UUserWidget w)
+    {
+        var text = FindAnyText(w);
+        if (text == null) return null;
+
+        try
+        {
+            var fname = w.GetFName().ToString();
+            if (fname == "Btn_Confirm" || fname.StartsWith("Btn_Confirm"))
+            {
+                // 向上导航父级：Button → HBoxBtn → BtnCon → BoxCon
+                var boxCon = w.GetParent();
+                boxCon = boxCon?.GetParent();
+                boxCon = boxCon?.GetParent();
+                if (boxCon != null && boxCon.GetChildrenCount() > 1)
+                {
+                    var contentCon = boxCon.GetChildAt(1);
+                    if (contentCon is UPanelWidget panel && panel.GetChildrenCount() > 0)
+                    {
+                        var txt = panel.GetChildAt(0);
+                        if (txt != null)
+                        {
+                            // UGSRichScaleText 等非 UTextBlock 类型：反射调用 GetText()
+                            var m = txt.GetType().GetMethod("GetText", System.Type.EmptyTypes);
+                            var content = m?.Invoke(txt, null)?.ToString();
+                            if (!string.IsNullOrEmpty(content))
+                                return $"{text} {content}";
+                        }
+                    }
+                }
+            }
+        }
+        catch { }
+
+        return text;
+    }
+
     static string? Extract_FirstStartBtn(UUserWidget w) => FindAnyText(w);
     static string? Extract_ShrineMenu(UUserWidget w) => FindAnyText(w);
     static string? Extract_SpellPanelTitle(UUserWidget w) => FindAnyText(w);
