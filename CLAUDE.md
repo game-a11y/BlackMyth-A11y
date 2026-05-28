@@ -113,7 +113,7 @@ Root/
 
 ## 提交规范
 
-使用 Conventional Commits，格式：`<type>: <简短中文描述>`
+使用 Conventional Commits，格式：`<type>(<scope>): <简短中文描述>`
 
 允许的 type：
 
@@ -127,13 +127,23 @@ Root/
 | `ref` | 参考资料变更 |
 | `TODO` | TODO 计划项 |
 
+scope 为细分模块名，例如：
+
+| type | scope 示例 |
+|---|---|
+| `cs` | `A11yLog`, `UI/UIFocusTracker`, `UI/UIScreenTextProvider` |
+| `lua` | `WkUIHook`, `UIHooks/SettingMenu` |
+| `docs` | `DLL`, `CLAUDE`, `csharp_dev` |
+| `ref` | `GameDll` |
+
 原则：**原子提交** — 每个提交只解决一个问题，不混入不相关的修改。
 
 示例：
 
 ```
-cs: 添加场景检测器，挂钩场景加载/UI 页面切换
-docs: 添加 10 个游戏 DLL 的类导航文档
+cs(UI/UIScreenTextProvider): 设置菜单完整朗读（类型 - 名称 - 值）
+cs(UI/UIFocusTracker): 日志格式统一为 {cn}#{gsid}
+docs(DLL): 添加 GameDLL 类导航文档
+lua(WkUIHook): 更新读屏焦点跟随逻辑
 chore: 忽略 mod 文件夹软连接
-lua: 更新读屏焦点跟随逻辑
 ```
