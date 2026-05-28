@@ -490,8 +490,11 @@ public static class UIScreenTextProvider
         return "珍玩 [??]";
     }
 
-    /// <summary>装备槽: {物品名} | 装备 {槽位名} [??]</summary>
-    /// <remarks>页面 TxtEquipTitleRuby 刷新滞后于焦点事件，尝试从 slot 自身查找文本</remarks>
+    /// <summary>装备槽: {物品名} | 装备 {槽位名}</summary>
+    /// <remarks>页面 TxtEquipTitleRuby 刷新滞后。焦点离开时页面已更新，此时缓存文本供下次使用。</remarks>
+    static readonly Dictionary<string, string> _equipNameCache = new();
+    static string? _lastEquipSlot;
+
     static string? Extract_EquipItem(UUserWidget w)
     {
         try
@@ -500,41 +503,28 @@ public static class UIScreenTextProvider
             if (string.IsNullOrEmpty(slotName) || slotName.Contains("Default"))
                 return "装备 [??]";
 
-            // Dump slot 自身控件树的所有文本，排查隐藏的文本控件
-            DumpWidgetTexts(w, slotName);
-
-            // 回退：缓存页面
             if (_pageCache.TryGetValue("BUI_EquipMain_C", out var page) && page != null)
             {
                 var itemName = FindTextByName(page, "TxtEquipTitleRuby");
-                A11yLog.Debug($"[EquipItem] slot={slotName} itemName={itemName ?? "(null)"}");
+                A11yLog.Debug($"[EquipItem] slot={slotName} itemName={itemName ?? "(null)"} cached={_equipNameCache.ContainsKey(slotName)}");
+
+                // 用当前页面文本更新上一个槽位的缓存（离开时页面已刷新）
+                if (_lastEquipSlot != null && !IsPlaceholder(itemName))
+                    _equipNameCache[_lastEquipSlot] = itemName;
+                _lastEquipSlot = slotName;
+
+                // 优先用缓存（上次离开时存的正确文本）
+                if (_equipNameCache.TryGetValue(slotName, out var cached))
+                    return cached;
+
+                // 首次访问：尝试页面文本（可能滞后），至少比 [??] 好
                 if (!IsPlaceholder(itemName))
                     return itemName;
             }
-            return $"装备 {slotName} [??]";
+            return $"装备 {slotName}";
         }
         catch { }
         return "装备 [??]";
-    }
-
-    static void DumpWidgetTexts(UUserWidget w, string tag)
-    {
-        try
-        {
-            var names = new[] { "TxtName", "Content", "TxtDesc", "TxtNum", "TxtLevel",
-                "TxtItem", "TxtTips", "TxtTab", "TxtTitle", "TxtLabel" };
-            var found = new List<string>();
-            foreach (var n in names)
-            {
-                var t = FindTextByName(w, n);
-                if (t != null) found.Add($"{n}={t}");
-            }
-            if (found.Count > 0)
-                A11yLog.Debug($"[DumpWidget] {tag}: {string.Join(", ", found)}");
-            else
-                A11yLog.Debug($"[DumpWidget] {tag}: (no text found)");
-        }
-        catch { }
     }
     /// <summary>交互提示: 交互 - {按键} - {提示}</summary>
     static string? Extract_Interact(UUserWidget w)
