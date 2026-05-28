@@ -11,6 +11,8 @@
 - **项目公共部分：** `docs/`、`release/`、`RE-UE4SS/`（框架）、`tools/`
 
 
+C# Mod 开发指引见 [docs/csharp_dev.md](docs/csharp_dev.md)。
+
 ## 项目结构
 
 ```
