@@ -1,0 +1,361 @@
+# GameDLL 架构索引
+# 生成基于 v1.0.21.23831 源码（docs/b1GameDLL-src/）
+# 配合 docs/GameDll-doc/*.md 食用
+
+version: v1.0.21.23831
+total_files: 15830
+
+modules:
+  - name: b1.Managed
+    files: 3
+    assemblies: [b1.Managed.dll]
+    purpose: "IL2CPP 引用保留，防止类型裁剪"
+    namespaces:
+      - name: b1
+        types: 1
+        key_types: [ModuleRefMain]
+
+  - name: b1.Native
+    files: 572
+    assemblies: [b1.Native.dll]
+    purpose: "UE C++ 自动绑定层，USharp 生成"
+    namespaces:
+      - name: b1
+        types: 573
+        key_actors: [ABGUActorBase, ABGUCharacter, ABGUAIController, ABGPPlayerController, ABGWPlayerController]
+        key_components: [UBGUCharacterMovementComponent, UBGUDataComp, UBGUSpringArmComponent]
+        key_libraries: [UBGUFuncLibAI, UBGUFunctionLibrary, UBGWFunctionLibrary, UGSE_ActorFuncLib]
+        key_widgets: [UGSRichTextBlock, UGSTextBlock, UGSFocusWidget, UGSUserWidgetOnFocusChange]
+        key_systems: [UBGWGameInstance, UBGWOnlineSubsystem, UBGWOnlineSession, UBGWLevelStreamingStateVolumeManager]
+
+  - name: b1.NativePlugins
+    files: 760
+    assemblies: [b1.NativePlugins.dll]
+    purpose: "UE 插件绑定（43 插件）"
+    namespaces:
+      - name: b1.Plugins.AkAudio
+        types: 127
+        desc: "Wwise 音频中间件"
+        key_types: [UAkComponent, UAkGameplayStatics, AAkAmbientSound, AAkReverbVolume]
+      - name: b1.Plugins.Calliope
+        types: 92
+        desc: "关卡序列编排系统"
+        key_types: [ACalliopeLevelSequenceActor, UCalliopeAsset, UCalliopeNode]
+      - name: b1.Plugins.JavascriptEditor
+        types: 62
+        desc: "JS 编辑器扩展"
+      - name: b1.Plugins.HoudiniEngineRuntime
+        types: 54
+        desc: "Houdini 运行时组件"
+      - name: b1.Plugins.GSInput
+        types: 46
+        desc: "增强输入系统"
+      - name: b1.Plugins.CustomLightSystem
+        types: 45
+        desc: "自定义光照系统"
+      - name: b1.Plugins.SimpleCharts
+        types: 44
+        desc: "ECharts 图表控件"
+      - name: b1.Plugins.V8
+        types: 35
+        desc: "V8 JS 引擎集成"
+      - name: b1.Plugins.JavascriptUMG
+        types: 35
+        desc: "JS UMG 控件"
+      - name: b1.Plugins.MM
+        types: 17
+        desc: "运动匹配 (Motion Matching)"
+
+  - name: B1UI_GSE.Script
+    files: 2282
+    assemblies: [B1UI.Script.dll]
+    purpose: "UI 脚本层（视图/数据存储/关卡过渡/网络/RPC/在线）"
+    namespaces:
+      - name: B1UI.GSUI
+        types: 982
+        desc: "UI 视图层（V* 视图 + DS* 数据存储 + E* 枚举）"
+        key_views: [GSUIView, GSUIPage, GSUIGadgetMulti]
+        key_stores: [DSGPage, DSAward, DSArchives, DSAlchemy, DSBagMain, DSTask, DSTalent]
+      - name: CommB1
+        types: 870
+        desc: "数据合约与 Protobuf 包装（自动生成）"
+      - name: b1
+        types: 205
+        desc: "主游戏逻辑（异步管线/FSM 状态/玩家管理）"
+      - name: GSE.GSUI
+        types: 66
+        desc: "UI 页面框架（核心基类）"
+        key_types: [GSDObject, GSDStore, GSUIView, GSUIPage, GSUIMgr, GSAction]
+      - name: GSE.GSICore.Event
+        types: 29
+        desc: "UI 动画/事件系统"
+      - name: B1UI.Script
+        types: 30
+        desc: "关卡过渡系统（TravelLevel 体系）"
+      - name: GsOnline
+        types: 39
+        desc: "Online Session 包装"
+
+  - name: BtlSvr.Main
+    files: 10138
+    assemblies: [BtlSvr.Main.dll]
+    purpose: "核心游戏逻辑（战斗/AI/FSM/UI/ECS/网络/动画/渲染/编辑器）"
+    event_count: 300
+    namespaces:
+      - name: "(global)"
+        types: 16
+        desc: "ILRuntime 适配器 + FSM 注册 + 测试工具"
+      - name: b1
+        types: 5990
+        desc: "核心游戏逻辑主命名空间"
+        subsystems:
+          - name: Actor/Component
+            key_types: [UActorCompBaseCS, UActorCompContainerCS]
+          - name: AI 系统
+            key_types: [AIDataBase, AIActionElem, AIThinkElem, AIGOAPFuncLibCS]
+          - name: 战斗/单位
+            key_types: [UnitAttrHelper, UnitHatredTargetInfo, UnitLockTargetInfo]
+          - name: 存档系统
+            key_types: [ArchiveAsyncRequest, ArchiveFileUtil]
+          - name: 表演系统
+            key_types: [UPerformerActionBase, UPerformerPhase]
+          - name: 游戏实例管理器 (BGW)
+            key_types:
+              - BGW_EventCollection
+              - BGW_UIEventCollection
+              - BGW_UIMgr
+              - BGW_SettingMgrV2
+              - BGW_EnhancedInputMgrV2
+              - BGW_GameArchiveMgr
+              - BGW_ExceptionUIMgr
+              - BGW_LevelStreamingManger
+              - BGW_FSMInstanceMgr
+              - BGW_MovieManager
+              - BGW_TakePhotoSystemMgr
+          - name: 叙述者/无障碍相关
+            key_types:
+              - BGUNarrator
+              - BGS_AiConversationMgr
+              - BUS_NarratorDataComp
+              - BGUFuncLibAiConversation
+          - name: FSM 状态
+            key_types: [FSMRuntimeInstance_GI_Global, CFSMGReg]
+            note: "GI_Global 状态机 + GI_Loading 加载流程"
+      - name: b1.EventDelDefine
+        types: 2953
+        desc: "委托事件定义（自动生成）"
+      - name: b1.AutoQA
+        types: 346
+        desc: "自动化测试"
+      - name: b1.UI
+        types: 196
+        desc: "UI 控件"
+        key_types: [BUI_Widget, IFocusWidget]
+      - name: b1.UI.Comm
+        types: 97
+        desc: "通用 UI 控件"
+        key_types: [BUI_BarBase, BUI_Button, BUI_BossBar, BUI_Cursor]
+      - name: CommB1
+        types: 538
+        desc: "只读数据包装层（ReadOnly* 模式）"
+      - name: GSDispLib
+        types: 312
+        desc: "显示/特效库（BAN/BANS 动画通知）"
+      - name: OssB1
+        types: 132
+        desc: "Protobuf 网络消息定义"
+      - name: b1.GSMUICore.Event
+        types: 23
+        desc: "GSMUI 动效系统"
+      - name: STUN
+        types: 39
+        desc: "NAT 穿透库（P2P 联机）"
+      - name: b1.BGW
+        types: 29
+        desc: "游戏世界管理器"
+      - name: b1.BGW.EnvQuery
+        types: 26
+        desc: "环境查询系统"
+      - name: b1.GSMUI.GSWidget
+        types: 14
+        desc: "GSMUI 自定义控件"
+      - name: b1.BGU.BUAnim
+        types: 39
+        desc: "动画蓝图系统"
+      - name: b1.Render
+        types: 10
+        desc: "渲染系统"
+      - name: b1.Render.TressFX
+        types: 11
+        desc: "毛发渲染"
+
+  - name: GSE.Core
+    files: 112
+    assemblies: [GSE.Core.dll]
+    purpose: "核心运行时（ECS/数学库/原生容器/线程池/预测/Profile）"
+    namespaces:
+      - name: b1
+        types: 55
+        desc: "工具类/函数库/原生容器"
+        key_types:
+          - MathLib
+          - NativeArray<T>
+          - NativeList<T>
+          - NativeHashMap<TKey, TValue>
+          - NativeMultiHashMap<TKey, TValue>
+          - GSThreadPool
+          - GSBindProp<T>
+          - DebugConfig
+          - BGW_LogUtil
+          - GS_GCHelper
+          - PerlinNoise
+      - name: b1.CppExport
+        types: 22
+        desc: "C++ 函数指针绑定层"
+        key_types: [GSE_ActorFuncs, GSE_AnimFuncs, GSE_NativeMathFuncs, GSE_NativeAIFuncs]
+      - name: b1.ECS
+        types: 10
+        desc: "实体组件系统"
+        key_types: [EntityManager, Entity, Chunk, EntityArchetype, NativeStream]
+      - name: b1.Prediction
+        types: 7
+        desc: "客户端预测系统"
+        key_types: [GSPredictionKey, IPredictableObject]
+      - name: b1.Profile
+        types: 2
+        desc: "性能分析作用域"
+        key_types: [GSE_ProfileScope, GSE_ProfileUtil]
+      - name: b1.GSFile
+        types: 2
+        desc: "文件系统工具"
+      - name: ResUpdator
+        types: 2
+        desc: "资源热更新（下载/解压）"
+        key_types: [GSEFileDownloader, GSEPatchUnzipper]
+      - name: UnrealEngine.Runtime
+        types: 7
+        desc: "UE 强引用指针 TStrongObjectPtr"
+        key_types: [TStrongObjectPtr<T>, TStrongObjectPtr_NoCollect<T>, StrongPtrGCCollector]
+
+  - name: GSE.GSNet
+    files: 42
+    assemblies: [GSE.GSNet.dll]
+    purpose: "网络通信层（TCP/UDP/KCP 帧协议 + 反向代理）"
+    namespaces:
+      - name: GSE.GSNet
+        types: 21
+        desc: "网络核心"
+        key_types: [NetDriver, NetConnection, NetChannel, ReverseProxyChannel]
+      - name: Gs
+        types: 14
+        desc: "Protobuf 协议消息"
+        key_types: [UxNetMsg, UxNetAuthReq, UxNetAuthRes, UxNetConnxEnv]
+
+  - name: GSE.GSSdk
+    files: 199
+    assemblies: [GSE.GSSdk.dll]
+    purpose: "GSE SDK（HTTP 客户端/数据上报/RPC/账户）"
+    namespaces:
+      - name: GSE.GSSdk
+        types: 20
+        desc: "SDK 核心运行时"
+        key_types: [GSSDKClient, GSSDKEnv, GSSDKRpc, GSSDKReport, GSSDKReportQueue]
+      - name: Gssdk
+        types: 170
+        desc: "Protobuf 协议模型（自动生成）"
+
+  - name: GSE.OnlineBase
+    files: 13
+    assemblies: [GSE.OnlineBase.dll]
+    purpose: "在线基础库（日志/度量/Protobuf 编解码/URL 解析/Zlib）"
+    namespaces:
+      - name: GSE.OnlineBase
+        types: 12
+        key_types: [LogHelper, PbEncoding, ProtobufTextDumper, UrlParser, ZlibHelper, Adler32Crc, MetricStastic]
+
+  - name: GSE.ProtobufDB
+    files: 1709
+    assemblies: [GSE.ProtobufDB.dll]
+    purpose: "Protobuf 数据序列化层（配置表/持久化/复制/FSM）"
+    namespaces:
+      - name: BtlB1
+        types: 460
+        desc: "B1 版战斗系统数据（最大模块）"
+        note: "约 90 枚举 + 160 FUSt*Desc 配置表 + TBFUSt 表级封装"
+      - name: BtlShare
+        types: 200
+        desc: "跨版本共享战斗数据"
+      - name: GurGsPersistent
+        types: 130
+        desc: "存档系统（BGC/BPC/BUC 容器 + Delta 同步消息）"
+      - name: BtlU3
+        types: 140
+        desc: "U3 版 2D 战斗系统"
+      - name: BtlX2
+        types: 140
+        desc: "X2 版 2D 战斗系统"
+      - name: GurCalliopeFsm
+        types: 47
+        desc: "Calliope FSM 图实例"
+        key_types: [GI_Global_SubG_GI_Loading_*, GI_Loading_SubG_GI_Loading_*]
+      - name: GurCalliopeState
+        types: 44
+        desc: "Calliope FSM 检测条件"
+        key_types: [CalliopeCustom_DetectCondition, CalliopeCustom_DetectCondition_*]
+      - name: GurGsStruct
+        types: 68
+        desc: "游戏状态共享结构体 + 增量同步消息"
+      - name: b1.Protobuf.DataAPI
+        types: 24
+        desc: "数据加载管线（解析器/文件监控/校验）"
+        key_types: [BG_ProtobufDataAPI<T>, BG_CSVParser, BG_FileWatcher]
+
+# === 架构模式索引 ===
+
+patterns:
+  - name: 事件驱动
+    location: BtlSvr.Main
+    key_types: [BGW_EventCollection, BGW_UIEventCollection]
+    count: "300+ delegate fields"
+
+  - name: ECS 数据模型
+    location: GSE.Core + BtlSvr.Main
+    key_types: [EntityManager, NativeList<T>, NativeHashMap<TKey,TValue>, Chunk]
+    usage: "运行时 ECS（GSE.Core） + 持久化 BGC/BPC/BUC 容器（GSE.ProtobufDB）"
+
+  - name: FSM 状态机
+    location: BtlSvr.Main + GSE.ProtobufDB
+    key_types: [CFSMGReg, FSMRuntimeInstance_GI_Global]
+    sub_systems: [GI_Global, GI_Loading, PS_Transaction, Calliope FSM]
+
+  - name: UI 框架 (GSUI)
+    location: B1UI_GSE.Script
+    key_types: [GSDObject, GSDStore, GSUIView, GSUIPage, GSAction]
+    pattern: "数据存储（DS*）+ 视图（VI*）+ Action 驱动状态变化"
+
+  - name: GSMUI 动画
+    location: BtlSvr.Main
+    key_types: [GSMUIEventBase, GSMUITweenFade, GSMUITweenFloat, GSMUIEventSequence]
+    usage: "补间动画系统"
+
+  - name: 预测/回滚
+    location: GSE.Core
+    key_types: [GSPredictionKey, IPredictableObject, NormalPredictionDataSet<T>]
+
+  - name: Protobuf 数据驱动
+    location: GSE.ProtobufDB
+    pattern: "FUSt*Desc（单行配置）+ TBFUSt*Desc（表级封装）"
+    usage: "所有战斗/AI/角色/技能配置均来自 Protobuf 定义"
+
+  - name: Delta 同步
+    location: GSE.ProtobufDB (GurGsPersistent + GurGsStruct)
+    key_types: [DictDeltaMsg*, ListDeltaMsg*, ClassDeltaMsg*]
+
+  - name: C++ 互操作
+    location: GSE.Core + b1.Native
+    key_mechanisms: ["[UClass]/[UProperty]/[UFunction] 属性标记", "CppExport 委托绑定", "TStrongObjectPtr<T>"]
+
+  - name: ILRuntime 热更新
+    location: BtlSvr.Main
+    key_types: [CrossBindingAdaptor, MyAdaptor, ILRuntimeBinding]
+    note: "CLR 交叉绑定适配器使热更脚本可继承 UE 原生类型"
