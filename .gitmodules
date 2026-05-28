@@ -1,3 +1,7 @@
+[submodule "csharp/B1CSharpLoader"]
+	path = csharp/B1CSharpLoader
+	url = https://github.com/game-a11y/B1CSharpLoader.git
+
 [submodule "ue4ss/RE-UE4SS"]
 	path = ue4ss/RE-UE4SS
 	url = https://github.com/game-a11y/RE-UE4SS.git
