@@ -518,6 +518,7 @@ public static class UIScreenTextProvider
                 var itemName = ResolveEquipName(idx);
                 if (itemName != null)
                     return slotLabel != null ? $"{slotLabel} - {itemName}" : itemName;
+                return slotLabel != null ? $"{slotLabel} (空)" : "珍玩 (空)";
             }
 
             return slotLabel != null ? $"{slotLabel} [??]" : $"珍玩 [??]";
@@ -541,6 +542,7 @@ public static class UIScreenTextProvider
                 var itemName = ResolveEquipName(idx);
                 if (itemName != null)
                     return itemName;
+                return "装备 (空)";
             }
 
             return $"装备 {name} [??]";
