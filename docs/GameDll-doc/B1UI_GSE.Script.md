@@ -1,9 +1,10 @@
 # B1UI_GSE.Script 类导航
 
-> 项目路径: `GameDll-src/B1UI_GSE.Script/`
-> 总文件数: 2134 个 `.cs` 文件
+> 基于版本: v1.0.21.23831
+> 源码路径: `docs/b1GameDLL-src/B1UI_GSE.Script/`
+> 总文件数: 2282 个 `.cs` 文件
 > 程序集名称: `B1UI.Script`
-> 命名空间数量: 22 个
+> 命名空间数量: 24 个
 
 ---
 

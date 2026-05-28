@@ -4,7 +4,7 @@
 
 **程序集名称**: BtlSvr.Main  
 **程序集版本**: 1.0.0.0  
-**源码规模**: 10834 个 .cs 文件，77 个子目录  
+**源码规模**: 10138 个 .cs 文件（v1.0.21.23831）
 **命名空间体系**: 顶级（全局命名空间）、`b1.*`、`CommB1`、`GSDispLib`、`OssB1`、`HelloUSharp`、`STUN.*`、`System.*`、`UnrealEngine.*`、`Microsoft.*`
 
 **整体定位**:  
