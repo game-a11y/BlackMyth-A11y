@@ -405,123 +405,77 @@ public static class UIScreenTextProvider
         catch { }
         return "根基";
     }
-    /// <summary>行囊物品: 用品 x{数量} / 用品 - {描述} x{数量} | 用品 (空)</summary>
+    /// <summary>行囊物品: 用品 [??] x{数量} | 用品 (空)</summary>
+    /// <remarks>
+    /// TODO: 从 BUI_BagMain_C 的 TxtDesc 可读到分类名（"用品"/"材料"），
+    /// 但物品名需要数据层（ItemPool）。页面缓存已就绪，待数据层方案确定后启用。
+    /// </remarks>
     static string? Extract_InventoryItem(UUserWidget w)
     {
         try
         {
             var num = FindTextByName(w, "TxtNum");
-            var empty = string.IsNullOrEmpty(num) || num == "0";
-
-            if (_pageCache.TryGetValue("BUI_BagMain_C", out var page))
-            {
-                var desc = FindTextByName(page, "TxtDesc");
-                A11yLog.Debug($"[InventoryItem] empty={empty} num={num} TxtDesc={desc ?? "(null)"}");
-                if (!string.IsNullOrEmpty(desc))
-                    return empty ? "用品 (空)" : $"用品 {desc} x{num}";
-            }
-
-            if (empty) return "用品 (空)";
+            if (string.IsNullOrEmpty(num) || num == "0") return "用品 (空)";
             return $"用品 [??] x{num}";
         }
         catch { }
         return FindAnyText(w) ?? "用品 [??]";
     }
 
-    /// <summary>判断文本是否为 GSRichScaleText 占位符</summary>
-    static bool IsPlaceholder(string? text) =>
-        text == null || text.Length == 0 || text.Contains("名字名字");
-
-    /// <summary>随身之物: {物品名} x{数量} | 随身之物 (空)</summary>
+    /// <summary>随身之物: 随身之物 [??] x{数量} | 随身之物 (空)</summary>
+    /// <remarks>
+    /// TODO: BUI_EquipMain_C 的 TxtQuickItemTitleRuby 含物品名（如"随身之物·四"），
+    /// 但页面刷新滞后于焦点事件，导致读出上一格物品名。待解决时序问题后启用。
+    /// var itemName = FindTextByName(page, "TxtQuickItemTitleRuby");
+    /// </remarks>
     static string? Extract_QuickItem(UUserWidget w)
     {
         try
         {
             var num = FindTextByName(w, "TxtNum");
-            var empty = string.IsNullOrEmpty(num) || num == "0";
-
-            if (_pageCache.TryGetValue("BUI_EquipMain_C", out var page) && page != null)
-            {
-                var itemName = FindTextByName(page, "TxtQuickItemTitleRuby");
-                A11yLog.Debug($"[QuickItem] empty={empty} num={num} itemName={itemName ?? "(null)"}");
-                if (!IsPlaceholder(itemName))
-                    return empty ? "随身之物 (空)" : $"{itemName} x{num}";
-            }
-
-            if (empty) return "随身之物 (空)";
+            if (string.IsNullOrEmpty(num) || num == "0") return "随身之物 (空)";
             return $"随身之物 [??] x{num}";
         }
         catch { }
         return FindAnyText(w) ?? "随身之物 [??]";
     }
 
-    /// <summary>珍玩槽: {槽位名} - {物品名}</summary>
+    /// <summary>珍玩槽: {槽位名} [??]</summary>
+    /// <remarks>
+    /// TODO: BUI_EquipMain_C 的 TxtHuluTitleRuby / TxtJewelryTitleRuby 含物品名，
+    /// 但页面刷新滞后于焦点事件。待解决时序问题后启用。
+    /// var itemName = FindTextByName(page, widgetName);
+    /// </remarks>
     static string? Extract_GearItem(UUserWidget w)
     {
         try
         {
-            var instanceName = w.GetFName().ToString();
-            string? slotName = null;
-            if (!string.IsNullOrEmpty(instanceName) && !instanceName.Contains("Default"))
-            {
-                slotName = instanceName switch
-                {
-                    "BI_EquipSlotItem_8" => "老葫芦",
-                    "BI_EquipSlotItem_9" => "珍玩·一",
-                    "BI_EquipSlotItem_10" => "珍玩·二",
-                    _ => $"珍玩 {instanceName}"
-                };
-            }
-
-            if (_pageCache.TryGetValue("BUI_EquipMain_C", out var page) && page != null)
-            {
-                // 葫芦槽读 TxtHuluTitleRuby，珍玩槽读 TxtJewelryTitleRuby
-                var itemName = instanceName == "BI_EquipSlotItem_8"
-                    ? FindTextByName(page, "TxtHuluTitleRuby")
-                    : FindTextByName(page, "TxtJewelryTitleRuby");
-                A11yLog.Debug($"[GearItem] slot={slotName} itemName={itemName ?? "(null)"}");
-                if (!IsPlaceholder(itemName))
-                    return slotName != null ? $"{slotName} - {itemName}" : $"珍玩 - {itemName}";
-            }
-
-            return slotName != null ? $"{slotName} [??]" : "珍玩 [??]";
+            var name = w.GetFName().ToString();
+            if (string.IsNullOrEmpty(name) || name.Contains("Default"))
+                return "珍玩 [??]";
+            if (name == "BI_EquipSlotItem_8") return "老葫芦 [??]";
+            if (name == "BI_EquipSlotItem_9") return "珍玩·一 [??]";
+            if (name == "BI_EquipSlotItem_10") return "珍玩·二 [??]";
+            return $"珍玩 {name} [??]";
         }
         catch { }
         return "珍玩 [??]";
     }
 
-    /// <summary>装备槽: {物品名} | 装备 {槽位名}</summary>
-    /// <remarks>页面 TxtEquipTitleRuby 刷新滞后。焦点离开时页面已更新，此时缓存文本供下次使用。</remarks>
-    static readonly Dictionary<string, string> _equipNameCache = new();
-    static string? _lastEquipSlot;
-
+    /// <summary>装备槽: 装备 {槽位名} [??]</summary>
+    /// <remarks>
+    /// TODO: BUI_EquipMain_C 的 TxtEquipTitleRuby 含物品名（"柳木棍"/"虎皮裙"等），
+    /// 但页面刷新滞后于焦点事件（~1秒），导致读出上一格物品名。
+    /// 已尝试：离开缓存、反射 CurEntryItemObj（null）、slot 自身控件树（无文本）。
+    /// 待解决：需要 tick 级延迟重读机制，或从数据层（ItemPool）获取。
+    /// </remarks>
     static string? Extract_EquipItem(UUserWidget w)
     {
         try
         {
-            var slotName = w.GetFName().ToString();
-            if (string.IsNullOrEmpty(slotName) || slotName.Contains("Default"))
-                return "装备 [??]";
-
-            if (_pageCache.TryGetValue("BUI_EquipMain_C", out var page) && page != null)
-            {
-                var itemName = FindTextByName(page, "TxtEquipTitleRuby");
-                A11yLog.Debug($"[EquipItem] slot={slotName} itemName={itemName ?? "(null)"} cached={_equipNameCache.ContainsKey(slotName)}");
-
-                // 用当前页面文本更新上一个槽位的缓存（离开时页面已刷新）
-                if (_lastEquipSlot != null && !IsPlaceholder(itemName))
-                    _equipNameCache[_lastEquipSlot] = itemName;
-                _lastEquipSlot = slotName;
-
-                // 优先用缓存（上次离开时存的正确文本）
-                if (_equipNameCache.TryGetValue(slotName, out var cached))
-                    return cached;
-
-                // 首次访问：尝试页面文本（可能滞后），至少比 [??] 好
-                if (!IsPlaceholder(itemName))
-                    return itemName;
-            }
-            return $"装备 {slotName}";
+            var name = w.GetFName().ToString();
+            if (!string.IsNullOrEmpty(name) && !name.Contains("Default"))
+                return $"装备 {name} [??]";
         }
         catch { }
         return "装备 [??]";
