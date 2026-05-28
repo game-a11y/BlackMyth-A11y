@@ -114,8 +114,16 @@ public static class UIScreenTextProvider
         try
         {
             var w = GSUIUtil.FindChildWidget(root, childName);
+            if (w == null || !w.IsValidLowLevel()) return null;
             if (w is UTextBlock tb)
                 return tb.GetText()?.ToString();
+            // 反射 GetText() 处理 GSRichScaleText / GSScaleText 等非 UTextBlock 文本控件
+            var m = w.GetType().GetMethod("GetText", Type.EmptyTypes);
+            if (m != null)
+            {
+                var t = m.Invoke(w, null)?.ToString();
+                if (!string.IsNullOrEmpty(t)) return t;
+            }
             if (w is UUserWidget uw)
             {
                 var p = uw.GetType().GetProperty("Content");
