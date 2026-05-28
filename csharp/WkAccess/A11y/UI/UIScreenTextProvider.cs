@@ -29,7 +29,7 @@ public static class UIScreenTextProvider
         Register("BI_ShrineMenuParent_C",     Extract_ShrineMenu);
         Register("BI_ShrineMenuChild_C",      Extract_ShrineMenu);
         Register("BI_SpellPanelTitle_Btn_C",  Extract_SpellPanelTitle);
-        Register("BI_TalentItem_1_1_C",       Extract_TalentItem);
+        Register("BI_TalentItem_",           Extract_TalentItem);
         Register("BI_AbilityIcon_KB_Basic_C", Extract_AbilityIcon_KB);
         Register("BI_AbilityIcon_KB_Advance_C",Extract_AbilityIcon_KB);
         Register("BI_AbilityIcon_GP_Basic_C", Extract_AbilityIcon_GP);
