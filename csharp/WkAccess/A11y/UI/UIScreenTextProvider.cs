@@ -35,6 +35,7 @@ public static class UIScreenTextProvider
         Register("BI_AbilityIcon_GP_Basic_C", Extract_AbilityIcon_GP);
         Register("BI_AbilityIcon_GP_Advance_C",Extract_AbilityIcon_GP);
         Register("BI_InventoryItem_C",        Extract_InventoryItem);
+        Register("BI_EquipItem_C",            Extract_EquipItem);
         Register("BI_EquipItem_Slot_C",       Extract_EquipItem);
         Register("BI_InteractIcon",           Extract_Interact);
         Register("BI_ReconfirmBtn_C",          Extract_ReconfirmBtn);
