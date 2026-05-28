@@ -6,6 +6,7 @@ using b1.UI;
 using B1UI;
 using B1UI.GSUI;
 using CommB1;
+using b1.Localization;
 
 namespace WkAccess.A11y.UI;
 
@@ -139,14 +140,21 @@ public static class UIScreenTextProvider
         return null;
     }
 
-    /// <summary>清理 EquipName：过滤占位符、剥离 ruby 注音标签</summary>
+    /// <summary>清理 EquipName：占位符检测 + ToFText 解析本地化</summary>
     static string? CleanEquipName(string? raw)
     {
         if (string.IsNullOrEmpty(raw)) return null;
-        if (raw.Contains("名字名字")) return null; // 未装备占位符
-        // 剥离 <zhy ...> 标签，保留纯文本
-        var cleaned = System.Text.RegularExpressions.Regex.Replace(raw, "<[^>]+>", "");
-        return string.IsNullOrEmpty(cleaned) ? null : cleaned;
+        if (raw.Contains("名字名字")) return null;
+        try
+        {
+            // ToFText() 解析本地化 key（如 EquipDesc.15005.EquipName → "柳木棍"）
+            var text = raw.ToFText().ToString();
+            if (string.IsNullOrEmpty(text) || text.Contains("名字名字")) return null;
+            // 剥离 ruby 注音标签
+            var cleaned = System.Text.RegularExpressions.Regex.Replace(text, "<[^>]+>", "");
+            return string.IsNullOrEmpty(cleaned) ? null : cleaned;
+        }
+        catch { return raw; }
     }
 
     /// <summary>从玩家装备数据解析物品名（绕过 UI 时序问题）</summary>
