@@ -17,7 +17,8 @@ public sealed class WkAccess : ICSharpMod
 
     public void Init()
     {
-        A11yLog.Init();
+        A11yLog.Init(fileLogDir: Path.Combine(
+            AppDomain.CurrentDomain.BaseDirectory ?? ".", Common.ModDir, BuildInfo.ModName));
         DebugCommands.PrintBuildInfo();
         KeyBindings.RegisterAll();
         A11y.SceneDetector.StartFallbackTimer();
@@ -30,5 +31,6 @@ public sealed class WkAccess : ICSharpMod
         A11yLog.Info($"{Name} DeInit");
         _harmony.UnpatchAll();
         A11y.SceneDetector.Deinit();
+        A11yLog.Deinit();
     }
 }
