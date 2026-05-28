@@ -319,7 +319,13 @@ public static class UIScreenTextProvider
 
     static string? Extract_FirstStartBtn(UUserWidget w) => FindAnyText(w);
     static string? Extract_ShrineMenu(UUserWidget w) => FindAnyText(w);
-    static string? Extract_SpellPanelTitle(UUserWidget w) => FindAnyText(w);
+    /// <summary>法术面板标签: {标签名}</summary>
+    static string? Extract_SpellPanelTitle(UUserWidget w)
+    {
+        var name = FindTextByName(w, "TxtName");
+        if (name != null) return name;
+        return FindAnyText(w);
+    }
     /// <summary>根基技能: 根基技能 / 根基技能 Lv.{等级限制}</summary>
     static string? Extract_TalentItem(UUserWidget w)
     {
