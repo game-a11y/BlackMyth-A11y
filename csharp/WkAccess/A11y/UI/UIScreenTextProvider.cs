@@ -229,7 +229,23 @@ public static class UIScreenTextProvider
 
     static string? Extract_StartGame(UUserWidget w) => FindAnyText(w);
     static string? Extract_StartGameBtn(UUserWidget w) => FindAnyText(w);
-    static string? Extract_ArchivesBtn(UUserWidget w) => FindAnyText(w);
+    /// <summary>存档: 存档 {地点} {日期} {时间} {游戏时长} {时长值} {等级} {等级值}</summary>
+    static string? Extract_ArchivesBtn(UUserWidget w)
+    {
+        var parts = new[] {
+            "存档",
+            FindTextByName(w, "TxtName"),
+            FindTextByName(w, "TxtDate"),
+            FindTextByName(w, "TxtTime"),
+            FindTextByName(w, "TxtPlayTimeTitle"),
+            FindTextByName(w, "TxtPlayTime"),
+            FindTextByName(w, "TxtLvTitle"),
+            FindTextByName(w, "TxtLv"),
+        };
+        var joined = string.Join(" ", parts.Where(p => p != null));
+        if (joined.Length > 0) return joined;
+        return FindAnyText(w);
+    }
     static string? Extract_FirstStartBtn(UUserWidget w) => FindAnyText(w);
     static string? Extract_ShrineMenu(UUserWidget w) => FindAnyText(w);
     static string? Extract_SpellPanelTitle(UUserWidget w) => FindAnyText(w);
