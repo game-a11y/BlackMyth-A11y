@@ -66,7 +66,7 @@ public static class UIScreenTextProvider
     /// <summary>在 UUserWidget 中搜索常见文本控件，取第一个有内容的。</summary>
     public static string? FindAnyText(UUserWidget root)
     {
-        foreach (var name in new[] { "TxtName", "Content", "TxtDesc", "BI_TextLoop",
+        foreach (var name in new[] { "TxtName", "TxtTab", "Content", "TxtDesc", "BI_TextLoop",
             "TxtTips", "TxtNum", "TxtLevel", "TxtSpellType", "TxtSpellDesc",
             "TxtAbilityTitle", "TxtAbilityDesc", "TxtAbilityTypeTitle" })
         {
