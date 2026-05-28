@@ -11,9 +11,9 @@ public static class A11yTolk
     public static void Speak(string text, bool interrupt = false)
     {
         if (string.IsNullOrEmpty(text)) return;
-        A11yLog.Info($"{Prefix} {text}{(interrupt ? " [打断]" : "")}");
+        A11yLog.Warning($"{Prefix} {text}{(interrupt ? " [打断]" : "")}");
     }
 
-    public static void Silence() => A11yLog.Info($"{Prefix} [静音]");
+    public static void Silence() => A11yLog.Warning($"{Prefix} [静音]");
     public static bool IsAvailable() => true;
 }
