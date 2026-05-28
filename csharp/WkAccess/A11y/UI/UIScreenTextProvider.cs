@@ -428,7 +428,11 @@ public static class UIScreenTextProvider
         return FindAnyText(w) ?? "用品 [??]";
     }
 
-    /// <summary>随身之物: 随身之物 x{数量} | 随身之物 (空)</summary>
+    /// <summary>判断文本是否为 GSRichScaleText 占位符</summary>
+    static bool IsPlaceholder(string? text) =>
+        text == null || text.Length == 0 || text.Contains("名字名字");
+
+    /// <summary>随身之物: {物品名} x{数量} | 随身之物 (空)</summary>
     static string? Extract_QuickItem(UUserWidget w)
     {
         try
@@ -436,12 +440,12 @@ public static class UIScreenTextProvider
             var num = FindTextByName(w, "TxtNum");
             var empty = string.IsNullOrEmpty(num) || num == "0";
 
-            if (_pageCache.TryGetValue("BUI_EquipMain_C", out var page))
+            if (_pageCache.TryGetValue("BUI_EquipMain_C", out var page) && page != null)
             {
-                var desc = FindTextByName(page, "TxtDesc");
-                A11yLog.Debug($"[QuickItem] empty={empty} num={num} TxtDesc={desc ?? "(null)"}");
-                if (!string.IsNullOrEmpty(desc))
-                    return empty ? "随身之物 (空)" : $"随身之物 {desc} x{num}";
+                var itemName = FindTextByName(page, "TxtQuickItemTitleRuby");
+                A11yLog.Debug($"[QuickItem] empty={empty} num={num} itemName={itemName ?? "(null)"}");
+                if (!IsPlaceholder(itemName))
+                    return empty ? "随身之物 (空)" : $"{itemName} x{num}";
             }
 
             if (empty) return "随身之物 (空)";
@@ -451,7 +455,7 @@ public static class UIScreenTextProvider
         return FindAnyText(w) ?? "随身之物 [??]";
     }
 
-    /// <summary>珍玩槽: {珍玩名}</summary>
+    /// <summary>珍玩槽: {槽位名} - {物品名}</summary>
     static string? Extract_GearItem(UUserWidget w)
     {
         try
@@ -469,12 +473,15 @@ public static class UIScreenTextProvider
                 };
             }
 
-            if (_pageCache.TryGetValue("BUI_EquipMain_C", out var page))
+            if (_pageCache.TryGetValue("BUI_EquipMain_C", out var page) && page != null)
             {
-                var desc = FindTextByName(page, "TxtDesc");
-                A11yLog.Debug($"[GearItem] slot={slotName} TxtDesc={desc ?? "(null)"}");
-                if (!string.IsNullOrEmpty(desc))
-                    return slotName != null ? $"{slotName} - {desc}" : $"珍玩 - {desc}";
+                // 葫芦槽读 TxtHuluTitleRuby，珍玩槽读 TxtJewelryTitleRuby
+                var itemName = instanceName == "BI_EquipSlotItem_8"
+                    ? FindTextByName(page, "TxtHuluTitleRuby")
+                    : FindTextByName(page, "TxtJewelryTitleRuby");
+                A11yLog.Debug($"[GearItem] slot={slotName} itemName={itemName ?? "(null)"}");
+                if (!IsPlaceholder(itemName))
+                    return slotName != null ? $"{slotName} - {itemName}" : $"珍玩 - {itemName}";
             }
 
             return slotName != null ? $"{slotName} [??]" : "珍玩 [??]";
@@ -483,35 +490,23 @@ public static class UIScreenTextProvider
         return "珍玩 [??]";
     }
 
-    /// <summary>装备槽: 装备 {槽位名} - {物品描述}</summary>
+    /// <summary>装备槽: {物品名} | 装备 {槽位名} [??]</summary>
     static string? Extract_EquipItem(UUserWidget w)
     {
         try
         {
-            var name = w.GetFName().ToString();
-            if (string.IsNullOrEmpty(name) || name.Contains("Default"))
+            var slotName = w.GetFName().ToString();
+            if (string.IsNullOrEmpty(slotName) || slotName.Contains("Default"))
                 return "装备 [??]";
 
-            var inCache = _pageCache.TryGetValue("BUI_EquipMain_C", out var page);
-            A11yLog.Debug($"[EquipItem] slot={name} inCache={inCache} pageValid={page?.IsValidLowLevel()} pageClass={page?.GetClass().GetFName().ToString() ?? "(null)"}");
-            if (inCache && page != null)
+            if (_pageCache.TryGetValue("BUI_EquipMain_C", out var page) && page != null)
             {
-                var desc = FindTextByName(page, "TxtDesc");
-                var sub = FindTextByName(page, "TxtSubTitle");
-                // GSRichScaleText 标题控件可能含物品名
-                var title1 = FindTextByName(page, "TxtEquipTitleRuby");
-                var title2 = FindTextByName(page, "TxtHuluTitleRuby");
-                var title3 = FindTextByName(page, "TxtJewelryTitleRuby");
-                var title4 = FindTextByName(page, "TxtQuickItemTitleRuby");
-                var deep = desc == null && sub == null ? FindAnyText(page) : null;
-                A11yLog.Debug($"[EquipItem] TxtDesc={desc ?? "(null)"} TxtSubTitle={sub ?? "(null)"}");
-                A11yLog.Debug($"[EquipItem] TxtEquipTitleRuby={title1 ?? "(null)"} TxtHuluTitleRuby={title2 ?? "(null)"}");
-                A11yLog.Debug($"[EquipItem] TxtJewelryTitleRuby={title3 ?? "(null)"} TxtQuickItemTitleRuby={title4 ?? "(null)"}");
-                var text = title1 ?? title2 ?? title3 ?? title4 ?? desc ?? sub ?? deep;
-                if (!string.IsNullOrEmpty(text))
-                    return $"装备 {name} - {text}";
+                var itemName = FindTextByName(page, "TxtEquipTitleRuby");
+                A11yLog.Debug($"[EquipItem] slot={slotName} itemName={itemName ?? "(null)"}");
+                if (!IsPlaceholder(itemName))
+                    return itemName;
             }
-            return $"装备 {name} [??]";
+            return $"装备 {slotName} [??]";
         }
         catch { }
         return "装备 [??]";
