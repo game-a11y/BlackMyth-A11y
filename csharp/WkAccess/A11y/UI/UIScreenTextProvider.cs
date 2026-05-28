@@ -446,13 +446,23 @@ public static class UIScreenTextProvider
         return "珍玩 [??]";
     }
 
+    /// <summary>装备槽: 装备 {槽位名} - {物品描述}</summary>
     static string? Extract_EquipItem(UUserWidget w)
     {
         try
         {
             var name = w.GetFName().ToString();
-            if (!string.IsNullOrEmpty(name) && !name.Contains("Default"))
-                return $"装备 {name} [??]";
+            if (string.IsNullOrEmpty(name) || name.Contains("Default"))
+                return "装备 [??]";
+
+            if (_pageCache.TryGetValue("BUI_EquipMain_C", out var page))
+            {
+                var desc = FindTextByName(page, "TxtDesc");
+                A11yLog.Debug($"[EquipItem] slot={name} TxtDesc={desc ?? "(null)"}");
+                if (!string.IsNullOrEmpty(desc))
+                    return $"装备 {name} - {desc}";
+            }
+            return $"装备 {name} [??]";
         }
         catch { }
         return "装备 [??]";
