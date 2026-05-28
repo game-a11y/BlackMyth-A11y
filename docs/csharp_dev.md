@@ -26,10 +26,10 @@ dotnet build CSharpMods/WkAccess/WkAccess.csproj \
 
 ## 日志
 
-文件日志写入 Mod 所在目录下的 `WkAccess.log`，相对游戏根目录：
+文件日志写入 Mod 所在目录下的 `WkAccess.log`，相对项目根目录：
 
 ```
-.\Mods-cs\WkAccess\WkAccess.log
+./Mods-cs/WkAccess/WkAccess.log
 ```
 
 映射关系：`Mods-cs` 对应 `CSharpLoader/Mods`。
