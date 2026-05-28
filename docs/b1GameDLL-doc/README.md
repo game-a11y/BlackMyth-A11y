@@ -1,4 +1,4 @@
-# GameDll-doc — C# 游戏 DLL 类导航文档
+# b1GameDLL-doc — C# 游戏 DLL 类导航文档
 
 本文档目录包含《黑神话：悟空》C# Mod 中 10 个核心 DLL 的类导航文档，方便快速查找类型定义。
 
