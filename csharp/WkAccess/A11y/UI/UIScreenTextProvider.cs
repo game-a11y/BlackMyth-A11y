@@ -25,6 +25,7 @@ public static class UIScreenTextProvider
         Register("BI_SettingSliderItem_C",    Extract_SettingSliderItem);
         Register("BI_SettingIconItem_C",      Extract_SettingIconItem);
         Register("BI_SettingMainBtn_C",       Extract_SettingMainBtn);
+        Register("BI_SettingMenuBtn_C",       Extract_SettingMenuBtn);
         Register("BI_SettingKeyItem_C",       Extract_SettingKeyItem);
         Register("BI_ShrineMenuParent_C",     Extract_ShrineMenu);
         Register("BI_ShrineMenuChild_C",      Extract_ShrineMenu);
@@ -213,6 +214,15 @@ public static class UIScreenTextProvider
     {
         var label = FindTextByName(w, "TxtName");
         if (label != null) return $"文本按钮 - {label}";
+        return FindAnyText(w);
+    }
+
+    /// <summary>设置菜单按钮: 包含嵌套 BI_SettingMainBtn (BI_Btn)，委托读取</summary>
+    static string? Extract_SettingMenuBtn(UUserWidget w)
+    {
+        var biBtn = GSUIUtil.FindChildWidget(w, "BI_Btn") as UUserWidget;
+        if (biBtn != null)
+            return Extract_SettingMainBtn(biBtn);
         return FindAnyText(w);
     }
 
