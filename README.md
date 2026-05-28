@@ -9,9 +9,12 @@
 
 > 注意：MOD 开发中！使用时需要注意保存当前的存档。
 
-安装参考: [**00安装说明.txt**](release/00安装说明.txt)
+安装参考:
+
+- B1CSharpLoader: [**00WkAccess安装说明.txt**](CSharpMods/WkAccess-MOD/00WkAccess安装说明.txt)
+- UE4SS: [**00安装说明.txt**](release/00安装说明.txt)
 
 
 ## Mod 开发
 
-See: [dev.md](docs/dev.md)
+See: [CLAUDE.md](CLAUDE.md)

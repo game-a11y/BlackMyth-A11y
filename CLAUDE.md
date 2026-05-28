@@ -20,30 +20,31 @@ Root/
 │
 ├── 📦 UE4SS 部分
 │   ├── BlackMythA11y/           # Lua 脚本
-│   └── BlackMythA11yCpp/        # C++ 插件
+│   ├── BlackMythA11yCpp/        # C++ 插件
+│   ├── RE-UE4SS/                # UE4SS 框架（上游 fork）
+│   └── release/                 # 发布包
 │
-├── 📦 C# 部分
+├── 📦 C# 部分 (CSharpMods/)
 │   ├── B1CSharpLoader/          # C# 加载器框架（来自上游）
 │   │   ├── GameDll/             # 编译好的游戏 DLL（仅供引用）
 │   │   ├── GameDll-src/         # 游戏 DLL 源码（参考用）
 │   │   ├── CSharpModBase/       # ICSharpMod 接口
 │   │   ├── CSharpModExample/    # Mod 示例
 │   │   └── CSharpManager/       # Mod 加载器/管理器
-│   └── WkAccess/                # ** 当前无障碍 Mod **
-│       ├── A11y/
-│       │   ├── A11yLog.cs       # 控制台日志
-│       │   └── SceneDetector.cs # 场景/UI 状态检测
-│       ├── ModMain.cs           # Mod 入口
-│       └── WkUtils.cs           # UE 世界/玩家辅助方法
+│   ├── WkAccess/                # ** 当前无障碍 Mod 源码 **
+│   │   ├── A11y/
+│   │   │   ├── A11yLog.cs       # 控制台日志
+│   │   │   └── SceneDetector.cs # 场景/UI 状态检测
+│   │   ├── ModMain.cs           # Mod 入口
+│   │   └── WkUtils.cs           # UE 世界/玩家辅助方法
+│   └── WkAccess-MOD/            # C# Mod 游戏部署文件
 │
 ├── 📦 项目公共部分
-│   ├── RE-UE4SS/                # UE4SS 框架（上游 fork）
 │   ├── docs/
 │   │   ├── GameDll-doc/         # 游戏 DLL 类导航文档
 │   │   └── csharp_technical_validation.md
-│   ├── release/                 # 发布包
 │   ├── tools/                   # 工具脚本
-│   └── CSharpMods/WkAccess-MOD/ # C# Mod 游戏部署文件
+│   └── ...
 ```
 
 ## 提交规范
