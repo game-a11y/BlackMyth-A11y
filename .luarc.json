@@ -4,6 +4,6 @@
     "workspace.preloadFileSize": 5000,
     "workspace.library": [
         "Mods.lnk/shared", 
-        "BlackMythA11y/Scripts"
+        "ue4ss/BlackMythA11y/Scripts"
     ]
 }

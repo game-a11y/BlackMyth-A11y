@@ -12,7 +12,7 @@
 安装参考:
 
 - B1CSharpLoader: [**00WkAccess安装说明.txt**](CSharpMods/WkAccess-MOD/00WkAccess安装说明.txt)
-- UE4SS: [**00安装说明.txt**](release/00安装说明.txt)
+- UE4SS: [**00安装说明.txt**](ue4ss/release/00安装说明.txt)
 
 
 ## Mod 开发

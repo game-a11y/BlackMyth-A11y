@@ -6,9 +6,9 @@
 
 《黑神话：悟空》无障碍 Mod，分为三部分：
 
-- **UE4SS 部分：** `BlackMythA11y/`（Lua 脚本）+ `BlackMythA11yCpp/`（C++ 插件），两者同属一个 UE4SS Mod 项目
+- **UE4SS 部分：** `ue4ss/BlackMythA11y/`（Lua 脚本）+ `ue4ss/BlackMythA11yCpp/`（C++ 插件）+ `ue4ss/RE-UE4SS/`（框架），同属一个 UE4SS Mod 项目
 - **C# 部分：** `CSharpMods/` — 通过 B1CSharpLoader 框架热加载的 C# Mod
-- **项目公共部分：** `docs/`、`release/`、`RE-UE4SS/`（框架）、`tools/`
+- **项目公共部分：** `docs/`（公共文档）、`b1/`（UE4 测试工程）
 
 
 C# Mod 开发指引见 [docs/csharp_dev.md](docs/csharp_dev.md)。
@@ -18,11 +18,13 @@ C# Mod 开发指引见 [docs/csharp_dev.md](docs/csharp_dev.md)。
 ```
 Root/
 │
-├── 📦 UE4SS 部分
+├── 📦 UE4SS 部分 (ue4ss/)
 │   ├── BlackMythA11y/           # Lua 脚本
 │   ├── BlackMythA11yCpp/        # C++ 插件
-│   ├── RE-UE4SS/                # UE4SS 框架（上游 fork）
-│   └── release/                 # 发布包
+│   ├── RE-UE4SS/                # UE4SS 框架（上游 fork，submodule）
+│   ├── release/                 # 发布包
+│   ├── tools/                   # 构建/打包工具
+│   └── docs/                    # UE4SS 相关文档
 │
 ├── 📦 C# 部分 (CSharpMods/)
 │   ├── B1CSharpLoader/          # C# 加载器框架（来自上游）
@@ -42,8 +44,9 @@ Root/
 ├── 📦 项目公共部分
 │   ├── docs/
 │   │   ├── GameDll-doc/         # 游戏 DLL 类导航文档
-│   │   └── csharp_technical_validation.md
-│   ├── tools/                   # 工具脚本
+│   │   ├── csharp_*.md          # C# 开发文档
+│   │   └── ...                  # 项目功能清单等
+│   ├── b1/                      # UE4 测试工程脚手架
 │   └── ...
 ```
 
