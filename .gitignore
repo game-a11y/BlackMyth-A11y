@@ -1,5 +1,6 @@
 *.code-workspace
 *.lnk
+__pycache__
 
 # 游戏 Mod 安装文件夹
 GameDir
