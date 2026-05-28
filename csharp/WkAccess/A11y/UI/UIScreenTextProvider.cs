@@ -3,6 +3,9 @@ using HarmonyLib;
 using UnrealEngine.UMG;
 using UnrealEngine.Runtime;
 using b1.UI;
+using B1UI;
+using B1UI.GSUI;
+using CommB1;
 
 namespace WkAccess.A11y.UI;
 
@@ -134,6 +137,38 @@ public static class UIScreenTextProvider
         }
         catch { }
         return null;
+    }
+
+    /// <summary>从玩家装备数据解析物品名（绕过 UI 时序问题）</summary>
+    static string? ResolveEquipName(int slotIdx)
+    {
+        try
+        {
+            var slotType = (EEquipSlotType)slotIdx;
+            var position = DSEquipMain.GetEquipTypeBySlotType(slotType);
+            if (GSG.GamePlayer == null) return null;
+            var wearList = GSG.GamePlayer.Actor.Wear.EquipList.ValueList;
+            foreach (var w in wearList)
+            {
+                if (w.Position == position)
+                {
+                    var desc = GameDBRuntime.GetEquipDesc(w.Id);
+                    if (desc != null && !string.IsNullOrEmpty(desc.EquipName))
+                        return desc.EquipName;
+                }
+            }
+        }
+        catch { }
+        return null;
+    }
+
+    /// <summary>从 slot FName 解析索引（"BI_EquipSlotItem_5" → 5）</summary>
+    static int ParseSlotIndex(string fname)
+    {
+        var i = fname.LastIndexOf('_');
+        if (i >= 0 && int.TryParse(fname.Substring(i + 1), out var idx))
+            return idx;
+        return -1;
     }
 
     #endregion
@@ -406,10 +441,7 @@ public static class UIScreenTextProvider
         return "根基";
     }
     /// <summary>行囊物品: 用品 [??] x{数量} | 用品 (空)</summary>
-    /// <remarks>
-    /// TODO: 从 BUI_BagMain_C 的 TxtDesc 可读到分类名（"用品"/"材料"），
-    /// 但物品名需要数据层（ItemPool）。页面缓存已就绪，待数据层方案确定后启用。
-    /// </remarks>
+    /// <remarks>TODO: 物品名需从 Bag.BagItemList 获取 ItemDesc.Name，待实现</remarks>
     static string? Extract_InventoryItem(UUserWidget w)
     {
         try
@@ -422,30 +454,31 @@ public static class UIScreenTextProvider
         return FindAnyText(w) ?? "用品 [??]";
     }
 
-    /// <summary>随身之物: 随身之物 [??] x{数量} | 随身之物 (空)</summary>
-    /// <remarks>
-    /// TODO: BUI_EquipMain_C 的 TxtQuickItemTitleRuby 含物品名（如"随身之物·四"），
-    /// 但页面刷新滞后于焦点事件，导致读出上一格物品名。待解决时序问题后启用。
-    /// var itemName = FindTextByName(page, "TxtQuickItemTitleRuby");
-    /// </remarks>
+    /// <summary>随身之物: {物品名} x{数量} | 随身之物 (空)</summary>
     static string? Extract_QuickItem(UUserWidget w)
     {
         try
         {
             var num = FindTextByName(w, "TxtNum");
-            if (string.IsNullOrEmpty(num) || num == "0") return "随身之物 (空)";
+            var empty = string.IsNullOrEmpty(num) || num == "0";
+
+            var name = w.GetFName().ToString();
+            var idx = ParseSlotIndex(name);
+            if (idx >= 0)
+            {
+                var itemName = ResolveEquipName(idx);
+                if (itemName != null)
+                    return empty ? "随身之物 (空)" : $"{itemName} x{num}";
+            }
+
+            if (empty) return "随身之物 (空)";
             return $"随身之物 [??] x{num}";
         }
         catch { }
         return FindAnyText(w) ?? "随身之物 [??]";
     }
 
-    /// <summary>珍玩槽: {槽位名} [??]</summary>
-    /// <remarks>
-    /// TODO: BUI_EquipMain_C 的 TxtHuluTitleRuby / TxtJewelryTitleRuby 含物品名，
-    /// 但页面刷新滞后于焦点事件。待解决时序问题后启用。
-    /// var itemName = FindTextByName(page, widgetName);
-    /// </remarks>
+    /// <summary>珍玩槽: {槽位名} - {物品名}</summary>
     static string? Extract_GearItem(UUserWidget w)
     {
         try
@@ -453,29 +486,47 @@ public static class UIScreenTextProvider
             var name = w.GetFName().ToString();
             if (string.IsNullOrEmpty(name) || name.Contains("Default"))
                 return "珍玩 [??]";
-            if (name == "BI_EquipSlotItem_8") return "老葫芦 [??]";
-            if (name == "BI_EquipSlotItem_9") return "珍玩·一 [??]";
-            if (name == "BI_EquipSlotItem_10") return "珍玩·二 [??]";
-            return $"珍玩 {name} [??]";
+
+            string? slotLabel = name switch
+            {
+                "BI_EquipSlotItem_8" => "老葫芦",
+                "BI_EquipSlotItem_9" => "珍玩·一",
+                "BI_EquipSlotItem_10" => "珍玩·二",
+                _ => null
+            };
+
+            var idx = ParseSlotIndex(name);
+            if (idx >= 0)
+            {
+                var itemName = ResolveEquipName(idx);
+                if (itemName != null)
+                    return slotLabel != null ? $"{slotLabel} - {itemName}" : itemName;
+            }
+
+            return slotLabel != null ? $"{slotLabel} [??]" : $"珍玩 [??]";
         }
         catch { }
         return "珍玩 [??]";
     }
 
-    /// <summary>装备槽: 装备 {槽位名} [??]</summary>
-    /// <remarks>
-    /// TODO: BUI_EquipMain_C 的 TxtEquipTitleRuby 含物品名（"柳木棍"/"虎皮裙"等），
-    /// 但页面刷新滞后于焦点事件（~1秒），导致读出上一格物品名。
-    /// 已尝试：离开缓存、反射 CurEntryItemObj（null）、slot 自身控件树（无文本）。
-    /// 待解决：需要 tick 级延迟重读机制，或从数据层（ItemPool）获取。
-    /// </remarks>
+    /// <summary>装备槽: {物品名}</summary>
     static string? Extract_EquipItem(UUserWidget w)
     {
         try
         {
             var name = w.GetFName().ToString();
-            if (!string.IsNullOrEmpty(name) && !name.Contains("Default"))
-                return $"装备 {name} [??]";
+            if (string.IsNullOrEmpty(name) || name.Contains("Default"))
+                return "装备 [??]";
+
+            var idx = ParseSlotIndex(name);
+            if (idx >= 0)
+            {
+                var itemName = ResolveEquipName(idx);
+                if (itemName != null)
+                    return itemName;
+            }
+
+            return $"装备 {name} [??]";
         }
         catch { }
         return "装备 [??]";
