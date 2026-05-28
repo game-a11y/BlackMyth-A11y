@@ -37,6 +37,8 @@ public static class UIScreenTextProvider
         Register("BI_InventoryItem_C",        Extract_InventoryItem);
         Register("BI_EquipItem_C",            Extract_EquipItem);
         Register("BI_EquipItem_Slot_C",       Extract_EquipItem);
+        Register("BI_GearItem_Slot_C",        Extract_GearItem);
+        Register("BI_QuickItem_C",            Extract_QuickItem);
         Register("BI_InteractIcon",           Extract_Interact);
         Register("BI_ReconfirmBtn_C",          Extract_ReconfirmBtn);
     }
@@ -338,6 +340,32 @@ public static class UIScreenTextProvider
     /// <summary>装备槽: {槽位} [??]</summary>
     /// <remarks>TODO: 物品名/介绍在 BUI_EquipMain_C 的 TxtDesc/TxtSubTitle，
     /// 需通过数据层（ItemPool 或弹出物品信息面板）读取。</remarks>
+    /// <summary>随身之物: 随身之物 [??] x{数量} | 随身之物 (空)</summary>
+    static string? Extract_QuickItem(UUserWidget w)
+    {
+        try
+        {
+            var num = FindTextByName(w, "TxtNum");
+            if (string.IsNullOrEmpty(num) || num == "0") return "随身之物 (空)";
+            return $"随身之物 [??] x{num}";
+        }
+        catch { }
+        return FindAnyText(w) ?? "随身之物 [??]";
+    }
+
+    /// <summary>珍玩槽: {槽位} [??]</summary>
+    static string? Extract_GearItem(UUserWidget w)
+    {
+        try
+        {
+            var name = w.GetFName().ToString();
+            if (!string.IsNullOrEmpty(name) && !name.Contains("Default"))
+                return $"珍玩 {name} [??]";
+        }
+        catch { }
+        return "珍玩 [??]";
+    }
+
     static string? Extract_EquipItem(UUserWidget w)
     {
         try
