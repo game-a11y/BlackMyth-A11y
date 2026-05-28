@@ -498,9 +498,16 @@ public static class UIScreenTextProvider
             {
                 var desc = FindTextByName(page, "TxtDesc");
                 var sub = FindTextByName(page, "TxtSubTitle");
+                // GSRichScaleText 标题控件可能含物品名
+                var title1 = FindTextByName(page, "TxtEquipTitleRuby");
+                var title2 = FindTextByName(page, "TxtHuluTitleRuby");
+                var title3 = FindTextByName(page, "TxtJewelryTitleRuby");
+                var title4 = FindTextByName(page, "TxtQuickItemTitleRuby");
                 var deep = desc == null && sub == null ? FindAnyText(page) : null;
-                A11yLog.Debug($"[EquipItem] TxtDesc={desc ?? "(null)"} TxtSubTitle={sub ?? "(null)"} FindAnyText={deep ?? "(null)"}");
-                var text = desc ?? sub ?? deep;
+                A11yLog.Debug($"[EquipItem] TxtDesc={desc ?? "(null)"} TxtSubTitle={sub ?? "(null)"}");
+                A11yLog.Debug($"[EquipItem] TxtEquipTitleRuby={title1 ?? "(null)"} TxtHuluTitleRuby={title2 ?? "(null)"}");
+                A11yLog.Debug($"[EquipItem] TxtJewelryTitleRuby={title3 ?? "(null)"} TxtQuickItemTitleRuby={title4 ?? "(null)"}");
+                var text = title1 ?? title2 ?? title3 ?? title4 ?? desc ?? sub ?? deep;
                 if (!string.IsNullOrEmpty(text))
                     return $"装备 {name} - {text}";
             }
