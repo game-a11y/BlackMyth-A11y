@@ -213,15 +213,16 @@ public static class UIScreenTextProvider
         return FindAnyText(w);
     }
 
-    /// <summary>按键配置: 按键配置 - {按钮名}</summary>
+    /// <summary>按键配置: 按键配置 - {按钮名} [??]</summary>
+    /// <remarks>TODO: 真实按键名需从 BGW_SettingMgrV2 数据层读取，当前无法从控件树获取。</remarks>
     static string? Extract_SettingKeyItem(UUserWidget w)
     {
         var biBtn = GSUIUtil.FindChildWidget(w, "BI_Btn") as UUserWidget;
         if (biBtn == null) return null;
 
         var label = FindTextByName(biBtn, "TxtName");
-        if (label != null) return $"按键配置 - {label}";
-        return FindAnyText(w);
+        if (label == null) return FindAnyText(w);
+        return $"按键配置 - {label} [??]";
     }
 
     #endregion
