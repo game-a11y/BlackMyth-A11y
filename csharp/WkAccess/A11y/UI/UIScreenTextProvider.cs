@@ -491,7 +491,7 @@ public static class UIScreenTextProvider
     }
 
     /// <summary>装备槽: {物品名} | 装备 {槽位名} [??]</summary>
-    /// <remarks>TxtEquipTitleRuby 刷新滞后于焦点事件，尝试从 slot 自身绑定数据读取</remarks>
+    /// <remarks>页面 TxtEquipTitleRuby 刷新滞后于焦点事件，尝试从 slot 自身查找文本</remarks>
     static string? Extract_EquipItem(UUserWidget w)
     {
         try
@@ -500,13 +500,10 @@ public static class UIScreenTextProvider
             if (string.IsNullOrEmpty(slotName) || slotName.Contains("Default"))
                 return "装备 [??]";
 
-            // BUI_Widget.CurEntryItemObj 在焦点事件前已同步绑定，尝试反射读取
-            var entryObjField = w.GetType().GetField("CurEntryItemObj",
-                System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-            var entryObj = entryObjField?.GetValue(w);
-            A11yLog.Debug($"[EquipItem] slot={slotName} entryObjType={entryObj?.GetType().Name ?? "(null)"} entryObjName={((entryObj as UObject)?.GetFName().ToString()) ?? "(null)"}");
+            // Dump slot 自身控件树的所有文本，排查隐藏的文本控件
+            DumpWidgetTexts(w, slotName);
 
-            // 回退：缓存页面（可能慢一拍）
+            // 回退：缓存页面
             if (_pageCache.TryGetValue("BUI_EquipMain_C", out var page) && page != null)
             {
                 var itemName = FindTextByName(page, "TxtEquipTitleRuby");
@@ -518,6 +515,26 @@ public static class UIScreenTextProvider
         }
         catch { }
         return "装备 [??]";
+    }
+
+    static void DumpWidgetTexts(UUserWidget w, string tag)
+    {
+        try
+        {
+            var names = new[] { "TxtName", "Content", "TxtDesc", "TxtNum", "TxtLevel",
+                "TxtItem", "TxtTips", "TxtTab", "TxtTitle", "TxtLabel" };
+            var found = new List<string>();
+            foreach (var n in names)
+            {
+                var t = FindTextByName(w, n);
+                if (t != null) found.Add($"{n}={t}");
+            }
+            if (found.Count > 0)
+                A11yLog.Debug($"[DumpWidget] {tag}: {string.Join(", ", found)}");
+            else
+                A11yLog.Debug($"[DumpWidget] {tag}: (no text found)");
+        }
+        catch { }
     }
     /// <summary>交互提示: 交互 - {按键} - {提示}</summary>
     static string? Extract_Interact(UUserWidget w)
