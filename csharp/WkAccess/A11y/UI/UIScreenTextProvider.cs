@@ -157,6 +157,29 @@ public static class UIScreenTextProvider
         catch { return raw; }
     }
 
+    /// <summary>从快捷物品数据解析物品名</summary>
+    static string? ResolveQuickItemName(int slotIdx)
+    {
+        try
+        {
+            if (GSG.GamePlayer == null) return null;
+            var tabIdx = slotIdx - 14; // QuickItem 从 14 开始
+            if (tabIdx < 0) return null;
+            var shortcuts = GSG.GamePlayer.Actor.Wear.ShortcutsList.ValueList;
+            if (tabIdx < shortcuts.Count)
+            {
+                var itemId = shortcuts[tabIdx].ItemId;
+                if (itemId > 0)
+                {
+                    var desc = GameDBRuntime.GetItemDesc(itemId);
+                    return CleanEquipName(desc?.Name);
+                }
+            }
+        }
+        catch { }
+        return null;
+    }
+
     /// <summary>从玩家装备数据解析物品名（绕过 UI 时序问题）</summary>
     static string? ResolveEquipName(int slotIdx)
     {
@@ -482,7 +505,7 @@ public static class UIScreenTextProvider
             var idx = ParseSlotIndex(name);
             if (idx >= 0)
             {
-                var itemName = ResolveEquipName(idx);
+                var itemName = ResolveQuickItemName(idx);
                 if (itemName != null)
                     return $"{itemName} x{num}";
                 return "随身之物 (空)";
