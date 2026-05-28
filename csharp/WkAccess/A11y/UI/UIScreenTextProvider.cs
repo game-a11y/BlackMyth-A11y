@@ -227,7 +227,34 @@ public static class UIScreenTextProvider
 
     #region 其他 UI 提取器
 
-    static string? Extract_StartGame(UUserWidget w) => FindAnyText(w);
+    /// <summary>
+    /// 主菜单按钮。
+    /// 继续游戏（BI_StartGameBtn_0）额外读取关卡信息：TxtMainName / TxtSubName。
+    /// </summary>
+    static string? Extract_StartGame(UUserWidget w)
+    {
+        var text = FindAnyText(w);
+
+        try
+        {
+            var name = w.GetFName().ToString();
+            if (name == "BI_StartGameBtn_0")
+            {
+                // Outer 链：Widget -> WidgetTree -> UUserWidget(根控件)
+                var root = w.GetOuter()?.GetOuter() as UUserWidget;
+                if (root != null)
+                {
+                    var m = FindTextByName(root, "TxtMainName");
+                    var s = FindTextByName(root, "TxtSubName");
+                    if (m != null && s != null)
+                        return $"{text} {m}: {s}";
+                }
+            }
+        }
+        catch { }
+
+        return text;
+    }
     static string? Extract_StartGameBtn(UUserWidget w) => FindAnyText(w);
     /// <summary>存档: 存档 {地点} {日期} {时间} {游戏时长} {时长值} {等级} {等级值}</summary>
     static string? Extract_ArchivesBtn(UUserWidget w)
