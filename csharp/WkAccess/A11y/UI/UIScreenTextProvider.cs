@@ -321,7 +321,20 @@ public static class UIScreenTextProvider
     static string? Extract_AbilityIcon_KB(UUserWidget w) => FindAnyText(w);
     static string? Extract_AbilityIcon_GP(UUserWidget w) => FindAnyText(w);
     static string? Extract_InventoryItem(UUserWidget w) => FindAnyText(w);
-    static string? Extract_EquipItem(UUserWidget w) => FindAnyText(w);
+    /// <summary>装备槽: {槽位} [??]</summary>
+    /// <remarks>TODO: 物品名/介绍在 BUI_EquipMain_C 的 TxtDesc/TxtSubTitle，
+    /// 需通过数据层（ItemPool 或弹出物品信息面板）读取。</remarks>
+    static string? Extract_EquipItem(UUserWidget w)
+    {
+        try
+        {
+            var name = w.GetFName().ToString();
+            if (!string.IsNullOrEmpty(name) && !name.Contains("Default"))
+                return $"装备 {name} [??]";
+        }
+        catch { }
+        return "装备 [??]";
+    }
     static string? Extract_Interact(UUserWidget w) => FindAnyText(w);
 
     #endregion
