@@ -333,7 +333,44 @@ public static class UIScreenTextProvider
         if (limit != null) return $"根基技能 Lv.{limit}";
         return "根基技能";
     }
-    static string? Extract_AbilityIcon_KB(UUserWidget w) => FindAnyText(w);
+    /// <summary>键盘技能图标: 从父级 LeftRoot 读取技能描述</summary>
+    /// <remarks>控件树无文本，向父级导航找到 LeftRoot → ContentAbilityRoot，
+    /// 读取 TxtAbilityTitle / TxtAbilityTypeTitle。</remarks>
+    static string? Extract_AbilityIcon_KB(UUserWidget w)
+    {
+        try
+        {
+            UWidget? parent = w.GetParent();
+            while (parent != null && parent.IsValidLowLevel())
+            {
+                if (parent.GetFName().ToString() == "LeftRoot"
+                    && parent is UPanelWidget leftRoot
+                    && leftRoot.GetChildrenCount() > 0)
+                {
+                    var contentRoot = leftRoot.GetChildAt(0);
+                    if (contentRoot is UPanelWidget crPanel && crPanel.GetChildrenCount() >= 4)
+                    {
+                        var getText = new Func<UWidget?, string?>(widget =>
+                        {
+                            if (widget == null || !widget.IsValidLowLevel()) return null;
+                            var m = widget.GetType().GetMethod("GetText", Type.EmptyTypes);
+                            return m?.Invoke(widget, null)?.ToString();
+                        });
+                        var title = getText(crPanel.GetChildAt(0));
+                        var typeTitle = getText(crPanel.GetChildAt(2));
+                        if (!string.IsNullOrEmpty(title) && !string.IsNullOrEmpty(typeTitle))
+                            return $"{title}：{typeTitle}";
+                        if (!string.IsNullOrEmpty(title))
+                            return title;
+                    }
+                    break;
+                }
+                parent = parent.GetParent();
+            }
+        }
+        catch { }
+        return null;
+    }
     /// <summary>手柄技能图标: 根基 / 棍法（控件树无文本，硬编码标签名）</summary>
     static string? Extract_AbilityIcon_GP(UUserWidget w)
     {
