@@ -1,4 +1,5 @@
 using HarmonyLib;
+using UnrealEngine.Runtime;
 
 namespace WkAccess.A11y.UI;
 
@@ -19,6 +20,18 @@ public static class UIFocusTracker
 
     internal static void NotifyLeave(int gsid, string className) =>
         OnFocusLeave?.Invoke(gsid, className);
+
+    /// <summary>安全获取 UObject 的 UE4 运行时类名，获取不到时回退到 C# 类型名。</summary>
+    internal static string GetClassName(UObject obj)
+    {
+        try
+        {
+            var unrealName = obj.GetClass()?.GetName();
+            if (!string.IsNullOrEmpty(unrealName)) return unrealName!;
+        }
+        catch { }
+        return obj.GetType().Name;
+    }
 }
 
 [HarmonyPatch(typeof(BUI_Button), "OnAddedToFocusPath_Implementation")]
@@ -26,18 +39,25 @@ static class H_FocusEnter
 {
     static void Postfix(BUI_Button __instance)
     {
-        var gsid = __instance.GetGSID();
-        if (gsid < 0) return;
-        var cn = __instance.GetType().Name;
-        var text = UIScreenTextProvider.Extract(__instance as UnrealEngine.UMG.UUserWidget);
-        if (!string.IsNullOrEmpty(text))
+        try
         {
-            A11yLog.Info($"[UI.Focus] 聚焦 {text} (GSID={gsid})");
-            A11yTolk.Speak(text!, true);
+            var gsid = __instance.GetGSID();
+            if (gsid < 0) return;
+            var cn = UIFocusTracker.GetClassName(__instance);
+            var text = UIScreenTextProvider.Extract(__instance as UnrealEngine.UMG.UUserWidget);
+            if (!string.IsNullOrEmpty(text))
+            {
+                A11yLog.Info($"[UI.Focus] 聚焦 {text} (GSID={gsid}, {cn})");
+                A11yTolk.Speak(text!, true);
+            }
+            else
+                A11yLog.Info($"[UI.Focus] 聚焦 WidgetID={gsid} ({cn})");
+            UIFocusTracker.NotifyEnter(gsid, cn);
         }
-        else
-            A11yLog.Info($"[UI.Focus] 聚焦 WidgetID={gsid} ({cn})");
-        UIFocusTracker.NotifyEnter(gsid, cn);
+        catch (System.Exception ex)
+        {
+            A11yLog.Error($"[H_FocusEnter] {ex.Message}");
+        }
     }
 }
 
@@ -46,13 +66,19 @@ static class H_FocusLeave
 {
     static void Postfix(BUI_Widget __instance)
     {
-        if (__instance is BUI_Button btn)
+        try
         {
-            var gsid = btn.GetGSID();
-            if (gsid < 0) return;
-            var cn = __instance.GetType().Name;
-            // A11yLog.Debug($"[UI.Focus] 失焦 WidgetID={gsid} ({cn})");
-            UIFocusTracker.NotifyLeave(gsid, cn);
+            if (__instance is BUI_Button btn)
+            {
+                var gsid = btn.GetGSID();
+                if (gsid < 0) return;
+                var cn = UIFocusTracker.GetClassName(__instance);
+                UIFocusTracker.NotifyLeave(gsid, cn);
+            }
+        }
+        catch (System.Exception ex)
+        {
+            A11yLog.Error($"[H_FocusLeave] {ex.Message}");
         }
     }
 }
