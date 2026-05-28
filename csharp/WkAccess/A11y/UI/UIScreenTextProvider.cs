@@ -491,6 +491,7 @@ public static class UIScreenTextProvider
     }
 
     /// <summary>装备槽: {物品名} | 装备 {槽位名} [??]</summary>
+    /// <remarks>TxtEquipTitleRuby 刷新滞后于焦点事件，尝试从 slot 自身绑定数据读取</remarks>
     static string? Extract_EquipItem(UUserWidget w)
     {
         try
@@ -499,6 +500,13 @@ public static class UIScreenTextProvider
             if (string.IsNullOrEmpty(slotName) || slotName.Contains("Default"))
                 return "装备 [??]";
 
+            // BUI_Widget.CurEntryItemObj 在焦点事件前已同步绑定，尝试反射读取
+            var entryObjField = w.GetType().GetField("CurEntryItemObj",
+                System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            var entryObj = entryObjField?.GetValue(w);
+            A11yLog.Debug($"[EquipItem] slot={slotName} entryObjType={entryObj?.GetType().Name ?? "(null)"} entryObjName={((entryObj as UObject)?.GetFName().ToString()) ?? "(null)"}");
+
+            // 回退：缓存页面（可能慢一拍）
             if (_pageCache.TryGetValue("BUI_EquipMain_C", out var page) && page != null)
             {
                 var itemName = FindTextByName(page, "TxtEquipTitleRuby");
