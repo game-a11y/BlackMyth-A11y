@@ -320,7 +320,13 @@ public static class UIScreenTextProvider
     static string? Extract_FirstStartBtn(UUserWidget w) => FindAnyText(w);
     static string? Extract_ShrineMenu(UUserWidget w) => FindAnyText(w);
     static string? Extract_SpellPanelTitle(UUserWidget w) => FindAnyText(w);
-    static string? Extract_TalentItem(UUserWidget w) => "根基技能";
+    /// <summary>根基技能: 根基技能 / 根基技能 Lv.{等级限制}</summary>
+    static string? Extract_TalentItem(UUserWidget w)
+    {
+        var limit = FindTextByName(w, "TxtLevelLimit");
+        if (limit != null) return $"根基技能 Lv.{limit}";
+        return "根基技能";
+    }
     static string? Extract_AbilityIcon_KB(UUserWidget w) => FindAnyText(w);
     /// <summary>手柄技能图标: 根基 / 棍法（控件树无文本，硬编码标签名）</summary>
     static string? Extract_AbilityIcon_GP(UUserWidget w)
