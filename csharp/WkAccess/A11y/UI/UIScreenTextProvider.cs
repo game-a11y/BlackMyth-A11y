@@ -501,6 +501,7 @@ public static class UIScreenTextProvider
 
             var name = w.GetFName().ToString();
             var idx = ParseSlotIndex(name);
+            A11yLog.Debug($"[QuickItem] fname={name} idx={idx} num={num}");
             if (idx >= 0)
             {
                 var itemName = ResolveQuickItemName(idx);
