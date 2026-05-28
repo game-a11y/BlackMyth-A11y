@@ -411,36 +411,56 @@ public static class UIScreenTextProvider
         return FindAnyText(w) ?? "用品 [??]";
     }
 
-    /// <summary>装备槽: {槽位} [??]</summary>
-    /// <remarks>TODO: 物品名/介绍在 BUI_EquipMain_C 的 TxtDesc/TxtSubTitle，
-    /// 需通过数据层（ItemPool 或弹出物品信息面板）读取。
-    /// TODO: 空装备槽判断依赖 ImgItem 材质纹理名，FSlateBrush 限制无法运行时读取。</remarks>
-    /// <summary>随身之物: 随身之物 [??] x{数量} | 随身之物 (空)</summary>
+    /// <summary>随身之物: 随身之物 x{数量} | 随身之物 (空)</summary>
     static string? Extract_QuickItem(UUserWidget w)
     {
         try
         {
             var num = FindTextByName(w, "TxtNum");
-            if (string.IsNullOrEmpty(num) || num == "0") return "随身之物 (空)";
+            var empty = string.IsNullOrEmpty(num) || num == "0";
+
+            if (_pageCache.TryGetValue("BUI_EquipMain_C", out var page))
+            {
+                var desc = FindTextByName(page, "TxtDesc");
+                A11yLog.Debug($"[QuickItem] empty={empty} num={num} TxtDesc={desc ?? "(null)"}");
+                if (!string.IsNullOrEmpty(desc))
+                    return empty ? "随身之物 (空)" : $"随身之物 {desc} x{num}";
+            }
+
+            if (empty) return "随身之物 (空)";
             return $"随身之物 [??] x{num}";
         }
         catch { }
         return FindAnyText(w) ?? "随身之物 [??]";
     }
 
-    /// <summary>珍玩槽: {珍玩名} [??]</summary>
+    /// <summary>珍玩槽: {珍玩名}</summary>
     static string? Extract_GearItem(UUserWidget w)
     {
         try
         {
-            var name = w.GetFName().ToString();
-            if (string.IsNullOrEmpty(name) || name.Contains("Default"))
-                return "珍玩 [??]";
-            // 已知槽位实例名 → 硬编码名称
-            if (name == "BI_EquipSlotItem_8") return "老葫芦 [??]";
-            if (name == "BI_EquipSlotItem_9") return "珍玩·一 [??]";
-            if (name == "BI_EquipSlotItem_10") return "珍玩·二 [??]";
-            return $"珍玩 {name} [??]";
+            var instanceName = w.GetFName().ToString();
+            string? slotName = null;
+            if (!string.IsNullOrEmpty(instanceName) && !instanceName.Contains("Default"))
+            {
+                slotName = instanceName switch
+                {
+                    "BI_EquipSlotItem_8" => "老葫芦",
+                    "BI_EquipSlotItem_9" => "珍玩·一",
+                    "BI_EquipSlotItem_10" => "珍玩·二",
+                    _ => $"珍玩 {instanceName}"
+                };
+            }
+
+            if (_pageCache.TryGetValue("BUI_EquipMain_C", out var page))
+            {
+                var desc = FindTextByName(page, "TxtDesc");
+                A11yLog.Debug($"[GearItem] slot={slotName} TxtDesc={desc ?? "(null)"}");
+                if (!string.IsNullOrEmpty(desc))
+                    return slotName != null ? $"{slotName} - {desc}" : $"珍玩 - {desc}";
+            }
+
+            return slotName != null ? $"{slotName} [??]" : "珍玩 [??]";
         }
         catch { }
         return "珍玩 [??]";
