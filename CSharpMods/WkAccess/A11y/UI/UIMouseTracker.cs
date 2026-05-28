@@ -9,7 +9,7 @@ static class H_MouseDown
     {
         var gsid = __instance.GetGSID();
         if (gsid >= 0)
-            A11yLog.Info($"[UI.Click] 点击 WidgetID={gsid}");
+            A11yLog.Debug($"[UI.Click] 点击 WidgetID={gsid}");
     }
 }
 
@@ -20,6 +20,6 @@ static class H_KeyUp
     {
         var gsid = __instance.GetGSID();
         if (gsid >= 0)
-            A11yLog.Info($"[UI.KeyUp] 按键 WidgetID={gsid}");
+            A11yLog.Debug($"[UI.KeyUp] 按键 WidgetID={gsid}");
     }
 }
