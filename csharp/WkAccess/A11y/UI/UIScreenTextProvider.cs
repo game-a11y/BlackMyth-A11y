@@ -383,7 +383,16 @@ public static class UIScreenTextProvider
         catch { }
         return "装备 [??]";
     }
-    static string? Extract_Interact(UUserWidget w) => FindAnyText(w);
+    /// <summary>交互提示: 交互 - {按键} - {提示}</summary>
+    static string? Extract_Interact(UUserWidget w)
+    {
+        var item = FindTextByName(w, "TxtItem");
+        var tips = FindTextByName(w, "TxtTips");
+        if (item != null && tips != null) return $"交互 - {item} - {tips}";
+        if (item != null) return $"交互 - {item}";
+        if (tips != null) return $"交互 - {tips}";
+        return FindAnyText(w);
+    }
 
     #endregion
 }
