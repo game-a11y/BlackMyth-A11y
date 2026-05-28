@@ -127,12 +127,12 @@ Root/
 | `ref` | 参考资料变更 |
 | `TODO` | TODO 计划项 |
 
-scope 为细分模块名，例如：
+scope 为模块名，按功能域划分，不具体到类/文件，例如：
 
 | type | scope 示例 |
 |---|---|
-| `cs` | `A11yLog`, `UI/UIFocusTracker`, `UI/UIScreenTextProvider` |
-| `lua` | `WkUIHook`, `UIHooks/SettingMenu` |
+| `cs` | `A11y.UI`, `A11yLog`, `KeyBindings` |
+| `lua` | `WkUIHook`, `WkConfig` |
 | `docs` | `DLL`, `CLAUDE`, `csharp_dev` |
 | `ref` | `GameDll` |
 
@@ -141,8 +141,8 @@ scope 为细分模块名，例如：
 示例：
 
 ```
-cs(UI/UIScreenTextProvider): 设置菜单完整朗读（类型 - 名称 - 值）
-cs(UI/UIFocusTracker): 日志格式统一为 {cn}#{gsid}
+cs(A11y.UI): 设置菜单完整朗读（类型 - 名称 - 值）
+cs(A11y.UI): 日志格式统一为 {cn}#{gsid}
 docs(DLL): 添加 GameDLL 类导航文档
 lua(WkUIHook): 更新读屏焦点跟随逻辑
 chore: 忽略 mod 文件夹软连接
