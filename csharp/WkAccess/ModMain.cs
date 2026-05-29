@@ -19,7 +19,7 @@ public sealed class WkAccess : ICSharpMod
     {
         A11yLog.Init(fileLogDir: Path.Combine(
             AppDomain.CurrentDomain.BaseDirectory ?? ".", Common.ModDir, BuildInfo.ModName));
-        DebugCommands.PrintBuildInfo();
+        DebugCommands.PrintGameBuildInfo();
         KeyBindings.RegisterAll();
         B1WidgetExtractors.RegisterAll(UIScreenTextProvider.Register);
         B1.SceneMonitor.Start();

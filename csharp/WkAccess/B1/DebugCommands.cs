@@ -5,7 +5,7 @@ namespace WkAccess.B1;
 /// </summary>
 internal static class DebugCommands
 {
-    public static void PrintBuildInfo()
+    public static void PrintGameBuildInfo()
     {
         A11yLog.Info($"=== BuildInfo ===");
         A11yLog.Info($"ExeName  : {FApp.GetProjectName()}-{BuildEnv.BuildEnginePath}-{FApp.GetBuildConfiguration()}");
