@@ -31,3 +31,8 @@
 ## Mod 开发
 
 See: [CLAUDE.md](CLAUDE.md)
+
+
+## LICENSE
+
+本项目基于 [MIT License](LICENSE)
