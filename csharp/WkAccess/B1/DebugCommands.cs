@@ -7,17 +7,17 @@ internal static class DebugCommands
 {
     public static void PrintGameBuildInfo()
     {
-        A11yLog.Info($"=== BuildInfo ===");
-        A11yLog.Info($"ExeName  : {FApp.GetProjectName()}-{BuildEnv.BuildEnginePath}-{FApp.GetBuildConfiguration()}");
-        A11yLog.Info($"Version  : {GSVersionUtil.GetAppVersionWithRevision()}");
-        A11yLog.Info($"BuildTime: {BuildEnv.BuildTime}");
-        A11yLog.Info($"Environment: {DebugConfig.Environment}");
+        A11yLog.Info($"[[Game Build Info]]");
+        A11yLog.Info($"    ExeName    : {FApp.GetProjectName()}-{BuildEnv.BuildEnginePath}-{FApp.GetBuildConfiguration()}");
+        A11yLog.Info($"    Version    : {GSVersionUtil.GetAppVersionWithRevision()}");
+        A11yLog.Info($"    BuildTime  : {BuildEnv.BuildTime}");
+        A11yLog.Info($"    Environment: {DebugConfig.Environment}");
 
-        A11yLog.Info($"=== Source ===");
-        A11yLog.Info($"Branch   : {BuildEnv.GitBranchName}");
-        A11yLog.Info($"Commit   : {BuildEnv.GitVersion}");
-        A11yLog.Info($"P4Version: {BuildEnv.P4Version}");
-        A11yLog.Info($"EngineP4 : {BuildEnv.BuildEngineP4Ver}");
+        A11yLog.Info($"    [[Source]]");
+        A11yLog.Info($"    Branch     : {BuildEnv.GitBranchName}");
+        A11yLog.Info($"    Commit     : {BuildEnv.GitVersion}");
+        A11yLog.Info($"    P4Version  : {BuildEnv.P4Version}");
+        A11yLog.Info($"    EngineP4   : {BuildEnv.BuildEngineP4Ver}");
     }
 
     public static void PrintModBuildInfo()
