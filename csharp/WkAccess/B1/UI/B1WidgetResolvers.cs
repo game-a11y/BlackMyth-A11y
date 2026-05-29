@@ -45,7 +45,7 @@ internal static class B1WidgetResolvers
     public static string? CleanEquipName(string? raw)
     {
         if (string.IsNullOrEmpty(raw)) return null;
-        if (raw.Contains("名字名字")) return null;
+        if (raw!.Contains("名字名字")) return null;
         try
         {
             var text = raw.ToFText().ToString();
