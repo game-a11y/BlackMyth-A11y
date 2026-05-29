@@ -157,13 +157,32 @@ public static class UIScreenTextProvider
         catch { return raw; }
     }
 
+    /// <summary>从控件树确定 QuickItem 的位置（在同级兄弟中的序号）</summary>
+    static int GetQuickItemPosition(UUserWidget w)
+    {
+        try
+        {
+            var parent = w.GetParent();
+            if (parent != null)
+            {
+                var count = parent.GetChildrenCount();
+                for (int i = 0; i < count; i++)
+                {
+                    if (parent.GetChildAt(i) == w)
+                        return i;
+                }
+            }
+        }
+        catch { }
+        return -1;
+    }
+
     /// <summary>从快捷物品数据解析物品名</summary>
-    static string? ResolveQuickItemName(int slotIdx)
+    static string? ResolveQuickItemNameByPos(int position)
     {
         try
         {
             if (GSG.GamePlayer == null) return null;
-            var position = slotIdx - 14; // Position = slotIdx - 14
             if (position < 0) return null;
             foreach (var s in GSG.GamePlayer.Actor.Wear.ShortcutsList.ValueList)
             {
@@ -499,12 +518,11 @@ public static class UIScreenTextProvider
         {
             var num = FindTextByName(w, "TxtNum");
 
-            var name = w.GetFName().ToString();
-            var idx = ParseSlotIndex(name);
-            A11yLog.Debug($"[QuickItem] fname={name} idx={idx} num={num}");
-            if (idx >= 0)
+            var pos = GetQuickItemPosition(w);
+            A11yLog.Debug($"[QuickItem] pos={pos} num={num}");
+            if (pos >= 0)
             {
-                var itemName = ResolveQuickItemName(idx);
+                var itemName = ResolveQuickItemNameByPos(pos);
                 if (itemName != null)
                     return $"{itemName} x{num}";
                 return "随身之物 (空)";
