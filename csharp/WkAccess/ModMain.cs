@@ -1,4 +1,3 @@
-using HarmonyLib;
 using WkAccess.A11yMod;
 
 namespace WkAccess;

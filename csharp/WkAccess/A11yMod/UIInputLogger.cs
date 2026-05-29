@@ -1,5 +1,3 @@
-using HarmonyLib;
-
 namespace WkAccess.A11yMod;
 
 [HarmonyPatch(typeof(BUI_Button), "OnMouseButtonDown_Implementation")]

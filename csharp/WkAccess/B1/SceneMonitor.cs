@@ -1,11 +1,3 @@
-using System;
-using System.Linq;
-using b1;
-using B1UI;
-using B1UI.GSUI;
-using GSE.GSUI;
-using UnrealEngine.Runtime;
-
 namespace WkAccess.B1;
 
 /// <summary>
