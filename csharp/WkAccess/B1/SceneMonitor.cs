@@ -33,7 +33,7 @@ public static partial class SceneMonitor
             {
                 SubscribeEvents();
                 _eventsSubscribed = true;
-                A11y.A11yLog.Info("[SceneMonitor] ✅ BGW_EventCollection 事件订阅完成");
+                A11y.A11yLog.Debug("[SceneMonitor] ✅ BGW_EventCollection 事件订阅完成");
             }
         }
         catch (Exception ex)
@@ -50,7 +50,7 @@ public static partial class SceneMonitor
         {
             var ctx = GSG.Context;
             _gsgAvailable = true;
-            A11y.A11yLog.Info("[SceneMonitor] ✅ GSG (B1UI_GSE.Script) 可用");
+            A11y.A11yLog.Debug("[SceneMonitor] ✅ GSG (B1UI_GSE.Script) 可用");
         }
         catch
         {
@@ -183,68 +183,68 @@ public static partial class SceneMonitor
     static void OnEvtPreLoadMap(string mapName)
     {
         GameState.SetMapName(mapName);
-        A11y.A11yLog.Info($"[SceneMonitor] 📍 PreLoadMap: {mapName}");
+        A11y.A11yLog.Debug($"[SceneMonitor] 📍 PreLoadMap: {mapName}");
         UpdateScene(GameState.GameScene.Loading);
     }
 
     static void OnEvtPostLoadMapWithWorld()
-        => A11y.A11yLog.Info("[SceneMonitor] ✅ PostLoadMapWithWorld — 世界加载完成");
+        => A11y.A11yLog.Debug("[SceneMonitor] ✅ PostLoadMapWithWorld — 世界加载完成");
 
     static void OnEvtSeamlessTravelStart(string travelUrl)
-        => A11y.A11yLog.Info($"[SceneMonitor] 🔄 SeamlessTravelStart: {travelUrl}");
+        => A11y.A11yLog.Debug($"[SceneMonitor] 🔄 SeamlessTravelStart: {travelUrl}");
 
     static void OnEvtPostSeamlessTravel()
-        => A11y.A11yLog.Info("[SceneMonitor] ✅ PostSeamlessTravel — 无缝过渡完成");
+        => A11y.A11yLog.Debug("[SceneMonitor] ✅ PostSeamlessTravel — 无缝过渡完成");
 
     static void OnEvtOpenLevelFinished()
-        => A11y.A11yLog.Info("[SceneMonitor] ✅ OpenLevelFinished");
+        => A11y.A11yLog.Debug("[SceneMonitor] ✅ OpenLevelFinished");
 
     static void OnEvtLeavingMap()
-        => A11y.A11yLog.Info("[SceneMonitor] 👋 LeavingMap");
+        => A11y.A11yLog.Debug("[SceneMonitor] 👋 LeavingMap");
 
     static void OnEvtCurrentLevelChanged(int levelId)
     {
         GameState.SetCurrentLevel(levelId);
-        A11y.A11yLog.Info($"[SceneMonitor] 🏷️ CurrentLevelChanged -> LevelID={levelId}");
+        A11y.A11yLog.Debug($"[SceneMonitor] 🏷️ CurrentLevelChanged -> LevelID={levelId}");
     }
 
     static void OnEvtLoadingBeginFadeAway()
-        => A11y.A11yLog.Info("[SceneMonitor] 🔽 LoadingBeginFadeAway — 加载画面淡出");
+        => A11y.A11yLog.Debug("[SceneMonitor] 🔽 LoadingBeginFadeAway — 加载画面淡出");
 
     static void OnEvtLoadingStepFinish()
-        => A11y.A11yLog.Info("[SceneMonitor] 👣 LoadingStepFinish");
+        => A11y.A11yLog.Debug("[SceneMonitor] 👣 LoadingStepFinish");
 
     static void OnEvtTeleportFinished()
-        => A11y.A11yLog.Info("[SceneMonitor] ⚡ TeleportFinished");
+        => A11y.A11yLog.Debug("[SceneMonitor] ⚡ TeleportFinished");
 
     static void OnEvtPlayerPostLogin()
-        => A11y.A11yLog.Info("[SceneMonitor] 🧑 PlayerPostLogin");
+        => A11y.A11yLog.Debug("[SceneMonitor] 🧑 PlayerPostLogin");
 
     static void OnEvtPlayerControllerBeginPlay(BGP_PlayerControllerCS controller)
-        => A11y.A11yLog.Info("[SceneMonitor] 🎮 PlayerControllerBeginPlay");
+        => A11y.A11yLog.Debug("[SceneMonitor] 🎮 PlayerControllerBeginPlay");
 
     static void OnEvtPlayerControllerEndPlay()
-        => A11y.A11yLog.Info("[SceneMonitor] 🎮 PlayerControllerEndPlay");
+        => A11y.A11yLog.Debug("[SceneMonitor] 🎮 PlayerControllerEndPlay");
 
     static void OnEvtPlayerDelayBeginPlayFinished()
-        => A11y.A11yLog.Info("[SceneMonitor] ⏳ PlayerDelayBeginPlayFinished");
+        => A11y.A11yLog.Debug("[SceneMonitor] ⏳ PlayerDelayBeginPlayFinished");
 
     static void OnEvtClearAllGameData()
-        => A11y.A11yLog.Info("[SceneMonitor] 🗑️ ClearAllGameData");
+        => A11y.A11yLog.Debug("[SceneMonitor] 🗑️ ClearAllGameData");
 
     static void OnEvtNextChapterTravelBegin(int chapterId)
-        => A11y.A11yLog.Info($"[SceneMonitor] 📖 NextChapterTravelBegin: Chapter={chapterId}");
+        => A11y.A11yLog.Debug($"[SceneMonitor] 📖 NextChapterTravelBegin: Chapter={chapterId}");
 
     static void OnEvtRefreshLevelInfo()
-        => A11y.A11yLog.Info("[SceneMonitor] 🔄 RefreshLevelInfo");
+        => A11y.A11yLog.Debug("[SceneMonitor] 🔄 RefreshLevelInfo");
 
     static void OnEvtUIActived(int pageId, bool active)
     {
         if (active)
-            A11y.A11yLog.Info($"[SceneMonitor] 📄 UI打开: {(EnPageID)pageId} (ID={pageId})");
+            A11y.A11yLog.Debug($"[SceneMonitor] 📄 UI打开: {(EnPageID)pageId} (ID={pageId})");
         GameState.SetPageActive(pageId, active);
     }
 
     static void OnEvtSetGamePause(EPauseEvent pauseEvent, bool isPaused)
-        => A11y.A11yLog.Info($"[SceneMonitor] ⏸️ SetGamePause: {pauseEvent} -> {(isPaused ? "暂停" : "恢复")}");
+        => A11y.A11yLog.Debug($"[SceneMonitor] ⏸️ SetGamePause: {pauseEvent} -> {(isPaused ? "暂停" : "恢复")}");
 }

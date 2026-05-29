@@ -37,12 +37,11 @@ public static partial class SceneMonitor
                 A11y.A11yLog.Warning($"[SceneMonitor] 定时器回调异常: {ex.Message}");
             }
         }, null, 5000, 2000);
-        A11y.A11yLog.Info("[SceneMonitor] ⏱ 后备定时器已启动 (间隔 2s)");
+        A11y.A11yLog.Debug("[SceneMonitor] ⏱ 后备定时器已启动 (间隔 2s)");
     }
 
     static DateTime _lastUiCheck = DateTime.MinValue;
     static DateTime _lastFsmCheck = DateTime.MinValue;
-    static DateTime _lastStatusLog = DateTime.MinValue;
 
     public static void OnTick(float deltaTime)
     {
@@ -73,12 +72,6 @@ public static partial class SceneMonitor
         {
             _lastUiCheck = now;
             PollUiPages();
-        }
-
-        if ((now - _lastStatusLog).TotalSeconds >= 30.0)
-        {
-            _lastStatusLog = now;
-            A11y.A11yLog.Debug($"[SceneMonitor] 📊 状态摘要 | 场景={GameState.CurrentScene} | Map={GameState.CurrentMapName} | LevelId={GameState.CurrentLevelId} | Pages可见={GameState.VisiblePages.Count} | 事件={(_eventsSubscribed ? "✅" : "❌")} | GSG={(_gsgAvailable ? "✅" : "❌")}");
         }
     }
 
