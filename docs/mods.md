@@ -18,3 +18,9 @@
     这是黑神话使用的修改版本
 - 蓝图MOd框架: https://github.com/narknon/WukongB1
 - https://modding.wiki/en/hogwartslegacy/developers
+
+### Pal MOD 开发教程
+
+- [Exporting The Project | Palworld Modding Docs](https://pwmodding.wiki/docs/palworld-modding-kit/congratulations)
+- [Packaging final mod file through UE5 | Palworld Modding Docs](https://pwmodding.wiki/docs/asset-swapping/PackagingInUE5)
+- [幻兽帕鲁Mod制作教程_幻兽帕鲁wiki|GameKee](https://www.gamekee.com/pal/613253.html)
