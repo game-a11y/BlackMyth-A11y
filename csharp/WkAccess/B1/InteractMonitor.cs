@@ -84,8 +84,14 @@ public static class InteractMonitor
     {
         var commDesc = data.InteractiveUnitCommDesc;
         if (commDesc == null) return null;
+
         if (!string.IsNullOrEmpty(commDesc.Name))
-            return ResolveFText(commDesc.Name);
+        {
+            var resolved = ResolveFText(commDesc.Name);
+            if (!string.IsNullOrEmpty(resolved) && !resolved.Contains("测试"))
+                return resolved;
+        }
+
         return _typeNames.TryGetValue(commDesc.InteractType, out var name) ? name : null;
     }
 
