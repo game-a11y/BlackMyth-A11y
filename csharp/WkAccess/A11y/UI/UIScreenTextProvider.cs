@@ -505,16 +505,16 @@ public static class UIScreenTextProvider
         {
             var num = FindTextByName(w, "TxtNum");
             var fname = w.GetFName().ToString();
+            var pos = GetQuickItemPosition(w); // 复用同级序号查找
+            A11yLog.Debug($"[InventoryItem] fname={fname} pos={pos} num={num}");
 
-            // 向上导航诊断 TileView 容器结构
-            var p = w.GetParent();
-            var chain = new List<string>();
-            for (int i = 0; i < 5 && p != null; i++)
+            // Dump bag item list (first call only)
+            if (pos == 0 && GSG.GamePlayer != null)
             {
-                chain.Add($"{p.GetType().Name}:{p.GetFName()}(ch={p.GetChildrenCount()})");
-                p = p.GetParent();
+                var items = GSG.GamePlayer.Bag.ItemList.ValueList;
+                var dump = string.Join(", ", items.Take(10).Select(i => $"I{i.ItemId}x{i.Num}"));
+                A11yLog.Debug($"[InventoryItem] BagItemList (first 10): [{dump}] total={items.Count}");
             }
-            A11yLog.Debug($"[InventoryItem] fname={fname} num={num} parentChain=[{string.Join(" → ", chain)}]");
 
             if (string.IsNullOrEmpty(num) || num == "0") return "用品 (空)";
             return $"用品 [??] x{num}";
