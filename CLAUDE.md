@@ -9,7 +9,9 @@
 - **UE4SS 部分：** `ue4ss/BlackMythA11y/`（Lua 脚本）+ `ue4ss/BlackMythA11yCpp/`（C++ 插件）+ `ue4ss/RE-UE4SS/`（框架），同属一个 UE4SS Mod 项目
 - **C# 部分：** `csharp/` — 通过 B1CSharpLoader 框架热加载的 C# Mod
 - **Pak 部分：** `pak/` — UE4 pak 打包形式的 Mod（直接替换游戏资产/配置）
-- **项目公共部分：** `docs/`（公共文档）
+- **项目公共部分：** `docs/`（公共文档 + 设计思路）
+
+各模块 README：[UE4SS](ue4ss/README.md) | [C#](csharp/README.md) | [Pak](pak/README.md)
 
 > **注意：** 仓库中的 `GameDir` 软链接指向本地游戏安装目录，用于 Mod 部署和调试。  
 > 具体 Mod 部署通过各部分的 `*Mods-*` / `*.lnk` 软链接指向游戏目录下的对应位置。
@@ -22,82 +24,43 @@ C# Mod 开发指引见 [csharp/docs/csharp_dev.md](csharp/docs/csharp_dev.md)。
 Root/
 │
 ├── 📦 UE4SS 部分 (ue4ss/)
-│   ├── BlackMythA11y/           # Lua 脚本 Mod
-│   │   ├── Scripts/             # Lua 源码
-│   │   │   ├── main.lua
-│   │   │   ├── WkUIHook.lua
-│   │   │   ├── WkScriptHooks.lua
-│   │   │   ├── WkKeyBind.lua
-│   │   │   ├── WkUtils.lua
-│   │   │   ├── WkConfig.lua
-│   │   │   ├── WkGlobals.lua
-│   │   │   ├── WkzTemplateMod.lua
-│   │   │   └── UIHooks/        # UI 挂钩子模块
-│   │   ├── dlls/                # 编译好的 C++ 插件 DLL
-│   │   └── enabled.txt
+│   ├── BlackMythA11y/           # Lua 脚本（入口 main.lua + UIHooks/）
+│   │   ├── Scripts/             # 源码 + UIHooks/ 子模块
+│   │   └── dlls/                # C++ 插件 DLL
 │   ├── BlackMythA11yCpp/        # C++ 插件源码（xmake 构建）
-│   │   ├── mod.cpp / sr.cpp / dllmain.cpp
-│   │   ├── include/
-│   │   │   ├── mod.hpp / sr.hpp / WkCommon.hpp
-│   │   │   └── Tolk.h           # 读屏（Tolk）封装
-│   │   └── xmake.lua
-│   ├── RE-UE4SS/                # UE4SS 框架（上游 fork，submodule）
-│   ├── release/                 # 发布包（含安装说明）
-│   ├── tools/                   # 构建/打包工具
-│   │   ├── package.ps1 / build_and_install.lua / install_mod.lua
-│   │   └── bp_visual.py         # 蓝图可视化工具
-│   ├── docs/                    # UE4SS 相关文档
-│   │   ├── BUI.WidgetTree/      # BUI 控件树文档
-│   │   └── dev.md / mods.md / pack.md
-│   ├── Binaries/                # UE4SS 构建输出
-│   └── Intermediates/           # UE4SS 中间文件
+│   │   ├── mod.cpp / dllmain.cpp
+│   │   └── include/             # mod.hpp, Tolk.h
+│   ├── RE-UE4SS/                # UE4SS 框架（上游 submodule）
+│   ├── release/                 # 发布包
+│   ├── tools/                   # 构建/打包脚本
+│   ├── docs/                    # 开发文档
+│   ├── Binaries/ + Intermediates/
 │
 ├── 📦 C# 部分 (csharp/)
 │   ├── B1CSharpLoader/          # C# 加载器框架（来自上游）
-│   │   ├── CSharpLoaderDll/     # C++ 加载器 DLL（注入游戏）
-│   │   ├── CSharpManager/       # Mod 加载器/管理器
-│   │   ├── CSharpModBase/       # ICSharpMod 接口 + 日志/工具
-│   │   ├── CSharpModExample/    # Mod 示例
-│   │   ├── GameDll/             # 编译好的游戏 DLL（仅供引用）
-│   │   └── extract_dlls.py      # DLL 提取脚本
-│   ├── docs/                     # C# Mod 开发文档
-│   │   ├── csharp_dev.md         # 开发指引
-│   │   ├── csharp_hook_boundary_test.md
-│   │   └── csharp_technical_validation.md
-│   ├── WkAccess/                # ** 当前无障碍 Mod 源码 **
-│   │   ├── A11y/
-│   │   │   ├── A11yLog.cs       # 控制台日志
-│   │   │   ├── A11yTolk.cs      # 读屏（Tolk）C# 封装
-│   │   │   ├── DebugCommands.cs # 调试命令
-│   │   │   ├── KeyBindings.cs   # 按键绑定
-│   │   │   ├── SceneDetector.cs # 场景/UI 状态检测
-│   │   │   └── UI/              # UI 辅助类
-│   │   │       ├── ButtonTextProvider.cs
-│   │   │       ├── UIFocusTracker.cs
-│   │   │       ├── UIMouseTracker.cs
-│   │   │       └── UIScreenTextProvider.cs
-│   │   ├── ModMain.cs           # Mod 入口
-│   │   ├── WkUtils.cs           # UE 世界/玩家辅助方法
-│   │   ├── BuildInfo.cs / GlobalUsings.cs
-│   │   └── Properties/
-│   └── WkAccess-MOD/            # C# Mod 游戏部署文件
-│       ├── b1/                  # 部署目录结构
-│       └── WkAccess-MOD说明文档/
+│   ├── docs/                    # C# 开发文档
+│   ├── WkAccess/                # ** 无障碍 Mod 源码 **
+│   │   ├── A11y/                # 日志、TTS、UE 工具、UI 文本提取
+│   │   │   ├── A11yLog.cs / A11yTolk.cs
+│   │   │   ├── UE/WkUtils.cs
+│   │   │   └── UI/UIScreenTextProvider.cs
+│   │   ├── A11yMod/             # Harmony Patch（Focus/Input/Keys）
+│   │   ├── B1/                  # 游戏逻辑（场景/交互/UI 解析）
+│   │   │   ├── SceneMonitor.cs / GameState.cs
+│   │   │   ├── InteractMonitor.cs / DebugCommands.cs
+│   │   │   └── UI/              # Widget 提取器/解析器
+│   │   ├── ModMain.cs           # Mod 入口 + 生命周期
+│   │   └── BuildInfo.cs / GlobalUsings.cs
+│   └── WkAccess-MOD/            # 游戏部署文件
 │
 ├── 📦 Pak 部分 (pak/)
-│   ├── b1/                      # UE4 测试工程（供打包参考）
+│   ├── b1/                      # UE 测试工程
 │   └── README.md
 │
-├── 📦 项目公共部分
-│   ├── docs/
-│   │   ├── b1GameDLL-doc/       # 游戏 DLL 类导航文档（含 _index.yaml）
-│   │   ├── b1GameDLL-src/       # 游戏 DLL 源码（参考用，含 .sln）
-│   │   ├── feature_list.md      # 项目功能清单
-│   │   └── idea.md              # 设计思路/想法记录
-│   └── .cyhan/                  # 本地开发备份/发布目录
-│       ├── B1CSharpLoader/
-│       ├── 【CSLoader】/ 【Mods】/ 【paks】/ 【UE4SS】/ 【存档】/ 【已发布】
-│       └── ...
+├── 📦 公共部分
+│   └── docs/                    # 功能清单、设计思路、DLL 参考
+│
+└── CLAUDE.md                    # 本文件
 ```
 
 ## 软链接索引
@@ -132,7 +95,7 @@ scope 为模块名，按功能域划分，不具体到类/文件，例如：
 
 | type | scope 示例 |
 |---|---|
-| `cs` | `A11y.UI`, `A11yLog`, `KeyBindings` |
+| `cs` | `A11y.UI`, `B1`, `KeyBindings` |
 | `lua` | `WkUIHook`, `WkConfig` |
 | `docs` | `DLL`, `CLAUDE`, `csharp_dev` |
 | `ref` | `GameDll` |
