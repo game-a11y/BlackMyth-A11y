@@ -22,12 +22,12 @@ internal static class DebugCommands
 
     public static void PrintModBuildInfo()
     {
-        A11yLog.Debug($"=== Mod Build ===");
-        A11yLog.Debug($"Version : {ModVersion}");
+        A11yLog.Debug($"[[Mod Build Info]]");
+        A11yLog.Debug($"    Version : {ModVersion}");
         var hashSuffix = BuildMeta.IsDirty ? "+dev" : "";
-        A11yLog.Debug($"GitHash : {BuildMeta.GitHash}{hashSuffix}");
-        A11yLog.Debug($"Built   : {BuildMeta.BuildTimeUtc} UTC");
-        A11yLog.Debug($"DLL     : {typeof(BuildInfo).Assembly.GetName().Name}.dll");
+        A11yLog.Debug($"    GitHash : {BuildMeta.GitHash}{hashSuffix}");
+        A11yLog.Debug($"    Built   : {BuildMeta.BuildTimeUtc} UTC");
+        A11yLog.Debug($"    DLL     : {typeof(BuildInfo).Assembly.GetName().Name}.dll");
     }
 
     public static void PrintPlayerInfo()
