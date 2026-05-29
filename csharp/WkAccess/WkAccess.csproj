@@ -62,10 +62,15 @@
         <Exec Command="git rev-parse --short HEAD" ConsoleToMSBuild="true" StandardOutputImportance="low" IgnoreExitCode="true">
             <Output TaskParameter="ConsoleOutput" PropertyName="GitHash" />
         </Exec>
+        <Exec Command="git status --porcelain" ConsoleToMSBuild="true" StandardOutputImportance="low" IgnoreExitCode="true">
+            <Output TaskParameter="ConsoleOutput" PropertyName="GitDirty" />
+        </Exec>
         <PropertyGroup>
             <GitHash Condition="'$(GitHash)' == ''">unknown</GitHash>
+            <GitDirty Condition="'$(GitDirty)' != ''">true</GitDirty>
+            <GitDirty Condition="'$(GitDirty)' == ''">false</GitDirty>
             <BuildTimeUtc>$([System.DateTime]::UtcNow.ToString("yyyy-MM-dd HH:mm:ss"))</BuildTimeUtc>
-            <BuildMetaCode>namespace WkAccess%3b internal static class BuildMeta { internal const string GitHash = "$(GitHash.Trim())"%3b internal const string BuildTimeUtc = "$(BuildTimeUtc)"%3b }</BuildMetaCode>
+            <BuildMetaCode>namespace WkAccess%3b internal static class BuildMeta { internal const string GitHash = "$(GitHash.Trim())"%3b internal const bool IsDirty = $(GitDirty)%3b internal const string BuildTimeUtc = "$(BuildTimeUtc)"%3b }</BuildMetaCode>
         </PropertyGroup>
         <WriteLinesToFile
             File="$(IntermediateOutputPath)BuildMeta.g.cs"
