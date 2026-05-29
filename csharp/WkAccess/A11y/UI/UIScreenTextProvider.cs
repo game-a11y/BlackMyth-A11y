@@ -58,6 +58,10 @@ public static partial class UIScreenTextProvider
         _providers[className] = extractor;
     }
 
+    /// <summary>获取缓存的全局唯一页面引用</summary>
+    public static UUserWidget? GetCachedPage(string className) =>
+        _pageCache.TryGetValue(className, out var page) ? page : null;
+
     public static string? Extract(UUserWidget? rootWidget)
     {
         if (rootWidget == null || !rootWidget.IsValidLowLevel())
