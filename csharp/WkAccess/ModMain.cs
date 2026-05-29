@@ -12,13 +12,13 @@ public sealed class WkAccess : ICSharpMod
 
     public WkAccess()
     {
+        A11yLog.Init(fileLogDir: Path.Combine(
+            AppDomain.CurrentDomain.BaseDirectory ?? ".", Common.ModDir, BuildInfo.ModName));
         A11yLog.Info($"{Name} Constructor called @ {DateTime.Now}");
     }
 
     public void Init()
     {
-        A11yLog.Init(fileLogDir: Path.Combine(
-            AppDomain.CurrentDomain.BaseDirectory ?? ".", Common.ModDir, BuildInfo.ModName));
         DebugCommands.PrintGameBuildInfo();
         DebugCommands.PrintModBuildInfo();
         KeyBindings.RegisterAll();
