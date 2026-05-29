@@ -159,8 +159,8 @@ public class A11yLog
             LogType.Error or LogType.Exception => ConsoleColor.Red,
             LogType.Warning => ConsoleColor.Yellow,
             LogType.Info => ConsoleColor.White,
-            LogType.Debug => ConsoleColor.Magenta,
-            _ => ConsoleColor.Gray,
+            LogType.Debug => ConsoleColor.Gray,
+            _ => ConsoleColor.DarkMagenta,
         };
         return $"{ts} [{level}] [{LOG_PREFIX}] {text}";
     }
