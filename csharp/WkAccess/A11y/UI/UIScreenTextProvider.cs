@@ -498,12 +498,24 @@ public static class UIScreenTextProvider
         return "根基";
     }
     /// <summary>行囊物品: 用品 [??] x{数量} | 用品 (空)</summary>
-    /// <remarks>TODO: 物品名需从 Bag.BagItemList 获取 ItemDesc.Name，待实现</remarks>
+    /// <remarks>TODO: 物品名需从 Bag.ItemList 获取 DSRoleItem.ItemId → GetItemDesc().Name</remarks>
     static string? Extract_InventoryItem(UUserWidget w)
     {
         try
         {
             var num = FindTextByName(w, "TxtNum");
+            var fname = w.GetFName().ToString();
+            var pos = GetQuickItemPosition(w); // 复用同级序号查找
+            A11yLog.Debug($"[InventoryItem] fname={fname} pos={pos} num={num}");
+
+            // Dump bag item list (first call only)
+            if (pos == 0 && GSG.GamePlayer != null)
+            {
+                var items = GSG.GamePlayer.Bag.ItemList.ValueList;
+                var dump = string.Join(", ", items.Take(10).Select(i => $"I{i.ItemId}x{i.Num}"));
+                A11yLog.Debug($"[InventoryItem] BagItemList (first 10): [{dump}] total={items.Count}");
+            }
+
             if (string.IsNullOrEmpty(num) || num == "0") return "用品 (空)";
             return $"用品 [??] x{num}";
         }
