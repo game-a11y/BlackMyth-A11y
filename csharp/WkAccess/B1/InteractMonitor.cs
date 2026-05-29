@@ -1,7 +1,6 @@
 using HarmonyLib;
 using b1;
 using b1.ECS;
-using b1.Localization;
 using BtlShare;
 using UnrealEngine.Engine;
 
@@ -9,7 +8,7 @@ namespace WkAccess.B1;
 
 /// <summary>
 /// 可交互物品无障碍检测 — 挂钩 BPS_PlayerInteractComp.TickForInteractiveActor，
-/// 当最佳交互目标变化时播报物品名称和交互动作。
+/// 当最佳交互目标变化时播报物品类别和交互动作。
 /// </summary>
 public static class InteractMonitor
 {
@@ -72,7 +71,7 @@ public static class InteractMonitor
     static string? BuildSpeakText(BUC_InteractData data)
     {
         var objectName = GetObjectName(data);
-        var actionName = ResolveActionName(data);
+        var actionName = GetActionName(data);
 
         if (objectName != null && actionName != null) return $"{objectName}，{actionName}";
         if (objectName != null) return objectName;
@@ -87,19 +86,10 @@ public static class InteractMonitor
         return _typeNames.TryGetValue(commDesc.InteractType, out var name) ? name : null;
     }
 
-    static string? ResolveActionName(BUC_InteractData data)
+    static string? GetActionName(BUC_InteractData data)
     {
         if (data.ActionList.Count == 0) return null;
-        var raw = data.ActionList[0].InteractName;
-        if (string.IsNullOrEmpty(raw)) return null;
-        return ResolveFText(raw);
-    }
-
-    /// <summary>通过 FText 本地化系统解析字符串（FName key → 显示文本）</summary>
-    static string? ResolveFText(string raw)
-    {
-        if (string.IsNullOrEmpty(raw)) return null;
-        return B1WidgetResolvers.CleanEquipName(raw);
+        return B1WidgetResolvers.ResolveFText(data.ActionList[0].InteractName);
     }
 }
 

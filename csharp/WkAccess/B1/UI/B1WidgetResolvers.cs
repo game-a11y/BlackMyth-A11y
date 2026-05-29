@@ -56,6 +56,15 @@ internal static class B1WidgetResolvers
         catch { return raw; }
     }
 
+    /// <summary>
+    /// 将 protobuf 本地化 key（如 "FUStInteractionMappingDesc.100901.InteractName"）
+    /// 解析为显示文本（如 "上香"）。内部调用 ToFText().ToString()。
+    /// </summary>
+    public static string? ResolveFText(string? raw)
+    {
+        return CleanEquipName(raw);
+    }
+
     /// <summary>从控件树确定 QuickItem 的位置（在同级兄弟中的序号）</summary>
     public static int GetQuickItemPosition(UUserWidget w)
     {
