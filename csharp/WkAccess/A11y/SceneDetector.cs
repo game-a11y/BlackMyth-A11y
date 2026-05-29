@@ -47,6 +47,13 @@ public static partial class SceneDetector
     /// <summary>UI 页面打开/关闭时触发。(pageId, isActive)</summary>
     public static event Action<int, bool>? OnUIPageChanged;
 
+    /// <summary>当前游戏场景</summary>
+    public static GameScene CurrentScene => _currentScene;
+    /// <summary>是否在游戏中</summary>
+    public static bool IsInGame => _currentScene == GameScene.InGame;
+    /// <summary>指定 UI 页面是否可见</summary>
+    public static bool IsPageOpen(int pageId) => _visiblePages.Contains(pageId);
+
     // 当前可见 UI 页面集合
     static readonly HashSet<int> _visiblePages = new();
 
