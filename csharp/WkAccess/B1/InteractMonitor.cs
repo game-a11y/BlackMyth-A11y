@@ -70,19 +70,20 @@ public static class InteractMonitor
 
     static string? BuildSpeakText(BUC_InteractData data)
     {
-        var typeName = GetInteractTypeName(data);
+        var objectName = GetObjectName(data);
         var actionName = GetInteractActionName(data);
 
-        if (typeName != null && actionName != null) return $"{typeName}，{actionName}";
-        if (typeName != null) return typeName;
+        if (objectName != null && actionName != null) return $"{objectName}，{actionName}";
+        if (objectName != null) return objectName;
         if (actionName != null) return actionName;
         return "可交互物品";
     }
 
-    static string? GetInteractTypeName(BUC_InteractData data)
+    static string? GetObjectName(BUC_InteractData data)
     {
         var commDesc = data.InteractiveUnitCommDesc;
         if (commDesc == null) return null;
+        if (!string.IsNullOrEmpty(commDesc.Name)) return commDesc.Name;
         return _typeNames.TryGetValue(commDesc.InteractType, out var name) ? name : null;
     }
 
