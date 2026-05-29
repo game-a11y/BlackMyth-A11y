@@ -67,7 +67,7 @@ public static partial class UIScreenTextProvider
         if (rootWidget == null || !rootWidget.IsValidLowLevel())
             return null;
 
-        var cn = UIFocusTracker.GetClassName(rootWidget);
+        var cn = WkUtils.GetClassName(rootWidget);
         if (_providers.TryGetValue(cn, out var func))
             return func(rootWidget);
         foreach (var kv in _providers)
