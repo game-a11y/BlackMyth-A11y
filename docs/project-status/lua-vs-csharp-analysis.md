@@ -31,6 +31,8 @@
 | 暂停检测 | `SceneMonitor.cs` | `Evt_SetGamePause` 事件 |
 | 玩家控制器生命周期 | `SceneMonitor.cs` | BeginPlay / EndPlay / PostLogin / DelayBeginPlayFinished |
 | UI 页面轮询兜底 | `SceneMonitor.Polling.cs` | 每 3 秒定时器验证活跃页面 |
+| 焦点离开事件 | `H_FocusLeave.Postfix` + `UIFocusTracker` | Hook `BUI_Widget:OnRemovedFromFocusPath`，触发失焦通知；Lua 未挂钩此事件 |
+| 玩家信息查询 | `DebugCommands.PrintPlayerInfo()` | Ctrl+Enter 打印玩家 HP 等属性；Lua 无此功能 |
 
 ### Lua 有、C# 无
 
@@ -56,7 +58,6 @@
 |---|---|---|
 | UI 文本提取器注册表 | `WkGlobals.lua` 中 `GetTextFuncMap` | `UIScreenTextProvider.cs` 中 `_providers` |
 | 焦点进入事件 Hook | `BUI_Button:OnAddedToFocusPath` | `H_FocusEnter.Postfix` + `UIFocusTracker` |
-| 焦点离开事件 | （未挂钩） | `H_FocusLeave.Postfix` + `UIFocusTracker` |
 | 鼠标点击日志 | `BUI_Button:OnMouseButtonDown` | `H_MouseDown.Postfix` |
 | 按键绑定 | `RegisterKeyBind` | `Utils.RegisterKeyBind` |
 | 确认对话框（BI_ReconfirmBtn_C） | `WkUIHook.lua:77-99` | `B1WidgetExtractors.cs` 中 `Extract_ReconfirmBtn` |
@@ -65,7 +66,6 @@
 | 土地庙菜单 | `Tudi.lua` | `Extract_ShrineMenu` |
 | 游戏版本信息 | `WkUtils.PrintGameVersion()` | `DebugCommands.PrintGameBuildInfo()` |
 | UI 页面信息 | `WkUtils.PrintUIPage()` | `SceneMonitor.PrintSummary()` |
-| 玩家信息查询 | （无） | `DebugCommands.PrintPlayerInfo()` |
 | 控件构造追踪 | `NotifyOnNewObject` + `WkGlobals.UIGlobals` | `B1PageCache._pageCache` |
 | 行囊物品 | `InventoryItem.lua` | `Extract_InventoryItem` |
 | 披挂装备槽 | `EquipItem.lua` | `Extract_EquipItem` |
