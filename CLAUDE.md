@@ -14,7 +14,7 @@
 > **注意：** 仓库中的 `GameDir` 软链接指向本地游戏安装目录，用于 Mod 部署和调试。  
 > 具体 Mod 部署通过各部分的 `*Mods-*` / `*.lnk` 软链接指向游戏目录下的对应位置。
 
-C# Mod 开发指引见 [docs/csharp_dev.md](docs/csharp_dev.md)。
+C# Mod 开发指引见 [csharp/docs/csharp_dev.md](csharp/docs/csharp_dev.md)。
 
 ## 项目结构
 
@@ -60,6 +60,10 @@ Root/
 │   │   ├── CSharpModExample/    # Mod 示例
 │   │   ├── GameDll/             # 编译好的游戏 DLL（仅供引用）
 │   │   └── extract_dlls.py      # DLL 提取脚本
+│   ├── docs/                     # C# Mod 开发文档
+│   │   ├── csharp_dev.md         # 开发指引
+│   │   ├── csharp_hook_boundary_test.md
+│   │   └── csharp_technical_validation.md
 │   ├── WkAccess/                # ** 当前无障碍 Mod 源码 **
 │   │   ├── A11y/
 │   │   │   ├── A11yLog.cs       # 控制台日志
@@ -88,9 +92,6 @@ Root/
 │   ├── docs/
 │   │   ├── b1GameDLL-doc/       # 游戏 DLL 类导航文档（含 _index.yaml）
 │   │   ├── b1GameDLL-src/       # 游戏 DLL 源码（参考用，含 .sln）
-│   │   ├── csharp_dev.md        # C# Mod 开发指引
-│   │   ├── csharp_hook_boundary_test.md
-│   │   ├── csharp_technical_validation.md
 │   │   ├── feature_list.md      # 项目功能清单
 │   │   └── idea.md              # 设计思路/想法记录
 │   └── .cyhan/                  # 本地开发备份/发布目录
