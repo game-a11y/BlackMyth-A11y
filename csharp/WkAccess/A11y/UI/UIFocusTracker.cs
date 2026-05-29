@@ -47,11 +47,11 @@ static class H_FocusEnter
             var text = UIScreenTextProvider.Extract(__instance as UnrealEngine.UMG.UUserWidget);
             if (!string.IsNullOrEmpty(text))
             {
-                A11yLog.Info($"[UI.Focus] 聚焦 {cn}#{gsid}: {text}");
+                A11yLog.Debug($"[UI.Focus] 聚焦 {cn}#{gsid}: {text}");
                 A11yTolk.Speak(text!, true);
             }
             else
-                A11yLog.Info($"[UI.Focus] 聚焦 {cn}#{gsid}");
+                A11yLog.Debug($"[UI.Focus] 聚焦 {cn}#{gsid}");
             UIFocusTracker.NotifyEnter(gsid, cn);
         }
         catch (System.Exception ex)

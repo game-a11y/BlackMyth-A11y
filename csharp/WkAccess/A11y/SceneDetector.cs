@@ -298,7 +298,7 @@ public static class SceneDetector
         else
         {
             _visiblePages.Remove(pageId);
-            A11yLog.Info($"[SceneDetector] 📄 UI关闭: {name} (ID={pageId})");
+            // A11yLog.Debug($"[SceneDetector] 📄 UI关闭: {name} (ID={pageId})");
         }
         OnUIPageChanged?.Invoke(pageId, active);
     }
@@ -348,7 +348,7 @@ public static class SceneDetector
         if ((now - _lastStatusLog).TotalSeconds >= 30.0)
         {
             _lastStatusLog = now;
-            A11yLog.Info($"[SceneDetector] 📊 状态摘要 | 场景={_currentScene} | Map={_currentMapName} | LevelId={_currentLevelId} | Pages可见={_visiblePages.Count} | 事件={(_eventsSubscribed?"✅":"❌")} | GSG={(_gsgAvailable?"✅":"❌")}");
+            A11yLog.Debug($"[SceneDetector] 📊 状态摘要 | 场景={_currentScene} | Map={_currentMapName} | LevelId={_currentLevelId} | Pages可见={_visiblePages.Count} | 事件={(_eventsSubscribed?"✅":"❌")} | GSG={(_gsgAvailable?"✅":"❌")}");
         }
     }
 
