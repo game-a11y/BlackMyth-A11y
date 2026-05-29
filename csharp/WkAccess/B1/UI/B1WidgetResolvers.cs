@@ -7,14 +7,15 @@ using B1UI.GSUI;
 using CommB1;
 using b1.Localization;
 
-namespace WkAccess.A11y.UI.Extraction;
+namespace WkAccess.B1.UI;
 
-public static partial class UIScreenTextProvider
+/// <summary>
+/// 控件树导航辅助 — 供 B1WidgetExtractors 内部使用。
+/// </summary>
+internal static class B1WidgetResolvers
 {
-    #region 通用辅助
-
     /// <summary>在指定根控件下按名称查找文本控件并返回其文本。</summary>
-    static string? FindTextByName(UUserWidget? root, string childName)
+    public static string? FindTextByName(UUserWidget? root, string childName)
     {
         if (root == null || !root.IsValidLowLevel()) return null;
         try
@@ -23,7 +24,6 @@ public static partial class UIScreenTextProvider
             if (w == null || !w.IsValidLowLevel()) return null;
             if (w is UTextBlock tb)
                 return tb.GetText()?.ToString();
-            // 反射 GetText() 处理 GSRichScaleText / GSScaleText 等非 UTextBlock 文本控件
             var m = w.GetType().GetMethod("GetText", Type.EmptyTypes);
             if (m != null)
             {
@@ -35,7 +35,6 @@ public static partial class UIScreenTextProvider
                 var p = uw.GetType().GetProperty("Content");
                 if (p?.GetValue(uw) is UTextBlock tb2)
                     return tb2.GetText()?.ToString();
-                return FindAnyText(uw);
             }
         }
         catch { }
@@ -43,16 +42,14 @@ public static partial class UIScreenTextProvider
     }
 
     /// <summary>清理 EquipName：占位符检测 + ToFText 解析本地化</summary>
-    static string? CleanEquipName(string? raw)
+    public static string? CleanEquipName(string? raw)
     {
         if (string.IsNullOrEmpty(raw)) return null;
         if (raw.Contains("名字名字")) return null;
         try
         {
-            // ToFText() 解析本地化 key（如 EquipDesc.15005.EquipName → "柳木棍"）
             var text = raw.ToFText().ToString();
             if (string.IsNullOrEmpty(text) || text.Contains("名字名字")) return null;
-            // 剥离 ruby 注音标签
             var cleaned = System.Text.RegularExpressions.Regex.Replace(text, "<[^>]+>", "");
             return string.IsNullOrEmpty(cleaned) ? null : cleaned;
         }
@@ -60,7 +57,7 @@ public static partial class UIScreenTextProvider
     }
 
     /// <summary>从控件树确定 QuickItem 的位置（在同级兄弟中的序号）</summary>
-    static int GetQuickItemPosition(UUserWidget w)
+    public static int GetQuickItemPosition(UUserWidget w)
     {
         try
         {
@@ -80,7 +77,7 @@ public static partial class UIScreenTextProvider
     }
 
     /// <summary>从快捷物品数据解析物品名</summary>
-    static string? ResolveQuickItemNameByPos(int position)
+    public static string? ResolveQuickItemNameByPos(int position)
     {
         try
         {
@@ -100,7 +97,7 @@ public static partial class UIScreenTextProvider
     }
 
     /// <summary>从玩家装备数据解析物品名（绕过 UI 时序问题）</summary>
-    static string? ResolveEquipName(int slotIdx)
+    public static string? ResolveEquipName(int slotIdx)
     {
         try
         {
@@ -122,13 +119,11 @@ public static partial class UIScreenTextProvider
     }
 
     /// <summary>从 slot FName 解析索引（"BI_EquipSlotItem_5" → 5）</summary>
-    static int ParseSlotIndex(string fname)
+    public static int ParseSlotIndex(string fname)
     {
         var i = fname.LastIndexOf('_');
         if (i >= 0 && int.TryParse(fname.Substring(i + 1), out var idx))
             return idx;
         return -1;
     }
-
-    #endregion
 }

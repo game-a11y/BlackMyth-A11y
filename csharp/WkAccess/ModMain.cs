@@ -21,6 +21,7 @@ public sealed class WkAccess : ICSharpMod
             AppDomain.CurrentDomain.BaseDirectory ?? ".", Common.ModDir, BuildInfo.ModName));
         DebugCommands.PrintBuildInfo();
         KeyBindings.RegisterAll();
+        B1WidgetExtractors.RegisterAll(UIScreenTextProvider.Register);
         B1.SceneMonitor.Start();
         _harmony.PatchAll();
         A11yLog.Info($"{Name} Init()");

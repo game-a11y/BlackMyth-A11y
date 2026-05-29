@@ -1,8 +1,8 @@
+using System.Collections.Generic;
 using HarmonyLib;
 using b1.UI;
-using UnrealEngine.Runtime;
 
-namespace WkAccess.A11y.UI.Extraction;
+namespace WkAccess.B1.UI;
 
 /// <summary>挂钩 BUI_Widget.Construct，缓存全局唯一页面引用</summary>
 [HarmonyPatch(typeof(BUI_Widget), "Construct_Implementation")]
@@ -20,10 +20,20 @@ static class H_PageConstruct
         {
             if (cn == p)
             {
-                UIScreenTextProvider._pageCache[cn] = __instance;
+                B1PageCache._pageCache[cn] = __instance;
                 A11yLog.Info($"[PageCache] 缓存页面: {cn}");
                 return;
             }
         }
     }
+}
+
+/// <summary>全局唯一页面的缓存引用</summary>
+public static class B1PageCache
+{
+    internal static readonly Dictionary<string, UUserWidget> _pageCache = new();
+
+    /// <summary>获取缓存的全局唯一页面引用</summary>
+    public static UUserWidget? GetCachedPage(string className) =>
+        _pageCache.TryGetValue(className, out var page) ? page : null;
 }
