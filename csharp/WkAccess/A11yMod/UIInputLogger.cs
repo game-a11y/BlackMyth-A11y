@@ -1,6 +1,6 @@
 using HarmonyLib;
 
-namespace WkAccess.A11y.UI;
+namespace WkAccess.A11yMod;
 
 [HarmonyPatch(typeof(BUI_Button), "OnMouseButtonDown_Implementation")]
 static class H_MouseDown
@@ -10,7 +10,7 @@ static class H_MouseDown
         var gsid = __instance.GetGSID();
         if (gsid >= 0)
         {
-            var cn = UIFocusTracker.GetClassName(__instance);
+            var cn = WkUtils.GetClassName(__instance);
             A11yLog.Debug($"[UI.Click] 点击 {cn}#{gsid}");
         }
     }
@@ -24,7 +24,7 @@ static class H_KeyUp
         var gsid = __instance.GetGSID();
         if (gsid >= 0)
         {
-            var cn = UIFocusTracker.GetClassName(__instance);
+            var cn = WkUtils.GetClassName(__instance);
             A11yLog.Debug($"[UI.KeyUp] 按键 {cn}#{gsid}");
         }
     }

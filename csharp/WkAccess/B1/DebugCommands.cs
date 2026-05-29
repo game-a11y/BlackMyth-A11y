@@ -1,4 +1,4 @@
-namespace WkAccess.A11y;
+namespace WkAccess.B1;
 
 /// <summary>
 /// 调试信息打印函数集合。快捷键通过 KeyBindings 引用此处的函数。

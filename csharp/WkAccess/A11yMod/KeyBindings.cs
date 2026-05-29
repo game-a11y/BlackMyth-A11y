@@ -1,6 +1,6 @@
 using CSharpModBase.Input;
 
-namespace WkAccess.A11y;
+namespace WkAccess.A11yMod;
 
 /// <summary>
 /// 快捷键集中注册。所有回调定义为私有方法，不对外暴露。
@@ -8,7 +8,6 @@ namespace WkAccess.A11y;
 /// </summary>
 internal static class KeyBindings
 {
-    /// <summary>注册所有快捷键。可扩展为属性反射自动注册。</summary>
     public static void RegisterAll()
     {
         // Ctrl + Enter → 打印玩家信息
