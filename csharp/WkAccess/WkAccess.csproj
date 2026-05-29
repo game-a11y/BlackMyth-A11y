@@ -58,6 +58,24 @@
       <Folder Include="A11y\" />
     </ItemGroup>
 
+    <Target Name="GenerateBuildMeta" BeforeTargets="BeforeBuild">
+        <Exec Command="git rev-parse --short HEAD" ConsoleToMSBuild="true" StandardOutputImportance="low" IgnoreExitCode="true">
+            <Output TaskParameter="ConsoleOutput" PropertyName="GitHash" />
+        </Exec>
+        <PropertyGroup>
+            <GitHash Condition="'$(GitHash)' == ''">unknown</GitHash>
+            <BuildTimeUtc>$([System.DateTime]::UtcNow.ToString("yyyy-MM-dd HH:mm:ss"))</BuildTimeUtc>
+            <BuildMetaCode>namespace WkAccess%3b internal static class BuildMeta { internal const string GitHash = "$(GitHash.Trim())"%3b internal const string BuildTimeUtc = "$(BuildTimeUtc)"%3b }</BuildMetaCode>
+        </PropertyGroup>
+        <WriteLinesToFile
+            File="$(IntermediateOutputPath)BuildMeta.g.cs"
+            Lines="$(BuildMetaCode)"
+            Overwrite="true" />
+        <ItemGroup>
+            <Compile Include="$(IntermediateOutputPath)BuildMeta.g.cs" />
+        </ItemGroup>
+    </Target>
+
     <Target Name="CopyToModsFolder" AfterTargets="Build" Condition="Exists('$(GameFolder)')">
         <MakeDir Directories="$(ModFolder)" Condition="!Exists('$(ModFolder)')" />
         <Copy SourceFiles="$(OutputPath)\$(AssemblyName).dll" DestinationFolder="$(ModFolder)" />

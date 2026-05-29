@@ -20,6 +20,15 @@ internal static class DebugCommands
         A11yLog.Info($"EngineP4 : {BuildEnv.BuildEngineP4Ver}");
     }
 
+    public static void PrintModBuildInfo()
+    {
+        A11yLog.Debug($"=== Mod Build ===");
+        A11yLog.Debug($"Version : {ModVersion}");
+        A11yLog.Debug($"GitHash : {BuildMeta.GitHash}");
+        A11yLog.Debug($"Built   : {BuildMeta.BuildTimeUtc} UTC");
+        A11yLog.Debug($"DLL     : {typeof(BuildInfo).Assembly.GetName().Name}.dll");
+    }
+
     public static void PrintPlayerInfo()
     {
         var player = WkUtils.GetControlledPawn();
