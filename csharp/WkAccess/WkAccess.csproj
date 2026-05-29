@@ -5,7 +5,7 @@
         <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
         <LangVersion>latest</LangVersion>
-        <ImplicitUsings>true</ImplicitUsings>
+        <ImplicitUsings>disable</ImplicitUsings>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <GameFolder Condition="Exists('$(B1_DIRECTORY)')">$(B1_DIRECTORY)</GameFolder>
         <GameFolder Condition="!Exists('$(B1_DIRECTORY)')">..\..\GameDir</GameFolder>
