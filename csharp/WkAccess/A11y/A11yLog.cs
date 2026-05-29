@@ -89,9 +89,6 @@ public class A11yLog
 
     public static void Error(string message) => Write(LogType.Error, message);
 
-    public static void Exception(string message, Exception exception, object? obj = null)
-        => WriteException(message, exception);
-
     public static void Exception(string message, Exception exception)
         => WriteException(message, exception);
 
