@@ -23,6 +23,7 @@ public sealed class WkAccess : ICSharpMod
         KeyBindings.RegisterAll();
         B1WidgetExtractors.RegisterAll(UIScreenTextProvider.Register);
         B1.SceneMonitor.Start();
+        InteractMonitor.Start();
         _harmony.PatchAll();
         A11yLog.Info($"{Name} Init()");
     }
@@ -32,6 +33,7 @@ public sealed class WkAccess : ICSharpMod
         A11yLog.Info($"{Name} DeInit");
         _harmony.UnpatchAll();
         B1.SceneMonitor.Stop();
+        InteractMonitor.Stop();
         A11yLog.Deinit();
     }
 }
