@@ -184,14 +184,17 @@ public static class UIScreenTextProvider
         {
             if (GSG.GamePlayer == null) return null;
             if (position < 0) return null;
+            var found = new List<string>();
             foreach (var s in GSG.GamePlayer.Actor.Wear.ShortcutsList.ValueList)
             {
+                found.Add($"P{s.Position}=I{s.ItemId}");
                 if (s.Position == position && s.ItemId > 0)
                 {
                     var desc = GameDBRuntime.GetItemDesc(s.ItemId);
                     return CleanEquipName(desc?.Name);
                 }
             }
+            A11yLog.Debug($"[QuickItem] pos={position} shortcuts=[{string.Join(", ", found)}]");
         }
         catch { }
         return null;
