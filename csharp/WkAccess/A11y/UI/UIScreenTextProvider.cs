@@ -8,7 +8,7 @@ using B1UI.GSUI;
 using CommB1;
 using b1.Localization;
 
-namespace WkAccess.A11y.UI;
+namespace WkAccess.A11y.UI.Extraction;
 
 /// <summary>
 /// UI 屏幕文本提供器 — 等效于 Lua 的 GetTextFuncMap。

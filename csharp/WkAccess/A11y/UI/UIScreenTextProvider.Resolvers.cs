@@ -7,7 +7,7 @@ using B1UI.GSUI;
 using CommB1;
 using b1.Localization;
 
-namespace WkAccess.A11y.UI;
+namespace WkAccess.A11y.UI.Extraction;
 
 public static partial class UIScreenTextProvider
 {

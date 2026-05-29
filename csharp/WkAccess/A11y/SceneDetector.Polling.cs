@@ -7,7 +7,7 @@ using B1UI.GSUI;
 using GSE.GSUI;
 using UnrealEngine.Runtime;
 
-namespace WkAccess.A11y;
+namespace WkAccess.A11y.Detection;
 
 public static partial class SceneDetector
 {

@@ -6,7 +6,7 @@ using B1UI.GSUI;
 using GSE.GSUI;
 using UnrealEngine.Runtime;
 
-namespace WkAccess.A11y;
+namespace WkAccess.A11y.Detection;
 
 /// <summary>
 /// 场景检测器：挂钩场景加载/UI 页面切换，用于无障碍功能可行性测试。

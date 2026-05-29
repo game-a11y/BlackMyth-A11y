@@ -21,7 +21,7 @@ public sealed class WkAccess : ICSharpMod
             AppDomain.CurrentDomain.BaseDirectory ?? ".", Common.ModDir, BuildInfo.ModName));
         DebugCommands.PrintBuildInfo();
         KeyBindings.RegisterAll();
-        A11y.SceneDetector.StartFallbackTimer();
+        SceneDetector.StartFallbackTimer();
         _harmony.PatchAll();
         A11yLog.Info($"{Name} Init()");
     }
@@ -30,7 +30,7 @@ public sealed class WkAccess : ICSharpMod
     {
         A11yLog.Info($"{Name} DeInit");
         _harmony.UnpatchAll();
-        A11y.SceneDetector.Deinit();
+        SceneDetector.Deinit();
         A11yLog.Deinit();
     }
 }

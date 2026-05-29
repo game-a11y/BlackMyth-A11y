@@ -2,7 +2,7 @@ using HarmonyLib;
 using b1.UI;
 using UnrealEngine.Runtime;
 
-namespace WkAccess.A11y.UI;
+namespace WkAccess.A11y.UI.Extraction;
 
 /// <summary>挂钩 BUI_Widget.Construct，缓存全局唯一页面引用</summary>
 [HarmonyPatch(typeof(BUI_Widget), "Construct_Implementation")]
