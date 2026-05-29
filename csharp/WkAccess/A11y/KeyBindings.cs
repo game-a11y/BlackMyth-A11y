@@ -1,4 +1,5 @@
 using CSharpModBase.Input;
+using WkAccess.B1;
 
 namespace WkAccess.A11y;
 
@@ -15,6 +16,6 @@ internal static class KeyBindings
         Utils.RegisterKeyBind(ModifierKeys.Control, Key.ENTER, DebugCommands.PrintPlayerInfo);
 
         // Ctrl + D1 → 打印当前场景/UI 状态
-        Utils.RegisterKeyBind(ModifierKeys.Control, Key.D1, SceneDetector.PrintCurrentUI);
+        Utils.RegisterKeyBind(ModifierKeys.Control, Key.D1, SceneMonitor.PrintSummary);
     }
 }
