@@ -184,17 +184,14 @@ public static class UIScreenTextProvider
         {
             if (GSG.GamePlayer == null) return null;
             if (position < 0) return null;
-            var found = new List<string>();
             foreach (var s in GSG.GamePlayer.Actor.Wear.ShortcutsList.ValueList)
             {
-                found.Add($"P{s.Position}=I{s.ItemId}");
                 if (s.Position == position && s.ItemId > 0)
                 {
                     var desc = GameDBRuntime.GetItemDesc(s.ItemId);
                     return CleanEquipName(desc?.Name);
                 }
             }
-            A11yLog.Debug($"[QuickItem] pos={position} shortcuts=[{string.Join(", ", found)}]");
         }
         catch { }
         return null;
@@ -521,7 +518,7 @@ public static class UIScreenTextProvider
         {
             var num = FindTextByName(w, "TxtNum");
 
-            var pos = GetQuickItemPosition(w);
+            var pos = GetQuickItemPosition(w) - 1; // 父容器索引 0 为非 slot 控件
             A11yLog.Debug($"[QuickItem] pos={pos} num={num}");
             if (pos >= 0)
             {
