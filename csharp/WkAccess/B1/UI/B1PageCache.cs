@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace WkAccess.B1.UI;
 
 /// <summary>挂钩 BUI_Widget.Construct，缓存全局唯一页面引用</summary>

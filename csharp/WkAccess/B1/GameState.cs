@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace WkAccess.B1;
 
 /// <summary>

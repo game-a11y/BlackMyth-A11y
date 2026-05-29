@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using b1.ECS;
 
 namespace WkAccess.B1;
