@@ -15,5 +15,8 @@ internal static class KeyBindings
 
         // Ctrl + D1 → 打印当前场景/UI 状态
         Utils.RegisterKeyBind(ModifierKeys.Control, Key.D1, SceneMonitor.PrintSummary);
+
+        // F1 → 语音播报当前场景
+        Utils.RegisterKeyBind(Key.F1, PageSpeaker.DescribeCurrentUI);
     }
 }
