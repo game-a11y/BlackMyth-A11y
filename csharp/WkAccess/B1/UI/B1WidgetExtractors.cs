@@ -37,6 +37,8 @@ public static class B1WidgetExtractors
         register("BI_QuickItem_C",            Extract_QuickItem);
         register("BI_InteractIcon",           Extract_Interact);
         register("BI_ReconfirmBtn_C",          Extract_ReconfirmBtn);
+        register("BUI_InputTipsOne",           Extract_InputTipsOne);
+        register("BUI_InputActionIcon",        Extract_InputActionIcon);
     }
 
     #region 设置菜单提取器
@@ -133,7 +135,29 @@ public static class B1WidgetExtractors
 
         var label = B1WidgetResolvers.FindTextByName(biBtn, "TxtName");
         if (label == null) return UIScreenTextProvider.FindAnyText(w);
-        return $"按键配置 - {label} [??]";
+
+        var keyName = ReadKeyFromIconWidget(w);
+        return $"按键配置 - {label} - {keyName}";
+    }
+
+    /// <summary>从控件树中查找 UGSInputActionIcon 并读取按键名</summary>
+    static string ReadKeyFromIconWidget(UUserWidget w, string iconWidgetName = "ImgKeyIcon")
+    {
+        try
+        {
+            var iconWidget = GSUIUtil.FindChildWidget(w, iconWidgetName);
+            var keyName = Input.GSInputKeyReader.ReadKeyNameFromIcon(iconWidget);
+            if (!string.IsNullOrEmpty(keyName))
+                return keyName!;
+        }
+        catch { }
+
+        // Fallback: 尝试读 TxtKeyName 文本
+        var txtKey = B1WidgetResolvers.FindTextByName(w, "TxtKeyName");
+        if (!string.IsNullOrEmpty(txtKey) && txtKey != "W")
+            return txtKey!;
+
+        return "[??]";
     }
 
     #endregion
@@ -371,6 +395,35 @@ public static class B1WidgetExtractors
         if (item != null && tips != null) return $"交互 - {item} - {tips}";
         if (item != null) return $"交互 - {item}";
         if (tips != null) return $"交互 - {tips}";
+        return UIScreenTextProvider.FindAnyText(w);
+    }
+
+    static string? Extract_InputTipsOne(UUserWidget w)
+    {
+        var desc = B1WidgetResolvers.FindTextByName(w, "TxtDesc");
+        var keyName = ReadKeyFromIconWidget(w, "InputIcon");
+
+        if (!string.IsNullOrEmpty(keyName) && !string.IsNullOrEmpty(desc))
+            return $"按键 {keyName}: {desc}";
+        if (!string.IsNullOrEmpty(desc))
+            return desc;
+        if (!string.IsNullOrEmpty(keyName))
+            return $"按键 {keyName}";
+        return null;
+    }
+
+    static string? Extract_InputActionIcon(UUserWidget w)
+    {
+        var name = B1WidgetResolvers.FindTextByName(w, "TxtName");
+        var iconWidget = GSUIUtil.FindChildWidget(w, "InputIcon");
+        var keyName = Input.GSInputKeyReader.ReadKeyNameFromIcon(iconWidget);
+
+        if (!string.IsNullOrEmpty(keyName) && !string.IsNullOrEmpty(name))
+            return $"按键 {keyName}: {name}";
+        if (!string.IsNullOrEmpty(name))
+            return name;
+        if (!string.IsNullOrEmpty(keyName))
+            return $"按键 {keyName}";
         return UIScreenTextProvider.FindAnyText(w);
     }
 
