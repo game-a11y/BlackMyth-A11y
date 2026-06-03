@@ -16,6 +16,9 @@ internal static class KeyBindings
         // Ctrl + D1 → 打印当前场景/UI 状态
         Utils.RegisterKeyBind(ModifierKeys.Control, Key.D1, SceneMonitor.PrintSummary);
 
+        // Ctrl + D2 → 打印当前顶层页面控件树
+        Utils.RegisterKeyBind(ModifierKeys.Control, Key.D2, DebugCommands.DumpTopPageWidgetTree);
+
         // F1 → 语音播报当前场景
         Utils.RegisterKeyBind(Key.F1, PageSpeaker.DescribeCurrentUI);
     }

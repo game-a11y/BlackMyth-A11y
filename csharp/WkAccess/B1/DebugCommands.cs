@@ -49,4 +49,34 @@ internal static class DebugCommands
         var hpMax = BGUFunctionLibraryCS.GetAttrValue(player, EBGUAttrFloat.HpMax);
         A11yLog.Warning($"HP: {hp}/{hpMax}");
     }
+
+    /// <summary>打印当前顶层页面的控件树（Ctrl+D2）</summary>
+    public static void DumpTopPageWidgetTree()
+    {
+        try
+        {
+            var topPage = GSG.UIMgr?.GetStackTopUIPage();
+            if (topPage == null)
+            {
+                A11yLog.Warning("[DebugCommands] 当前无顶层页面");
+                return;
+            }
+
+            var root = topPage.GetRootBUIWidget();
+            if (root == null || !root.IsValidLowLevel())
+            {
+                A11yLog.Warning("[DebugCommands] 顶层页面无 RootBUIWidget");
+                return;
+            }
+
+            var pageId = topPage.PageID;
+            var pageName = EnumLocale.Page((EnPageID)pageId);
+            A11yLog.Warning($"=== 控件树: {pageName} (ID={pageId}) ===");
+            UI.WidgetTreeDumper.DumpRecursive(root, indent: "", depth: 0, maxDepth: 12, log: A11yLog.Warning);
+        }
+        catch (Exception ex)
+        {
+            A11yLog.Error($"[DebugCommands] DumpTopPageWidgetTree 异常: {ex.Message}");
+        }
+    }
 }
