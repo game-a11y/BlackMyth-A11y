@@ -33,6 +33,7 @@ public sealed class WkAccess : ICSharpMod
         B1WidgetExtractors.RegisterAll(UIScreenTextProvider.Register);
 
         B1.SceneMonitor.Start();
+        B1.UI.B1InputTipsScanner.Init();
         InteractMonitor.Start();
         _harmony.PatchAll();
 
