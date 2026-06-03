@@ -69,8 +69,10 @@
             <GitHash Condition="'$(GitHash)' == ''">unknown</GitHash>
             <GitDirty Condition="'$(GitDirty)' != ''">true</GitDirty>
             <GitDirty Condition="'$(GitDirty)' == ''">false</GitDirty>
-            <BuildTimeUtc>$([System.DateTime]::UtcNow.ToString("yyyy-MM-dd HH:mm:ss"))</BuildTimeUtc>
-            <BuildMetaCode>namespace WkAccess%3b internal static class BuildMeta { internal const string GitHash = "$(GitHash.Trim())"%3b internal const bool IsDirty = $(GitDirty)%3b internal const string BuildTimeUtc = "$(BuildTimeUtc)"%3b }</BuildMetaCode>
+            <BuildTime>$([System.DateTime]::Now.ToString("yyyy-MM-dd HH:mm:ss"))</BuildTime>
+            <BuildMetaCode>[assembly: System.Reflection.AssemblyMetadata("GitHash", "$(GitHash.Trim())")]
+[assembly: System.Reflection.AssemblyMetadata("IsDirty", "$(GitDirty)")]
+[assembly: System.Reflection.AssemblyMetadata("BuildTime", "$(BuildTime)")]</BuildMetaCode>
         </PropertyGroup>
         <WriteLinesToFile
             File="$(IntermediateOutputPath)BuildMeta.g.cs"

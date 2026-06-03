@@ -22,11 +22,17 @@ internal static class DebugCommands
 
     public static void PrintModBuildInfo()
     {
+        var asm = typeof(BuildInfo).Assembly;
+        var meta = asm.GetCustomAttributes(false)
+                      .OfType<System.Reflection.AssemblyMetadataAttribute>()
+                      .ToDictionary(a => a.Key, a => a.Value);
+
         A11yLog.Debug($"[[Mod Build Info]]");
         A11yLog.Debug($"    Version : {ModVersion}");
-        var hashSuffix = BuildMeta.IsDirty ? "+dev" : "";
-        A11yLog.Debug($"    GitHash : {BuildMeta.GitHash}{hashSuffix}");
-        A11yLog.Debug($"    Built   : {BuildMeta.BuildTimeUtc} UTC");
+        var hash = meta.TryGetValue("GitHash", out var h) ? h : "unknown";
+        var dirty = meta.TryGetValue("IsDirty", out var d) && d == "true";
+        A11yLog.Debug($"    GitHash : {hash}{(dirty ? "+dev" : "")}");
+        A11yLog.Debug($"    Built   : {(meta.TryGetValue("BuildTime", out var t) ? t : "unknown")}");
         A11yLog.Debug($"    DLL     : {typeof(BuildInfo).Assembly.GetName().Name}.dll");
     }
 
