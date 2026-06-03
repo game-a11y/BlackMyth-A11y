@@ -19,11 +19,11 @@ internal static class PageSpeaker
 
     static void DescribeCurrentUIImpl()
     {
-        var sceneName = SceneChineseName(GameState.CurrentScene);
+        var sceneName = EnumLocale.Scene(GameState.CurrentScene);
 
         // 顶层页面
         var topPage = GSG.UIMgr?.GetStackTopUIPage();
-        var topName = topPage != null ? ((EnPageID)topPage.PageID).ToString() : "";
+        var topName = topPage != null ? EnumLocale.Page((EnPageID)topPage.PageID) : "";
 
         var parts = new List<string>();
         if (!string.IsNullOrEmpty(topName))
@@ -46,7 +46,7 @@ internal static class PageSpeaker
         if (topPage != null)
         {
             var pageId = topPage.PageID;
-            var name = ((EnPageID)pageId).ToString();
+            var name = EnumLocale.Page((EnPageID)pageId);
             var cfg = GSG.UIMgr?.FindUIPageCfg(pageId);
             var uiName = cfg?.UIName.ToString() ?? topPage.GetType().Name;
             var order = cfg?.Order.ToString() ?? "?";
@@ -57,20 +57,8 @@ internal static class PageSpeaker
         {
             var names = GameState.VisiblePages
                 .OrderBy(id => id)
-                .Select(id => ((EnPageID)id).ToString());
+                .Select(id => EnumLocale.Page((EnPageID)id));
             A11yLog.Debug($"[PageSpeaker] 打开的界面: {string.Join(", ", names)}");
         }
     }
-
-    static string SceneChineseName(GameState.GameScene scene) => scene switch
-    {
-        GameState.GameScene.Startup         => "启动画面",
-        GameState.GameScene.LogIn           => "登录界面",
-        GameState.GameScene.MainMenu        => "主菜单",
-        GameState.GameScene.Loading         => "加载中",
-        GameState.GameScene.InGame          => "游戏中",
-        GameState.GameScene.PauseMenu       => "暂停菜单",
-        GameState.GameScene.ShaderCompiling => "着色器编译中",
-        _                                   => "未知场景",
-    };
 }
