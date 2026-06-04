@@ -3,15 +3,15 @@ using WkAccess.BM.Locale;
 namespace WkAccess.BM;
 
 /// <summary>
-/// 从 UGSInputActionIcon / GSInputActionIcon 读取按键图标信息，映射为人类可读的按键名称。
+/// 从按键图标控件读取原始按键名（不翻译为中文）。后期根据键盘-手柄转换。
 /// 翻译表定义在 KeyNameLocale 中。
 /// </summary>
 public static class GSInputKeyReader
 {
     /// <summary>
-    /// 从按键图标控件读取可读按键名。
+    /// 从按键图标控件读取原始按键名（纹理名或 FName），不做中文翻译。
     /// </summary>
-    /// <returns>可读按键名，如 "W键"、"A键(手柄)"；失败返回控件 FName</returns>
+    /// <returns>原始纹理名或控件 FName，如 "Icon_Xbox_A"；失败返回 null</returns>
     public static string? ReadKeyNameFromIcon(UWidget? iconWidget)
     {
         if (iconWidget == null || !iconWidget.IsValidLowLevel())
@@ -21,16 +21,31 @@ public static class GSInputKeyReader
         {
             var texName = GetTextureName(iconWidget);
             if (!string.IsNullOrEmpty(texName))
-                return MapTextureToKeyName(texName!);
+                return texName;
         }
         catch { }
 
-        // 回退 1：控件名 → 中文按键名
-        var fallback = KeyNameLocale.MapWidgetName(iconWidget.GetFName().ToString());
-        if (fallback != null) return fallback;
-
-        // 回退 2：控件 FName 原文
+        // 回退：控件 FName 原文
         return iconWidget.GetFName().ToString() ?? null;
+    }
+
+    /// <summary>
+    /// 将原始按键名翻译为中文可读名。用于焦点朗读等需要人类可读的场景。
+    /// </summary>
+    /// <returns>如 "W键"、"A键(手柄)"；无法翻译时返回原始名</returns>
+    public static string? TranslateKeyName(string? rawName)
+    {
+        if (string.IsNullOrEmpty(rawName)) return null;
+
+        // 纹理名 → 中文按键名
+        var translated = MapTextureToKeyName(rawName!);
+        if (translated != rawName) return translated;
+
+        // 控件 FName → 中文按键名
+        var widgetFallback = KeyNameLocale.MapWidgetName(rawName!);
+        if (widgetFallback != null) return widgetFallback;
+
+        return rawName;
     }
 
     /// <summary>纹理名 → 可读按键名（含回退解析）</summary>

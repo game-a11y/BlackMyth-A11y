@@ -151,6 +151,7 @@ public static class B1WidgetExtractors
         {
             var iconWidget = GSUIUtil.FindChildWidget(w, iconWidgetName);
             var keyName = GSInputKeyReader.ReadKeyNameFromIcon(iconWidget);
+            keyName = GSInputKeyReader.TranslateKeyName(keyName);
             if (!string.IsNullOrEmpty(keyName))
                 return keyName!;
         }
@@ -421,6 +422,7 @@ public static class B1WidgetExtractors
         var name = B1WidgetResolvers.FindTextByName(w, "TxtName");
         var iconWidget = GSUIUtil.FindChildWidget(w, "InputIcon");
         var keyName = GSInputKeyReader.ReadKeyNameFromIcon(iconWidget);
+        keyName = GSInputKeyReader.TranslateKeyName(keyName);
 
         if (!string.IsNullOrEmpty(keyName) && !string.IsNullOrEmpty(name))
             return $"按键 {keyName}: {name}";
