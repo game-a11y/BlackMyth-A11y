@@ -11,14 +11,7 @@ public static class B1InputTipsScanner
     {
         if (_initialized) return;
         _initialized = true;
-
         A11yLog.Debug("[InputTipsScanner] 已初始化 (F1 手动触发)");
-    }
-
-    private static string BuildSummary(HashSet<(string desc, string key)> tips, string prefix)
-    {
-        var parts = tips.Select(t => FormatTip(t.key, t.desc));
-        return prefix + string.Join("；", parts);
     }
 
     public static void ScanAndSpeak(int pageId)
@@ -36,6 +29,10 @@ public static class B1InputTipsScanner
                 var summary = BuildSummary(tips, "提示文本 ");
                 A11yLog.Info($"[InputTipsScanner] {summary}");
                 A11yTolk.Speak(summary, false);
+            }
+            else
+            {
+                A11yLog.Debug($"[InputTipsScanner] {(EnPageID)pageId} 未找到按键提示");
             }
         }
     }
@@ -67,7 +64,7 @@ public static class B1InputTipsScanner
                 {
                     var child = panel.GetChildAt(i);
                     if (child == null || !child.IsValidLowLevel()) continue;
-                    ReadInputTipsOne(child, tips);
+                    CollectTipsFromWidget(child, tips);
                 }
             }
         }
@@ -117,7 +114,7 @@ public static class B1InputTipsScanner
 
             if (cn is "BUI_InputTipsOne_C" or "BI_InputOne_C")
             {
-                ReadInputTipsOne(widget, results);
+                CollectTipsFromWidget(widget, results);
                 return;
             }
 
@@ -143,7 +140,7 @@ public static class B1InputTipsScanner
     }
 
     /// <summary>读取单个输入提示控件，向 tips 添加 (desc, key) 对</summary>
-    static void ReadInputTipsOne(UWidget tipsWidget, HashSet<(string desc, string key)> tips)
+    static void CollectTipsFromWidget(UWidget tipsWidget, HashSet<(string desc, string key)> tips)
     {
         try
         {
@@ -304,5 +301,11 @@ public static class B1InputTipsScanner
             return null;
         var key = string.IsNullOrEmpty(keyName) ? "??" : keyName;
         return $"{desc} {key}";
+    }
+
+    private static string BuildSummary(HashSet<(string desc, string key)> tips, string prefix)
+    {
+        var parts = tips.Select(t => FormatTip(t.key, t.desc));
+        return prefix + string.Join("；", parts);
     }
 }
