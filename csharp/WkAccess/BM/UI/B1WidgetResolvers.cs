@@ -1,7 +1,7 @@
 using CommB1;
 using b1.Localization;
 
-namespace WkAccess.B1.UI;
+namespace WkAccess.BM.UI;
 
 /// <summary>
 /// 控件树导航辅助 — 供 B1WidgetExtractors 内部使用。

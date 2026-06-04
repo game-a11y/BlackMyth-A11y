@@ -1,10 +1,18 @@
-namespace WkAccess.B1.UI;
+using WkAccess.A11y;
+using WkAccess.A11y.UI;
+using WkAccess.A11y.UE;
+using WkAccess.BM;
+
+namespace WkAccess.BM.UI;
 
 /// <summary>
 /// 页面按键提示扫描器 — F1 时扫描当前页面 InputRight/InputLeft 容器及 BUI_InputTipsOne。
 /// </summary>
 public static class B1InputTipsScanner
 {
+    /// <summary>当按键提示扫描完成时触发，由 A11yMod 层订阅并朗读</summary>
+    public static event Action<string>? OnInputTipsScanned;
+
     static bool _initialized;
 
     public static void Init()
@@ -28,7 +36,7 @@ public static class B1InputTipsScanner
             {
                 var summary = BuildSummary(tips, "提示文本 ");
                 A11yLog.Info($"[InputTipsScanner] {summary}");
-                A11yTolk.Speak(summary, false);
+                OnInputTipsScanned?.Invoke(summary);
             }
             else
             {
@@ -139,7 +147,7 @@ public static class B1InputTipsScanner
             // 回退：按名称搜索
             var iconWidget = GSUIUtil.FindChildWidget(uw, "InputIcon")
                           ?? GSUIUtil.FindChildWidget(uw, "ImgKeyIcon");
-            var keyName = Input.GSInputKeyReader.ReadKeyNameFromIcon(iconWidget);
+            var keyName = GSInputKeyReader.ReadKeyNameFromIcon(iconWidget);
 
             var desc = B1WidgetResolvers.FindTextByName(uw, "TxtDesc")
                     ?? B1WidgetResolvers.FindTextByName(uw, "TxtName")
@@ -161,7 +169,7 @@ public static class B1InputTipsScanner
 
         var cn = WkUtils.GetClassName(widget);
         if (cn == "GSInputActionIcon" && ikey == null)
-            ikey = Input.GSInputKeyReader.ReadKeyNameFromIcon(widget);
+            ikey = GSInputKeyReader.ReadKeyNameFromIcon(widget);
         else if ((cn is "TextBlock" or "GSScaleText" or "GSRichScaleText") && idesc == null)
             idesc = ReadTextFromWidget(widget);
 
@@ -194,7 +202,7 @@ public static class B1InputTipsScanner
             // a) 直接的 Icon（GSInputActionIcon）→ 下一个兄弟是 Text
             if (cn == "GSInputActionIcon")
             {
-                var iconKey = Input.GSInputKeyReader.ReadKeyNameFromIcon(child);
+                var iconKey = GSInputKeyReader.ReadKeyNameFromIcon(child);
                 var text = FindNextSiblingText(panel, i, childCount);
                 if (!string.IsNullOrEmpty(text) || !string.IsNullOrEmpty(iconKey))
                 {

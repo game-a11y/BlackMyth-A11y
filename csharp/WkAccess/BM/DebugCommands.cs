@@ -1,4 +1,8 @@
-namespace WkAccess.B1;
+using WkAccess.A11y;
+using WkAccess.A11y.UE;
+using WkAccess.BM.Locale;
+using WkAccess.BM.UI;
+namespace WkAccess.BM;
 
 /// <summary>
 /// 调试信息打印函数集合。快捷键通过 KeyBindings 引用此处的函数。

@@ -1,4 +1,8 @@
+using WkAccess.A11y;
+using WkAccess.A11y.UI;
 using WkAccess.A11yMod;
+using WkAccess.BM;
+using WkAccess.BM.UI;
 
 namespace WkAccess;
 
@@ -32,9 +36,12 @@ public sealed class WkAccess : ICSharpMod
         KeyBindings.RegisterAll();
         B1WidgetExtractors.RegisterAll(UIScreenTextProvider.Register);
 
-        B1.SceneMonitor.Start();
-        B1.UI.B1InputTipsScanner.Init();
+        SceneMonitor.Start();
+        B1InputTipsScanner.Init();
+        B1InputTipsScanner.OnInputTipsScanned += (text) => A11yTolk.Speak(text, false);
         InteractMonitor.Start();
+        InteractSpeaker.Init();
+        UIFocusSpeaker.Init();
         _harmony.PatchAll();
 
         A11yLog.Info($"{ModNameFull} Init END.");
@@ -46,8 +53,8 @@ public sealed class WkAccess : ICSharpMod
 
         _harmony.UnpatchAll();
         InteractMonitor.Stop();
-        B1.SceneMonitor.Stop();
-        
+        SceneMonitor.Stop();
+
 
         A11yLog.Deinit();
     }

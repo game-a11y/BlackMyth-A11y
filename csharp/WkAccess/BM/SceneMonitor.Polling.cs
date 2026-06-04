@@ -1,6 +1,8 @@
+using WkAccess.A11y;
+using WkAccess.A11y.UE;
 using System.Threading;
 
-namespace WkAccess.B1;
+namespace WkAccess.BM;
 
 public static partial class SceneMonitor
 {
@@ -27,10 +29,10 @@ public static partial class SceneMonitor
             }
             catch (Exception ex)
             {
-                A11y.A11yLog.Warning($"[SceneMonitor] 定时器回调异常: {ex.Message}");
+                A11yLog.Warning($"[SceneMonitor] 定时器回调异常: {ex.Message}");
             }
         }, null, 5000, 2000);
-        A11y.A11yLog.Debug("[SceneMonitor] ⏱ 后备定时器已启动 (间隔 2s)");
+        A11yLog.Debug("[SceneMonitor] ⏱ 后备定时器已启动 (间隔 2s)");
     }
 
     static DateTime _lastUiCheck = DateTime.MinValue;
@@ -47,7 +49,7 @@ public static partial class SceneMonitor
             }
             catch (Exception ex)
             {
-                A11y.A11yLog.Warning($"[SceneMonitor] OnTick 获取 World 失败: {ex.Message}");
+                A11yLog.Warning($"[SceneMonitor] OnTick 获取 World 失败: {ex.Message}");
             }
         }
 
@@ -87,7 +89,7 @@ public static partial class SceneMonitor
         }
         catch (Exception ex)
         {
-            A11y.A11yLog.Warning($"[SceneMonitor] PollFsmState 异常: {ex.Message}");
+            A11yLog.Warning($"[SceneMonitor] PollFsmState 异常: {ex.Message}");
         }
     }
 

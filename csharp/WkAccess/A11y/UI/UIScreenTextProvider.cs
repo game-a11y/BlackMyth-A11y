@@ -1,6 +1,7 @@
 using CommB1;
+using WkAccess.A11y.UE;
 
-namespace WkAccess.A11y.UI.Extraction;
+namespace WkAccess.A11y.UI;
 
 /// <summary>
 /// UI 屏幕文本提供器 — 等效于 Lua 的 GetTextFuncMap。

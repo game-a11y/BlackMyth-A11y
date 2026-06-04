@@ -1,4 +1,6 @@
-namespace WkAccess.B1.Input;
+using WkAccess.BM.Locale;
+
+namespace WkAccess.BM;
 
 /// <summary>
 /// 从 UGSInputActionIcon / GSInputActionIcon 读取按键图标信息，映射为人类可读的按键名称。

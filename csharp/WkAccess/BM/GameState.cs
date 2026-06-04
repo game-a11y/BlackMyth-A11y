@@ -1,4 +1,6 @@
-namespace WkAccess.B1;
+using WkAccess.A11y;
+
+namespace WkAccess.BM;
 
 /// <summary>
 /// 游戏场景状态容器：持有当前场景、地图、UI 页面等只读状态，
@@ -41,8 +43,8 @@ public static class GameState
         if (_currentScene == newScene) return;
         var old = _currentScene;
         _currentScene = newScene;
-        A11y.A11yLog.Warning($"[SceneMonitor] 🔔 === 场景切换: {old} -> {newScene} ===");
-        A11y.A11yLog.Info($"[SceneMonitor]     Map={_currentMapName}, LevelId={_currentLevelId}");
+        A11yLog.Warning($"[SceneMonitor] 🔔 === 场景切换: {old} -> {newScene} ===");
+        A11yLog.Info($"[SceneMonitor]     Map={_currentMapName}, LevelId={_currentLevelId}");
     }
 
     internal static void SetMapName(string mapName) => _currentMapName = mapName;

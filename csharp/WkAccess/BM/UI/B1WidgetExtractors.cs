@@ -1,6 +1,10 @@
+using WkAccess.A11y;
+using WkAccess.A11y.UI;
+using WkAccess.A11y.UE;
+using WkAccess.BM;
 using CommB1;
 
-namespace WkAccess.B1.UI;
+namespace WkAccess.BM.UI;
 
 /// <summary>
 /// 游戏特有控件文本提取器。通过 RegisterAll 注册到 UIScreenTextProvider。
@@ -146,7 +150,7 @@ public static class B1WidgetExtractors
         try
         {
             var iconWidget = GSUIUtil.FindChildWidget(w, iconWidgetName);
-            var keyName = Input.GSInputKeyReader.ReadKeyNameFromIcon(iconWidget);
+            var keyName = GSInputKeyReader.ReadKeyNameFromIcon(iconWidget);
             if (!string.IsNullOrEmpty(keyName))
                 return keyName!;
         }
@@ -416,7 +420,7 @@ public static class B1WidgetExtractors
     {
         var name = B1WidgetResolvers.FindTextByName(w, "TxtName");
         var iconWidget = GSUIUtil.FindChildWidget(w, "InputIcon");
-        var keyName = Input.GSInputKeyReader.ReadKeyNameFromIcon(iconWidget);
+        var keyName = GSInputKeyReader.ReadKeyNameFromIcon(iconWidget);
 
         if (!string.IsNullOrEmpty(keyName) && !string.IsNullOrEmpty(name))
             return $"按键 {keyName}: {name}";

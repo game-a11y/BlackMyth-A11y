@@ -1,6 +1,8 @@
 using b1.ECS;
+using WkAccess.A11y;
+using WkAccess.BM.UI;
 
-namespace WkAccess.B1;
+namespace WkAccess.BM;
 
 /// <summary>
 /// 可交互物品无障碍检测 — 挂钩 BPS_PlayerInteractComp.TickForInteractiveActor，
@@ -8,6 +10,9 @@ namespace WkAccess.B1;
 /// </summary>
 public static class InteractMonitor
 {
+    /// <summary>当可交互目标文本变化时触发，由 A11yMod 层订阅并朗读</summary>
+    public static event Action<string>? OnInteractTextChanged;
+
     static EntitySharedRef? _lastBestRef;
     static int _lastUnitId = -1;
 
@@ -39,7 +44,7 @@ public static class InteractMonitor
         _lastUnitId = -1;
     }
 
-    internal static void OnBestInteractChanged(EntitySharedRef? newRef)
+    public static void OnBestInteractChanged(EntitySharedRef? newRef)
     {
         if (newRef == _lastBestRef) return;
         _lastBestRef = newRef;
@@ -60,7 +65,7 @@ public static class InteractMonitor
         if (!string.IsNullOrEmpty(text))
         {
             A11yLog.Info($"[Interact] {text} (UnitID={data.InteractiveUnitID})");
-            A11yTolk.Speak(text!, interrupt: true);
+            OnInteractTextChanged?.Invoke(text!);
         }
     }
 
@@ -89,24 +94,3 @@ public static class InteractMonitor
     }
 }
 
-[HarmonyPatch(typeof(BPS_PlayerInteractComp), "TickForInteractiveActor")]
-static class H_TickForInteractiveActor
-{
-    static readonly AccessTools.FieldRef<BPS_PlayerInteractComp, InteractContext>
-        _getContext = AccessTools.FieldRefAccess<BPS_PlayerInteractComp, InteractContext>("Context");
-
-    static void Postfix(BPS_PlayerInteractComp __instance)
-    {
-        try
-        {
-            var context = _getContext(__instance);
-            if (context?.PlayerInteractData == null) return;
-
-            InteractMonitor.OnBestInteractChanged(context.PlayerInteractData.BestInteractEntityRef);
-        }
-        catch (System.Exception ex)
-        {
-            A11yLog.Error($"[H_TickForInteractiveActor] {ex.Message}");
-        }
-    }
-}

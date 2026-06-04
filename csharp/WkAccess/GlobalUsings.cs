@@ -22,9 +22,4 @@ global using UnrealEngine.Runtime;
 global using UnrealEngine.UMG;
 
 /* WkAccess */
-global using WkAccess.A11y;
-global using WkAccess.A11y.UE;
-global using WkAccess.A11y.UI.Extraction;
-global using WkAccess.B1;
-global using WkAccess.B1.UI;
 global using static WkAccess.BuildInfo;
