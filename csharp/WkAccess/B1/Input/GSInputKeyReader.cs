@@ -24,42 +24,11 @@ public static class GSInputKeyReader
         catch { }
 
         // 回退 1：控件名 → 中文按键名
-        var fallback = MapWidgetNameToKey(iconWidget.GetFName().ToString());
+        var fallback = KeyNameLocale.MapWidgetName(iconWidget.GetFName().ToString());
         if (fallback != null) return fallback;
 
         // 回退 2：控件 FName 原文
         return iconWidget.GetFName().ToString() ?? null;
-    }
-
-    /// <summary>控件名 → 中文按键名（InputA→A键(手柄) 等）</summary>
-    static string? MapWidgetNameToKey(string? widgetName)
-    {
-        if (string.IsNullOrEmpty(widgetName)) return null;
-
-        return widgetName switch
-        {
-            "InputA" => "A键(手柄)",
-            "InputB" => "B键(手柄)",
-            "InputX" => "X键(手柄)",
-            "InputY" => "Y键(手柄)",
-            "InputLB" => "LB键(手柄)",
-            "InputRB" => "RB键(手柄)",
-            "InputLT" => "LT键(手柄)",
-            "InputRT" => "RT键(手柄)",
-            "InputLS" => "左摇杆按下(手柄)",
-            "InputRS" => "右摇杆按下(手柄)",
-            "InputR3" => "右摇杆按下(手柄)",
-            "InputVUGp" => "左摇杆(手柄)",
-            "InputVUKb" => "方向键(键盘)",
-            "InputVDGp" => "十字键(手柄)",
-            "InputVDKb" => "方向键(键盘)",
-            "InputUp" => "方向上键",
-            "InputDown" => "方向下键",
-            "InputLeft" => "方向左键",
-            "InputRight" => "方向右键",
-            "InputIcon" => null,
-            _ => null
-        };
     }
 
     /// <summary>纹理名 → 可读按键名（含回退解析）</summary>

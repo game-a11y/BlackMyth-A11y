@@ -141,61 +141,9 @@ public static class B1InputTipsScanner
             var name = fname?.ToString() ?? "";
             if (string.IsNullOrEmpty(name)) return null;
 
-            return MapFKeyName(name);
+            return KeyNameLocale.MapFKeyName(name);
         }
         catch { return null; }
-    }
-
-    /// <summary>UE4 FKey 名 → 中文可读按键名</summary>
-    static string MapFKeyName(string keyName)
-    {
-        // 常见映射
-        return keyName switch
-        {
-            "SpaceBar" => "空格键",
-            "Enter" => "回车键",
-            "Escape" => "Esc键",
-            "BackSpace" => "退格键",
-            "Delete" => "Delete键",
-            "Tab" => "Tab键",
-            "CapsLock" => "CapsLock键",
-            "LeftShift" => "左Shift键",
-            "RightShift" => "右Shift键",
-            "LeftControl" => "左Ctrl键",
-            "RightControl" => "右Ctrl键",
-            "LeftAlt" => "左Alt键",
-            "RightAlt" => "右Alt键",
-            "Up" => "方向上键",
-            "Down" => "方向下键",
-            "Left" => "方向左键",
-            "Right" => "方向右键",
-            "LeftMouseButton" => "鼠标左键",
-            "RightMouseButton" => "鼠标右键",
-            "MiddleMouseButton" => "鼠标中键",
-            "MouseScrollUp" => "滚轮上",
-            "MouseScrollDown" => "滚轮下",
-            "Gamepad_FaceButton_Bottom" => "A键(手柄)",
-            "Gamepad_FaceButton_Right" => "B键(手柄)",
-            "Gamepad_FaceButton_Left" => "X键(手柄)",
-            "Gamepad_FaceButton_Top" => "Y键(手柄)",
-            "Gamepad_LeftShoulder" => "LB键(手柄)",
-            "Gamepad_RightShoulder" => "RB键(手柄)",
-            "Gamepad_LeftTrigger" => "LT键(手柄)",
-            "Gamepad_RightTrigger" => "RT键(手柄)",
-            "Gamepad_LeftThumbstick" => "左摇杆按下(手柄)",
-            "Gamepad_RightThumbstick" => "右摇杆按下(手柄)",
-            "Gamepad_DPad_Up" => "十字键上(手柄)",
-            "Gamepad_DPad_Down" => "十字键下(手柄)",
-            "Gamepad_DPad_Left" => "十字键左(手柄)",
-            "Gamepad_DPad_Right" => "十字键右(手柄)",
-            "Gamepad_Special_Left" => "View键(手柄)",
-            "Gamepad_Special_Right" => "Menu键(手柄)",
-            _ => keyName.Length switch
-            {
-                1 when char.IsLetterOrDigit(keyName[0]) => $"{keyName}键",
-                _ => keyName
-            }
-        };
     }
 
     // ── BUI_InputTipsOne 控件树扫描 ──

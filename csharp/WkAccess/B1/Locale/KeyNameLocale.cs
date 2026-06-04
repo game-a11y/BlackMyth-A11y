@@ -187,4 +187,79 @@ internal static class KeyNameLocale
         { "PS", "(PS手柄)" },
         { "Gamepad", "(手柄)" },
     };
+
+    /// <summary>控件名 → 中文按键名（GSInputActionIcon 的 FName）</summary>
+    internal static string? MapWidgetName(string? widgetName)
+        => widgetName switch
+        {
+            "InputA" => "A键(手柄)",
+            "InputB" => "B键(手柄)",
+            "InputX" => "X键(手柄)",
+            "InputY" => "Y键(手柄)",
+            "InputLB" => "LB键(手柄)",
+            "InputRB" => "RB键(手柄)",
+            "InputLT" => "LT键(手柄)",
+            "InputRT" => "RT键(手柄)",
+            "InputLS" => "左摇杆按下(手柄)",
+            "InputRS" => "右摇杆按下(手柄)",
+            "InputR3" => "右摇杆按下(手柄)",
+            "InputVUGp" => "左摇杆(手柄)",
+            "InputVUKb" => "方向键(键盘)",
+            "InputVDGp" => "十字键(手柄)",
+            "InputVDKb" => "方向键(键盘)",
+            "InputUp" => "方向上键",
+            "InputDown" => "方向下键",
+            "InputLeft" => "方向左键",
+            "InputRight" => "方向右键",
+            "InputIcon" => null,
+            _ => null
+        };
+
+    /// <summary>UE4 FKey 名 → 中文按键名</summary>
+    internal static string? MapFKeyName(string? keyName)
+        => keyName switch
+        {
+            "SpaceBar" => "空格键",
+            "Enter" => "回车键",
+            "Escape" => "Esc键",
+            "BackSpace" => "退格键",
+            "Delete" => "Delete键",
+            "Tab" => "Tab键",
+            "CapsLock" => "CapsLock键",
+            "LeftShift" => "左Shift键",
+            "RightShift" => "右Shift键",
+            "LeftControl" => "左Ctrl键",
+            "RightControl" => "右Ctrl键",
+            "LeftAlt" => "左Alt键",
+            "RightAlt" => "右Alt键",
+            "Up" => "方向上键",
+            "Down" => "方向下键",
+            "Left" => "方向左键",
+            "Right" => "方向右键",
+            "LeftMouseButton" => "鼠标左键",
+            "RightMouseButton" => "鼠标右键",
+            "MiddleMouseButton" => "鼠标中键",
+            "MouseScrollUp" => "滚轮上",
+            "MouseScrollDown" => "滚轮下",
+            "Gamepad_FaceButton_Bottom" => "A键(手柄)",
+            "Gamepad_FaceButton_Right" => "B键(手柄)",
+            "Gamepad_FaceButton_Left" => "X键(手柄)",
+            "Gamepad_FaceButton_Top" => "Y键(手柄)",
+            "Gamepad_LeftShoulder" => "LB键(手柄)",
+            "Gamepad_RightShoulder" => "RB键(手柄)",
+            "Gamepad_LeftTrigger" => "LT键(手柄)",
+            "Gamepad_RightTrigger" => "RT键(手柄)",
+            "Gamepad_LeftThumbstick" => "左摇杆按下(手柄)",
+            "Gamepad_RightThumbstick" => "右摇杆按下(手柄)",
+            "Gamepad_DPad_Up" => "十字键上(手柄)",
+            "Gamepad_DPad_Down" => "十字键下(手柄)",
+            "Gamepad_DPad_Left" => "十字键左(手柄)",
+            "Gamepad_DPad_Right" => "十字键右(手柄)",
+            "Gamepad_Special_Left" => "View键(手柄)",
+            "Gamepad_Special_Right" => "Menu键(手柄)",
+            null or "" => null,
+            _ => keyName!.Length == 1 && char.IsLetterOrDigit(keyName[0])
+                ? $"{keyName}键"
+                : keyName
+        };
 }
