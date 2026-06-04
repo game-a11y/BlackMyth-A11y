@@ -40,6 +40,7 @@ public sealed class WkAccess : ICSharpMod
         B1InputTipsScanner.OnInputTipsScanned += (text) => A11yTolk.Speak(text, false);
         InteractMonitor.Start();
         InteractSpeaker.Init();
+        UIFocusSpeaker.Init();
         _harmony.PatchAll();
 
         A11yLog.Info($"{ModNameFull} Init END.");

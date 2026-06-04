@@ -14,14 +14,7 @@ static class H_FocusEnter
             if (gsid < 0) return;
             var cn = WkUtils.GetClassName(__instance);
             var text = UIScreenTextProvider.Extract(__instance as UnrealEngine.UMG.UUserWidget);
-            if (!string.IsNullOrEmpty(text))
-            {
-                A11yLog.Debug($"[UI.Focus] 聚焦 {cn}#{gsid}: {text}");
-                A11yTolk.Speak(text!, true);
-            }
-            else
-                A11yLog.Debug($"[UI.Focus] 聚焦 {cn}#{gsid}");
-            UIFocusTracker.NotifyEnter(gsid, cn);
+            UIFocusTracker.NotifyEnter(gsid, cn, text);
         }
         catch (System.Exception ex)
         {

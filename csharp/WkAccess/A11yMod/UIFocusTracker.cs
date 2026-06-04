@@ -6,11 +6,11 @@ namespace WkAccess.A11yMod;
 /// </summary>
 public static class UIFocusTracker
 {
-    public static event Action<int, string>? OnFocusEnter;
+    public static event Action<int, string, string?>? OnFocusEnter;
     public static event Action<int, string>? OnFocusLeave;
 
-    public static void NotifyEnter(int gsid, string className) =>
-        OnFocusEnter?.Invoke(gsid, className);
+    public static void NotifyEnter(int gsid, string className, string? text) =>
+        OnFocusEnter?.Invoke(gsid, className, text);
 
     public static void NotifyLeave(int gsid, string className) =>
         OnFocusLeave?.Invoke(gsid, className);
