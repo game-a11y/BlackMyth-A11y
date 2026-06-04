@@ -23,28 +23,6 @@ static class H_FocusEnter
     }
 }
 
-[HarmonyPatch(typeof(BUI_Widget), "OnRemovedFromFocusPath_Implementation")]
-static class H_FocusLeave
-{
-    static void Postfix(BUI_Widget __instance)
-    {
-        try
-        {
-            if (__instance is BUI_Button btn)
-            {
-                var gsid = btn.GetGSID();
-                if (gsid < 0) return;
-                var cn = WkUtils.GetClassName(__instance);
-                UIFocusTracker.NotifyLeave(gsid, cn);
-            }
-        }
-        catch (System.Exception ex)
-        {
-            A11yLog.Error($"[H_FocusLeave] {ex.Message}");
-        }
-    }
-}
-
 [HarmonyPatch(typeof(BUI_Button), "OnMouseButtonDown_Implementation")]
 static class H_MouseDown
 {
