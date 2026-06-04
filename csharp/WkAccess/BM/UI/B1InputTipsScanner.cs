@@ -204,9 +204,9 @@ public static class B1InputTipsScanner
             {
                 var iconKey = GSInputKeyReader.ReadKeyNameFromIcon(child);
                 var text = FindNextSiblingText(panel, i, childCount);
-                if (!string.IsNullOrEmpty(text) || !string.IsNullOrEmpty(iconKey))
+                if (!string.IsNullOrEmpty(text))
                 {
-                    tips.Add((text ?? "", iconKey ?? "??"));
+                    tips.Add((text!, iconKey ?? "??"));
                 }
                 continue;
             }
@@ -274,18 +274,19 @@ public static class B1InputTipsScanner
         return null;
     }
 
-    /// <summary>格式化 "描述 按键名"。desc 为空时返回 null。</summary>
+    /// <summary>格式化提示文本。使用原始按键名，后期根据键盘-手柄转换。</summary>
     static string? FormatTip(string? keyName, string? desc)
     {
         if (string.IsNullOrEmpty(desc))
             return null;
         var key = string.IsNullOrEmpty(keyName) ? "??" : keyName;
+        // TODO: 后期根据键盘-手柄转换 keyName
         return $"{desc} {key}";
     }
 
     private static string BuildSummary(HashSet<(string desc, string key)> tips, string prefix)
     {
-        var parts = tips.Select(t => FormatTip(t.key, t.desc));
+        var parts = tips.Select(t => FormatTip(t.key, t.desc)).Where(s => !string.IsNullOrEmpty(s));
         return prefix + string.Join("；", parts);
     }
 }
