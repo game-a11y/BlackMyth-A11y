@@ -142,4 +142,29 @@ internal static class WidgetTreeDumper
             log($"{indent}[{depth}] (error: {ex.Message})");
         }
     }
+
+    /// <summary>递归按名称查找子控件，穿透 UUserWidget.WidgetTree</summary>
+    public static UWidget? FindChildByName(UWidget root, string name)
+    {
+        if (root == null || !root.IsValidLowLevel())
+            return null;
+
+        var deref = Dereference(root);
+        if (deref != root) return FindChildByName(deref, name);
+
+        if (root.GetFName().ToString() == name)
+            return root;
+
+        if (root is UPanelWidget panel)
+        {
+            var childCount = panel.GetChildrenCount();
+            for (int i = 0; i < childCount; i++)
+            {
+                var found = FindChildByName(panel.GetChildAt(i), name);
+                if (found != null) return found;
+            }
+        }
+
+        return null;
+    }
 }

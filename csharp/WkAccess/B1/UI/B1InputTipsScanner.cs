@@ -56,7 +56,7 @@ public static class B1InputTipsScanner
         {
             root = WidgetTreeDumper.Dereference(root);
 
-            var container = FindChildWidgetByName(root, containerName);
+            var container = WidgetTreeDumper.FindChildByName(root, containerName);
             if (container is UPanelWidget panel)
             {
                 var childCount = panel.GetChildrenCount();
@@ -72,34 +72,6 @@ public static class B1InputTipsScanner
         {
             A11yLog.Debug($"[InputTipsScanner] FindInputTipsInContainer({containerName}) 异常: {ex.Message}");
         }
-    }
-
-    /// <summary>递归按名称查找子控件，穿透 UUserWidget.WidgetTree</summary>
-    static UWidget? FindChildWidgetByName(UWidget root, string name)
-    {
-        if (root == null || !root.IsValidLowLevel())
-            return null;
-
-        // 先穿透 UUserWidget
-        var deref = WidgetTreeDumper.Dereference(root);
-        if (deref != root) return FindChildWidgetByName(deref, name);
-
-        // 检查自身
-        if (root.GetFName().ToString() == name)
-            return root;
-
-        // 遍历子节点
-        if (root is UPanelWidget panel)
-        {
-            var childCount = panel.GetChildrenCount();
-            for (int i = 0; i < childCount; i++)
-            {
-                var found = FindChildWidgetByName(panel.GetChildAt(i), name);
-                if (found != null) return found;
-            }
-        }
-
-        return null;
     }
 
     /// <summary>递归遍历 widget 树，收集 BUI_InputTipsOne 的按键提示文本</summary>
