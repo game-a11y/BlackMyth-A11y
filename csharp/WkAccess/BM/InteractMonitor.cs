@@ -1,6 +1,6 @@
 using b1.ECS;
 
-namespace WkAccess.B1;
+namespace WkAccess.BM;
 
 /// <summary>
 /// 可交互物品无障碍检测 — 挂钩 BPS_PlayerInteractComp.TickForInteractiveActor，

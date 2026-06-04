@@ -1,4 +1,4 @@
-namespace WkAccess.B1;
+namespace WkAccess.BM;
 
 /// <summary>
 /// 游戏场景状态容器：持有当前场景、地图、UI 页面等只读状态，

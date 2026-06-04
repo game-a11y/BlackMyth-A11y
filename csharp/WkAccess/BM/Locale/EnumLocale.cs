@@ -1,4 +1,4 @@
-namespace WkAccess.B1;
+namespace WkAccess.BM;
 
 /// <summary>
 /// 游戏枚举 → 中文显示名 集中翻译。

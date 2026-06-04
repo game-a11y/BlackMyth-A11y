@@ -1,6 +1,6 @@
 using CommB1;
 
-namespace WkAccess.B1.UI;
+namespace WkAccess.BM.UI;
 
 /// <summary>
 /// 游戏特有控件文本提取器。通过 RegisterAll 注册到 UIScreenTextProvider。

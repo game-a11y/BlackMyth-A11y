@@ -1,4 +1,4 @@
-namespace WkAccess.B1;
+namespace WkAccess.BM;
 
 /// <summary>
 /// 场景检测驱动：订阅游戏事件、轮询 FSM 状态、驱动 GameState 更新。

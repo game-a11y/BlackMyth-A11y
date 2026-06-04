@@ -1,6 +1,6 @@
 using System.Threading;
 
-namespace WkAccess.B1;
+namespace WkAccess.BM;
 
 public static partial class SceneMonitor
 {

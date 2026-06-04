@@ -25,6 +25,6 @@ global using UnrealEngine.UMG;
 global using WkAccess.A11y;
 global using WkAccess.A11y.UE;
 global using WkAccess.A11y.UI.Extraction;
-global using WkAccess.B1;
-global using WkAccess.B1.UI;
+global using WkAccess.BM;
+global using WkAccess.BM.UI;
 global using static WkAccess.BuildInfo;

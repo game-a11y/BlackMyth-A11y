@@ -32,8 +32,8 @@ public sealed class WkAccess : ICSharpMod
         KeyBindings.RegisterAll();
         B1WidgetExtractors.RegisterAll(UIScreenTextProvider.Register);
 
-        B1.SceneMonitor.Start();
-        B1.UI.B1InputTipsScanner.Init();
+        SceneMonitor.Start();
+        B1InputTipsScanner.Init();
         InteractMonitor.Start();
         _harmony.PatchAll();
 
@@ -46,7 +46,7 @@ public sealed class WkAccess : ICSharpMod
 
         _harmony.UnpatchAll();
         InteractMonitor.Stop();
-        B1.SceneMonitor.Stop();
+        SceneMonitor.Stop();
         
 
         A11yLog.Deinit();

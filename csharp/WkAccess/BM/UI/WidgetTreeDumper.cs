@@ -1,4 +1,4 @@
-namespace WkAccess.B1.UI;
+namespace WkAccess.BM.UI;
 
 /// <summary>
 /// 控件树遍历/转储工具。

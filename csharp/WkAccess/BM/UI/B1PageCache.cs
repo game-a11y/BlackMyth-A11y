@@ -1,4 +1,4 @@
-namespace WkAccess.B1.UI;
+namespace WkAccess.BM.UI;
 
 /// <summary>挂钩 BUI_Widget.Construct，缓存全局唯一页面引用</summary>
 [HarmonyPatch(typeof(BUI_Widget), "Construct_Implementation")]

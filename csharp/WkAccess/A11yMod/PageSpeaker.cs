@@ -52,7 +52,7 @@ internal static class PageSpeaker
             var order = cfg?.Order.ToString() ?? "?";
             A11yLog.Debug($"[PageSpeaker] TopPage: PageID={pageId}  {name}  UIName={uiName}  Order={order}");
 
-            B1.UI.B1InputTipsScanner.ScanAndSpeak(pageId);
+            B1InputTipsScanner.ScanAndSpeak(pageId);
         }
 
         if (GameState.VisiblePages.Count > 0)

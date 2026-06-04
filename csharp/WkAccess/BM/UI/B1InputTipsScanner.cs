@@ -1,4 +1,4 @@
-namespace WkAccess.B1.UI;
+namespace WkAccess.BM.UI;
 
 /// <summary>
 /// 页面按键提示扫描器 — F1 时扫描当前页面 InputRight/InputLeft 容器及 BUI_InputTipsOne。
