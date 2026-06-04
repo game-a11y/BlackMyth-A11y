@@ -40,15 +40,17 @@ Root/
 │   ├── B1CSharpLoader/          # C# 加载器框架（来自上游）
 │   ├── docs/                    # C# 开发文档
 │   ├── WkAccess/                # ** 无障碍 Mod 源码 **
-│   │   ├── A11y/                # 日志、TTS、UE 工具、UI 文本提取
-│   │   │   ├── A11yLog.cs / A11yTolk.cs
-│   │   │   ├── UE/WkUtils.cs
-│   │   │   └── UI/UIScreenTextProvider.cs
-│   │   ├── A11yMod/             # Harmony Patch（Focus/Input/Keys）
-│   │   ├── B1/                  # 游戏逻辑（场景/交互/UI 解析）
+│   │   ├── A11y/                # 跨游戏基础（日志、TTS、文本提取）
+│   │   │   ├── A11yLog.cs / A11yTolk.cs / UIScreenTextProvider.cs
+│   │   │   └── UE/WkUtils.cs
+│   │   ├── A11yMod/             # 无障碍策略 + Patches
+│   │   │   ├── KeyBindings.cs / PageSpeaker.cs / UIFocusTracker.cs
+│   │   │   └── Patches/         # Harmony Patch（Focus/Input/Keys）
+│   │   ├── BM/                  # 游戏数据层（场景/交互/UI 解析）
 │   │   │   ├── SceneMonitor.cs / GameState.cs
 │   │   │   ├── InteractMonitor.cs / DebugCommands.cs
-│   │   │   └── UI/              # Widget 提取器/解析器
+│   │   │   ├── EnumLocale.cs / KeyNameLocale.cs / GSInputKeyReader.cs
+│   │   │   └── UI/              # Widget 提取器/解析器/控件树工具
 │   │   ├── ModMain.cs           # Mod 入口 + 生命周期
 │   │   └── BuildInfo.cs / GlobalUsings.cs
 │   └── WkAccess-MOD/            # 游戏部署文件
@@ -95,7 +97,7 @@ scope 为模块名，按功能域划分，不具体到类/文件，例如：
 
 | type | scope 示例 |
 |---|---|
-| `cs` | `A11y.UI`, `B1`, `KeyBindings` |
+| `cs` | `A11y`, `BM`, `A11yMod`, `BM.UI` |
 | `lua` | `WkUIHook`, `WkConfig` |
 | `docs` | `DLL`, `CLAUDE`, `csharp_dev` |
 | `ref` | `GameDll` |
