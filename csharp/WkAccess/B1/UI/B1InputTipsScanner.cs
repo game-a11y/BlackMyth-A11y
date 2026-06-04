@@ -1,7 +1,3 @@
-using UnrealEngine.Engine;
-using UnrealEngine.Plugins.EnhancedInput;
-using b1.Plugins.GSInput;
-
 namespace WkAccess.B1.UI;
 
 /// <summary>
@@ -40,110 +36,8 @@ public static class B1InputTipsScanner
                 var summary = BuildSummary(tips, "提示文本 ");
                 A11yLog.Info($"[InputTipsScanner] {summary}");
                 A11yTolk.Speak(summary, false);
-                return;
             }
         }
-
-        // 回退：从 InputTipsConfig 数据资产读取
-        ScanViaInputTipsConfig(pageId);
-    }
-
-    // ── 回退：InputTipsConfig 数据资产读取 ──
-
-    static void ScanViaInputTipsConfig(int pageId)
-    {
-        try
-        {
-            var tips = ReadTipsFromConfig(pageId);
-            if (tips.Count == 0)
-            {
-                A11yLog.Debug($"[InputTipsScanner] {(EnPageID)pageId} 配置中也未找到按键提示");
-                return;
-            }
-            var summary = BuildSummary(tips, "操作提示：");
-            A11yLog.Info($"[InputTipsScanner] (配置) {summary}");
-            A11yTolk.Speak(summary, false);
-        }
-        catch (Exception ex)
-        {
-            A11yLog.Warning($"[InputTipsScanner] 读取配置失败: {ex.Message}");
-        }
-    }
-
-    static HashSet<(string desc, string key)> ReadTipsFromConfig(int pageId)
-    {
-        var tips = new HashSet<(string desc, string key)>();
-
-        try
-        {
-            var pageType = GSEUtil.GetPageTypebyPageID(pageId);
-            if (pageType == EUIPageType.None) return tips;
-
-            var world = WkUtils.GetWorld();
-            if (world == null) return tips;
-            var preloadMgr = BGW_PreloadAssetMgr.Get(world);
-            var config = preloadMgr?.UIConfigDataAsset?.InputTipsConfig;
-            if (config == null) return tips;
-
-            if (!config.TryGetValue(pageType, out var leftRightCfg))
-                return tips;
-
-            var pc = UGSE_EngineFuncLib.GetFirstLocalPlayerController(world);
-            CollectTipsFromCfg(leftRightCfg.LeftInputTipsCfg, pc, tips);
-            CollectTipsFromCfg(leftRightCfg.RightInputTipsCfg, pc, tips);
-
-            A11yLog.Debug($"[InputTipsScanner] 配置 {(EnPageID)pageId} 共 {tips.Count} 条");
-        }
-        catch (Exception ex)
-        {
-            A11yLog.Debug($"[InputTipsScanner] ReadTipsFromConfig 异常: {ex.Message}");
-        }
-
-        return tips;
-    }
-
-    static void CollectTipsFromCfg(FInputTipsCfg cfg, APlayerController? pc, HashSet<(string desc, string key)> tips)
-    {
-        if (cfg.AwalysShowInput.InputActionList == null)
-            return;
-
-        foreach (var entry in cfg.AwalysShowInput.InputActionList)
-        {
-            var desc = entry.TxtDesc?.ToString();
-            if (string.IsNullOrEmpty(desc)) continue;
-
-            var keyName = QueryKeyForAction(pc, entry.InputAction);
-
-            tips.Add((desc!, keyName ?? "??"));
-        }
-    }
-
-    static string? QueryKeyForAction(APlayerController? pc, UInputAction? action)
-    {
-        if (pc == null || action == null) return null;
-
-        try
-        {
-            var keys = UGSE_InputFuncLib.QueryKeysMappedToAction(pc, action);
-            if (keys is { Count: > 0 })
-                return FKeyToName(keys[0]);
-        }
-        catch { }
-
-        return null;
-    }
-
-    static string? FKeyToName(object key)
-    {
-        try
-        {
-            var fname = key.GetType().GetMethod("GetFName")?.Invoke(key, null);
-            var name = fname?.ToString() ?? "";
-            if (string.IsNullOrEmpty(name)) return null;
-
-            return KeyNameLocale.MapFKeyName(name);
-        }
-        catch { return null; }
     }
 
     // ── BUI_InputTipsOne 控件树扫描 ──
