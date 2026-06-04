@@ -57,11 +57,7 @@ public static class B1InputTipsScanner
     {
         try
         {
-            if (root is UUserWidget uw)
-            {
-                var treeRoot = WidgetTreeDumper.GetWidgetTreeRoot(uw);
-                if (treeRoot != null) root = treeRoot;
-            }
+            root = WidgetTreeDumper.Dereference(root);
 
             var container = FindChildWidgetByName(root, containerName);
             if (container is UPanelWidget panel)
@@ -88,11 +84,8 @@ public static class B1InputTipsScanner
             return null;
 
         // 先穿透 UUserWidget
-        if (root is UUserWidget uw)
-        {
-            var treeRoot = WidgetTreeDumper.GetWidgetTreeRoot(uw);
-            if (treeRoot != null) return FindChildWidgetByName(treeRoot, name);
-        }
+        var deref = WidgetTreeDumper.Dereference(root);
+        if (deref != root) return FindChildWidgetByName(deref, name);
 
         // 检查自身
         if (root.GetFName().ToString() == name)
@@ -129,14 +122,11 @@ public static class B1InputTipsScanner
             }
 
             // UUserWidget：进入 WidgetTree.RootWidget
-            if (widget is UUserWidget uw)
+            var deref = WidgetTreeDumper.Dereference(widget);
+            if (deref != widget)
             {
-                var root = WidgetTreeDumper.GetWidgetTreeRoot(uw);
-                if (root != null)
-                {
-                    FindInputTipsRecursive(root, results, depth + 1, maxDepth);
-                    return;
-                }
+                FindInputTipsRecursive(deref!, results, depth + 1, maxDepth);
+                return;
             }
 
             if (widget is UPanelWidget panel)
@@ -160,20 +150,18 @@ public static class B1InputTipsScanner
             if (tipsWidget is not UUserWidget uw)
                 return;
 
-            // BI_InputOne_C 特殊处理：穿透 WidgetTree 后递归找 GSInputActionIcon + Text
+            // BI_InputOne_C 特殊处理
             if (WkUtils.GetClassName(uw) == "BI_InputOne_C")
             {
-                var iroot = WidgetTreeDumper.GetWidgetTreeRoot(uw);
                 string? ikey = null, idesc = null;
-                CollectKeyAndText(iroot, ref ikey, ref idesc);
+                CollectKeyAndText(uw, ref ikey, ref idesc);
                 if (!string.IsNullOrEmpty(idesc))
                     tips.Add((idesc!, ikey ?? "??"));
                 return;
             }
 
             // 通用路径：进入根 Panel，收集所有 Icon+Text 对
-            var root = WidgetTreeDumper.GetWidgetTreeRoot(uw);
-            if (root is UPanelWidget rootPanel)
+            if (WidgetTreeDumper.Dereference(uw) is UPanelWidget rootPanel)
             {
                 CollectIconTextPairs(rootPanel, tips);
                 return;
@@ -199,11 +187,8 @@ public static class B1InputTipsScanner
     {
         if (depth > 8 || widget == null || !widget.IsValidLowLevel()) return;
 
-        if (widget is UUserWidget uw)
-        {
-            var root = WidgetTreeDumper.GetWidgetTreeRoot(uw);
-            if (root != null) { CollectKeyAndText(root, ref ikey, ref idesc, depth + 1); return; }
-        }
+        var deref = WidgetTreeDumper.Dereference(widget);
+        if (deref != widget) { CollectKeyAndText(deref!, ref ikey, ref idesc, depth + 1); return; }
 
         var cn = WkUtils.GetClassName(widget);
         if (cn == "GSInputActionIcon" && ikey == null)

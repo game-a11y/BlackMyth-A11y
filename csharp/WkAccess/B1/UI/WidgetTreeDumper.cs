@@ -6,6 +6,17 @@ namespace WkAccess.B1.UI;
 /// </summary>
 internal static class WidgetTreeDumper
 {
+    /// <summary>若为 UUserWidget 则穿透到 WidgetTree 根 Panel，否则返回自身</summary>
+    public static UWidget? Dereference(UWidget? widget)
+    {
+        if (widget is UUserWidget uw)
+        {
+            var root = GetWidgetTreeRoot(uw);
+            if (root != null) return root;
+        }
+        return widget;
+    }
+
     /// <summary>通过反射获取 UUserWidget 的根 Panel，绕过 C# 绑定缺失</summary>
     public static UWidget? GetWidgetTreeRoot(UUserWidget uw)
     {
