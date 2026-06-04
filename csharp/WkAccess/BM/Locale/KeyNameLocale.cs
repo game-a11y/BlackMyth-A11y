@@ -1,4 +1,4 @@
-namespace WkAccess.BM;
+namespace WkAccess.BM.Locale;
 
 /// <summary>
 /// 按键图标纹理名 → 可读按键名 翻译。

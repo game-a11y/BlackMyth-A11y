@@ -1,5 +1,6 @@
 using WkAccess.A11y;
 using WkAccess.A11y.UE;
+using WkAccess.BM.Locale;
 using WkAccess.BM.UI;
 namespace WkAccess.BM;
 

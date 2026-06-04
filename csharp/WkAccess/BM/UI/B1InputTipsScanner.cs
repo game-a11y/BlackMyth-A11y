@@ -1,5 +1,8 @@
 using WkAccess.A11y;
+using WkAccess.A11y.UI;
 using WkAccess.A11y.UE;
+using WkAccess.BM;
+
 namespace WkAccess.BM.UI;
 
 /// <summary>
@@ -144,7 +147,7 @@ public static class B1InputTipsScanner
             // 回退：按名称搜索
             var iconWidget = GSUIUtil.FindChildWidget(uw, "InputIcon")
                           ?? GSUIUtil.FindChildWidget(uw, "ImgKeyIcon");
-            var keyName = Input.GSInputKeyReader.ReadKeyNameFromIcon(iconWidget);
+            var keyName = GSInputKeyReader.ReadKeyNameFromIcon(iconWidget);
 
             var desc = B1WidgetResolvers.FindTextByName(uw, "TxtDesc")
                     ?? B1WidgetResolvers.FindTextByName(uw, "TxtName")
@@ -166,7 +169,7 @@ public static class B1InputTipsScanner
 
         var cn = WkUtils.GetClassName(widget);
         if (cn == "GSInputActionIcon" && ikey == null)
-            ikey = Input.GSInputKeyReader.ReadKeyNameFromIcon(widget);
+            ikey = GSInputKeyReader.ReadKeyNameFromIcon(widget);
         else if ((cn is "TextBlock" or "GSScaleText" or "GSRichScaleText") && idesc == null)
             idesc = ReadTextFromWidget(widget);
 
@@ -199,7 +202,7 @@ public static class B1InputTipsScanner
             // a) 直接的 Icon（GSInputActionIcon）→ 下一个兄弟是 Text
             if (cn == "GSInputActionIcon")
             {
-                var iconKey = Input.GSInputKeyReader.ReadKeyNameFromIcon(child);
+                var iconKey = GSInputKeyReader.ReadKeyNameFromIcon(child);
                 var text = FindNextSiblingText(panel, i, childCount);
                 if (!string.IsNullOrEmpty(text) || !string.IsNullOrEmpty(iconKey))
                 {
