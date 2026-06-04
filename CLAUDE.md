@@ -16,7 +16,7 @@
 > **注意：** 仓库中的 `GameDir` 软链接指向本地游戏安装目录，用于 Mod 部署和调试。  
 > 具体 Mod 部署通过各部分的 `*Mods-*` / `*.lnk` 软链接指向游戏目录下的对应位置。
 
-C# Mod 开发指引见 [csharp/docs/csharp_dev.md](csharp/docs/csharp_dev.md)。
+C# Mod 开发指引见 [csharp/docs/csharp_dev.md](csharp/docs/csharp_dev.md)。架构规范见 [csharp/docs/architecture.md](csharp/docs/architecture.md)。
 
 ## 项目结构
 
@@ -38,19 +38,11 @@ Root/
 │
 ├── 📦 C# 部分 (csharp/)
 │   ├── B1CSharpLoader/          # C# 加载器框架（来自上游）
-│   ├── docs/                    # C# 开发文档
-│   ├── WkAccess/                # ** 无障碍 Mod 源码 **
+│   ├── docs/                    # C# 开发文档 + 架构规范
+│   ├── WkAccess/                # 无障碍 Mod 源码（详见架构规范）
 │   │   ├── A11y/                # 跨游戏基础（日志、TTS、文本提取）
-│   │   │   ├── A11yLog.cs / A11yTolk.cs / UIScreenTextProvider.cs
-│   │   │   └── UE/WkUtils.cs
-│   │   ├── A11yMod/             # 无障碍策略 + Patches
-│   │   │   ├── KeyBindings.cs / PageSpeaker.cs / UIFocusTracker.cs
-│   │   │   └── Patches/         # Harmony Patch（Focus/Input/Keys）
+│   │   ├── A11yMod/             # 无障碍策略 + Harmony Patch
 │   │   ├── BM/                  # 游戏数据层（场景/交互/UI 解析）
-│   │   │   ├── SceneMonitor.cs / GameState.cs
-│   │   │   ├── InteractMonitor.cs / DebugCommands.cs
-│   │   │   ├── EnumLocale.cs / KeyNameLocale.cs / GSInputKeyReader.cs
-│   │   │   └── UI/              # Widget 提取器/解析器/控件树工具
 │   │   ├── ModMain.cs           # Mod 入口 + 生命周期
 │   │   └── BuildInfo.cs / GlobalUsings.cs
 │   └── WkAccess-MOD/            # 游戏部署文件
@@ -107,8 +99,8 @@ scope 为模块名，按功能域划分，不具体到类/文件，例如：
 示例：
 
 ```
-cs(A11y.UI): 设置菜单完整朗读（类型 - 名称 - 值）
-cs(A11y.UI): 日志格式统一为 {cn}#{gsid}
+cs(A11y): 设置菜单完整朗读（类型 - 名称 - 值）
+cs(A11yMod): 日志格式统一为 {cn}#{gsid}
 docs(DLL): 添加 GameDLL 类导航文档
 lua(WkUIHook): 更新读屏焦点跟随逻辑
 chore: 忽略 mod 文件夹软连接
