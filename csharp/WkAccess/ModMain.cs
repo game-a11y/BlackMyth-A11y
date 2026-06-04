@@ -37,6 +37,7 @@ public sealed class WkAccess : ICSharpMod
 
         SceneMonitor.Start();
         B1InputTipsScanner.Init();
+        B1InputTipsScanner.OnInputTipsScanned += (text) => A11yTolk.Speak(text, false);
         InteractMonitor.Start();
         InteractSpeaker.Init();
         _harmony.PatchAll();

@@ -7,6 +7,9 @@ namespace WkAccess.BM.UI;
 /// </summary>
 public static class B1InputTipsScanner
 {
+    /// <summary>当按键提示扫描完成时触发，由 A11yMod 层订阅并朗读</summary>
+    public static event Action<string>? OnInputTipsScanned;
+
     static bool _initialized;
 
     public static void Init()
@@ -30,7 +33,7 @@ public static class B1InputTipsScanner
             {
                 var summary = BuildSummary(tips, "提示文本 ");
                 A11yLog.Info($"[InputTipsScanner] {summary}");
-                A11yTolk.Speak(summary, false);
+                OnInputTipsScanned?.Invoke(summary);
             }
             else
             {
