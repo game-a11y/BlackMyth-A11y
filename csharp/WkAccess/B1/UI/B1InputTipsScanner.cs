@@ -19,6 +19,12 @@ public static class B1InputTipsScanner
         A11yLog.Debug("[InputTipsScanner] 已初始化 (F1 手动触发)");
     }
 
+    private static string BuildSummary(HashSet<(string desc, string key)> tips, string prefix)
+    {
+        var parts = tips.Select(t => FormatTip(t.key, t.desc));
+        return prefix + string.Join("；", parts);
+    }
+
     public static void ScanAndSpeak(int pageId)
     {
         var pageWidget = GetPageWidget(pageId);
@@ -31,8 +37,7 @@ public static class B1InputTipsScanner
 
             if (tips.Count > 0)
             {
-                var parts = tips.Select(t => FormatTip(t.key, t.desc));
-                var summary = "提示文本 " + string.Join("；", parts);
+                var summary = BuildSummary(tips, "提示文本 ");
                 A11yLog.Info($"[InputTipsScanner] {summary}");
                 A11yTolk.Speak(summary, false);
                 return;
@@ -55,8 +60,7 @@ public static class B1InputTipsScanner
                 A11yLog.Debug($"[InputTipsScanner] {(EnPageID)pageId} 配置中也未找到按键提示");
                 return;
             }
-            var parts = tips.Select(t => FormatTip(t.key, t.desc));
-            var summary = "操作提示：" + string.Join("；", parts);
+            var summary = BuildSummary(tips, "操作提示：");
             A11yLog.Info($"[InputTipsScanner] (配置) {summary}");
             A11yTolk.Speak(summary, false);
         }
@@ -346,10 +350,8 @@ public static class B1InputTipsScanner
                 tips.Add((desc!, keyName ?? "??"));
         }
         catch { }
-        return;
     }
 
-    /// <summary>扫描 Panel 的直接子节点，收集相邻 Icon+Text 对</summary>
     /// <summary>递归收集第一个 GSInputActionIcon 和 Text/ScaleText，存入 ref 参数</summary>
     static void CollectKeyAndText(UWidget? widget, ref string? ikey, ref string? idesc, int depth = 0)
     {
@@ -364,7 +366,7 @@ public static class B1InputTipsScanner
         var cn = WkUtils.GetClassName(widget);
         if (cn == "GSInputActionIcon" && ikey == null)
             ikey = Input.GSInputKeyReader.ReadKeyNameFromIcon(widget);
-        else if (cn is "TextBlock" or "GSScaleText" or "GSRichScaleText" && idesc == null)
+        else if ((cn is "TextBlock" or "GSScaleText" or "GSRichScaleText") && idesc == null)
             idesc = ReadTextFromWidget(widget);
 
         // 两个都找到就停
