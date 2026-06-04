@@ -35,14 +35,14 @@ internal static class PageSpeaker
         else
             parts.Add($"当前场景：{sceneName}");
 
-        // 地图 + 关卡
-        if (!string.IsNullOrEmpty(GameState.CurrentMapName)
-            && GameState.CurrentMapName != "None")
-        {
-            parts.Add($"地图：{GameState.CurrentMapName}");
-        }
-        if (GameState.CurrentLevelId > 0)
-            parts.Add($"关卡ID：{GameState.CurrentLevelId}");
+        // TODO: 等能输出有效信息后再恢复地图和关卡ID
+        // if (!string.IsNullOrEmpty(GameState.CurrentMapName)
+        //     && GameState.CurrentMapName != "None")
+        // {
+        //     parts.Add($"地图：{GameState.CurrentMapName}");
+        // }
+        // if (GameState.CurrentLevelId > 0)
+        //     parts.Add($"关卡ID：{GameState.CurrentLevelId}");
 
         var description = string.Join("。", parts);
         A11yTolk.Speak(description, interrupt: true);
