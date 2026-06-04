@@ -58,11 +58,12 @@ public static class B1InputTipsScanner
     }
 
     /// <summary>在控件树中按名称查找容器（如 InputRight），读取其所有子节点作为按键提示</summary>
-    static void FindInputTipsInContainer(UWidget root, string containerName, HashSet<(string desc, string key)> tips)
+    static void FindInputTipsInContainer(UWidget? root, string containerName, HashSet<(string desc, string key)> tips)
     {
         try
         {
             root = WidgetTreeDumper.Dereference(root);
+            if (root == null) return;
 
             var container = WidgetTreeDumper.FindChildByName(root, containerName);
             if (container is UPanelWidget panel)

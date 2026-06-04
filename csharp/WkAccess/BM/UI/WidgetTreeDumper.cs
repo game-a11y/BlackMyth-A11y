@@ -146,7 +146,7 @@ internal static class WidgetTreeDumper
     }
 
     /// <summary>递归按名称查找子控件，穿透 UUserWidget.WidgetTree</summary>
-    public static UWidget? FindChildByName(UWidget root, string name)
+    public static UWidget? FindChildByName(UWidget? root, string name)
     {
         if (root == null || !root.IsValidLowLevel())
             return null;
