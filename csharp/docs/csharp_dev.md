@@ -1,5 +1,7 @@
 # C# Mod 开发
 
+> 架构规范见 [architecture.md](architecture.md)
+
 ## 编译
 
 ### 方式一：构建脚本（推荐）
