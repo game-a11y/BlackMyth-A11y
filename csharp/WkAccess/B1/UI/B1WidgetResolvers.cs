@@ -24,6 +24,13 @@ internal static class B1WidgetResolvers
                 var t = m.Invoke(w, null)?.ToString();
                 if (!string.IsNullOrEmpty(t)) return t;
             }
+            // Text 属性 fallback（GSRichScaleText 等）
+            var textProp = w.GetType().GetProperty("Text");
+            if (textProp != null)
+            {
+                var t = textProp.GetValue(w)?.ToString();
+                if (!string.IsNullOrEmpty(t)) return t;
+            }
             if (w is UUserWidget uw)
             {
                 var p = uw.GetType().GetProperty("Content");
