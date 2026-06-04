@@ -1,3 +1,4 @@
+using WkAccess.A11y;
 namespace WkAccess.BM.UI;
 
 /// <summary>全局唯一页面的缓存引用</summary>

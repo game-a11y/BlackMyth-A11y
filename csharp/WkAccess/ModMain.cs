@@ -1,4 +1,7 @@
+using WkAccess.A11y;
 using WkAccess.A11yMod;
+using WkAccess.BM;
+using WkAccess.BM.UI;
 
 namespace WkAccess;
 
@@ -47,7 +50,7 @@ public sealed class WkAccess : ICSharpMod
         _harmony.UnpatchAll();
         InteractMonitor.Stop();
         SceneMonitor.Stop();
-        
+
 
         A11yLog.Deinit();
     }

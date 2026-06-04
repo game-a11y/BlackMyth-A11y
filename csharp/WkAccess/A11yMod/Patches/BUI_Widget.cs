@@ -1,3 +1,4 @@
+using WkAccess.BM.UI;
 namespace WkAccess.A11yMod.Patches;
 
 [HarmonyPatch(typeof(BUI_Widget), "Construct_Implementation")]

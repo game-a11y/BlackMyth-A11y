@@ -1,4 +1,6 @@
 using b1.ECS;
+using WkAccess.A11y;
+using WkAccess.BM;
 
 namespace WkAccess.A11yMod.Patches;
 
