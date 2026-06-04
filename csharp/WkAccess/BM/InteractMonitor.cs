@@ -39,7 +39,7 @@ public static class InteractMonitor
         _lastUnitId = -1;
     }
 
-    internal static void OnBestInteractChanged(EntitySharedRef? newRef)
+    public static void OnBestInteractChanged(EntitySharedRef? newRef)
     {
         if (newRef == _lastBestRef) return;
         _lastBestRef = newRef;
@@ -89,24 +89,3 @@ public static class InteractMonitor
     }
 }
 
-[HarmonyPatch(typeof(BPS_PlayerInteractComp), "TickForInteractiveActor")]
-static class H_TickForInteractiveActor
-{
-    static readonly AccessTools.FieldRef<BPS_PlayerInteractComp, InteractContext>
-        _getContext = AccessTools.FieldRefAccess<BPS_PlayerInteractComp, InteractContext>("Context");
-
-    static void Postfix(BPS_PlayerInteractComp __instance)
-    {
-        try
-        {
-            var context = _getContext(__instance);
-            if (context?.PlayerInteractData == null) return;
-
-            InteractMonitor.OnBestInteractChanged(context.PlayerInteractData.BestInteractEntityRef);
-        }
-        catch (System.Exception ex)
-        {
-            A11yLog.Error($"[H_TickForInteractiveActor] {ex.Message}");
-        }
-    }
-}
