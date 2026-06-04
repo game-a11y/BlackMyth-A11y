@@ -10,6 +10,9 @@ namespace WkAccess.BM;
 /// </summary>
 public static class InteractMonitor
 {
+    /// <summary>当可交互目标文本变化时触发，由 A11yMod 层订阅并朗读</summary>
+    public static event Action<string>? OnInteractTextChanged;
+
     static EntitySharedRef? _lastBestRef;
     static int _lastUnitId = -1;
 
@@ -62,7 +65,7 @@ public static class InteractMonitor
         if (!string.IsNullOrEmpty(text))
         {
             A11yLog.Info($"[Interact] {text} (UnitID={data.InteractiveUnitID})");
-            A11yTolk.Speak(text!, interrupt: true);
+            OnInteractTextChanged?.Invoke(text!);
         }
     }
 
