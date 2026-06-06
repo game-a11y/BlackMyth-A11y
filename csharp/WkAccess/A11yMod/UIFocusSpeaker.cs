@@ -10,7 +10,7 @@ public static class UIFocusSpeaker
 {
     public static void Init()
     {
-        UIFocusTracker.OnFocusEnter += OnFocusEnter;
+        UIFocusBuffer.OnFocusOutput += OnFocusEnter;
     }
 
     static void OnFocusEnter(int gsid, string className, string? text)
